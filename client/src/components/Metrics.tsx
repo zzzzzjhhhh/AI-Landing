@@ -10,7 +10,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
   const isInView = useInView(ref, { once: true });
   
   return (
-    <span ref={ref} className="text-6xl md:text-8xl lg:text-9xl font-display text-white font-normal tracking-tighter">
+    <span ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-display text-white font-normal tracking-tighter">
       {isInView ? (
         <CountUp from={from} to={to} duration={2} />
       ) : from}
@@ -25,9 +25,9 @@ function CountUp({ from, to, duration }: { from: number; to: number; duration: n
 
 export function Metrics() {
   return (
-    <section id="metrics" className="py-32 lg:py-40 bg-gradient-to-b from-navy-900 to-navy-950 overflow-hidden">
+    <section id="metrics" className="py-24 lg:py-32 bg-gradient-to-b from-navy-900 to-navy-950 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-y-24 gap-x-12 text-center mb-28">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 text-center mb-20">
           <div>
             <div className="mb-2">
               <Counter from={0} to={10} suffix="M+" />
