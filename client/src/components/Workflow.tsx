@@ -2,49 +2,49 @@ import { motion } from "framer-motion";
 
 const nodes = [
   { 
-    step: "01", 
+    step: "1", 
     title: "Define Task", 
     desc: "Consultation on labeling guidelines",
     x: 0,
-    y: 60,
-    width: 140,
-    height: 110
+    y: 80,
+    width: 180,
+    height: 160
   },
   { 
-    step: "02", 
+    step: "2", 
     title: "Deploy Experts", 
     desc: "Curated teams for your domain",
-    x: 180,
+    x: 220,
     y: 20,
-    width: 150,
-    height: 120
+    width: 190,
+    height: 170
   },
   { 
-    step: "03", 
+    step: "3", 
     title: "Label & Review", 
     desc: "High-throughput annotation",
-    x: 380,
-    y: 80,
-    width: 160,
-    height: 130
+    x: 460,
+    y: 100,
+    width: 200,
+    height: 180
   },
   { 
-    step: "04", 
+    step: "4", 
     title: "AI Quality Check", 
     desc: "Automated anomaly detection",
-    x: 590,
+    x: 710,
     y: 10,
-    width: 150,
-    height: 120
+    width: 190,
+    height: 170
   },
   { 
-    step: "05", 
+    step: "5", 
     title: "Ship Dataset", 
     desc: "API delivery in your format",
-    x: 790,
-    y: 70,
-    width: 140,
-    height: 110
+    x: 950,
+    y: 90,
+    width: 180,
+    height: 160
   },
 ];
 
@@ -54,7 +54,6 @@ function getBezierPath(from: typeof nodes[0], to: typeof nodes[0]) {
   const endX = to.x;
   const endY = to.y + to.height / 2;
   
-  const midX = (startX + endX) / 2;
   const cp1X = startX + (endX - startX) * 0.4;
   const cp2X = startX + (endX - startX) * 0.6;
   
@@ -78,7 +77,7 @@ export function Workflow() {
         </motion.div>
 
         {/* Desktop Layout - Node Graph */}
-        <div className="hidden lg:block relative mx-auto" style={{ width: 930, height: 320 }}>
+        <div className="hidden lg:block relative mx-auto" style={{ width: 1130, height: 380 }}>
           {/* SVG Bezier Connectors */}
           <svg 
             className="absolute inset-0 w-full h-full pointer-events-none"
@@ -88,9 +87,10 @@ export function Workflow() {
               <motion.path
                 key={i}
                 d={getBezierPath(node, nodes[i + 1])}
-                stroke="#475569"
+                stroke="#3b82f6"
                 strokeWidth="2"
                 fill="none"
+                strokeOpacity="0.4"
                 initial={{ pathLength: 0, opacity: 0 }}
                 whileInView={{ pathLength: 1, opacity: 1 }}
                 viewport={{ once: true }}
@@ -118,28 +118,28 @@ export function Workflow() {
               <div 
                 className="
                   w-full h-full
-                  rounded-xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/40
-                  flex flex-col items-center justify-center
-                  hover:border-blue-500/50
-                  hover:bg-slate-700/50
+                  rounded-2xl
+                  bg-slate-900/60
+                  backdrop-blur-md
+                  border border-slate-500/30
+                  p-6
+                  flex flex-col justify-center
+                  hover:border-blue-400/50
+                  hover:bg-slate-800/70
                   transition-all duration-300
+                  shadow-lg shadow-blue-900/10
                 "
               >
-                <span className="text-3xl font-display font-bold text-blue-400/80">
-                  {node.step}
+                <span className="text-3xl font-display font-bold text-blue-400 mb-2">
+                  {node.step}.
                 </span>
-                <span className="text-sm font-medium text-white mt-2 px-2 text-center leading-tight">
+                <span className="text-xl font-display font-bold text-white mb-2">
                   {node.title}
                 </span>
+                <p className="text-sm text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
               </div>
-              
-              {/* Description below node */}
-              <p className="text-xs text-steel-500 text-center mt-3 leading-relaxed px-1">
-                {node.desc}
-              </p>
             </motion.div>
           ))}
         </div>
@@ -158,24 +158,25 @@ export function Workflow() {
             >
               <div 
                 className="
-                  w-36 h-28
-                  rounded-xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/40
-                  flex flex-col items-center justify-center
+                  w-44 h-40
+                  rounded-2xl
+                  bg-slate-900/60
+                  backdrop-blur-md
+                  border border-slate-500/30
+                  p-5
+                  flex flex-col justify-center
                 "
               >
-                <span className="text-3xl font-display font-bold text-blue-400/80">
-                  {node.step}
+                <span className="text-2xl font-display font-bold text-blue-400 mb-1">
+                  {node.step}.
                 </span>
-                <span className="text-sm font-medium text-white mt-1">
+                <span className="text-lg font-display font-bold text-white mb-2">
                   {node.title}
                 </span>
+                <p className="text-xs text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
               </div>
-              <p className="text-xs text-steel-500 max-w-[130px] mt-3 text-center">
-                {node.desc}
-              </p>
             </motion.div>
           ))}
         </div>
@@ -189,32 +190,33 @@ export function Workflow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center w-full max-w-xs"
             >
               <div 
                 className="
-                  w-40 h-32
-                  rounded-xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/40
-                  flex flex-col items-center justify-center
+                  w-full
+                  rounded-2xl
+                  bg-slate-900/60
+                  backdrop-blur-md
+                  border border-slate-500/30
+                  p-6
+                  flex flex-col
                 "
               >
-                <span className="text-4xl font-display font-bold text-blue-400/80">
-                  {node.step}
+                <span className="text-2xl font-display font-bold text-blue-400 mb-1">
+                  {node.step}.
                 </span>
-                <span className="text-base font-medium text-white mt-2">
+                <span className="text-xl font-display font-bold text-white mb-2">
                   {node.title}
                 </span>
+                <p className="text-sm text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
               </div>
-              <p className="text-sm text-steel-500 max-w-[160px] mt-3 text-center">
-                {node.desc}
-              </p>
               
               {index !== nodes.length - 1 && (
                 <svg className="w-2 h-10 mt-2" viewBox="0 0 8 40">
-                  <path d="M 4 0 Q 8 20, 4 40" stroke="#475569" strokeWidth="2" fill="none" />
+                  <path d="M 4 0 Q 8 20, 4 40" stroke="#3b82f6" strokeWidth="2" strokeOpacity="0.4" fill="none" />
                 </svg>
               )}
             </motion.div>
