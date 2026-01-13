@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 const nodes = [
   { 
@@ -7,46 +8,49 @@ const nodes = [
     desc: "Consultation on labeling guidelines",
     x: 0,
     y: 80,
-    width: 160,
-    height: 150
+    width: 180,
+    height: 160
   },
   { 
     step: "2", 
     title: "Deploy Experts", 
     desc: "Curated teams for your domain",
-    x: 190,
-    y: 20,
-    width: 170,
-    height: 160
+    x: 220,
+    y: 10,
+    width: 190,
+    height: 170
   },
   { 
     step: "3", 
     title: "Label & Review", 
     desc: "High-throughput annotation",
-    x: 400,
-    y: 90,
-    width: 180,
-    height: 170
+    x: 460,
+    y: 100,
+    width: 200,
+    height: 180
   },
   { 
     step: "4", 
     title: "AI Quality Check", 
     desc: "Automated anomaly detection",
-    x: 620,
-    y: 10,
-    width: 170,
-    height: 160
+    x: 710,
+    y: 0,
+    width: 190,
+    height: 170
   },
   { 
     step: "5", 
     title: "Ship Dataset", 
     desc: "API delivery in your format",
-    x: 830,
-    y: 80,
-    width: 160,
-    height: 150
+    x: 950,
+    y: 90,
+    width: 180,
+    height: 160
   },
 ];
+
+const GRAPH_WIDTH = 1130;
+const GRAPH_HEIGHT = 320;
 
 function getBezierPath(from: typeof nodes[0], to: typeof nodes[0]) {
   const startX = from.x + from.width;
@@ -61,6 +65,23 @@ function getBezierPath(from: typeof nodes[0], to: typeof nodes[0]) {
 }
 
 export function Workflow() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const updateScale = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        const newScale = Math.min(1, containerWidth / GRAPH_WIDTH);
+        setScale(newScale);
+      }
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
+
   return (
     <section id="workflow" className="py-32 lg:py-40 bg-black border-y border-white/5 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center">
@@ -76,73 +97,92 @@ export function Workflow() {
           </h2>
         </motion.div>
 
-        {/* Desktop Layout - Node Graph */}
-        <div className="hidden lg:block relative mx-auto" style={{ width: 990, height: 340 }}>
-          {/* SVG Bezier Connectors */}
-          <svg 
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ overflow: 'visible' }}
+        {/* Desktop Layout - Node Graph with responsive scaling */}
+        <div 
+          ref={containerRef}
+          className="hidden lg:flex justify-center w-full"
+        >
+          <div 
+            className="relative"
+            style={{ 
+              width: GRAPH_WIDTH, 
+              height: GRAPH_HEIGHT,
+              transform: `scale(${scale})`,
+              transformOrigin: 'center top'
+            }}
           >
-            {nodes.slice(0, -1).map((node, i) => (
-              <motion.path
-                key={i}
-                d={getBezierPath(node, nodes[i + 1])}
-                stroke="#3b82f6"
-                strokeWidth="2"
-                fill="none"
-                strokeOpacity="0.4"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 + i * 0.15 }}
-              />
-            ))}
-          </svg>
-
-          {/* Node Boxes */}
-          {nodes.map((node, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="absolute"
-              style={{ 
-                left: node.x, 
-                top: node.y, 
-                width: node.width, 
-                height: node.height 
-              }}
+            {/* SVG Bezier Connectors */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              style={{ overflow: 'visible' }}
             >
-              <div 
-                className="
-                  w-full h-full
-                  rounded-2xl
-                  bg-slate-900/60
-                  backdrop-blur-md
-                  border border-slate-500/30
-                  p-6
-                  flex flex-col justify-center
-                  hover:border-blue-400/50
-                  hover:bg-slate-800/70
-                  transition-all duration-300
-                  shadow-lg shadow-blue-900/10
-                "
+              {nodes.slice(0, -1).map((node, i) => (
+                <motion.path
+                  key={i}
+                  d={getBezierPath(node, nodes[i + 1])}
+                  stroke="#3b82f6"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeOpacity="0.4"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 + i * 0.15 }}
+                />
+              ))}
+            </svg>
+
+            {/* Node Boxes */}
+            {nodes.map((node, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="absolute"
+                style={{ 
+                  left: node.x, 
+                  top: node.y, 
+                  width: node.width, 
+                  height: node.height 
+                }}
               >
-                <span className="text-3xl font-display font-bold text-blue-400 mb-2">
-                  {node.step}.
-                </span>
-                <span className="text-xl font-display font-bold text-white mb-2">
-                  {node.title}
-                </span>
-                <p className="text-sm text-steel-400 leading-relaxed">
-                  {node.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                <div 
+                  className="
+                    w-full h-full
+                    rounded-2xl
+                    bg-slate-900/60
+                    backdrop-blur-md
+                    border border-slate-500/30
+                    p-6
+                    flex flex-col justify-center
+                    hover:border-blue-400/50
+                    hover:bg-slate-800/70
+                    transition-all duration-300
+                    shadow-lg shadow-blue-900/10
+                  "
+                >
+                  <span className="text-3xl font-display font-bold text-blue-400 mb-2">
+                    {node.step}.
+                  </span>
+                  <span className="text-xl font-display font-bold text-white mb-2">
+                    {node.title}
+                  </span>
+                  <p className="text-sm text-steel-400 leading-relaxed">
+                    {node.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* Scaled height container for proper layout flow */}
+        <div 
+          className="hidden lg:block" 
+          style={{ height: GRAPH_HEIGHT * scale }}
+        />
 
         {/* Tablet Layout */}
         <div className="hidden md:flex lg:hidden flex-wrap justify-center gap-6">
