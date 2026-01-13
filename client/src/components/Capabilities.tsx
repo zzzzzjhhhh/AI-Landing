@@ -2,27 +2,32 @@ import { motion } from "framer-motion";
 import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import annotationImage from "@assets/Screenshot_2026-01-13_at_10.38.29_1768285528493.png";
 
 const capabilities = [
   {
     icon: Eye,
     title: "Image & Video Annotation",
-    description: "Pixel-perfect segmentation, bounding boxes, and keypoint annotation for computer vision models that need to see the world clearly."
+    description: "Pixel-perfect segmentation, bounding boxes, and keypoint annotation for computer vision models that need to see the world clearly.",
+    image: annotationImage
   },
   {
     icon: MessageSquareText,
     title: "LLM & Multimodal Eval",
-    description: "RLHF ranking, fact-checking, and creative writing evaluation by domain experts to align large language models with human intent."
+    description: "RLHF ranking, fact-checking, and creative writing evaluation by domain experts to align large language models with human intent.",
+    image: null
   },
   {
     icon: ShieldCheck,
     title: "Safety & Policy Labeling",
-    description: "Rigorous adversarial testing and red-teaming to identify bias, toxicity, and safety failures before deployment."
+    description: "Rigorous adversarial testing and red-teaming to identify bias, toxicity, and safety failures before deployment.",
+    image: null
   },
   {
     icon: Cog,
     title: "Custom Pipelines",
-    description: "Tailored workflows for niche domains like medical imaging, legal contract review, or financial data extraction."
+    description: "Tailored workflows for niche domains like medical imaging, legal contract review, or financial data extraction.",
+    image: null
   }
 ];
 
@@ -134,18 +139,31 @@ export function Capabilities() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group flex-shrink-0 w-[380px] md:w-[450px] aspect-square snap-start"
             >
-              <div className="h-full bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl p-8 md:p-10 relative overflow-hidden flex flex-col justify-between hover:border-blue-500/30 transition-all duration-300">
+              <div className="h-full bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl relative overflow-hidden flex flex-col hover:border-blue-500/30 transition-all duration-300">
                 {/* Subtle glow */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
                 
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-xl bg-navy-800/80 flex items-center justify-center mb-8 group-hover:bg-blue-600/20 transition-colors border border-white/5">
-                    <cap.icon className="w-7 h-7 text-sky-300 group-hover:text-blue-400 transition-colors" />
+                {/* Image area or icon */}
+                {cap.image ? (
+                  <div className="relative flex-1 overflow-hidden">
+                    <img 
+                      src={cap.image} 
+                      alt={cap.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-transparent to-transparent" />
                   </div>
-                </div>
+                ) : (
+                  <div className="relative z-10 p-8 md:p-10 flex-1">
+                    <div className="w-14 h-14 rounded-xl bg-navy-800/80 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5">
+                      <cap.icon className="w-7 h-7 text-sky-300 group-hover:text-blue-400 transition-colors" />
+                    </div>
+                  </div>
+                )}
                 
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-display text-white mb-4">{cap.title}</h3>
+                {/* Text content */}
+                <div className="relative z-10 p-8 md:p-10">
+                  <h3 className="text-2xl font-display text-white mb-3">{cap.title}</h3>
                   <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
                     {cap.description}
                   </p>
