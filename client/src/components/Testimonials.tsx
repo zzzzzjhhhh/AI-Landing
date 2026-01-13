@@ -123,7 +123,7 @@ export function Testimonials() {
                     bg-white
                     rounded-xl
                     p-6 lg:p-8
-                    h-72 lg:h-80
+                    h-56 lg:h-64
                     flex flex-col justify-between
                   "
                 >
