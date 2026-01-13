@@ -98,25 +98,23 @@ export function Workflow() {
                 </div>
               </motion.div>
 
-              {/* STEP 02: Dot to the RIGHT of line, label far LEFT */}
+              {/* STEP 02: Dot to the RIGHT of line, label to the RIGHT of dot */}
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                style={{ left: "115px", top: "140px" }} // x=115 is left of line (line is at ~85 here)
-                className="absolute flex items-center justify-end w-[150px] -translate-x-full"
+                style={{ left: "109px", top: "140px" }} // x=109 is approx 24px right of line (line at ~85)
+                className="absolute flex items-center"
               >
-                <div className="mr-6 flex items-center gap-2 whitespace-nowrap">
+                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] -translate-x-1/2" />
+                <div className="ml-4 flex items-center gap-2 whitespace-nowrap">
                   <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-tighter">02</span>
                   <span className="text-sm font-medium text-white/90 tracking-wide">Deploy experts</span>
                 </div>
-                {/* Dot placed 24px right of line approx. Line is at ~85, so 85+24 = 109. 
-                    Adjusting within this container which is left-offset. */}
-                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] translate-x-[110px]" />
               </motion.div>
 
-              {/* STEP 03: Dot directly ON line (x=215 approx at y=280), label right */}
+              {/* STEP 03: Dot directly ON line, label right */}
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -132,7 +130,7 @@ export function Workflow() {
                 </div>
               </motion.div>
 
-              {/* STEP 04: Dot directly ON line (x=150 at y=420), label right */}
+              {/* STEP 04: Dot directly ON line, label right */}
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
