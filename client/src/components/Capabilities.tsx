@@ -54,12 +54,36 @@ export function Capabilities() {
     <section id="capabilities" className="py-32 lg:py-40 bg-navy-950 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         
-        {/* Title and Description - Centered */}
+        {/* Visual Abstract Strip - Full Width at Top */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          className="w-full h-40 rounded-xl overflow-hidden relative border border-white/10 mb-20"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-navy-900" />
+          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-blue-500/30" />
+          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-blue-500/10" />
+          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-blue-500/10" />
+          
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute top-1/2 w-1 h-4 bg-sky-300 rounded-full"
+              style={{ left: `${20 * i + 10}%` }}
+              animate={{ height: [16, 32, 16], opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+            />
+          ))}
+        </motion.div>
+
+        {/* Title and Description - Centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display text-white mb-6">
