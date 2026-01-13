@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react";
 
 const nodes = [
   { 
@@ -31,70 +30,7 @@ const nodes = [
 
 const verticalOffsets = [40, 0, 60, 10, 50];
 
-interface Connector {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-}
-
 export function Workflow() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [connectors, setConnectors] = useState<Connector[]>([]);
-
-  const updateConnectors = useCallback(() => {
-    if (!containerRef.current) return;
-    
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const newConnectors: Connector[] = [];
-
-    for (let i = 0; i < nodeRefs.current.length - 1; i++) {
-      const fromNode = nodeRefs.current[i];
-      const toNode = nodeRefs.current[i + 1];
-      
-      if (fromNode && toNode) {
-        const fromRect = fromNode.getBoundingClientRect();
-        const toRect = toNode.getBoundingClientRect();
-        
-        newConnectors.push({
-          x1: fromRect.right - containerRect.left,
-          y1: fromRect.top + fromRect.height / 2 - containerRect.top,
-          x2: toRect.left - containerRect.left,
-          y2: toRect.top + toRect.height / 2 - containerRect.top,
-        });
-      }
-    }
-    
-    setConnectors(newConnectors);
-  }, []);
-
-  useEffect(() => {
-    updateConnectors();
-    
-    const resizeObserver = new ResizeObserver(() => {
-      updateConnectors();
-    });
-    
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
-    
-    window.addEventListener("resize", updateConnectors);
-    
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", updateConnectors);
-    };
-  }, [updateConnectors]);
-
-  const getBezierPath = (conn: Connector) => {
-    const dx = conn.x2 - conn.x1;
-    const cp1X = conn.x1 + dx * 0.4;
-    const cp2X = conn.x1 + dx * 0.6;
-    return `M ${conn.x1} ${conn.y1} C ${cp1X} ${conn.y1}, ${cp2X} ${conn.y2}, ${conn.x2} ${conn.y2}`;
-  };
-
   return (
     <section id="workflow" className="py-32 lg:py-40 bg-black border-y border-white/5">
       <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center">
@@ -110,65 +46,46 @@ export function Workflow() {
           </h2>
         </motion.div>
 
-        {/* Desktop Layout - Fluid responsive grid with cable connectors */}
-        <div 
-          ref={containerRef}
-          className="hidden lg:block w-full max-w-[90rem] mx-auto px-4 relative"
-        >
-          {/* SVG Connectors */}
-          <svg 
-            className="absolute inset-0 w-full h-full pointer-events-none z-0"
-            style={{ overflow: 'visible' }}
-          >
-            <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            {connectors.map((conn, i) => (
-              <g key={i}>
-                <motion.path
-                  d={getBezierPath(conn)}
-                  stroke="#3b82f6"
-                  strokeWidth="4"
-                  fill="none"
-                  strokeOpacity="0.2"
-                  filter="url(#glow)"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 + i * 0.15 }}
-                />
-                <motion.path
-                  d={getBezierPath(conn)}
-                  stroke="#3b82f6"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeOpacity="0.6"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 + i * 0.15 }}
-                />
-              </g>
-            ))}
-          </svg>
+        {/* Desktop Layout - Fluid responsive grid */}
+        <div className="hidden lg:block w-full max-w-[90rem] mx-auto px-4">
+          <div className="flex justify-between items-start relative">
+            {/* SVG Connectors - positioned behind nodes */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none z-0"
+              preserveAspectRatio="none"
+            >
+              {nodes.slice(0, -1).map((_, i) => {
+                const x1 = (i * 25) + 12.5;
+                const x2 = ((i + 1) * 25) + 7.5;
+                const y1 = verticalOffsets[i] + 80;
+                const y2 = verticalOffsets[i + 1] + 80;
+                const midX = (x1 + x2) / 2;
+                
+                return (
+                  <motion.path
+                    key={i}
+                    d={`M ${x1}% ${y1} C ${midX}% ${y1}, ${midX}% ${y2}, ${x2}% ${y2}`}
+                    stroke="#3b82f6"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeOpacity="0.4"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.3 + i * 0.15 }}
+                  />
+                );
+              })}
+            </svg>
 
-          {/* Node Cards */}
-          <div className="flex justify-between items-start gap-4">
+            {/* Node Cards */}
             {nodes.map((node, index) => (
               <motion.div
                 key={index}
-                ref={(el) => { nodeRefs.current[index] = el; }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                onAnimationComplete={updateConnectors}
                 className="relative z-10 flex-1"
                 style={{ 
                   marginTop: `${verticalOffsets[index]}px`,
