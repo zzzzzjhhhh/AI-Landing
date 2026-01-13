@@ -41,13 +41,13 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="py-32 lg:py-40 bg-gradient-to-b from-navy-900 to-slate-900">
-      <div className="container mx-auto px-6 md:px-12 lg:px-16">
+      <div className="px-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-24"
+          className="text-center mb-16 lg:mb-24 px-6"
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
             Trusted by <span className="text-blue-400">industry leaders</span>
@@ -57,8 +57,8 @@ export function Testimonials() {
           </p>
         </motion.div>
 
-        {/* Desktop Layout - 5 staggered cards */}
-        <div className="hidden lg:flex justify-center items-start gap-6 w-full max-w-7xl mx-auto">
+        {/* Desktop Layout - 5 staggered cards full width */}
+        <div className="hidden lg:flex justify-between items-start gap-0 w-full">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -68,28 +68,24 @@ export function Testimonials() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`flex-1 ${testimonial.offset}`}
             >
-              <div className="mb-3 flex items-center gap-2">
+              <div className="mb-3 flex items-center gap-2 px-4">
                 <div className="w-2 h-2 rounded-full bg-blue-400" />
                 <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
               </div>
               <div 
                 className={`
                   ${testimonial.height}
-                  rounded-2xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/30
+                  bg-white
                   p-6
                   flex flex-col justify-between
-                  hover:border-blue-400/40
-                  hover:bg-slate-700/50
+                  hover:bg-gray-50
                   transition-all duration-300
                 `}
               >
-                <p className="text-white text-base leading-relaxed">
+                <p className="text-slate-900 text-base leading-relaxed">
                   "{testimonial.quote}"
                 </p>
-                <p className="text-steel-500 text-sm mt-4">
+                <p className="text-blue-500 text-sm mt-4">
                   — {testimonial.author}
                 </p>
               </div>
@@ -97,77 +93,8 @@ export function Testimonials() {
           ))}
         </div>
 
-        {/* Tablet Layout - 3 + 2 grid */}
-        <div className="hidden md:grid lg:hidden grid-cols-3 gap-6">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="mb-3 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
-              </div>
-              <div 
-                className="
-                  h-64
-                  rounded-2xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/30
-                  p-5
-                  flex flex-col justify-between
-                "
-              >
-                <p className="text-white text-sm leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <p className="text-steel-500 text-xs mt-3">
-                  — {testimonial.author}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-          {testimonials.slice(3).map((testimonial, index) => (
-            <motion.div
-              key={index + 3}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
-              className="col-span-1 first:col-start-1 last:col-start-2"
-            >
-              <div className="mb-3 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
-              </div>
-              <div 
-                className="
-                  h-64
-                  rounded-2xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/30
-                  p-5
-                  flex flex-col justify-between
-                "
-              >
-                <p className="text-white text-sm leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <p className="text-steel-500 text-xs mt-3">
-                  — {testimonial.author}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mobile Layout - Vertical stack */}
-        <div className="md:hidden flex flex-col gap-6">
+        {/* Tablet Layout - 5 cards in a row */}
+        <div className="hidden md:flex lg:hidden gap-0 w-full">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -175,25 +102,60 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex-1"
+              style={{ marginTop: index % 2 === 0 ? 0 : 30 }}
             >
-              <div className="mb-3 flex items-center gap-2">
+              <div className="mb-3 flex items-center gap-2 px-3">
                 <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
+                <span className="text-xs font-medium text-steel-300">{testimonial.company}</span>
               </div>
               <div 
                 className="
-                  rounded-2xl
-                  bg-slate-800/50
-                  backdrop-blur-sm
-                  border border-slate-600/30
-                  p-5
-                  flex flex-col
+                  h-56
+                  bg-white
+                  p-4
+                  flex flex-col justify-between
                 "
               >
-                <p className="text-white text-base leading-relaxed">
+                <p className="text-slate-900 text-sm leading-relaxed">
                   "{testimonial.quote}"
                 </p>
-                <p className="text-steel-500 text-sm mt-4">
+                <p className="text-blue-500 text-xs mt-3">
+                  — {testimonial.author}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile Layout - Horizontal scroll */}
+        <div className="md:hidden flex gap-0 w-full overflow-x-auto">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex-shrink-0 w-48"
+              style={{ marginTop: index % 2 === 0 ? 0 : 20 }}
+            >
+              <div className="mb-3 flex items-center gap-2 px-3">
+                <div className="w-2 h-2 rounded-full bg-blue-400" />
+                <span className="text-xs font-medium text-steel-300">{testimonial.company}</span>
+              </div>
+              <div 
+                className="
+                  h-52
+                  bg-white
+                  p-4
+                  flex flex-col justify-between
+                "
+              >
+                <p className="text-slate-900 text-sm leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <p className="text-blue-500 text-xs mt-3">
                   — {testimonial.author}
                 </p>
               </div>
