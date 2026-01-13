@@ -17,7 +17,7 @@ export function Footer() {
             </linearGradient>
           </defs>
           <path 
-            d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,70 L1440,120 L0,120 Z"
+            d="M0,80 C180,40 360,100 540,60 C720,20 900,90 1080,50 C1200,25 1320,70 1440,45 L1440,120 L0,120 Z"
             fill="url(#footerGradient)"
           />
         </svg>
