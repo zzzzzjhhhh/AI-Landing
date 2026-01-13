@@ -53,44 +53,44 @@ export function Metrics() {
           </div>
         </div>
 
-        {/* Full-width Image + Centered Text Layout */}
-        <div className="space-y-16">
-          {/* Full-width narrow image placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-full h-64 md:h-80 lg:h-96 rounded-3xl overflow-hidden relative border border-slate-700/50"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 to-slate-800/60" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-steel-400 text-lg">Your image will go here</p>
-            </div>
-          </motion.div>
+      </div>
 
-          {/* Centered text content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
-              Move your model forward — faster.
-            </h2>
-            <p className="text-lg md:text-xl text-steel-400 mb-10 leading-relaxed">
-              Stop bottling up your AI roadmap with slow data pipelines. Partner with Oceanveo for scalable, expert-grade annotation.
-            </p>
-            <Link href="/book">
-              <Button size="lg" className="rounded-full px-12 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
-                Start your project
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-          </motion.div>
+      {/* Full-screen narrow image placeholder - outside container */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="w-full h-64 md:h-80 lg:h-96 overflow-hidden relative"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 to-slate-800/60" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="text-steel-400 text-lg">Your image will go here</p>
         </div>
+      </motion.div>
+
+      {/* Centered text content */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+            Move your model forward — faster.
+          </h2>
+          <p className="text-lg md:text-xl text-steel-400 mb-10 leading-relaxed">
+            Stop bottling up your AI roadmap with slow data pipelines. Partner with Oceanveo for scalable, expert-grade annotation.
+          </p>
+          <Link href="/book">
+            <Button size="lg" className="rounded-full px-12 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
+              Start your project
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
