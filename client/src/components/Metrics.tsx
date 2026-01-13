@@ -55,7 +55,6 @@ export function Metrics() {
         </div>
 
       </div>
-
       {/* Full-screen narrow image - outside container */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -70,7 +69,6 @@ export function Metrics() {
           className="w-full h-full object-cover"
         />
       </motion.div>
-
       {/* Centered text content */}
       <div className="container mx-auto px-6 md:px-12 lg:px-16 py-20">
         <motion.div
@@ -80,7 +78,7 @@ export function Metrics() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-white mb-6 font-medium">
             Move your model forward — faster.
           </h2>
           <p className="text-lg md:text-xl text-steel-400 mb-10 leading-relaxed">
