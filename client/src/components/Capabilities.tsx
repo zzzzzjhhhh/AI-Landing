@@ -3,6 +3,7 @@ import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } f
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import annotationImage from "@assets/Screenshot_2026-01-13_at_10.38.29_1768285528493.png";
+import llmImage from "@assets/Screenshot_2026-01-13_at_14.33.50_1768286034432.png";
 
 const capabilities = [
   {
@@ -15,7 +16,7 @@ const capabilities = [
     icon: MessageSquareText,
     title: "LLM & Multimodal Eval",
     description: "RLHF ranking, fact-checking, and creative writing evaluation by domain experts to align large language models with human intent.",
-    image: null
+    image: llmImage
   },
   {
     icon: ShieldCheck,
