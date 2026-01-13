@@ -4,7 +4,6 @@ export function Workflow() {
   return (
     <section id="workflow" className="py-24 lg:py-32 bg-navy-950 border-y border-white/5 overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-900 opacity-50 pointer-events-none" />
-      
       <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
@@ -16,7 +15,7 @@ export function Workflow() {
             transition={{ duration: 0.6 }}
             className="text-left"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-8 tracking-tight leading-[1.1]">
+            <h2 className="md:text-5xl lg:text-7xl font-display text-white mb-8 tracking-tight font-medium text-[48px]">
               Built for speed.<br />
               <span className="text-white/40">Designed for quality.</span>
             </h2>
