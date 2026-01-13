@@ -137,36 +137,35 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex-shrink-0 w-[380px] md:w-[450px] aspect-square snap-start"
+              className="group flex-shrink-0 w-[380px] md:w-[450px] snap-start"
             >
-              <div className="h-full bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl relative overflow-hidden flex flex-col hover:border-blue-500/30 transition-all duration-300">
+              {/* Square card */}
+              <div className="aspect-square bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl relative overflow-hidden hover:border-blue-500/30 transition-all duration-300">
                 {/* Subtle glow */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
                 
-                {/* Image area or icon */}
+                {/* Image fills entire card, or icon in corner */}
                 {cap.image ? (
-                  <div className="relative h-1/2 overflow-hidden rounded-t-3xl">
-                    <img 
-                      src={cap.image} 
-                      alt={cap.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  <img 
+                    src={cap.image} 
+                    alt={cap.title}
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <div className="relative z-10 p-8 md:p-10 flex-1">
+                  <div className="relative z-10 p-8 md:p-10">
                     <div className="w-14 h-14 rounded-xl bg-navy-800/80 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5">
                       <cap.icon className="w-7 h-7 text-sky-300 group-hover:text-blue-400 transition-colors" />
                     </div>
                   </div>
                 )}
-                
-                {/* Text content */}
-                <div className={`relative z-10 p-8 md:p-10 ${cap.image ? 'flex-1 flex flex-col justify-center' : ''}`}>
-                  <h3 className="text-2xl font-display text-white mb-3">{cap.title}</h3>
-                  <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
-                    {cap.description}
-                  </p>
-                </div>
+              </div>
+              
+              {/* Text content BELOW the square */}
+              <div className="pt-6 px-2">
+                <h3 className="text-2xl font-display text-white mb-3">{cap.title}</h3>
+                <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
+                  {cap.description}
+                </p>
               </div>
             </motion.div>
           ))}
