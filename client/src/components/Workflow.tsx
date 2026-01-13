@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 const nodes = [
-  { id: "start", title: "Start", type: "pill" },
   { id: "step1", title: "Define the task", type: "pill" },
   { id: "step2", title: "Deploy experts", type: "pill" },
   { id: "step3", title: "Label & review", type: "pill" },
@@ -10,26 +9,9 @@ const nodes = [
   { id: "step5", title: "Ship datasets", type: "pill" },
 ];
 
-function CurvedConnector({ startY, endY }: { startY: number; endY: number }) {
-  const midY = (startY + endY) / 2;
-  // Create a curved path that dips slightly
-  const path = `M 100 ${startY} C 140 ${startY}, 140 ${midY}, 100 ${midY} C 60 ${midY}, 60 ${endY}, 100 ${endY}`;
-  
-  return (
-    <motion.path
-      d={path}
-      stroke="url(#neon-gradient)"
-      strokeWidth="2"
-      fill="none"
-      initial={{ pathLength: 0, opacity: 0 }}
-      whileInView={{ pathLength: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, ease: "easeInOut" }}
-    />
-  );
-}
-
 export function Workflow() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
     <section id="workflow" className="py-24 lg:py-32 bg-navy-950 border-y border-white/5 overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-900 opacity-50 pointer-events-none" />
@@ -46,11 +28,11 @@ export function Workflow() {
             className="text-left"
           >
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              Your workflows,<br />
-              <span className="text-white/40">always in motion.</span>
+              Built for speed.<br />
+              <span className="text-white/40">Designed for quality.</span>
             </h2>
             <p className="text-lg md:text-xl text-steel-400 max-w-xl leading-relaxed font-light">
-              Build multi-step automations that flex with your team's real-time decisions — not against them.
+              Oceanveo builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
             </p>
           </motion.div>
 
@@ -66,7 +48,7 @@ export function Workflow() {
                </div>
             </div>
 
-            <div className="relative w-[200px] flex flex-col items-center gap-12 py-8">
+            <div className="relative w-[240px] flex flex-col items-center gap-12 py-8">
               <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
                 <defs>
                   <linearGradient id="neon-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -79,14 +61,13 @@ export function Workflow() {
                   </filter>
                 </defs>
                 
-                {/* Simplified Vertical Connectors */}
                 {nodes.map((_, i) => i < nodes.length - 1 && (
                   <motion.line
                     key={i}
-                    x1="100"
-                    y1={44 + i * (40 + 48)} // Approx center of nodes
-                    x2="100"
-                    y2={44 + (i + 1) * (40 + 48)}
+                    x1="120"
+                    y1={44 + i * (44 + 48)} // Approx center of nodes
+                    x2="120"
+                    y2={44 + (i + 1) * (44 + 48)}
                     stroke="url(#neon-gradient)"
                     strokeWidth="1.5"
                     filter="url(#neon-glow)"
@@ -110,7 +91,7 @@ export function Workflow() {
                 >
                   <div 
                     className="
-                      w-full h-10
+                      w-full h-11
                       rounded-lg
                       bg-navy-950/80
                       backdrop-blur-md
