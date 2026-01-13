@@ -3,28 +3,28 @@ import { Link } from "wouter";
 export function Footer() {
   return (
     <footer className="relative">
-      {/* Subtle wave gradient transition */}
-      <div className="w-full overflow-hidden leading-none">
+      {/* Wave gradient transition */}
+      <div className="absolute top-0 left-0 right-0 h-32 overflow-hidden -translate-y-full">
         <svg 
-          viewBox="0 0 1440 60" 
-          className="w-full h-16"
+          viewBox="0 0 1440 120" 
+          className="absolute bottom-0 w-full h-auto"
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="subtleWave" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#0a1628" />
-              <stop offset="100%" stopColor="#102a4c" />
+            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#0a1628" stopOpacity="0" />
+              <stop offset="100%" stopColor="#0f2847" />
             </linearGradient>
           </defs>
           <path 
-            d="M0,0 L0,25 Q360,45 720,30 Q1080,15 1440,35 L1440,60 L0,60 Z"
-            fill="url(#subtleWave)"
+            d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,70 L1440,120 L0,120 Z"
+            fill="url(#footerGradient)"
           />
         </svg>
       </div>
       
-      {/* Footer content with matching gradient */}
-      <div className="bg-gradient-to-b from-[#102a4c] to-navy-950 pt-16 pb-12">
+      {/* Footer content with gradient background */}
+      <div className="bg-gradient-to-b from-[#0f2847] to-navy-950 pt-24 pb-12">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
