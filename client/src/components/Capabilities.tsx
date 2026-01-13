@@ -145,13 +145,12 @@ export function Capabilities() {
                 
                 {/* Image area or icon */}
                 {cap.image ? (
-                  <div className="relative flex-1 overflow-hidden">
+                  <div className="relative h-1/2 overflow-hidden rounded-t-3xl">
                     <img 
                       src={cap.image} 
                       alt={cap.title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-transparent to-transparent" />
                   </div>
                 ) : (
                   <div className="relative z-10 p-8 md:p-10 flex-1">
@@ -162,7 +161,7 @@ export function Capabilities() {
                 )}
                 
                 {/* Text content */}
-                <div className="relative z-10 p-8 md:p-10">
+                <div className={`relative z-10 p-8 md:p-10 ${cap.image ? 'flex-1 flex flex-col justify-center' : ''}`}>
                   <h3 className="text-2xl font-display text-white mb-3">{cap.title}</h3>
                   <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
                     {cap.description}
