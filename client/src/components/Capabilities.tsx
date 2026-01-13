@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Eye, MessageSquareText, ShieldCheck, Cog } from "lucide-react";
+import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const capabilities = [
   {
@@ -25,52 +27,80 @@ const capabilities = [
 ];
 
 export function Capabilities() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = scrollRef.current.clientWidth * 0.8;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+      setTimeout(checkScroll, 300);
+    }
+  };
+
   return (
     <section id="capabilities" className="py-32 lg:py-40 bg-navy-950 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         
-        {/* Visual Abstract Strip - Full Width at Top */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="w-full h-40 rounded-xl overflow-hidden relative border border-white/10 mb-20"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-navy-900" />
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-blue-500/30" />
-          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-blue-500/10" />
-          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-blue-500/10" />
-          
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute top-1/2 w-1 h-4 bg-sky-300 rounded-full"
-              style={{ left: `${20 * i + 10}%` }}
-              animate={{ height: [16, 32, 16], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-            />
-          ))}
-        </motion.div>
-
         {/* Title and Description - Centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display text-white mb-6">
             Human intelligence,<br />at machine speed.
           </h2>
           <p className="text-lg text-steel-500 leading-relaxed">
-            Training modern AI systems requires more than raw labels. Oceanveo combines expert annotators with AI-assisted review to deliver datasets you can trust — at the speed your team needs.
+            Training modern AI systems requires more than raw labels. Oceanveo combines expert annotators with AI-assisted review to deliver datasets you can trust.
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Navigation Controls */}
+        <div className="flex justify-end gap-2 mb-6">
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}
+            className="rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30"
+            data-testid="button-scroll-left"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </Button>
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}
+            className="rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30"
+            data-testid="button-scroll-right"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </Button>
+        </div>
+
+        {/* Horizontal Slider */}
+        <div 
+          ref={scrollRef}
+          onScroll={checkScroll}
+          className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {capabilities.map((cap, index) => (
             <motion.div
               key={index}
@@ -78,15 +108,25 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative p-8 lg:p-10 rounded-lg bg-navy-900 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
+              className="group flex-shrink-0 w-[320px] md:w-[380px] aspect-square snap-start"
             >
-              <div className="w-12 h-12 rounded-lg bg-navy-800 flex items-center justify-center mb-4 group-hover:bg-blue-600/20 transition-colors">
-                <cap.icon className="w-6 h-6 text-sky-200 group-hover:text-blue-400 transition-colors" />
+              <div className="h-full bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl p-8 md:p-10 relative overflow-hidden flex flex-col justify-between hover:border-blue-500/30 transition-all duration-300">
+                {/* Subtle glow */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+                
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-xl bg-navy-800/80 flex items-center justify-center mb-8 group-hover:bg-blue-600/20 transition-colors border border-white/5">
+                    <cap.icon className="w-7 h-7 text-sky-300 group-hover:text-blue-400 transition-colors" />
+                  </div>
+                </div>
+                
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-display text-white mb-4">{cap.title}</h3>
+                  <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
+                    {cap.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-display text-white mb-2">{cap.title}</h3>
-              <p className="text-steel-500 text-sm leading-relaxed group-hover:text-sky-100/70 transition-colors">
-                {cap.description}
-              </p>
             </motion.div>
           ))}
         </div>
