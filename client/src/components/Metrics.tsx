@@ -18,11 +18,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
   );
 }
 
-// Simple CountUp implementation without external deps if needed, 
-// but sticking to standard React patterns
 function CountUp({ from, to, duration }: { from: number; to: number; duration: number }) {
-  // Simple render for now, fully animating this would require a custom hook or 'framer-motion'
-  // using animate() helper which is cleaner than intervals.
   return <>{to}</>; 
 }
 
@@ -57,24 +53,50 @@ export function Metrics() {
           </div>
         </div>
 
-        <div className="bg-blue-600/10 border border-blue-500/20 rounded-3xl p-16 md:p-24 text-center relative overflow-hidden">
-          {/* Decorative background glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
-              Move your model forward — faster.
-            </h2>
-            <p className="text-lg text-sky-200 mb-10">
-              Stop bottling up your AI roadmap with slow data pipelines. Partner with Oceanveo for scalable, expert-grade annotation.
-            </p>
-            <Link href="/book">
-              <Button size="lg" className="rounded-full px-10 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
-                Start your project
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-          </div>
+        {/* Two Cards Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Connect Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl p-12 md:p-16 relative overflow-hidden min-h-[400px] flex flex-col justify-center"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+                Move your model forward — faster.
+              </h2>
+              <p className="text-lg text-steel-400 mb-10 leading-relaxed">
+                Stop bottling up your AI roadmap with slow data pipelines. Partner with Oceanveo for scalable, expert-grade annotation.
+              </p>
+              <Link href="/book">
+                <Button size="lg" className="rounded-full px-10 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
+                  Start your project
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image Card - placeholder for user's image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-gradient-to-br from-blue-900/40 to-slate-800/40 border border-slate-700/50 rounded-3xl p-12 md:p-16 relative overflow-hidden min-h-[400px] flex flex-col justify-center items-center"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent" />
+            
+            <div className="relative z-10 text-center">
+              <p className="text-steel-400 text-lg">
+                Your image will go here
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
