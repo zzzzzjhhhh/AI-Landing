@@ -41,7 +41,7 @@ export function Capabilities() {
               Human intelligence,<br />at machine speed.
             </h2>
             <p className="text-lg text-steel-500 leading-relaxed mb-8 max-w-lg">
-              Training modern AI systems requires more than raw labels. OceanVO combines expert annotators with AI-assisted review to deliver datasets you can trust — at the speed your team needs.
+              Training modern AI systems requires more than raw labels. Oceanveo combines expert annotators with AI-assisted review to deliver datasets you can trust — at the speed your team needs.
             </p>
             
             {/* Visual Abstract Strip */}

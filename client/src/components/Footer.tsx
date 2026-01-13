@@ -8,7 +8,7 @@ export function Footer() {
           <div className="max-w-xs">
             <Link href="/">
               <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer mb-4 block">
-                OceanVO
+                Oceanveo
               </span>
             </Link>
             <p className="text-steel-500 text-sm leading-relaxed">
@@ -34,7 +34,7 @@ export function Footer() {
         
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-steel-500">
-            © {new Date().getFullYear()} OceanVO Inc. All rights reserved.
+            © {new Date().getFullYear()} Oceanveo Inc. All rights reserved.
           </p>
           <div className="flex gap-6">
             {/* Social icons could go here */}

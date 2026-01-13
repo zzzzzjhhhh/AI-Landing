@@ -66,7 +66,7 @@ export function Metrics() {
               Move your model forward — faster.
             </h2>
             <p className="text-lg text-sky-200 mb-10">
-              Stop bottling up your AI roadmap with slow data pipelines. Partner with OceanVO for scalable, expert-grade annotation.
+              Stop bottling up your AI roadmap with slow data pipelines. Partner with Oceanveo for scalable, expert-grade annotation.
             </p>
             <Link href="/book">
               <Button size="lg" className="rounded-full px-10 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">

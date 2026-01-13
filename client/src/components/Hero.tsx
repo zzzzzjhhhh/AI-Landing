@@ -38,7 +38,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl text-steel-500 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            OceanVO builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
+            Oceanveo builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
