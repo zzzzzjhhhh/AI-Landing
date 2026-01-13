@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import metricsImage from "@assets/Screenshot_2026-01-13_at_10.37.49_1768286162965.png";
 
 function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?: string }) {
   const ref = useRef(null);
@@ -55,7 +56,7 @@ export function Metrics() {
 
       </div>
 
-      {/* Full-screen narrow image placeholder - outside container */}
+      {/* Full-screen narrow image - outside container */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -63,10 +64,11 @@ export function Metrics() {
         transition={{ duration: 0.6 }}
         className="w-full h-64 md:h-80 lg:h-96 overflow-hidden relative"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 to-slate-800/60" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-steel-400 text-lg">Your image will go here</p>
-        </div>
+        <img 
+          src={metricsImage} 
+          alt="AI data visualization"
+          className="w-full h-full object-cover"
+        />
       </motion.div>
 
       {/* Centered text content */}
