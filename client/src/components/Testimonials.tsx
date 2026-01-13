@@ -1,53 +1,85 @@
 import { motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const testimonials = [
   {
     company: "Anthropic",
     quote: "Oceanveo's expert annotators helped us achieve unprecedented accuracy in our RLHF training pipeline.",
     author: "ML Research Lead",
-    height: "h-80",
-    offset: "mt-16",
   },
   {
     company: "Scale AI",
     quote: "The quality and speed of delivery exceeded our expectations. A true partner in data excellence.",
     author: "VP of Operations",
-    height: "h-96",
-    offset: "mt-8",
   },
   {
     company: "OpenAI",
     quote: "When we needed domain experts for complex reasoning tasks, Oceanveo delivered world-class results.",
     author: "Training Data Manager",
-    height: "h-[28rem]",
-    offset: "mt-0",
   },
   {
     company: "Cohere",
     quote: "Their multimodal annotation capabilities are second to none. Highly recommend for any AI team.",
     author: "Head of Data",
-    height: "h-96",
-    offset: "mt-12",
   },
   {
     company: "Stability AI",
     quote: "Fast turnaround, rigorous QA, and genuine expertise. Exactly what we needed.",
     author: "Director of Engineering",
-    height: "h-80",
-    offset: "mt-20",
   },
 ];
 
 export function Testimonials() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      api?.scrollTo(index);
+    },
+    [api]
+  );
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   return (
     <section className="py-32 lg:py-40 bg-gradient-to-b from-navy-900 to-slate-900">
-      <div className="px-0">
+      <div className="text-center mb-16 lg:mb-20 px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-24 px-6"
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
             Trusted by <span className="text-blue-400">industry leaders</span>
@@ -56,112 +88,74 @@ export function Testimonials() {
             See what top AI companies say about working with Oceanveo
           </p>
         </motion.div>
+      </div>
 
-        {/* Desktop Layout - 5 staggered cards full width */}
-        <div className="hidden lg:flex justify-between items-start gap-0 w-full">
+      <Carousel
+        setApi={setApi}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-0">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <CarouselItem
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`flex-1 ${testimonial.offset}`}
+              className="pl-0 basis-[85%] sm:basis-[45%] lg:basis-[30%] xl:basis-[22%]"
             >
-              <div className="mb-3 flex items-center gap-2 px-4">
-                <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
-              </div>
-              <div 
-                className={`
-                  ${testimonial.height}
-                  bg-white
-                  p-6
-                  flex flex-col justify-between
-                  hover:bg-gray-50
-                  transition-all duration-300
-                `}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full"
+                style={{ 
+                  marginTop: index % 2 === 0 ? '0px' : '40px',
+                }}
               >
-                <p className="text-slate-900 text-base leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <p className="text-blue-500 text-sm mt-4">
-                  — {testimonial.author}
-                </p>
-              </div>
-            </motion.div>
+                <div className="mb-3 flex items-center gap-2 px-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-400" />
+                  <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
+                </div>
+                <div 
+                  className="
+                    bg-white
+                    p-6 lg:p-8
+                    h-72 lg:h-80
+                    flex flex-col justify-between
+                  "
+                >
+                  <p className="text-slate-900 text-base lg:text-lg leading-relaxed">
+                    "{testimonial.quote}"
+                  </p>
+                  <p className="text-blue-500 text-sm mt-4">
+                    — {testimonial.author}
+                  </p>
+                </div>
+              </motion.div>
+            </CarouselItem>
           ))}
-        </div>
+        </CarouselContent>
+      </Carousel>
 
-        {/* Tablet Layout - 5 cards in a row */}
-        <div className="hidden md:flex lg:hidden gap-0 w-full">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex-1"
-              style={{ marginTop: index % 2 === 0 ? 0 : 30 }}
-            >
-              <div className="mb-3 flex items-center gap-2 px-3">
-                <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-xs font-medium text-steel-300">{testimonial.company}</span>
-              </div>
-              <div 
-                className="
-                  h-56
-                  bg-white
-                  p-4
-                  flex flex-col justify-between
-                "
-              >
-                <p className="text-slate-900 text-sm leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <p className="text-blue-500 text-xs mt-3">
-                  — {testimonial.author}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mobile Layout - Horizontal scroll */}
-        <div className="md:hidden flex gap-0 w-full overflow-x-auto">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex-shrink-0 w-48"
-              style={{ marginTop: index % 2 === 0 ? 0 : 20 }}
-            >
-              <div className="mb-3 flex items-center gap-2 px-3">
-                <div className="w-2 h-2 rounded-full bg-blue-400" />
-                <span className="text-xs font-medium text-steel-300">{testimonial.company}</span>
-              </div>
-              <div 
-                className="
-                  h-52
-                  bg-white
-                  p-4
-                  flex flex-col justify-between
-                "
-              >
-                <p className="text-slate-900 text-sm leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <p className="text-blue-500 text-xs mt-3">
-                  — {testimonial.author}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+      {/* Pagination Dots */}
+      <div className="flex justify-center gap-2 mt-12">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => scrollTo(index)}
+            className={`
+              w-2.5 h-2.5 rounded-full transition-all duration-300
+              ${current === index 
+                ? 'bg-white w-8' 
+                : 'bg-white/30 hover:bg-white/50'
+              }
+            `}
+            aria-label={`Go to slide ${index + 1}`}
+            data-testid={`dot-testimonial-${index}`}
+          />
+        ))}
       </div>
     </section>
   );
