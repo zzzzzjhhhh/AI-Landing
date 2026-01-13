@@ -1,241 +1,137 @@
 import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 const nodes = [
-  { 
-    id: "step1",
-    step: "1.",
-    title: "Define Task", 
-    desc: "Consultation on labeling guidelines",
-    x: 100,
-    y: 0,
-    width: 220,
-    height: 140,
-    type: "step"
-  },
-  { 
-    id: "step2",
-    step: "2.",
-    title: "Deploy Experts", 
-    desc: "Curated teams for your domain",
-    x: 450,
-    y: -80,
-    width: 220,
-    height: 140,
-    type: "step"
-  },
-  { 
-    id: "step3",
-    step: "3.",
-    title: "Label & Review", 
-    desc: "High-throughput annotation",
-    x: 450,
-    y: 80,
-    width: 220,
-    height: 140,
-    type: "step"
-  },
-  { 
-    id: "step4",
-    step: "4.",
-    title: "AI Quality Check", 
-    desc: "Automated anomaly detection",
-    x: 800,
-    y: 0,
-    width: 220,
-    height: 140,
-    type: "step"
-  },
-  { 
-    id: "step5",
-    step: "5.",
-    title: "Ship Dataset", 
-    desc: "API delivery in your format",
-    x: 1150,
-    y: 0,
-    width: 220,
-    height: 140,
-    type: "step"
-  },
+  { id: "start", title: "Start", type: "pill" },
+  { id: "step1", title: "Define the task", type: "pill" },
+  { id: "step2", title: "Deploy experts", type: "pill" },
+  { id: "step3", title: "Label & review", type: "pill" },
+  { id: "step4", title: "AI-assisted QA", type: "pill" },
+  { id: "step5", title: "Ship datasets", type: "pill" },
 ];
 
-const connections = [
-  { from: "step1", to: "step2" },
-  { from: "step1", to: "step3" },
-  { from: "step2", to: "step4" },
-  { from: "step3", to: "step4" },
-  { from: "step4", to: "step5" },
-];
-
-const GRAPH_WIDTH = 1400;
-const GRAPH_HEIGHT = 400;
-
-function getBezierPath(fromNode: typeof nodes[0], toNode: typeof nodes[0]) {
-  const startX = fromNode.x + fromNode.width;
-  const startY = fromNode.y + fromNode.height / 2;
-  const endX = toNode.x;
-  const endY = toNode.y + toNode.height / 2;
+function CurvedConnector({ startY, endY }: { startY: number; endY: number }) {
+  const midY = (startY + endY) / 2;
+  // Create a curved path that dips slightly
+  const path = `M 100 ${startY} C 140 ${startY}, 140 ${midY}, 100 ${midY} C 60 ${midY}, 60 ${endY}, 100 ${endY}`;
   
-  const cp1X = startX + (endX - startX) * 0.4;
-  const cp2X = startX + (endX - startX) * 0.6;
-  
-  return `M ${startX} ${startY} C ${cp1X} ${startY}, ${cp2X} ${endY}, ${endX} ${endY}`;
+  return (
+    <motion.path
+      d={path}
+      stroke="url(#neon-gradient)"
+      strokeWidth="2"
+      fill="none"
+      initial={{ pathLength: 0, opacity: 0 }}
+      whileInView={{ pathLength: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+    />
+  );
 }
 
 export function Workflow() {
   return (
-    <section id="workflow" className="py-32 lg:py-48 bg-navy-950 border-y border-white/5 overflow-hidden relative">
+    <section id="workflow" className="py-24 lg:py-32 bg-navy-950 border-y border-white/5 overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-900 opacity-50 pointer-events-none" />
       
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-24"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-6 tracking-tight">
-            Built for speed. <span className="text-steel-500">Designed for quality.</span>
-          </h2>
-        </motion.div>
-
-        {/* Desktop Layout - Branched Node Graph */}
-        <div className="hidden lg:flex justify-center w-full min-h-[400px]">
-          <div 
-            className="relative"
-            style={{ 
-              width: GRAPH_WIDTH, 
-              height: GRAPH_HEIGHT,
-              transform: `scale(0.85)`,
-              transformOrigin: 'center center'
-            }}
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Left Column: Title Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-left"
           >
-            <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              style={{ overflow: 'visible' }}
-            >
-              <defs>
-                <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
-                </linearGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              
-              {connections.map((conn, i) => {
-                const fromNode = nodes.find(n => n.id === conn.from)!;
-                const toNode = nodes.find(n => n.id === conn.to)!;
-                return (
-                  <motion.path
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              Your workflows,<br />
+              <span className="text-white/40">always in motion.</span>
+            </h2>
+            <p className="text-lg md:text-xl text-steel-400 max-w-xl leading-relaxed font-light">
+              Build multi-step automations that flex with your team's real-time decisions — not against them.
+            </p>
+          </motion.div>
+
+          {/* Right Column: Vertical Flowchart */}
+          <div className="relative flex justify-center lg:justify-end">
+            {/* Fake UI Background Panel */}
+            <div className="absolute -inset-4 md:-inset-8 bg-navy-900/40 backdrop-blur-3xl rounded-3xl border border-white/5 shadow-2xl overflow-hidden pointer-events-none">
+               <div className="absolute inset-0 opacity-20">
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent top-1/4 absolute" />
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent top-2/4 absolute" />
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent top-3/4 absolute" />
+                  <div className="w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-1/4 absolute" />
+               </div>
+            </div>
+
+            <div className="relative w-[200px] flex flex-col items-center gap-12 py-8">
+              <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+                <defs>
+                  <linearGradient id="neon-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  </linearGradient>
+                  <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                
+                {/* Simplified Vertical Connectors */}
+                {nodes.map((_, i) => i < nodes.length - 1 && (
+                  <motion.line
                     key={i}
-                    d={getBezierPath(fromNode, toNode)}
-                    stroke="url(#glow-gradient)"
-                    strokeWidth="4"
-                    fill="none"
-                    filter="url(#glow)"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    x1="100"
+                    y1={44 + i * (40 + 48)} // Approx center of nodes
+                    x2="100"
+                    y2={44 + (i + 1) * (40 + 48)}
+                    stroke="url(#neon-gradient)"
+                    strokeWidth="1.5"
+                    filter="url(#neon-glow)"
+                    initial={{ scaleY: 0, opacity: 0 }}
+                    whileInView={{ scaleY: 1, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.2, delay: 0.3 + i * 0.1 }}
+                    transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
+                    style={{ originY: 0 }}
                   />
-                );
-              })}
-            </svg>
+                ))}
+              </svg>
 
-            {nodes.map((node, index) => (
-              <motion.div
-                key={node.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="absolute flex items-center justify-center"
-                style={{ 
-                  left: node.x, 
-                  top: node.y + 100, // Offset for better centering
-                  width: node.width, 
-                  height: node.height 
-                }}
-              >
-                <div 
-                  className="
-                    w-full h-full
-                    rounded-2xl
-                    bg-navy-900/60
-                    backdrop-blur-xl
-                    border border-white/10
-                    p-8
-                    flex flex-col justify-center
-                    text-left
-                    hover:border-blue-400/40
-                    hover:bg-navy-800/80
-                    transition-all duration-500
-                    shadow-2xl shadow-black/40
-                    group
-                  "
+              {nodes.map((node, index) => (
+                <motion.div
+                  key={node.id}
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="relative z-10 w-full"
                 >
-                  <span className="text-3xl font-display font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors">
-                    {node.step}
-                  </span>
-                  <span className="text-xl font-display font-bold text-white mb-2 tracking-tight">
-                    {node.title}
-                  </span>
-                  <p className="text-sm text-steel-400 leading-relaxed font-light">
-                    {node.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                  <div 
+                    className="
+                      w-full h-10
+                      rounded-lg
+                      bg-navy-950/80
+                      backdrop-blur-md
+                      border border-cyan-400/30
+                      flex items-center justify-center
+                      px-6
+                      shadow-[0_0_15px_rgba(34,211,238,0.1)]
+                      group
+                      hover:border-cyan-400/60
+                      hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]
+                      transition-all duration-300
+                    "
+                  >
+                    <span className="text-sm font-medium text-white/90 group-hover:text-white transition-colors tracking-wide">
+                      {node.title}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* Mobile/Tablet Layout - Vertical Stack */}
-        <div className="lg:hidden flex flex-col items-center gap-8 max-w-sm mx-auto">
-          {nodes.map((node, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center w-full"
-            >
-              <div 
-                className="
-                  w-full
-                  rounded-2xl
-                  bg-navy-900/60
-                  backdrop-blur-xl
-                  border border-white/10
-                  p-8
-                  flex flex-col
-                  text-left
-                  shadow-xl
-                "
-              >
-                <span className="text-2xl font-display font-bold text-blue-400 mb-2">
-                  {node.step}
-                </span>
-                <span className="text-xl font-display font-bold text-white mb-2">
-                  {node.title}
-                </span>
-                <p className="text-sm text-steel-400 leading-relaxed">
-                  {node.desc}
-                </p>
-              </div>
-              
-              {index !== nodes.length - 1 && (
-                <div className="w-1 h-12 bg-gradient-to-b from-blue-500/40 to-transparent mt-2" />
-              )}
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
