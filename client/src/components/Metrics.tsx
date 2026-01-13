@@ -27,7 +27,7 @@ export function Metrics() {
   return (
     <section id="metrics" className="py-32 lg:py-40 bg-gradient-to-b from-navy-900 to-navy-950">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 text-center mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 text-center mb-28">
           <div>
             <div className="mb-2">
               <Counter from={0} to={10} suffix="M+" />
