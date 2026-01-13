@@ -83,8 +83,9 @@ export function Workflow() {
             {/* Floating Markers and Text Layer */}
             <div className="absolute left-1/2 -translate-x-1/2 w-[300px] h-full">
               {nodes.map((node, i) => {
-                // Simplified positioning to align with the visual curve peaks/center
-                const xPositions = [150, 80, 220, 150];
+                // Adjusting x positions to avoid line overlap
+                // 1: Right, 2: Far Left, 3: Far Right, 4: Far Right
+                const xPositions = [150, 60, 240, 170];
                 const x = xPositions[i];
                 const y = i * 140;
 
