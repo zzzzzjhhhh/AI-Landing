@@ -21,28 +21,28 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled || mobileMenuOpen ? "glass-nav py-4" : "bg-white py-6"
+        isScrolled || mobileMenuOpen ? "glass-nav py-4" : "bg-transparent py-6"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
-          <span className="font-display font-bold text-2xl tracking-tighter text-navy-900 cursor-pointer select-none">
+          <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer select-none">
             Oceanveo
           </span>
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="/#capabilities" className="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">
+          <a href="/#capabilities" className="text-sm font-medium text-sky-200 hover:text-white transition-colors">
             Capabilities
           </a>
-          <a href="/#workflow" className="text-sm font-medium text-slate-600 hover:text-navy-900 transition-colors">
+          <a href="/#workflow" className="text-sm font-medium text-sky-200 hover:text-white transition-colors">
             Workflow
           </a>
           <Link href="/book">
             <Button 
               variant="outline" 
-              className="border-navy-900/20 text-navy-900 hover:bg-navy-900/5 hover:text-navy-900 hover:border-navy-900/40 transition-all rounded-xl px-6"
+              className="border-white/20 text-white hover:bg-white/10 hover:text-white hover:border-white/40 transition-all rounded-xl px-6"
             >
               Book a call
             </Button>
