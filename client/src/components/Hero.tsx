@@ -6,15 +6,17 @@ import bgMain from "@assets/bg_main_1768281613638.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={bgMain} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32">
+      {/* Background image - moved below header */}
+      <div className="absolute inset-0 z-0 pt-24">
+        <div className="relative w-full h-full">
+          <img 
+            src={bgMain} 
+            alt="" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-navy-950" />
+        </div>
       </div>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center max-w-6xl">
         <motion.div
