@@ -132,7 +132,7 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex-shrink-0 w-[320px] md:w-[380px] aspect-square snap-start"
+              className="group flex-shrink-0 w-[380px] md:w-[450px] aspect-square snap-start"
             >
               <div className="h-full bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl p-8 md:p-10 relative overflow-hidden flex flex-col justify-between hover:border-blue-500/30 transition-all duration-300">
                 {/* Subtle glow */}
