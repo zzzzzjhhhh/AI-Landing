@@ -14,7 +14,7 @@ export function Hero() {
           alt="" 
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-navy-950/60" />
+        <div className="absolute inset-0 bg-navy-950/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-5xl">
