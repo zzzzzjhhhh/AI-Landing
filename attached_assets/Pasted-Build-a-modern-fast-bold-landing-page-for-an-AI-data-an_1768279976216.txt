@@ -1,0 +1,201 @@
+Build a modern, fast, bold landing page for an AI data annotation company called “OceanVO”.
+
+GOAL:
+Create a premium, startup-style landing page in dark ocean-blue gradients. The site should feel confident, minimal, and fast — not corporate or bulky. Focus on clean layout, strong typography, and subtle motion. This is a design-first build with solid structure; copy is provided and should be used exactly.
+
+TECH:
+Use HTML/CSS/JS or React (your choice). Make it responsive. Use clean semantic markup, CSS variables, and smooth scroll. Keep the code readable and production-ready.
+
+BRAND & STYLE:
+- Dark-mode UI
+- Ocean-inspired gradients (deep blues → darker blues)
+- White accents, minimal black
+- Thin 1px outlines for cards, buttons, workflow nodes
+- Rounded rectangles (subtle radius, not bubbly)
+- No heavy shadows
+- Smooth, slow gradient animation in hero background
+- Font: Inter or Space Grotesk (Google Fonts)
+
+COLOR PALETTE (use as CSS variables):
+--navy-900: #06152e
+--navy-800: #162541
+--navy-700: #1f3055
+--blue-700: #173d84
+--blue-600: #1f4b95
+--blue-500: #3972c6
+--steel-500: #4f78a2
+--sky-300: #adcfe1
+--sky-200: #bdd5d3
+--sky-100: #a0d5fa
+--white: #ffffff
+
+PAGES:
+1) Home page
+2) Book a Call page
+
+--------------------------------
+HEADER (sticky):
+- Transparent on hero
+- Left: OceanVO logo text
+- Right: “Book a call” button (thin white outline, rounded rectangle)
+- On scroll: header becomes darker for contrast
+
+--------------------------------
+SECTION 1 — HERO (full viewport):
+
+Background:
+- Animated ocean-style gradient
+- Darker at bottom
+
+Content (left-aligned):
+Headline:
+“High-quality AI data. Delivered fast.”
+
+Subheadline:
+“OceanVO builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.”
+
+Buttons:
+Primary: Book a call
+Secondary: See how it works
+
+--------------------------------
+SECTION 2 — WHAT WE DO:
+
+Background:
+- Gradient continues and becomes darker
+
+Top visual:
+- A narrow horizontal collage strip (placeholder gradient blocks or tiled images)
+- Represents large-scale data annotation
+
+Title:
+“Human intelligence, at machine speed”
+
+Text:
+“Training modern AI systems requires more than raw labels.
+OceanVO combines expert annotators with AI-assisted review to deliver datasets you can trust — at the speed your team needs.
+
+We work with fast-moving AI teams who can’t afford noisy data, slow turnaround, or fragile workflows.”
+
+--------------------------------
+SECTION 3 — CAPABILITIES (4 CARDS):
+
+Layout:
+- 2x2 grid on desktop
+- Stacked on mobile
+- Dark background, thin outlines, hover highlight
+
+Cards:
+
+1) Image & Video Annotation  
+“High-precision labeling for vision models — from simple bounding boxes to complex, multi-class scenarios at scale.”
+
+2) LLM & Multimodal Evaluation  
+“Human evaluation for language and vision-language models, including ranking, reasoning quality, and edge-case analysis.”
+
+3) Safety & Policy Labeling  
+“Structured human judgment for safety, compliance, and policy-critical datasets where accuracy matters most.”
+
+4) Custom Pipelines  
+“We adapt to your stack, guidelines, and edge cases — not the other way around.”
+
+--------------------------------
+SECTION 4 — WORKFLOW:
+
+Background:
+- Very dark navy / near-black
+
+Layout:
+- Horizontal workflow diagram (desktop)
+- Vertical stacked on mobile
+- Rounded rectangular nodes with light blue outlines
+- Nodes connected by thin lines
+
+Nodes:
+1) Define the task
+2) Deploy experts
+3) Label & review
+4) AI-assisted QA
+5) Ship datasets
+
+Title:
+“Built for speed. Designed for quality.”
+
+--------------------------------
+SECTION 5 — TESTIMONIALS, METRICS & CTA:
+
+Background:
+- Lighter blue gradient (still cool and tech)
+
+Testimonials (cards):
+- Minimal white or light-blue text
+- Placeholder companies
+
+Quotes:
+“OceanVO helped us iterate faster without sacrificing quality. The difference was immediate.”
+— Head of ML, AI Startup
+
+“Clear communication, fast turnaround, and datasets we actually trust.”
+— Research Lead, Vision AI Company
+
+“They understand what production-grade data really means.”
+— Founder, Applied AI Team
+
+Metrics (animated count-up on scroll):
+- 10M+ labels delivered
+- 99.7% QA pass rate
+- 500+ expert annotators
+- 40% faster iteration cycles
+
+Final CTA:
+Title:
+“Move your model forward — faster”
+
+Text:
+“Stop waiting on slow, noisy data pipelines.
+OceanVO helps you train, evaluate, and iterate with confidence.”
+
+Button:
+Book a call
+
+--------------------------------
+FOOTER:
+- Dark background
+- Thin divider line
+- Left: OceanVO
+- Right: Capabilities | Workflow | Book a call
+
+--------------------------------
+BOOK A CALL PAGE:
+
+Layout:
+- Minimal, clean form page
+
+Title:
+“Let’s talk about your data”
+
+Text:
+“Tell us what you’re building. We’ll help you move faster.”
+
+Form fields:
+- First name
+- Last name
+- Email
+- Company
+- Phone (optional)
+- Message (optional)
+
+Button:
+“Request a call”
+
+--------------------------------
+INTERACTIONS:
+- Smooth scrolling
+- Subtle scroll reveal animations
+- Slow hero gradient animation
+- Count-up animation for metrics
+
+OUTPUT:
+Provide all necessary files so the site runs immediately.
+Use placeholders where images are needed.
+Keep everything clean, modern, and startup-fast.
