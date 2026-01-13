@@ -2,23 +2,19 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import bgMain from "@assets/bg_main_1768281613638.jpg";
 
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Background with animated gradient */}
-      <div className="absolute inset-0 bg-navy-950 z-0">
-        <motion.div 
-          className="absolute inset-0 opacity-40"
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 30%, #173d84 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 70%, #1f4b95 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 30%, #173d84 0%, transparent 50%)"
-            ]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={bgMain} 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-navy-950/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-5xl">
