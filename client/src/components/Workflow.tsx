@@ -86,7 +86,6 @@ export function Workflow() {
     <section id="workflow" className="py-32 lg:py-40 bg-navy-950 border-y border-white/5 overflow-hidden relative">
       {/* Smooth gradient background matching Hero */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-900 opacity-50 pointer-events-none" />
-      
       <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -95,7 +94,7 @@ export function Workflow() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-display text-white mb-4 font-medium">
             Built for speed. <span className="text-steel-500">Designed for quality.</span>
           </h2>
         </motion.div>
