@@ -13,11 +13,12 @@ export function Footer() {
           <defs>
             <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#0a1628" />
+              <stop offset="40%" stopColor="#0a1628" />
               <stop offset="100%" stopColor="#0f2847" />
             </linearGradient>
           </defs>
           <path 
-            d="M0,0 L0,60 C200,90 400,30 600,50 C800,70 1000,20 1200,40 C1350,55 1420,45 1440,50 L1440,100 L0,100 Z"
+            d="M0,0 L0,40 Q200,70 400,50 Q600,30 800,55 Q1000,80 1200,45 Q1350,25 1440,55 L1440,100 L0,100 Z"
             fill="url(#waveGradient)"
           />
         </svg>
