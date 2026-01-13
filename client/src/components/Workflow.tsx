@@ -3,63 +3,72 @@ import { useRef, useState, useEffect } from "react";
 
 const nodes = [
   { 
-    id: "start",
-    title: "Start", 
-    x: 100,
+    id: "step1",
+    step: "1.",
+    title: "Define Task", 
+    desc: "Consultation on labeling guidelines",
+    x: 50,
     y: 150,
-    width: 120,
-    height: 80,
-    type: "start"
+    width: 200,
+    height: 140,
+    type: "step"
   },
   { 
-    id: "condition",
-    title: "Condition", 
-    x: 400,
-    y: 50,
-    width: 160,
-    height: 80,
-    type: "condition"
+    id: "step2",
+    step: "2.",
+    title: "Deploy Experts", 
+    desc: "Curated teams for your domain",
+    x: 320,
+    y: 30,
+    width: 200,
+    height: 140,
+    type: "step"
   },
   { 
-    id: "action1",
-    title: "Action", 
-    x: 400,
+    id: "step3",
+    step: "3.",
+    title: "Label & Review", 
+    desc: "High-throughput annotation",
+    x: 320,
+    y: 270,
+    width: 200,
+    height: 140,
+    type: "step"
+  },
+  { 
+    id: "step4",
+    step: "4.",
+    title: "AI Quality Check", 
+    desc: "Automated anomaly detection",
+    x: 590,
     y: 150,
-    width: 160,
-    height: 80,
-    type: "action"
+    width: 200,
+    height: 140,
+    type: "step"
   },
   { 
-    id: "action2",
-    title: "Action", 
-    x: 400,
-    y: 250,
-    width: 160,
-    height: 80,
-    type: "action"
-  },
-  { 
-    id: "end",
+    id: "step5",
+    step: "5.",
     title: "Ship Dataset", 
-    x: 750,
+    desc: "API delivery in your format",
+    x: 860,
     y: 150,
-    width: 160,
-    height: 80,
-    type: "end"
+    width: 200,
+    height: 140,
+    type: "step"
   },
 ];
 
 const connections = [
-  { from: "start", to: "condition" },
-  { from: "start", to: "action1" },
-  { from: "start", to: "action2" },
-  { from: "condition", to: "end" },
-  { from: "action1", to: "end" },
-  { from: "action2", to: "end" },
+  { from: "step1", to: "step2" },
+  { from: "step1", to: "step3" },
+  { from: "step2", to: "step4" },
+  { from: "step3", to: "step4" },
+  { from: "step4", to: "step5" },
 ];
 
-const GRAPH_WIDTH = 1000;
-const GRAPH_HEIGHT = 400;
+const GRAPH_WIDTH = 1110;
+const GRAPH_HEIGHT = 440;
 
 function getBezierPath(fromNode: typeof nodes[0], toNode: typeof nodes[0]) {
   const startX = fromNode.x + fromNode.width;
@@ -104,18 +113,14 @@ export function Workflow() {
           className="mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
-            Your workflows, <br className="md:hidden" />
-            <span className="text-steel-500">always in motion.</span>
+            Built for speed. <span className="text-steel-500">Designed for quality.</span>
           </h2>
-          <p className="text-lg text-steel-400 max-w-2xl mx-auto leading-relaxed">
-            Build multi-step automations that flex with your team's real-time decisions — not against them.
-          </p>
         </motion.div>
 
         {/* Desktop Layout - Node Graph */}
         <div 
           ref={containerRef}
-          className="hidden lg:flex justify-center w-full min-h-[400px]"
+          className="hidden lg:flex justify-center w-full min-h-[440px]"
         >
           <div 
             className="relative"
@@ -149,9 +154,9 @@ export function Workflow() {
               })}
               <defs>
                 <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-                  <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
+                  <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
                 </linearGradient>
               </defs>
             </svg>
@@ -172,53 +177,75 @@ export function Workflow() {
                 }}
               >
                 <div 
-                  className={`
+                  className="
                     w-full h-full
-                    rounded-xl
-                    ${node.type === 'condition' ? 'bg-blue-600/10 border-blue-500/30' : 'bg-slate-900/40 border-slate-500/20'}
+                    rounded-2xl
+                    bg-slate-900/40
                     backdrop-blur-md
-                    border
-                    flex items-center justify-center gap-3
-                    px-4
-                    hover:border-blue-400/50
-                    hover:bg-slate-800/60
+                    border border-slate-500/20
+                    p-6
+                    flex flex-col justify-center
+                    hover:border-blue-400/30
+                    hover:bg-slate-800/50
                     transition-all duration-300
+                    shadow-lg shadow-blue-900/5
                     group
-                  `}
+                  "
                 >
-                  {node.type === 'condition' && (
-                    <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                  )}
-                  <span className="text-lg font-display font-medium text-white group-hover:text-blue-200 transition-colors">
+                  <span className="text-2xl font-display font-bold text-blue-400 mb-1 group-hover:text-blue-300 transition-colors">
+                    {node.step}
+                  </span>
+                  <span className="text-lg font-display font-bold text-white mb-2">
                     {node.title}
                   </span>
+                  <p className="text-xs text-steel-400 leading-relaxed">
+                    {node.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Mobile/Tablet Fallback */}
-        <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md mx-auto">
-          {nodes.filter(n => n.type !== 'start' && n.type !== 'end').map((node, index) => (
+        {/* Mobile/Tablet Layout */}
+        <div className="lg:hidden flex flex-col items-center gap-6">
+          {nodes.map((node, index) => (
             <motion.div
-              key={node.id}
-              initial={{ opacity: 0, y: 10 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`
-                p-6 rounded-xl border
-                ${node.type === 'condition' ? 'bg-blue-600/10 border-blue-500/30' : 'bg-slate-900/40 border-slate-500/20'}
-                text-left
-              `}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col items-center w-full max-w-xs"
             >
-              <div className="flex items-center gap-2 mb-2">
-                {node.type === 'condition' && <div className="w-2 h-2 rounded-full bg-blue-400" />}
-                <span className="text-white font-medium">{node.title}</span>
+              <div 
+                className="
+                  w-full
+                  rounded-2xl
+                  bg-slate-900/40
+                  backdrop-blur-md
+                  border border-slate-500/20
+                  p-6
+                  flex flex-col
+                  text-left
+                "
+              >
+                <span className="text-xl font-display font-bold text-blue-400 mb-1">
+                  {node.step}
+                </span>
+                <span className="text-lg font-display font-bold text-white mb-2">
+                  {node.title}
+                </span>
+                <p className="text-sm text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
               </div>
-              <p className="text-sm text-steel-500">
-                {node.type === 'condition' ? 'Automated logic based decisions.' : 'Scalable human-in-the-loop task.'}
-              </p>
+              
+              {index !== nodes.length - 1 && (
+                <svg className="w-2 h-10 mt-2" viewBox="0 0 8 40">
+                  <path d="M 4 0 Q 8 20, 4 40" stroke="#3b82f6" strokeWidth="2" strokeOpacity="0.4" fill="none" />
+                </svg>
+              )}
             </motion.div>
           ))}
         </div>
