@@ -7,44 +7,44 @@ const nodes = [
     desc: "Consultation on labeling guidelines",
     x: 0,
     y: 80,
-    width: 180,
-    height: 160
+    width: 160,
+    height: 150
   },
   { 
     step: "2", 
     title: "Deploy Experts", 
     desc: "Curated teams for your domain",
-    x: 220,
+    x: 190,
     y: 20,
-    width: 190,
-    height: 170
+    width: 170,
+    height: 160
   },
   { 
     step: "3", 
     title: "Label & Review", 
     desc: "High-throughput annotation",
-    x: 460,
-    y: 100,
-    width: 200,
-    height: 180
+    x: 400,
+    y: 90,
+    width: 180,
+    height: 170
   },
   { 
     step: "4", 
     title: "AI Quality Check", 
     desc: "Automated anomaly detection",
-    x: 710,
+    x: 620,
     y: 10,
-    width: 190,
-    height: 170
+    width: 170,
+    height: 160
   },
   { 
     step: "5", 
     title: "Ship Dataset", 
     desc: "API delivery in your format",
-    x: 950,
-    y: 90,
-    width: 180,
-    height: 160
+    x: 830,
+    y: 80,
+    width: 160,
+    height: 150
   },
 ];
 
@@ -77,7 +77,7 @@ export function Workflow() {
         </motion.div>
 
         {/* Desktop Layout - Node Graph */}
-        <div className="hidden lg:block relative mx-auto" style={{ width: 1130, height: 380 }}>
+        <div className="hidden lg:block relative mx-auto" style={{ width: 990, height: 340 }}>
           {/* SVG Bezier Connectors */}
           <svg 
             className="absolute inset-0 w-full h-full pointer-events-none"
