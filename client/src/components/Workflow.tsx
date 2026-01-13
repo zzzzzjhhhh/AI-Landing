@@ -180,12 +180,6 @@ export function Workflow() {
           </div>
         </div>
 
-        {/* Scaled height container for proper layout flow */}
-        <div 
-          className="hidden lg:block" 
-          style={{ height: GRAPH_HEIGHT * scale }}
-        />
-
         {/* Tablet Layout */}
         <div className="hidden md:flex lg:hidden flex-wrap justify-center gap-6">
           {nodes.map((node, index) => (
