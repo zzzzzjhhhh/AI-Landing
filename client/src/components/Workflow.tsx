@@ -82,38 +82,71 @@ export function Workflow() {
 
             {/* Floating Markers and Text Layer */}
             <div className="absolute left-1/2 -translate-x-1/2 w-[300px] h-full">
-              {nodes.map((node, i) => {
-                // Adjusting x positions to avoid line overlap
-                // 1: Right, 2: Far Left, 3: Far Right, 4: Far Right
-                const xPositions = [150, 60, 240, 170];
-                const x = xPositions[i];
-                const y = i * 140;
+              {/* STEP 01 */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                style={{ left: "150px", top: "0px" }}
+                className="absolute flex items-center"
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] -translate-x-1/2" />
+                <div className="ml-4 flex items-center gap-2 whitespace-nowrap">
+                  <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-tighter">01</span>
+                  <span className="text-sm font-medium text-white/90 tracking-wide">Define the task</span>
+                </div>
+              </motion.div>
 
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    style={{ left: `${x}px`, top: `${y}px` }}
-                    className="absolute flex items-center"
-                  >
-                    {/* Glowing circular dot */}
-                    <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] -translate-x-1/2" />
-                    
-                    {/* Label and Step Number */}
-                    <div className="ml-4 flex items-center gap-2 whitespace-nowrap">
-                      <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-tighter">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span className="text-sm font-medium text-white/90 tracking-wide">
-                        {node.title}
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
+              {/* STEP 02: Dot to the RIGHT of line, label far LEFT */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                style={{ left: "115px", top: "140px" }} // x=115 is left of line (line is at ~85 here)
+                className="absolute flex items-center justify-end w-[150px] -translate-x-full"
+              >
+                <div className="mr-6 flex items-center gap-2 whitespace-nowrap">
+                  <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-tighter">02</span>
+                  <span className="text-sm font-medium text-white/90 tracking-wide">Deploy experts</span>
+                </div>
+                {/* Dot placed 24px right of line approx. Line is at ~85, so 85+24 = 109. 
+                    Adjusting within this container which is left-offset. */}
+                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] translate-x-[110px]" />
+              </motion.div>
+
+              {/* STEP 03: Dot directly ON line (x=215 approx at y=280), label right */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                style={{ left: "215px", top: "280px" }}
+                className="absolute flex items-center"
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] -translate-x-1/2" />
+                <div className="ml-4 flex items-center gap-2 whitespace-nowrap">
+                  <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-tighter">03</span>
+                  <span className="text-sm font-medium text-white/90 tracking-wide">Label & review</span>
+                </div>
+              </motion.div>
+
+              {/* STEP 04: Dot directly ON line (x=150 at y=420), label right */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                style={{ left: "155px", top: "420px" }}
+                className="absolute flex items-center"
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] -translate-x-1/2" />
+                <div className="ml-4 flex items-center gap-2 whitespace-nowrap">
+                  <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-tighter">04</span>
+                  <span className="text-sm font-medium text-white/90 tracking-wide">Ship datasets</span>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
