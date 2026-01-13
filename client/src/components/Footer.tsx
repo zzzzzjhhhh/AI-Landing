@@ -2,8 +2,8 @@ import { Link } from "wouter";
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 border-t border-white/5 pt-20 pb-10">
-      <div className="container mx-auto px-4 md:px-6">
+    <footer className="bg-navy-950 border-t border-white/5 pt-24 pb-12">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
           <div className="max-w-xs">
             <Link href="/">

@@ -6,7 +6,7 @@ import bgMain from "@assets/bg_main_1768281613638.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -16,23 +16,23 @@ export function Hero() {
         />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
-      <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-5xl">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 mb-12 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
             <span className="text-xs font-medium text-blue-200 uppercase tracking-wider">Accepting New Partners</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-display leading-[1.1] mb-8 text-white font-medium">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display leading-[1.1] mb-10 text-white font-medium tracking-tight">
             High-quality AI data.<br />
             <span className="text-gradient">Delivered fast.</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-steel-500 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-steel-500 max-w-2xl mx-auto mb-14 font-light leading-relaxed">
             Oceanveo builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
           </p>
           

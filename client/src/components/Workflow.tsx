@@ -10,14 +10,14 @@ const steps = [
 
 export function Workflow() {
   return (
-    <section id="workflow" className="py-24 bg-black border-y border-white/5">
-      <div className="container mx-auto px-4 md:px-6 text-center">
+    <section id="workflow" className="py-32 lg:py-40 bg-black border-y border-white/5">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-24"
         >
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
             Built for speed. <span className="text-steel-500">Designed for quality.</span>
@@ -28,7 +28,7 @@ export function Workflow() {
           {/* Connector Line (Desktop) */}
           <div className="hidden md:block absolute top-12 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-900 to-transparent" />
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12">
             {steps.map((item, index) => (
               <motion.div
                 key={index}

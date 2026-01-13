@@ -28,9 +28,9 @@ function CountUp({ from, to, duration }: { from: number; to: number; duration: n
 
 export function Metrics() {
   return (
-    <section id="metrics" className="py-24 bg-gradient-to-b from-navy-900 to-navy-950">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center mb-20">
+    <section id="metrics" className="py-32 lg:py-40 bg-gradient-to-b from-navy-900 to-navy-950">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 text-center mb-28">
           <div>
             <div className="mb-2">
               <Counter from={0} to={10} suffix="M+" />
@@ -57,7 +57,7 @@ export function Metrics() {
           </div>
         </div>
 
-        <div className="bg-blue-600/10 border border-blue-500/20 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+        <div className="bg-blue-600/10 border border-blue-500/20 rounded-3xl p-16 md:p-24 text-center relative overflow-hidden">
           {/* Decorative background glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           

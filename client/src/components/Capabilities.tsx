@@ -26,8 +26,8 @@ const capabilities = [
 
 export function Capabilities() {
   return (
-    <section id="capabilities" className="py-24 bg-navy-950 relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="capabilities" className="py-32 lg:py-40 bg-navy-950 relative overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Visual Abstract Strip - Full Width at Top */}
         <motion.div
@@ -35,7 +35,7 @@ export function Capabilities() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="w-full h-32 rounded-xl overflow-hidden relative border border-white/10 mb-16"
+          className="w-full h-40 rounded-xl overflow-hidden relative border border-white/10 mb-20"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-navy-900" />
           <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-blue-500/30" />
@@ -59,7 +59,7 @@ export function Capabilities() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-display text-white mb-6">
             Human intelligence,<br />at machine speed.
@@ -70,7 +70,7 @@ export function Capabilities() {
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {capabilities.map((cap, index) => (
             <motion.div
               key={index}
@@ -78,7 +78,7 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative p-6 rounded-lg bg-navy-900 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
+              className="group relative p-8 lg:p-10 rounded-lg bg-navy-900 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-lg bg-navy-800 flex items-center justify-center mb-4 group-hover:bg-blue-600/20 transition-colors">
                 <cap.icon className="w-6 h-6 text-sky-200 group-hover:text-blue-400 transition-colors" />
