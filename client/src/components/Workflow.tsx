@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
 
 const nodes = [
   { 
@@ -7,9 +6,9 @@ const nodes = [
     step: "1.",
     title: "Define Task", 
     desc: "Consultation on labeling guidelines",
-    x: 50,
-    y: 150,
-    width: 200,
+    x: 100,
+    y: 0,
+    width: 220,
     height: 140,
     type: "step"
   },
@@ -18,9 +17,9 @@ const nodes = [
     step: "2.",
     title: "Deploy Experts", 
     desc: "Curated teams for your domain",
-    x: 320,
-    y: 30,
-    width: 200,
+    x: 450,
+    y: -80,
+    width: 220,
     height: 140,
     type: "step"
   },
@@ -29,9 +28,9 @@ const nodes = [
     step: "3.",
     title: "Label & Review", 
     desc: "High-throughput annotation",
-    x: 320,
-    y: 270,
-    width: 200,
+    x: 450,
+    y: 80,
+    width: 220,
     height: 140,
     type: "step"
   },
@@ -40,9 +39,9 @@ const nodes = [
     step: "4.",
     title: "AI Quality Check", 
     desc: "Automated anomaly detection",
-    x: 590,
-    y: 150,
-    width: 200,
+    x: 800,
+    y: 0,
+    width: 220,
     height: 140,
     type: "step"
   },
@@ -51,9 +50,9 @@ const nodes = [
     step: "5.",
     title: "Ship Dataset", 
     desc: "API delivery in your format",
-    x: 860,
-    y: 150,
-    width: 200,
+    x: 1150,
+    y: 0,
+    width: 220,
     height: 140,
     type: "step"
   },
@@ -67,8 +66,8 @@ const connections = [
   { from: "step4", to: "step5" },
 ];
 
-const GRAPH_WIDTH = 1110;
-const GRAPH_HEIGHT = 440;
+const GRAPH_WIDTH = 1400;
+const GRAPH_HEIGHT = 400;
 
 function getBezierPath(fromNode: typeof nodes[0], toNode: typeof nodes[0]) {
   const startX = fromNode.x + fromNode.width;
@@ -83,25 +82,8 @@ function getBezierPath(fromNode: typeof nodes[0], toNode: typeof nodes[0]) {
 }
 
 export function Workflow() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const updateScale = () => {
-      if (containerRef.current) {
-        const containerWidth = containerRef.current.offsetWidth;
-        const newScale = Math.min(1, containerWidth / GRAPH_WIDTH);
-        setScale(newScale);
-      }
-    };
-
-    updateScale();
-    window.addEventListener("resize", updateScale);
-    return () => window.removeEventListener("resize", updateScale);
-  }, []);
-
   return (
-    <section id="workflow" className="py-24 lg:py-32 bg-navy-950 border-y border-white/5 overflow-hidden relative">
+    <section id="workflow" className="py-32 lg:py-48 bg-navy-950 border-y border-white/5 overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-900 opacity-50 pointer-events-none" />
       
       <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center relative z-10">
@@ -110,31 +92,43 @@ export function Workflow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-24"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-6 tracking-tight">
             Built for speed. <span className="text-steel-500">Designed for quality.</span>
           </h2>
         </motion.div>
 
-        {/* Desktop Layout - Node Graph */}
-        <div 
-          ref={containerRef}
-          className="hidden lg:flex justify-center w-full min-h-[440px]"
-        >
+        {/* Desktop Layout - Branched Node Graph */}
+        <div className="hidden lg:flex justify-center w-full min-h-[400px]">
           <div 
             className="relative"
             style={{ 
               width: GRAPH_WIDTH, 
               height: GRAPH_HEIGHT,
-              transform: `scale(${scale})`,
-              transformOrigin: 'center top'
+              transform: `scale(0.85)`,
+              transformOrigin: 'center center'
             }}
           >
             <svg 
               className="absolute inset-0 w-full h-full pointer-events-none"
               style={{ overflow: 'visible' }}
             >
+              <defs>
+                <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                  <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              
               {connections.map((conn, i) => {
                 const fromNode = nodes.find(n => n.id === conn.from)!;
                 const toNode = nodes.find(n => n.id === conn.to)!;
@@ -142,23 +136,17 @@ export function Workflow() {
                   <motion.path
                     key={i}
                     d={getBezierPath(fromNode, toNode)}
-                    stroke="url(#gradient-line)"
-                    strokeWidth="2"
+                    stroke="url(#glow-gradient)"
+                    strokeWidth="4"
                     fill="none"
+                    filter="url(#glow)"
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2 + i * 0.1 }}
+                    transition={{ duration: 1.2, delay: 0.3 + i * 0.1 }}
                   />
                 );
               })}
-              <defs>
-                <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
-                  <stop offset="50%" stopColor="#60a5fa" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
             </svg>
 
             {nodes.map((node, index) => (
@@ -171,7 +159,7 @@ export function Workflow() {
                 className="absolute flex items-center justify-center"
                 style={{ 
                   left: node.x, 
-                  top: node.y, 
+                  top: node.y + 100, // Offset for better centering
                   width: node.width, 
                   height: node.height 
                 }}
@@ -180,25 +168,26 @@ export function Workflow() {
                   className="
                     w-full h-full
                     rounded-2xl
-                    bg-slate-900/40
-                    backdrop-blur-md
-                    border border-slate-500/20
-                    p-6
+                    bg-navy-900/60
+                    backdrop-blur-xl
+                    border border-white/10
+                    p-8
                     flex flex-col justify-center
-                    hover:border-blue-400/30
-                    hover:bg-slate-800/50
-                    transition-all duration-300
-                    shadow-lg shadow-blue-900/5
+                    text-left
+                    hover:border-blue-400/40
+                    hover:bg-navy-800/80
+                    transition-all duration-500
+                    shadow-2xl shadow-black/40
                     group
                   "
                 >
-                  <span className="text-2xl font-display font-bold text-blue-400 mb-1 group-hover:text-blue-300 transition-colors">
+                  <span className="text-3xl font-display font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors">
                     {node.step}
                   </span>
-                  <span className="text-lg font-display font-bold text-white mb-2">
+                  <span className="text-xl font-display font-bold text-white mb-2 tracking-tight">
                     {node.title}
                   </span>
-                  <p className="text-xs text-steel-400 leading-relaxed">
+                  <p className="text-sm text-steel-400 leading-relaxed font-light">
                     {node.desc}
                   </p>
                 </div>
@@ -207,8 +196,8 @@ export function Workflow() {
           </div>
         </div>
 
-        {/* Mobile/Tablet Layout */}
-        <div className="lg:hidden flex flex-col items-center gap-6">
+        {/* Mobile/Tablet Layout - Vertical Stack */}
+        <div className="lg:hidden flex flex-col items-center gap-8 max-w-sm mx-auto">
           {nodes.map((node, index) => (
             <motion.div
               key={index}
@@ -216,24 +205,25 @@ export function Workflow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center w-full max-w-xs"
+              className="flex flex-col items-center w-full"
             >
               <div 
                 className="
                   w-full
                   rounded-2xl
-                  bg-slate-900/40
-                  backdrop-blur-md
-                  border border-slate-500/20
-                  p-6
+                  bg-navy-900/60
+                  backdrop-blur-xl
+                  border border-white/10
+                  p-8
                   flex flex-col
                   text-left
+                  shadow-xl
                 "
               >
-                <span className="text-xl font-display font-bold text-blue-400 mb-1">
+                <span className="text-2xl font-display font-bold text-blue-400 mb-2">
                   {node.step}
                 </span>
-                <span className="text-lg font-display font-bold text-white mb-2">
+                <span className="text-xl font-display font-bold text-white mb-2">
                   {node.title}
                 </span>
                 <p className="text-sm text-steel-400 leading-relaxed">
@@ -242,9 +232,7 @@ export function Workflow() {
               </div>
               
               {index !== nodes.length - 1 && (
-                <svg className="w-2 h-10 mt-2" viewBox="0 0 8 40">
-                  <path d="M 4 0 Q 8 20, 4 40" stroke="#3b82f6" strokeWidth="2" strokeOpacity="0.4" fill="none" />
-                </svg>
+                <div className="w-1 h-12 bg-gradient-to-b from-blue-500/40 to-transparent mt-2" />
               )}
             </motion.div>
           ))}
