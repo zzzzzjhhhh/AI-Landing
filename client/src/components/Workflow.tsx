@@ -1,106 +1,151 @@
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
 
 const nodes = [
   { 
     step: "1", 
     title: "Define Task", 
-    desc: "Consultation on labeling guidelines"
+    desc: "Consultation on labeling guidelines",
+    x: 0,
+    y: 80,
+    width: 180,
+    height: 160
   },
   { 
     step: "2", 
     title: "Deploy Experts", 
-    desc: "Curated teams for your domain"
+    desc: "Curated teams for your domain",
+    x: 220,
+    y: 20,
+    width: 190,
+    height: 170
   },
   { 
     step: "3", 
     title: "Label & Review", 
-    desc: "High-throughput annotation"
+    desc: "High-throughput annotation",
+    x: 460,
+    y: 100,
+    width: 200,
+    height: 180
   },
   { 
     step: "4", 
     title: "AI Quality Check", 
-    desc: "Automated anomaly detection"
+    desc: "Automated anomaly detection",
+    x: 710,
+    y: 10,
+    width: 190,
+    height: 170
   },
   { 
     step: "5", 
     title: "Ship Dataset", 
-    desc: "API delivery in your format"
+    desc: "API delivery in your format",
+    x: 950,
+    y: 90,
+    width: 180,
+    height: 160
   },
 ];
 
+function getBezierPath(from: typeof nodes[0], to: typeof nodes[0]) {
+  const startX = from.x + from.width;
+  const startY = from.y + from.height / 2;
+  const endX = to.x;
+  const endY = to.y + to.height / 2;
+  
+  const cp1X = startX + (endX - startX) * 0.4;
+  const cp2X = startX + (endX - startX) * 0.6;
+  
+  return `M ${startX} ${startY} C ${cp1X} ${startY}, ${cp2X} ${endY}, ${endX} ${endY}`;
+}
+
 export function Workflow() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth * 0.6;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-      setTimeout(checkScroll, 300);
-    }
-  };
-
   return (
     <section id="workflow" className="py-32 lg:py-40 bg-black border-y border-white/5 overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12 lg:px-16">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-20"
         >
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
             Built for speed. <span className="text-steel-500">Designed for quality.</span>
           </h2>
         </motion.div>
 
-        {/* Navigation Controls */}
-        <div className="flex justify-end gap-2 mb-6">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            className="rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30"
-            data-testid="button-workflow-scroll-left"
+        {/* Desktop Layout - Node Graph */}
+        <div className="hidden lg:block relative mx-auto" style={{ width: 1130, height: 380 }}>
+          {/* SVG Bezier Connectors */}
+          <svg 
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ overflow: 'visible' }}
           >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            className="rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30"
-            data-testid="button-workflow-scroll-right"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
+            {nodes.slice(0, -1).map((node, i) => (
+              <motion.path
+                key={i}
+                d={getBezierPath(node, nodes[i + 1])}
+                stroke="#3b82f6"
+                strokeWidth="2"
+                fill="none"
+                strokeOpacity="0.4"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 + i * 0.15 }}
+              />
+            ))}
+          </svg>
+
+          {/* Node Boxes */}
+          {nodes.map((node, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="absolute"
+              style={{ 
+                left: node.x, 
+                top: node.y, 
+                width: node.width, 
+                height: node.height 
+              }}
+            >
+              <div 
+                className="
+                  w-full h-full
+                  rounded-2xl
+                  bg-slate-900/60
+                  backdrop-blur-md
+                  border border-slate-500/30
+                  p-6
+                  flex flex-col justify-center
+                  hover:border-blue-400/50
+                  hover:bg-slate-800/70
+                  transition-all duration-300
+                  shadow-lg shadow-blue-900/10
+                "
+              >
+                <span className="text-3xl font-display font-bold text-blue-400 mb-2">
+                  {node.step}.
+                </span>
+                <span className="text-xl font-display font-bold text-white mb-2">
+                  {node.title}
+                </span>
+                <p className="text-sm text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Horizontal Slider */}
-        <div 
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+        {/* Tablet Layout */}
+        <div className="hidden md:flex lg:hidden flex-wrap justify-center gap-6">
           {nodes.map((node, index) => (
             <motion.div
               key={index}
@@ -108,45 +153,72 @@ export function Workflow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex-shrink-0 w-[300px] md:w-[350px] snap-start"
+              className="flex flex-col items-center"
+              style={{ marginTop: index % 2 === 0 ? 0 : 30 }}
             >
-              {/* Glass container with glow border */}
               <div 
                 className="
-                  aspect-square
+                  w-44 h-40
                   rounded-2xl
-                  p-8
+                  bg-slate-900/60
+                  backdrop-blur-md
+                  border border-slate-500/30
+                  p-5
                   flex flex-col justify-center
-                  transition-all duration-300
-                  relative
-                  overflow-hidden
                 "
-                style={{
-                  background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%)',
-                  border: '1px solid rgba(148, 163, 184, 0.2)',
-                  boxShadow: '0 0 30px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
-                }}
               >
-                {/* Inner glow effect */}
-                <div className="absolute inset-0 rounded-2xl opacity-50 pointer-events-none"
-                  style={{
-                    background: 'radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.1) 0%, transparent 50%)'
-                  }}
-                />
-                
-                <div className="relative z-10">
-                  {/* Number + Title on same line */}
-                  <div className="mb-4">
-                    <span className="text-2xl font-display font-bold text-blue-400">{node.step}. </span>
-                    <span className="text-2xl font-display font-bold text-white">{node.title}</span>
-                  </div>
-                  
-                  {/* Description */}
-                  <p className="text-base text-steel-400 leading-relaxed">
-                    {node.desc}
-                  </p>
-                </div>
+                <span className="text-2xl font-display font-bold text-blue-400 mb-1">
+                  {node.step}.
+                </span>
+                <span className="text-lg font-display font-bold text-white mb-2">
+                  {node.title}
+                </span>
+                <p className="text-xs text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
               </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="md:hidden flex flex-col items-center gap-6">
+          {nodes.map((node, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col items-center w-full max-w-xs"
+            >
+              <div 
+                className="
+                  w-full
+                  rounded-2xl
+                  bg-slate-900/60
+                  backdrop-blur-md
+                  border border-slate-500/30
+                  p-6
+                  flex flex-col
+                "
+              >
+                <span className="text-2xl font-display font-bold text-blue-400 mb-1">
+                  {node.step}.
+                </span>
+                <span className="text-xl font-display font-bold text-white mb-2">
+                  {node.title}
+                </span>
+                <p className="text-sm text-steel-400 leading-relaxed">
+                  {node.desc}
+                </p>
+              </div>
+              
+              {index !== nodes.length - 1 && (
+                <svg className="w-2 h-10 mt-2" viewBox="0 0 8 40">
+                  <path d="M 4 0 Q 8 20, 4 40" stroke="#3b82f6" strokeWidth="2" strokeOpacity="0.4" fill="none" />
+                </svg>
+              )}
             </motion.div>
           ))}
         </div>
