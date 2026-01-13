@@ -21,7 +21,6 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
-
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,7 +32,7 @@ export function Hero() {
             <span className="text-xs font-medium text-blue-200 uppercase tracking-wider">Accepting New Partners</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-8 text-white">
+          <h1 className="text-5xl md:text-7xl font-display leading-[1.1] mb-8 text-white font-medium">
             High-quality AI data.<br />
             <span className="text-gradient">Delivered fast.</span>
           </h1>
@@ -58,7 +57,6 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
-      
       {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-steel-500"
