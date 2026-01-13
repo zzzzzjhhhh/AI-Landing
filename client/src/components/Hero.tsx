@@ -27,7 +27,7 @@ export function Hero() {
             <span className="text-xs font-medium text-blue-200 uppercase tracking-wider">Accepting New Partners</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display leading-[1.1] mb-10 text-white font-medium tracking-tight">
+          <h1 className="md:text-7xl lg:text-8xl font-display mb-10 text-white font-medium tracking-tight text-[55px]">
             High-quality AI data.<br />
             <span className="text-gradient">Delivered fast.</span>
           </h1>
