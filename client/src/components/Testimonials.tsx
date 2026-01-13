@@ -81,7 +81,7 @@ export function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
+          <h2 className="md:text-5xl lg:text-6xl font-display text-white mb-4 font-medium text-[48px]">
             Trusted by <span className="text-blue-400">industry leaders</span>
           </h2>
           <p className="text-lg text-steel-400 max-w-2xl mx-auto">
@@ -89,7 +89,6 @@ export function Testimonials() {
           </p>
         </motion.div>
       </div>
-
       <Carousel
         setApi={setApi}
         opts={{
@@ -139,7 +138,6 @@ export function Testimonials() {
           ))}
         </CarouselContent>
       </Carousel>
-
       {/* Pagination Dots */}
       <div className="flex justify-center gap-2 mt-12">
         {Array.from({ length: count }).map((_, index) => (
