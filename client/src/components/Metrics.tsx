@@ -87,7 +87,7 @@ export function Metrics() {
             Stop bottling up your AI roadmap with slow data pipelines. Partner with Oceanveo for scalable, expert-grade annotation.
           </p>
           <Link href="/book">
-            <Button size="lg" className="rounded-full px-12 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
+            <Button size="lg" className="rounded-xl px-12 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
               Start your project
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>

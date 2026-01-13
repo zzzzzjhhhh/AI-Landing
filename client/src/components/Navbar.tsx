@@ -42,7 +42,7 @@ export function Navbar() {
           <Link href="/book">
             <Button 
               variant="outline" 
-              className="border-white/20 text-white hover:bg-white/10 hover:text-white hover:border-white/40 transition-all rounded-full px-6"
+              className="border-white/20 text-white hover:bg-white/10 hover:text-white hover:border-white/40 transition-all rounded-xl px-6"
             >
               Book a call
             </Button>
