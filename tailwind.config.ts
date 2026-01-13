@@ -6,9 +6,9 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        lg: ".25rem", /* 4px */
-        md: ".1875rem", /* 3px */
-        sm: ".125rem", /* 2px */
+        lg: ".125rem", /* 2px */
+        md: ".0625rem", /* 1px */
+        sm: "0", /* 0px */
       },
       colors: {
         // OceanVO Palette
