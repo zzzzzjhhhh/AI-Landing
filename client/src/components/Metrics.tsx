@@ -10,7 +10,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
   const isInView = useInView(ref, { once: true });
   
   return (
-    <span ref={ref} className="text-5xl md:text-6xl font-display font-bold text-white">
+    <span ref={ref} className="text-5xl md:text-6xl font-display text-white font-normal">
       {isInView ? (
         <CountUp from={from} to={to} duration={2} />
       ) : from}
