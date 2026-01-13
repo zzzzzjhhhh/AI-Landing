@@ -11,6 +11,19 @@ export default {
         sm: ".1875rem", /* 3px */
       },
       colors: {
+        // OceanVO Palette
+        "navy-950": "hsl(var(--navy-950) / <alpha-value>)",
+        "navy-900": "hsl(var(--navy-900) / <alpha-value>)",
+        "navy-800": "hsl(var(--navy-800) / <alpha-value>)",
+        "navy-700": "hsl(var(--navy-700) / <alpha-value>)",
+        "blue-700": "hsl(var(--blue-700) / <alpha-value>)",
+        "blue-600": "hsl(var(--blue-600) / <alpha-value>)",
+        "blue-500": "hsl(var(--blue-500) / <alpha-value>)",
+        "steel-500": "hsl(var(--steel-500) / <alpha-value>)",
+        "sky-300": "hsl(var(--sky-300) / <alpha-value>)",
+        "sky-200": "hsl(var(--sky-200) / <alpha-value>)",
+        "sky-100": "hsl(var(--sky-100) / <alpha-value>)",
+        
         // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
@@ -83,7 +96,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)"],
+        sans: ["var(--font-body)"],
+        display: ["var(--font-display)"],
+        body: ["var(--font-body)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
       },

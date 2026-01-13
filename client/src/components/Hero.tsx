@@ -1,0 +1,73 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
+
+export function Hero() {
+  return (
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+      {/* Background with animated gradient */}
+      <div className="absolute inset-0 bg-navy-950 z-0">
+        <motion.div 
+          className="absolute inset-0 opacity-40"
+          animate={{
+            background: [
+              "radial-gradient(circle at 20% 30%, #173d84 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 70%, #1f4b95 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 30%, #173d84 0%, transparent 50%)"
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 mb-8 backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+            <span className="text-xs font-medium text-blue-200 uppercase tracking-wider">Accepting New Partners</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-8 text-white">
+            High-quality AI data.<br />
+            <span className="text-gradient">Delivered fast.</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-steel-500 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            OceanVO builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/book">
+              <Button size="lg" className="rounded-full px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+                Book a call
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            
+            <a href="#capabilities">
+              <Button variant="outline" size="lg" className="rounded-full px-8 h-14 text-base font-medium border-white/20 text-white hover:bg-white/5 w-full sm:w-auto">
+                See how it works
+              </Button>
+            </a>
+          </div>
+        </motion.div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-steel-500"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ delay: 1, duration: 2, repeat: Infinity }}
+      >
+        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-steel-500 to-transparent" />
+      </motion.div>
+    </section>
+  );
+}
