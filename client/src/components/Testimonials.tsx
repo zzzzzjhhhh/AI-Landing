@@ -98,11 +98,11 @@ export function Testimonials() {
         }}
         className="w-full"
       >
-        <CarouselContent className="-ml-0">
+        <CarouselContent className="-ml-4">
           {testimonials.map((testimonial, index) => (
             <CarouselItem
               key={index}
-              className="pl-0 basis-[85%] sm:basis-[45%] lg:basis-[30%] xl:basis-[22%]"
+              className="pl-4 basis-[85%] sm:basis-[45%] lg:basis-[30%] xl:basis-[22%]"
             >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -121,6 +121,7 @@ export function Testimonials() {
                 <div 
                   className="
                     bg-white
+                    rounded-xl
                     p-6 lg:p-8
                     h-72 lg:h-80
                     flex flex-col justify-between
