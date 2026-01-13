@@ -3,28 +3,28 @@ import { Link } from "wouter";
 export function Footer() {
   return (
     <footer className="relative">
-      {/* Wave gradient transition */}
-      <div className="absolute top-0 left-0 right-0 h-32 overflow-hidden -translate-y-full">
+      {/* Wave SVG at the top of footer */}
+      <div className="w-full overflow-hidden leading-none">
         <svg 
-          viewBox="0 0 1440 120" 
-          className="absolute bottom-0 w-full h-auto"
+          viewBox="0 0 1440 100" 
+          className="w-full h-20 md:h-24"
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="footerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#0a1628" stopOpacity="0" />
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#0a1628" />
               <stop offset="100%" stopColor="#0f2847" />
             </linearGradient>
           </defs>
           <path 
-            d="M0,80 C180,40 360,100 540,60 C720,20 900,90 1080,50 C1200,25 1320,70 1440,45 L1440,120 L0,120 Z"
-            fill="url(#footerGradient)"
+            d="M0,0 L0,60 C200,90 400,30 600,50 C800,70 1000,20 1200,40 C1350,55 1420,45 1440,50 L1440,100 L0,100 Z"
+            fill="url(#waveGradient)"
           />
         </svg>
       </div>
       
-      {/* Footer content with gradient background */}
-      <div className="bg-gradient-to-b from-[#0f2847] to-navy-950 pt-24 pb-12">
+      {/* Footer content */}
+      <div className="bg-[#0f2847] pt-12 pb-12">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
