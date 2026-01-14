@@ -27,7 +27,7 @@ export function Hero() {
             <span className="text-xs font-medium text-blue-200 uppercase tracking-wider">Accepting New Partners</span>
           </div>
           
-          <h1 className="md:text-8xl lg:text-9xl font-display mb-10 text-white font-medium tracking-tight text-[57px]">
+          <h1 className="md:text-8xl lg:text-9xl font-display mb-10 text-white font-medium tracking-tight text-[65px]">
             High-quality AI data.<br />
             <span className="text-gradient">Delivered fast.</span>
           </h1>
@@ -52,7 +52,6 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
-      
     </section>
   );
 }
