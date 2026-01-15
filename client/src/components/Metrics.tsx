@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import metricsImage from "@assets/Screenshot_2026-01-13_at_10.37.49_1768286162965.png";
+import metricsImage from "@assets/universal_upscale_0_fb5490ac-461f-40fe-b8da-ba41d4b3de9c_0_(1)_1768464079585.jpg";
 
 function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?: string }) {
   const ref = useRef(null);
