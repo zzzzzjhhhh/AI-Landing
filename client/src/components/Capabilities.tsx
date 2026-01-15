@@ -100,7 +100,7 @@ export function Capabilities() {
           <h3 className="text-4xl md:text-5xl font-display text-white mb-6">
             Human intelligence,<br />at machine speed.
           </h3>
-          <p className="text-lg text-steel-500 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: '#8bdaef' }}>
             Training modern AI systems requires more than raw labels. Oceanveo combines expert annotators with AI-assisted review to deliver datasets you can trust.
           </p>
         </motion.div>
