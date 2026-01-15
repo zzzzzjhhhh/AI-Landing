@@ -171,7 +171,7 @@ export default function BookCall() {
               <Button 
                 type="submit" 
                 disabled={contactMutation.isPending}
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white h-14 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all active:scale-[0.98]"
+                className="w-full bg-white text-navy-900 hover:bg-sky-50 h-14 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all active:scale-[0.98]"
               >
                 {contactMutation.isPending ? (
                   <>
