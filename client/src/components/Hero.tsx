@@ -27,7 +27,7 @@ export function Hero() {
             <span className="text-gradient">Delivered fast.</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-steel-500 max-w-2xl mx-auto mb-14 font-light leading-relaxed">
+          <p className="md:text-xl max-w-2xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
             Oceanveo builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
           </p>
           
