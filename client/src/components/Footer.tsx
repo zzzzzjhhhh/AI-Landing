@@ -40,15 +40,15 @@ export function Footer() {
             <div className="flex flex-col md:flex-row gap-12 md:gap-24">
               <div className="flex flex-col gap-4">
                 <h4 className="font-display font-bold text-white">Product</h4>
-                <a href="/#capabilities" className="text-sm text-steel-500 hover:text-white transition-colors">Capabilities</a>
-                <a href="/#workflow" className="text-sm text-steel-500 hover:text-white transition-colors">Workflow</a>
-                <a href="/#metrics" className="text-sm text-steel-500 hover:text-white transition-colors">Results</a>
+                <a href="/#capabilities" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Capabilities</a>
+                <a href="/#workflow" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Workflow</a>
+                <a href="/#metrics" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Results</a>
               </div>
               <div className="flex flex-col gap-4">
                 <h4 className="font-display font-bold text-white">Company</h4>
-                <Link href="/book" className="text-sm text-steel-500 hover:text-white transition-colors">Contact</Link>
-                <span className="text-sm text-steel-500 cursor-not-allowed opacity-50">Careers</span>
-                <span className="text-sm text-steel-500 cursor-not-allowed opacity-50">Privacy</span>
+                <Link href="/book" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Contact</Link>
+                <span className="text-sm cursor-not-allowed opacity-50" style={{ color: '#8bdaef' }}>Careers</span>
+                <span className="text-sm cursor-not-allowed opacity-50" style={{ color: '#8bdaef' }}>Privacy</span>
               </div>
             </div>
           </div>
