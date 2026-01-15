@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import bgMain from "@assets/bg_main_1768281613638.jpg";
 
 export default function BookCall() {
@@ -168,20 +168,30 @@ export default function BookCall() {
                 )}
               />
 
-              <Button 
-                type="submit" 
-                disabled={contactMutation.isPending}
-                className="w-full bg-white text-navy-900 hover:bg-sky-50 h-14 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all active:scale-[0.98]"
-              >
-                {contactMutation.isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  "Submit Request"
-                )}
-              </Button>
+              <div className="flex justify-start">
+                <Button 
+                  type="submit" 
+                  disabled={contactMutation.isPending}
+                  className="bg-white text-navy-900 hover:bg-sky-50 h-14 px-8 rounded-2xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all active:scale-[0.98] flex items-center gap-2 group"
+                >
+                  {contactMutation.isPending ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Submit Request</span>
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
+                      >
+                        <ArrowRight className="h-5 w-5" />
+                      </motion.span>
+                    </>
+                  )}
+                </Button>
+              </div>
             </form>
           </Form>
         </motion.div>
