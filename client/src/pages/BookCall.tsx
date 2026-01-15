@@ -85,7 +85,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">First Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Jane" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="Jane" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-blue-500/20 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -98,7 +98,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">Last Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Doe" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="Doe" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-blue-500/20 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -113,7 +113,7 @@ export default function BookCall() {
                   <FormItem>
                     <FormLabel className="text-steel-400 text-sm font-medium">Work Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                      <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-blue-500/20 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -128,7 +128,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">Company</FormLabel>
                       <FormControl>
-                        <Input placeholder="Acme AI" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="Acme AI" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-blue-500/20 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -141,7 +141,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">Phone (Optional)</FormLabel>
                       <FormControl>
-                        <Input placeholder="+1 (555) 000-0000" {...field} value={field.value || ''} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="+1 (555) 000-0000" {...field} value={field.value || ''} className="h-12 bg-navy-900/50 backdrop-blur-md border-blue-500/20 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -158,7 +158,7 @@ export default function BookCall() {
                     <FormControl>
                       <Textarea 
                         placeholder="Tell us about your project requirements..." 
-                        className="bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 min-h-[120px] focus:border-blue-500/50 transition-colors resize-none rounded-xl p-4" 
+                        className="bg-navy-900/50 backdrop-blur-md border-blue-500/20 text-white placeholder:text-white/10 min-h-[120px] focus:border-blue-500/50 transition-colors resize-none rounded-xl p-4" 
                         {...field} 
                         value={field.value || ''}
                       />
