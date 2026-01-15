@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import annotationImage from "@assets/gemini-2.5-flash-image_Upgrade_the_provided_image_while_preser_1768464250517.jpg";
+import annotationImage from "@assets/Screenshot_2026-01-15_at_15.29.02_1768463823698.png";
 import llmImage from "@assets/Screenshot_2026-01-13_at_14.33.50_1768286034432.png";
 
 const capabilities = [
