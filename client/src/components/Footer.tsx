@@ -22,7 +22,6 @@ export function Footer() {
           />
         </svg>
       </div>
-      
       {/* Footer content with gradient background */}
       <div className="bg-gradient-to-b from-[#0f2847] to-navy-950 pt-24 pb-12">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
@@ -33,7 +32,7 @@ export function Footer() {
                   Oceanveo
                 </span>
               </Link>
-              <p className="text-steel-500 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-[#8bdaef]">
                 High-quality AI data pipelines powered by expert human intelligence and automated validation.
               </p>
             </div>
