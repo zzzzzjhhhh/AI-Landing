@@ -82,7 +82,7 @@ export function Testimonials() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="md:text-5xl lg:text-6xl font-display text-white mb-4 font-medium text-[48px]">
-            Trusted by <span className="text-blue-400">industry leaders</span>
+            Trusted by <span style={{ color: '#8bdaef' }}>industry leaders</span>
           </h2>
           <p className="text-lg text-steel-400 max-w-2xl mx-auto">
             See what top AI companies say about working with Oceanveo
@@ -114,7 +114,7 @@ export function Testimonials() {
                 }}
               >
                 <div className="mb-3 flex items-center gap-2 px-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-400" />
+                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#8bdaef' }} />
                   <span className="text-sm font-medium text-steel-300">{testimonial.company}</span>
                 </div>
                 <div 
@@ -129,7 +129,7 @@ export function Testimonials() {
                   <p className="text-slate-900 text-base lg:text-lg leading-relaxed">
                     "{testimonial.quote}"
                   </p>
-                  <p className="text-blue-500 text-sm mt-4">
+                  <p className="text-sm mt-4" style={{ color: '#8bdaef' }}>
                     — {testimonial.author}
                   </p>
                 </div>
