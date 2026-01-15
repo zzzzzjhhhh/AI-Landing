@@ -22,7 +22,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="md:text-8xl lg:text-9xl font-display mb-10 text-white font-medium tracking-tight text-[65px]">
+          <h1 className="md:text-8xl lg:text-9xl font-display mb-10 text-white font-medium tracking-tight text-[70px]">
             High-quality AI data.<br />
             <span className="text-gradient">Delivered fast.</span>
           </h1>
