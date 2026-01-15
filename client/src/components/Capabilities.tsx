@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import annotationImage from "@assets/Screenshot_2026-01-15_at_15.29.02_1768463823698.png";
 import llmImage from "@assets/universal_upscale_0_f7782051-7284-4dad-8494-94819c6fdcdf_0_1768464691118.jpg";
 import safetyImage from "@assets/gemini-2.5-flash-image_Upgrade_the_provided_image_while_preser_1768464387060.jpg";
+import customImage from "@assets/image_4_1768464985780.jpg";
 
 const capabilities = [
   {
@@ -29,7 +30,7 @@ const capabilities = [
     icon: Cog,
     title: "Custom Pipelines",
     description: "Tailored workflows for niche domains like medical imaging, legal contract review, or financial data extraction.",
-    image: null
+    image: customImage
   }
 ];
 
