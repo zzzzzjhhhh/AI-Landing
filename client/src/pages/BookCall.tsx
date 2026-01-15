@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
+import bgMain from "@assets/bg_main_1768281613638.jpg";
 
 export default function BookCall() {
   const contactMutation = useContactForm();
@@ -36,8 +37,15 @@ export default function BookCall() {
 
   return (
     <div className="bg-navy-950 min-h-screen flex flex-col relative overflow-hidden">
-      {/* Background gradient matching main page */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-900 opacity-50 pointer-events-none" />
+      {/* Background image matching main page */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={bgMain} 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
+      </div>
       
       <Navbar />
       
@@ -77,7 +85,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">First Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Jane" {...field} className="h-12 bg-navy-900/50 border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="Jane" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -90,7 +98,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">Last Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Doe" {...field} className="h-12 bg-navy-900/50 border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="Doe" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -105,7 +113,7 @@ export default function BookCall() {
                   <FormItem>
                     <FormLabel className="text-steel-400 text-sm font-medium">Work Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-navy-900/50 border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                      <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -120,7 +128,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">Company</FormLabel>
                       <FormControl>
-                        <Input placeholder="Acme AI" {...field} className="h-12 bg-navy-900/50 border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="Acme AI" {...field} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -133,7 +141,7 @@ export default function BookCall() {
                     <FormItem>
                       <FormLabel className="text-steel-400 text-sm font-medium">Phone (Optional)</FormLabel>
                       <FormControl>
-                        <Input placeholder="+1 (555) 000-0000" {...field} value={field.value || ''} className="h-12 bg-navy-900/50 border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
+                        <Input placeholder="+1 (555) 000-0000" {...field} value={field.value || ''} className="h-12 bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 focus:border-blue-500/50 transition-colors rounded-xl" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -150,7 +158,7 @@ export default function BookCall() {
                     <FormControl>
                       <Textarea 
                         placeholder="Tell us about your project requirements..." 
-                        className="bg-navy-900/50 border-white/5 text-white placeholder:text-white/10 min-h-[120px] focus:border-blue-500/50 transition-colors resize-none rounded-xl p-4" 
+                        className="bg-navy-900/50 backdrop-blur-md border-white/5 text-white placeholder:text-white/10 min-h-[120px] focus:border-blue-500/50 transition-colors resize-none rounded-xl p-4" 
                         {...field} 
                         value={field.value || ''}
                       />
