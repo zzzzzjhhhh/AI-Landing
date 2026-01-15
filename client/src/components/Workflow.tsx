@@ -24,7 +24,7 @@ export function Workflow() {
           >
             <h2 className="md:text-5xl lg:text-7xl font-display text-white mb-8 tracking-tight font-medium text-[48px]">
               Built for speed.<br />
-              <span className="text-white/40">Designed for quality.</span>
+              <span style={{ color: '#8bdaef' }}>Designed for quality.</span>
             </h2>
             <p className="text-lg md:text-xl text-steel-400 max-w-xl leading-relaxed font-light">
               Define the task, deploy experts, label at throughput, and ship datasets
