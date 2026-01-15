@@ -22,7 +22,7 @@ export function Workflow() {
             transition={{ duration: 0.6 }}
             className="text-left"
           >
-            <h2 className="md:text-5xl lg:text-7xl font-display text-white mb-8 tracking-tight font-medium text-[48px]">
+            <h2 className="md:text-[48px] font-display text-white mb-8 tracking-tight font-medium leading-[1.1]">
               Built for speed.<br />
               <span style={{ color: '#8bdaef' }}>Designed for quality.</span>
             </h2>
