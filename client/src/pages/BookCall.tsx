@@ -172,7 +172,7 @@ export default function BookCall() {
                 <Button 
                   type="submit" 
                   disabled={contactMutation.isPending}
-                  className="bg-white text-navy-900 hover:bg-sky-50 h-14 px-8 rounded-2xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all active:scale-[0.98] flex items-center gap-2 group"
+                  className="bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 h-14 px-8 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all duration-300 active:scale-[0.98] flex items-center gap-2 group"
                 >
                   {contactMutation.isPending ? (
                     <>
@@ -182,12 +182,7 @@ export default function BookCall() {
                   ) : (
                     <>
                       <span>Submit Request</span>
-                      <motion.span
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
-                      >
-                        <ArrowRight className="h-5 w-5" />
-                      </motion.span>
+                      <ArrowRight className="ml-2 w-4 h-4" />
                     </>
                   )}
                 </Button>
