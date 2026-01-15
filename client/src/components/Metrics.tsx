@@ -38,7 +38,7 @@ export function Metrics() {
             <div className="mb-2">
               <Counter from={0} to={99} suffix=".7%" />
             </div>
-            <p className="text-steel-500 font-medium uppercase tracking-widest text-xs">QA Pass Rate</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">QA Pass Rate</p>
           </div>
           <div>
             <div className="mb-2">
