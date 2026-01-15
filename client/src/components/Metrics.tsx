@@ -32,7 +32,7 @@ export function Metrics() {
             <div className="mb-2">
               <Counter from={0} to={10} suffix="M+" />
             </div>
-            <p className="text-steel-500 font-medium uppercase tracking-widest text-xs">Labels Delivered</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">Labels Delivered</p>
           </div>
           <div>
             <div className="mb-2">
