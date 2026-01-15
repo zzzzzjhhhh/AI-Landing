@@ -50,7 +50,7 @@ export function Metrics() {
             <div className="mb-2">
               <Counter from={0} to={40} suffix="%" />
             </div>
-            <p className="text-steel-500 font-medium uppercase tracking-widest text-xs">Faster Turnaround</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">Faster Turnaround</p>
           </div>
         </div>
 
