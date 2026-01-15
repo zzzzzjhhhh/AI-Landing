@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import annotationImage from "@assets/Screenshot_2026-01-15_at_15.29.02_1768463823698.png";
 import llmImage from "@assets/Screenshot_2026-01-13_at_14.33.50_1768286034432.png";
+import safetyImage from "@assets/gemini-2.5-flash-image_Upgrade_the_provided_image_while_preser_1768464387060.jpg";
 
 const capabilities = [
   {
@@ -22,7 +23,7 @@ const capabilities = [
     icon: ShieldCheck,
     title: "Safety & Policy Labeling",
     description: "Rigorous adversarial testing and red-teaming to identify bias, toxicity, and safety failures before deployment.",
-    image: null
+    image: safetyImage
   },
   {
     icon: Cog,
