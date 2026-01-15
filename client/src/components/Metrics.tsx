@@ -14,7 +14,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
       {isInView ? (
         <CountUp from={from} to={to} duration={2} />
       ) : from}
-      <span className="text-blue-500">{suffix}</span>
+      <span className="text-[#8bdaef]">{suffix}</span>
     </span>
   );
 }
