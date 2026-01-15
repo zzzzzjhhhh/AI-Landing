@@ -6,6 +6,7 @@ import annotationImage from "@assets/Screenshot_2026-01-15_at_15.29.02_176846382
 import llmImage from "@assets/universal_upscale_0_f7782051-7284-4dad-8494-94819c6fdcdf_0_1768464691118.jpg";
 import safetyImage from "@assets/gemini-2.5-flash-image_Upgrade_the_provided_image_while_preser_1768464387060.jpg";
 import customImage from "@assets/image_4_1768464985780.jpg";
+import horizontalImage from "@assets/horizontal__1768466417199.jpg";
 
 const capabilities = [
   {
@@ -70,20 +71,11 @@ export function Capabilities() {
           transition={{ duration: 0.8 }}
           className="w-full h-40 rounded-xl overflow-hidden relative border border-white/10 mb-20"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-navy-900" />
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-blue-500/30" />
-          <div className="absolute top-1/4 left-0 right-0 h-[1px] bg-blue-500/10" />
-          <div className="absolute top-3/4 left-0 right-0 h-[1px] bg-blue-500/10" />
-          
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute top-1/2 w-1 h-4 bg-sky-300 rounded-full"
-              style={{ left: `${20 * i + 10}%` }}
-              animate={{ height: [16, 32, 16], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-            />
-          ))}
+          <img 
+            src={horizontalImage} 
+            alt="" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
         </motion.div>
 
         {/* Title and Description - Centered */}
