@@ -22,11 +22,6 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 mb-12 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-            <span className="text-xs font-medium text-blue-200 uppercase tracking-wider">Accepting New Partners</span>
-          </div>
-          
           <h1 className="md:text-8xl lg:text-9xl font-display mb-10 text-white font-medium tracking-tight text-[65px]">
             High-quality AI data.<br />
             <span className="text-gradient">Delivered fast.</span>
