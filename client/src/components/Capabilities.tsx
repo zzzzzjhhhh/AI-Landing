@@ -94,9 +94,6 @@ export function Capabilities() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <h2 className="text-sky-300 mb-4 uppercase tracking-[0.3em] text-xs font-bold">
-            Designed for quality.
-          </h2>
           <h3 className="text-4xl md:text-5xl font-display text-white mb-6">
             Human intelligence,<br />at machine speed.
           </h3>
