@@ -165,7 +165,7 @@ export function Capabilities() {
               
               {/* Text content BELOW the square */}
               <div className="pt-6 px-2">
-                <h3 className="text-2xl font-display text-white mb-3">{cap.title}</h3>
+                <h3 className="font-display text-white mb-3 text-[28px]">{cap.title}</h3>
                 <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
                   {cap.description}
                 </p>
