@@ -44,7 +44,7 @@ export function Metrics() {
             <div className="mb-2">
               <Counter from={0} to={500} suffix="+" />
             </div>
-            <p className="text-steel-500 font-medium uppercase tracking-widest text-xs">Domain Experts</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">Domain Experts</p>
           </div>
           <div>
             <div className="mb-2">
