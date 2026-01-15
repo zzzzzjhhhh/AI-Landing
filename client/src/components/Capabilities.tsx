@@ -3,8 +3,8 @@ import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } f
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import annotationImage from "@assets/Screenshot_2026-01-15_at_15.29.02_1768463823698.png";
-import llmImage from "@assets/Screenshot_2026-01-15_at_16.07.44_1768464466544.png";
-import safetyImage from "@assets/Screenshot_2026-01-13_at_01.49.04_1768464495489.png";
+import llmImage from "@assets/Screenshot_2026-01-13_at_14.33.50_1768286034432.png";
+import safetyImage from "@assets/gemini-2.5-flash-image_Upgrade_the_provided_image_while_preser_1768464387060.jpg";
 
 const capabilities = [
   {
