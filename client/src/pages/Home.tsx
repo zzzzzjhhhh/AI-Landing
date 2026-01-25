@@ -2,7 +2,6 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Capabilities } from "@/components/Capabilities";
 import { Workflow } from "@/components/Workflow";
-import { Testimonials } from "@/components/Testimonials";
 import { Metrics } from "@/components/Metrics";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -20,7 +19,6 @@ export default function Home() {
         <Hero />
         <Capabilities />
         <Workflow />
-        <Testimonials />
         <Metrics />
       </main>
       <Footer />
