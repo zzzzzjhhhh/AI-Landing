@@ -65,7 +65,7 @@ export default function BookCall() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg md:text-xl text-steel-400 leading-relaxed font-light"
           >
-            We'll discuss your specific labeling needs, quality requirements, and how our expert-in-the-loop pipelines can accelerate your roadmap.
+            The future is embodied. Give your models a world to learn from.
           </motion.p>
         </div>
 

@@ -23,13 +23,14 @@ export function Workflow() {
             className="text-left"
           >
             <h2 className="md:text-[48px] font-display text-white mb-8 tracking-tight font-medium leading-[1.1]">
-              Built for speed.<br />
-              <span style={{ color: '#8bdaef' }}>Designed for quality.</span>
+              The Stack.<br />
+              <span style={{ color: '#8bdaef' }}>VLA-Ready.</span>
             </h2>
-            <p className="text-lg md:text-xl text-steel-400 max-w-xl leading-relaxed font-light">
-              Define the task, deploy experts, label at throughput, and ship datasets
-              with AI-assisted QA baked in.
-            </p>
+            <div className="space-y-6 text-lg md:text-xl text-steel-400 max-w-xl leading-relaxed font-light">
+              <p>• VLA-Ready: Datasets optimized for Vision-Language-Action models.</p>
+              <p>• Temporal Fidelity: High-speed captures designed for 4D world modeling.</p>
+              <p>• Egocentric Focus: Data from the robot’s-eye-view, because perspective is everything.</p>
+            </div>
           </motion.div>
 
           {/* Right Column: Centered Floating Flowchart */}

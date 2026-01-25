@@ -11,27 +11,21 @@ import horizontalImage from "@assets/horizontal__1768466417199.jpg";
 const capabilities = [
   {
     icon: Eye,
-    title: "Image & Video Annotation",
-    description: "Pixel-perfect segmentation, bounding boxes, and keypoint annotation for computer vision models that need to see the world clearly.",
+    title: "Unfiltered Reality",
+    description: "Synthetic data is a hall of mirrors. We supply the high-entropy, real-world diversity that simulation can’t replicate. From the chaos of urban density to the nuance of tactile manipulation.",
     image: annotationImage
   },
   {
-    icon: MessageSquareText,
-    title: "LLM & Multimodal Eval",
-    description: "RLHF ranking, fact-checking, and creative writing evaluation by domain experts to align large language models with human intent.",
-    image: llmImage
+    icon: Cog,
+    title: "Neural-Ready Pipelines",
+    description: "We don't just ship frames; we ship trajectories. Our data is architected for the modern ML stack: automated labeling, dense spatial grounding, and reward-optimized sequences.",
+    image: customImage
   },
   {
     icon: ShieldCheck,
-    title: "Safety & Policy Labeling",
-    description: "Rigorous adversarial testing and red-teaming to identify bias, toxicity, and safety failures before deployment.",
+    title: "Global Coverage",
+    description: "Spatial intelligence is a global problem. Our engine operates across four continents, capturing the long-tail edge cases that determine whether a model ships or fails.",
     image: safetyImage
-  },
-  {
-    icon: Cog,
-    title: "Custom Pipelines",
-    description: "Tailored workflows for niche domains like medical imaging, legal contract review, or financial data extraction.",
-    image: customImage
   }
 ];
 
@@ -87,10 +81,10 @@ export function Capabilities() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h3 className="text-4xl md:text-5xl font-display text-white mb-6">
-            Human intelligence,<br />at machine speed.
+            Engineered for Autonomy.
           </h3>
           <p className="text-lg leading-relaxed" style={{ color: '#8bdaef' }}>
-            Training modern AI systems requires more than raw labels. Oceanveo combines expert annotators with AI-assisted review to deliver datasets you can trust.
+            OceanVeo is the foundational data layer for the next era of autonomy. We provide the massive-scale, high-fidelity video trajectories required to ground neural networks in the laws of physics.
           </p>
         </motion.div>
 

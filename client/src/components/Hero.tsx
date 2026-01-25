@@ -23,18 +23,18 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
-            High-quality AI data.<br />
-            <span className="text-gradient">Delivered fast.</span>
+            Ocean of Real World Data.<br />
+            <span className="text-gradient">World Model.</span>
           </h1>
           
-          <p className="md:text-xl max-w-2xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
-            Oceanveo builds expert-powered annotation and evaluation pipelines — combining human judgment with AI-assisted quality control to move models forward, faster.
+          <p className="md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
+            LLMs have the internet. Robotics has a void. The leap from silicon to the street isn't solved by more compute—it’s solved by Physical Intelligence.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/book">
               <Button size="lg" className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
-                Book a call
+                Enter the Engine
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>

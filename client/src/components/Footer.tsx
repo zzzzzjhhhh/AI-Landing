@@ -33,7 +33,7 @@ export function Footer() {
                 </span>
               </Link>
               <p className="text-sm leading-relaxed text-[#8bdaef]">
-                High-quality AI data pipelines powered by expert human intelligence and automated validation.
+                Bay Area | Data for Physical Intelligence.
               </p>
             </div>
             
