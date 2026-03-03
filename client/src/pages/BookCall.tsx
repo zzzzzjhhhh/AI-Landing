@@ -55,7 +55,7 @@ export default function BookCall() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[70px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
+            className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
           >
             Let's talk about <br/><span style={{ color: '#8bdaef' }}>your data.</span>
           </motion.h1>

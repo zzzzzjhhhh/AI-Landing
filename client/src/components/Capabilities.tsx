@@ -64,7 +64,7 @@ export function Capabilities() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <h3 className="text-4xl md:text-5xl font-display text-white mb-6">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display text-white mb-6">
             Engineered for Autonomy.
           </h3>
           <p className="text-lg leading-relaxed" style={{ color: '#8bdaef' }}>

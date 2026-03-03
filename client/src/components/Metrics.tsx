@@ -10,7 +10,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
   const isInView = useInView(ref, { once: true });
   
   return (
-    <span ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-display text-white font-normal tracking-tighter">
+    <span ref={ref} className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display text-white font-normal tracking-tighter">
       {isInView ? (
         <CountUp from={from} to={to} duration={2} />
       ) : from}
@@ -83,7 +83,7 @@ export function Metrics() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center max-w-3xl mx-auto drop-shadow-2xl"
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-white mb-6 font-medium tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display text-white mb-6 font-medium tracking-tight">
                 Move your model forward — faster.
               </h2>
               <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-light">

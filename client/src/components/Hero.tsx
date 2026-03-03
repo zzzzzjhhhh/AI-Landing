@@ -22,11 +22,11 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
+          <h1 className="text-[36px] sm:text-[48px] md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
             An Ocean of <span className="text-gradient">Real World Data.</span>
           </h1>
           
-          <p className="md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
+          <p className="text-base md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef]">
             Oceanic-scale data engineered to train and refine world models.
           </p>
           
