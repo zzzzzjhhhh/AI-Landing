@@ -64,7 +64,9 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
-          <Logo />
+          <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer select-none">
+            Oceanveo
+          </span>
         </Link>
 
         {/* Desktop Nav */}

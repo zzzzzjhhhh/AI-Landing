@@ -1,7 +1,5 @@
 import { Link } from "wouter";
 
-import { Logo } from "./Navbar";
-
 export function Footer() {
   return (
     <footer className="relative">
@@ -30,8 +28,10 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
               <Link href="/">
-              <Logo />
-            </Link>
+                <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer mb-4 block">
+                  Oceanveo
+                </span>
+              </Link>
               <p className="text-sm leading-relaxed text-[#8bdaef]">
                 Bay Area | Data for Physical Intelligence.
               </p>
