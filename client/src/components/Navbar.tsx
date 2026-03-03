@@ -92,10 +92,11 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-navy-900 border-b border-white/10 p-6 flex flex-col gap-6 animate-in slide-in-from-top-2">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-navy-950/95 backdrop-blur-xl border-b border-white/5 p-6 flex flex-col gap-6 animate-in slide-in-from-top-2">
           <Link href="/book">
             <Button 
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white"
+              variant="outline"
+              className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 rounded-xl h-12"
               onClick={() => setMobileMenuOpen(false)}
             >
               Book a call
