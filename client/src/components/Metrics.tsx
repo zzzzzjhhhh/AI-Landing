@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import metricsImage from "@assets/universal_upscale_0_fb5490ac-461f-40fe-b8da-ba41d4b3de9c_0_(1)_1768464079585.jpg";
+import waveImage from "@assets/generated_images/generated_image.png";
 
 function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?: string }) {
   const ref = useRef(null);
@@ -64,8 +64,8 @@ export function Metrics() {
         className="w-full h-64 md:h-80 lg:h-96 overflow-hidden relative"
       >
         <img 
-          src={metricsImage} 
-          alt="AI data visualization"
+          src={waveImage} 
+          alt="Ocean wave"
           className="w-full h-full object-cover"
         />
       </motion.div>
