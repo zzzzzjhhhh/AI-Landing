@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import qualityImage from "@assets/generated_images/generated_image.png";
+import qualityImage from "@assets/generated_images/generated_image_0.png";
+import quantityImage from "@assets/generated_images/generated_image_1.png";
+import diversityImage from "@assets/generated_images/generated_image_2.png";
 
 const capabilities = [
   {
@@ -15,13 +17,13 @@ const capabilities = [
     icon: Cog,
     title: "Quantity",
     description: "Quantity is the force multiplier of intelligence. High-volume, precisely structured human data enables models to generalize beyond edge cases and converge toward real-world reliability at scale.",
-    image: null
+    image: quantityImage
   },
   {
     icon: ShieldCheck,
     title: "Diversity",
     description: "Diversity prevents brittleness. Broad coverage across environments, demographics, edge cases, and behaviors produces models that remain stable under real-world variation instead of collapsing outside narrow distributions.",
-    image: null
+    image: diversityImage
   }
 ];
 
