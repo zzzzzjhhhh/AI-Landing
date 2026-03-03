@@ -23,8 +23,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
-            An Ocean of Real World Data.<br />
-            <span className="text-gradient">World Model.</span>
+            An Ocean of Real World Data.
           </h1>
           
           <p className="md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
