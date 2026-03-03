@@ -1,4 +1,4 @@
-import sgMail from "@sendgrid/mail";
+import nodemailer from "nodemailer";
 
 const NOTIFICATION_RECIPIENTS = [
   "sherelle.li@oceanveo.ai",
@@ -7,25 +7,28 @@ const NOTIFICATION_RECIPIENTS = [
   "roger@oceanveo.ai",
 ];
 
-const FROM_EMAIL = "noreply@oceanveo.ai";
-
 export async function sendContactNotification(contact: {
   name: string;
   email: string;
   company?: string;
   message: string;
 }) {
-  const apiKey = process.env.SENDGRID_API_KEY;
-  if (!apiKey) {
-    console.warn("SENDGRID_API_KEY not set — skipping email notification");
+  const user = process.env.SMTP_EMAIL;
+  const pass = process.env.SMTP_PASSWORD;
+
+  if (!user || !pass) {
+    console.warn("SMTP_EMAIL or SMTP_PASSWORD not set — skipping email notification");
     return;
   }
 
-  sgMail.setApiKey(apiKey);
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
 
-  const msg = {
-    to: NOTIFICATION_RECIPIENTS,
-    from: FROM_EMAIL,
+  const mailOptions = {
+    from: `"Oceanveo Contact Form" <${user}>`,
+    to: NOTIFICATION_RECIPIENTS.join(", "),
     subject: `New Contact Form Submission from ${contact.name}`,
     text: `New contact form submission:\n\nName: ${contact.name}\nEmail: ${contact.email}\nCompany: ${contact.company || "N/A"}\n\nMessage:\n${contact.message}`,
     html: `
@@ -55,9 +58,9 @@ export async function sendContactNotification(contact: {
   };
 
   try {
-    await sgMail.send(msg);
+    await transporter.sendMail(mailOptions);
     console.log("Contact notification emails sent successfully");
   } catch (error: any) {
-    console.error("Failed to send contact notification:", error?.response?.body || error.message);
+    console.error("Failed to send contact notification:", error.message);
   }
 }
