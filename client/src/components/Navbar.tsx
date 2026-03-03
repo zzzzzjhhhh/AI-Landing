@@ -71,9 +71,6 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="/#capabilities" className="text-sm font-medium text-white hover:text-sky-200 transition-colors">
-            Capabilities
-          </a>
           <Link href="/book">
             <Button 
               variant="outline" 
@@ -96,13 +93,6 @@ export function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-navy-900 border-b border-white/10 p-6 flex flex-col gap-6 animate-in slide-in-from-top-2">
-          <a 
-            href="/#capabilities" 
-            className="text-lg font-medium text-white"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Capabilities
-          </a>
           <Link href="/book">
             <Button 
               className="w-full bg-blue-600 hover:bg-blue-500 text-white"
