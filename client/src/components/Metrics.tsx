@@ -14,7 +14,7 @@ function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?:
       {isInView ? (
         <CountUp from={from} to={to} duration={2} />
       ) : from}
-      <span className="text-[#475569]">{suffix}</span>
+      <span className="text-[#8bdaef]">{suffix}</span>
     </span>
   );
 }
@@ -32,25 +32,25 @@ export function Metrics() {
             <div className="mb-2">
               <Counter from={0} to={10} suffix="M+" />
             </div>
-            <p className="font-medium uppercase tracking-widest text-xs text-[#475569]">Labels Delivered</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">Labels Delivered</p>
           </div>
           <div>
             <div className="mb-2">
               <Counter from={0} to={99} suffix=".7%" />
             </div>
-            <p className="font-medium uppercase tracking-widest text-xs text-[#475569]">QA Pass Rate</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">QA Pass Rate</p>
           </div>
           <div>
             <div className="mb-2">
               <Counter from={0} to={500} suffix="+" />
             </div>
-            <p className="font-medium uppercase tracking-widest text-xs text-[#475569]">Domain Experts</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">Domain Experts</p>
           </div>
           <div>
             <div className="mb-2">
               <Counter from={0} to={40} suffix="%" />
             </div>
-            <p className="font-medium uppercase tracking-widest text-xs text-[#475569]">Faster Turnaround</p>
+            <p className="font-medium uppercase tracking-widest text-xs text-[#8bdaef]">Faster Turnaround</p>
           </div>
         </div>
       </div>

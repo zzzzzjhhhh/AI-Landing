@@ -32,7 +32,7 @@ export function Footer() {
                   Oceanveo
                 </span>
               </Link>
-              <p className="text-sm leading-relaxed text-[#475569]">
+              <p className="text-sm leading-relaxed text-[#8bdaef]">
                 Sunnyvale, CA | Data for Physical Intelligence.
               </p>
             </div>
@@ -40,21 +40,21 @@ export function Footer() {
             <div className="flex flex-col md:flex-row gap-12 md:gap-24">
               <div className="flex flex-col gap-4">
                 <h4 className="font-display font-bold text-white">Product</h4>
-                <a href="/#capabilities" className="text-sm transition-colors" style={{ color: '#475569' }}>Capabilities</a>
-                <a href="/#workflow" className="text-sm transition-colors" style={{ color: '#475569' }}>Workflow</a>
-                <a href="/#metrics" className="text-sm transition-colors" style={{ color: '#475569' }}>Results</a>
+                <a href="/#capabilities" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Capabilities</a>
+                <a href="/#workflow" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Workflow</a>
+                <a href="/#metrics" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Results</a>
               </div>
               <div className="flex flex-col gap-4">
                 <h4 className="font-display font-bold text-white">Company</h4>
-                <Link href="/book" className="text-sm transition-colors" style={{ color: '#475569' }}>Contact</Link>
-                <span className="text-sm cursor-not-allowed opacity-50" style={{ color: '#475569' }}>Careers</span>
-                <span className="text-sm cursor-not-allowed opacity-50" style={{ color: '#475569' }}>Privacy</span>
+                <Link href="/book" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Contact</Link>
+                <span className="text-sm cursor-not-allowed opacity-50" style={{ color: '#8bdaef' }}>Careers</span>
+                <span className="text-sm cursor-not-allowed opacity-50" style={{ color: '#8bdaef' }}>Privacy</span>
               </div>
             </div>
           </div>
           
           <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-[#475569]">
+            <p className="text-xs text-blue-400/80">
               © {new Date().getFullYear()} Oceanveo Inc. All rights reserved.
             </p>
             <div className="flex gap-6">
