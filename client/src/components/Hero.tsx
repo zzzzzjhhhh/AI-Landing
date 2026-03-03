@@ -33,7 +33,7 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/book">
               <Button size="lg" className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
-                Enter the Engine
+                Partner with us
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
