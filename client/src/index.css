@@ -75,7 +75,11 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-200 to-sky-300;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-[#8bdaef] to-[#4fa3bc];
+  }
+
+  .logo-gradient {
+    @apply bg-gradient-to-br from-white via-[#8bdaef] to-[#4fa3bc];
   }
   
   .ocean-gradient {

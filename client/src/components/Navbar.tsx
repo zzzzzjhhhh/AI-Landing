@@ -4,6 +4,44 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
+export function Logo() {
+  return (
+    <div className="flex items-center gap-2 group cursor-pointer select-none">
+      <div className="relative w-8 h-8">
+        {/* The "O" element */}
+        <div className="absolute inset-0 rounded-full border-[2.5px] border-white/20 group-hover:border-[#8bdaef]/40 transition-colors duration-500" />
+        
+        {/* The Gradient "V" element integrated with "O" */}
+        <svg 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          className="absolute inset-0 w-full h-full drop-shadow-[0_0_8px_rgba(139,218,239,0.5)]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="50%" stopColor="#8bdaef" />
+              <stop offset="100%" stopColor="#4fa3bc" />
+            </linearGradient>
+          </defs>
+          <path 
+            d="M7 10L12 15L17 10" 
+            stroke="url(#logo-grad)" 
+            strokeWidth="2.5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            className="group-hover:translate-y-0.5 transition-transform duration-500"
+          />
+        </svg>
+      </div>
+      <span className="font-display font-bold text-2xl tracking-tighter text-white">
+        Oceanveo
+      </span>
+    </div>
+  );
+}
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,9 +64,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
-          <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer select-none">
-            Oceanveo
-          </span>
+          <Logo />
         </Link>
 
         {/* Desktop Nav */}
