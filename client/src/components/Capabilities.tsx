@@ -54,7 +54,7 @@ export function Capabilities() {
   };
 
   return (
-    <section id="capabilities" className="py-32 lg:py-40 bg-navy-950 relative overflow-hidden">
+    <section id="capabilities" className="py-20 lg:py-24 bg-navy-950 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Visual Abstract Strip - Full Width at Top */}

@@ -6,7 +6,7 @@ import bgMain from "@assets/bg_main_1768281613638.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-48 pb-32">
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img 
