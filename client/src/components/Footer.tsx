@@ -23,7 +23,7 @@ export function Footer() {
         </svg>
       </div>
       {/* Footer content with gradient background */}
-      <div className="bg-gradient-to-b from-[#0f2847] to-navy-950 pt-24 pb-12">
+      <div className="bg-navy-950 pt-24 pb-12">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
