@@ -67,7 +67,7 @@ export function Capabilities() {
           <h3 className="text-4xl md:text-5xl font-display text-white mb-6">
             Engineered for Autonomy.
           </h3>
-          <p className="text-lg leading-relaxed" style={{ color: '#4fa3bc' }}>
+          <p className="text-lg leading-relaxed" style={{ color: '#3a7e91' }}>
             Oceanveo is partnering with startups, institutions, & industry leaders alike to hasten the world's transition toward autonomy. We provide massive scale, human-collected & annotated datasets suited to your engineering needs.
           </p>
         </motion.div>
