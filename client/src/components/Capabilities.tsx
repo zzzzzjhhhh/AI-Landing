@@ -84,7 +84,7 @@ export function Capabilities() {
             Engineered for Autonomy.
           </h3>
           <p className="text-lg leading-relaxed" style={{ color: '#8bdaef' }}>
-            OceanVeo is the foundational data layer for the next era of autonomy. We provide the massive-scale, high-fidelity video trajectories required to ground neural networks in the laws of physics.
+            Oceanveo is partnering with startups, institutions, & industry leaders alike to hasten the world's transition toward autonomy. We provide massive scale, human-collected & annotated datasets suited to your engineering needs.
           </p>
         </motion.div>
 
