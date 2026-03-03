@@ -26,7 +26,7 @@ export function Hero() {
             An Ocean of <span className="text-gradient">Real World Data.</span>
           </h1>
           
-          <p className="md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
+          <p className="md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#4fa3bc] text-[18px]">
             Oceanic-scale data engineered to train and refine world models.
           </p>
           

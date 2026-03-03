@@ -32,7 +32,7 @@ export function Footer() {
                   Oceanveo
                 </span>
               </Link>
-              <p className="text-sm leading-relaxed text-[#8bdaef]">
+              <p className="text-sm leading-relaxed text-[#4fa3bc]">
                 Sunnyvale, CA | Data for Physical Intelligence.
               </p>
             </div>
