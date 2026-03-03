@@ -91,7 +91,7 @@ export function Metrics() {
               </p>
               <Link href="/book">
                 <Button size="lg" className="rounded-xl px-12 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-2xl shadow-black/50">
-                  Start your project
+                  Connect with us
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
