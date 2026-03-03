@@ -2,30 +2,28 @@ import { motion } from "framer-motion";
 import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import annotationImage from "@assets/Screenshot_2026-01-15_at_15.29.02_1768463823698.png";
-import llmImage from "@assets/universal_upscale_0_f7782051-7284-4dad-8494-94819c6fdcdf_0_1768464691118.jpg";
-import safetyImage from "@assets/gemini-2.5-flash-image_Upgrade_the_provided_image_while_preser_1768464387060.jpg";
-import customImage from "@assets/image_4_1768464985780.jpg";
-import horizontalImage from "@assets/horizontal__1768466417199.jpg";
+import qualityImage from "@assets/generated_images/generated_image_0.png";
+import quantityImage from "@assets/generated_images/generated_image_1.png";
+import diversityImage from "@assets/generated_images/generated_image_2.png";
 
 const capabilities = [
   {
     icon: Eye,
     title: "Quality",
     description: "Quality determines whether data sharpens a model or distorts it. Rigorous validation, tight ontologies, and expert oversight ensure every annotation strengthens signal rather than introducing noise.",
-    image: annotationImage
+    image: qualityImage
   },
   {
     icon: Cog,
     title: "Quantity",
     description: "Quantity is the force multiplier of intelligence. High-volume, precisely structured human data enables models to generalize beyond edge cases and converge toward real-world reliability at scale.",
-    image: customImage
+    image: quantityImage
   },
   {
     icon: ShieldCheck,
     title: "Diversity",
     description: "Diversity prevents brittleness. Broad coverage across environments, demographics, edge cases, and behaviors produces models that remain stable under real-world variation instead of collapsing outside narrow distributions.",
-    image: safetyImage
+    image: diversityImage
   }
 ];
 
@@ -57,21 +55,7 @@ export function Capabilities() {
     <section id="capabilities" className="py-20 lg:py-24 bg-navy-950 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         
-        {/* Visual Abstract Strip - Full Width at Top */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="w-full h-40 rounded-xl overflow-hidden relative border border-white/10 mb-20"
-        >
-          <img 
-            src={horizontalImage} 
-            alt="" 
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </motion.div>
-
+        {/* Visual Abstract Strip - Removed per user request or for cleaner look */}
         {/* Title and Description - Centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
