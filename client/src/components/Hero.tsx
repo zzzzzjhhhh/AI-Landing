@@ -23,12 +23,12 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
-            Ocean of Real World Data.<br />
+            An Ocean of Real World Data.<br />
             <span className="text-gradient">World Model.</span>
           </h1>
           
           <p className="md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef] text-[18px]">
-            LLMs have the internet. Robotics has a void. The leap from silicon to the street isn't solved by more compute—it’s solved by Physical Intelligence.
+            Oceanic-scale data engineered to train and refine world models.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
