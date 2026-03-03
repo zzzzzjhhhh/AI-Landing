@@ -11,20 +11,20 @@ import horizontalImage from "@assets/horizontal__1768466417199.jpg";
 const capabilities = [
   {
     icon: Eye,
-    title: "Unfiltered Reality",
-    description: "Synthetic data is a hall of mirrors. We supply the high-entropy, real-world diversity that simulation can’t replicate. From the chaos of urban density to the nuance of tactile manipulation.",
+    title: "Quality",
+    description: "Quality determines whether data sharpens a model or distorts it. Rigorous validation, tight ontologies, and expert oversight ensure every annotation strengthens signal rather than introducing noise.",
     image: annotationImage
   },
   {
     icon: Cog,
-    title: "Neural-Ready Pipelines",
-    description: "We don't just ship frames; we ship trajectories. Our data is architected for the modern ML stack: automated labeling, dense spatial grounding, and reward-optimized sequences.",
+    title: "Quantity",
+    description: "Quantity is the force multiplier of intelligence. High-volume, precisely structured human data enables models to generalize beyond edge cases and converge toward real-world reliability at scale.",
     image: customImage
   },
   {
     icon: ShieldCheck,
-    title: "Global Coverage",
-    description: "Spatial intelligence is a global problem. Our engine operates across four continents, capturing the long-tail edge cases that determine whether a model ships or fails.",
+    title: "Diversity",
+    description: "Diversity prevents brittleness. Broad coverage across environments, demographics, edge cases, and behaviors produces models that remain stable under real-world variation instead of collapsing outside narrow distributions.",
     image: safetyImage
   }
 ];
