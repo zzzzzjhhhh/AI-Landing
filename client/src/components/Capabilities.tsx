@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import qualityImage from "@assets/generated_images/generated_image_0.png";
-import quantityImage from "@assets/generated_images/generated_image_1.png";
-import diversityImage from "@assets/generated_images/generated_image_2.png";
+import qualityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_20_13_PM_1772515231076.png";
+import quantityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_19_56_PM_1772515240642.png";
+import diversityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_21_13_PM_1772515277539.png";
 
 const capabilities = [
   {
