@@ -33,7 +33,7 @@ export function Footer() {
                 </span>
               </Link>
               <p className="text-sm leading-relaxed text-[#8bdaef]">
-                Bay Area | Data for Physical Intelligence.
+                Sunnyvale, CA | Data for Physical Intelligence.
               </p>
             </div>
             
