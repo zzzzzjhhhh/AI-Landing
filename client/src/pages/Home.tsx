@@ -18,7 +18,6 @@ export default function Home() {
       <main>
         <Hero />
         <Capabilities />
-        <Workflow />
         <Metrics />
       </main>
       <Footer />

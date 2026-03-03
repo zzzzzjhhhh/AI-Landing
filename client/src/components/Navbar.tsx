@@ -74,9 +74,6 @@ export function Navbar() {
           <a href="/#capabilities" className="text-sm font-medium text-white hover:text-sky-200 transition-colors">
             Capabilities
           </a>
-          <a href="/#workflow" className="text-sm font-medium text-white hover:text-sky-200 transition-colors">
-            Workflow
-          </a>
           <Link href="/book">
             <Button 
               variant="outline" 
@@ -105,13 +102,6 @@ export function Navbar() {
             onClick={() => setMobileMenuOpen(false)}
           >
             Capabilities
-          </a>
-          <a 
-            href="/#workflow" 
-            className="text-lg font-medium text-white"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Workflow
           </a>
           <Link href="/book">
             <Button 
