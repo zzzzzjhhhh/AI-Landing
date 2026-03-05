@@ -29,7 +29,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
               <Link href="/">
-                <img src={iconLogo} alt="Oceanveo" className="h-[80px] md:h-[120px] w-auto cursor-pointer mb-4 block" />
+                <img src={iconLogo} alt="Oceanveo" className="h-[70px] md:h-[100px] w-auto cursor-pointer mb-4 block" />
               </Link>
               <p className="text-sm leading-relaxed text-[#8bdaef]">
                 Sunnyvale, CA | Data for Physical Intelligence.
