@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import logoImg from "@assets/Oceanveo_logo_white@3x_1772679900635.png";
 
 export function Logo() {
   return (
@@ -64,9 +65,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
-          <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer select-none">
-            Oceanveo
-          </span>
+          <img src={logoImg} alt="Oceanveo" className="h-7 md:h-8 w-auto cursor-pointer select-none" />
         </Link>
 
         {/* Desktop Nav */}
