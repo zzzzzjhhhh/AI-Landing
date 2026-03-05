@@ -65,7 +65,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
-          <img src={logoImg} alt="Oceanveo" className="h-7 md:h-8 w-auto cursor-pointer select-none" />
+          <img src={logoImg} alt="Oceanveo" className="h-[30px] md:h-[36px] w-auto cursor-pointer select-none" />
         </Link>
 
         {/* Desktop Nav */}
