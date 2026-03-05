@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import iconLogo from "@assets/Oceanveo_Icon_white@3x_1772680882822.png";
+import iconLogo from "@assets/Oceanveo_Icon_white_footer@3x_1772681185827.png";
 
 export function Footer() {
   return (
