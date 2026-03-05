@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import iconLogo from "@assets/Oceanveo_Icon_white@3x_1772680882822.png";
 
 export function Footer() {
   return (
@@ -28,9 +29,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
               <Link href="/">
-                <span className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer mb-4 block">
-                  Oceanveo
-                </span>
+                <img src={iconLogo} alt="Oceanveo" className="h-[40px] w-auto cursor-pointer mb-4 block" />
               </Link>
               <p className="text-sm leading-relaxed text-[#8bdaef]">
                 Sunnyvale, CA | Data for Physical Intelligence.
