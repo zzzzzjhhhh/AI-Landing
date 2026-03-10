@@ -1,9 +1,11 @@
+"use client";
+
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { ArrowRight, Cpu, Layers, Zap, Database, Target, GitBranch } from "lucide-react";
 
 const engineVideos = [

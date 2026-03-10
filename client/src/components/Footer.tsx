@@ -1,10 +1,12 @@
-import { Link } from "wouter";
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
 import iconLogo from "@assets/Oceanveo_Icon_white_footer@3x_1772681185827.png";
 
 export function Footer() {
   return (
     <footer className="relative">
-      {/* Wave gradient transition */}
       <div className="absolute top-0 left-0 right-0 h-32 overflow-hidden -translate-y-full">
         <svg 
           viewBox="0 0 1440 120" 
@@ -23,13 +25,16 @@ export function Footer() {
           />
         </svg>
       </div>
-      {/* Footer content with gradient background */}
       <div className="bg-navy-950 pt-24 pb-12">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="max-w-xs">
-              <Link href="/">
-                <img src={iconLogo} alt="Oceanveo" className="h-[56px] md:h-[70px] w-auto cursor-pointer mb-4 block" />
+              <Link href="/" className="mb-4 block">
+                <Image
+                  src={iconLogo}
+                  alt="Oceanveo"
+                  className="h-[56px] w-auto cursor-pointer md:h-[70px]"
+                />
               </Link>
               <p className="text-sm leading-relaxed text-[#8bdaef]">
                 Sunnyvale, CA | Data for Physical Intelligence.
@@ -40,7 +45,6 @@ export function Footer() {
               <div className="flex flex-col gap-4">
                 <h4 className="font-display font-bold text-white">Product</h4>
                 <a href="/#capabilities" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Capabilities</a>
-                <a href="/#workflow" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Workflow</a>
                 <a href="/#metrics" className="text-sm transition-colors" style={{ color: '#8bdaef' }}>Results</a>
               </div>
               <div className="flex flex-col gap-4">

@@ -1,5 +1,8 @@
-import { Link, useLocation } from "wouter";
-import { useState, useEffect } from "react";
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -46,7 +49,6 @@ export function Logo() {
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,27 +66,34 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/">
-          <img src={logoImg} alt="Oceanveo" className="h-[44px] md:h-[54px] w-auto cursor-pointer select-none" />
+        <Link href="/" className="block">
+          <Image
+            src={logoImg}
+            alt="Oceanveo"
+            priority
+            className="h-[44px] w-auto cursor-pointer select-none md:h-[54px]"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide" data-testid="link-data-engine">
             Data Engine
           </Link>
-          <Link href="/book">
-            <Button 
-              variant="outline" 
-              className="border-white/20 text-white hover:bg-white/10 hover:text-white hover:border-white/40 transition-all rounded-xl px-6"
-              data-testid="button-book-call"
-            >
+          <Button
+            asChild
+            variant="outline"
+            className="rounded-xl border-white/20 px-6 text-white transition-all hover:border-white/40 hover:bg-white/10 hover:text-white"
+            data-testid="button-book-call"
+          >
+            <Link href="/book">
               Book a call
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </nav>
 
-        {/* Mobile Toggle */}
         <button
+          type="button"
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           className="md:hidden text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -92,21 +101,20 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-navy-950/95 backdrop-blur-xl border-b border-white/5 p-6 flex flex-col gap-6 animate-in slide-in-from-top-2">
           <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-base font-medium text-center py-2" onClick={() => setMobileMenuOpen(false)}>
             Data Engine
           </Link>
-          <Link href="/book">
-            <Button 
-              variant="outline"
-              className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 rounded-xl h-12"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+          <Button
+            asChild
+            variant="outline"
+            className="h-12 w-full rounded-xl border-white/20 text-white hover:border-white/40 hover:bg-white/10"
+          >
+            <Link href="/book" onClick={() => setMobileMenuOpen(false)}>
               Book a call
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       )}
     </header>

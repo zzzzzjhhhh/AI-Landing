@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy-950: 218 44% 5%;
+  --navy-900: 218 77% 10%;
+  --navy-800: 219 49% 17%;
+  --navy-700: 221 47% 23%;
+
+  --blue-700: 219 70% 30%;
+  --blue-600: 218 66% 35%;
+  --blue-500: 216 57% 50%;
+
+  --steel-500: 210 34% 47%;
+
+  --sky-300: 201 46% 78%;
+  --sky-200: 176 22% 79%;
+  --sky-100: 205 91% 80%;
+
+  --white: 0 0% 100%;
+
+  --background: var(--navy-950);
+  --foreground: var(--white);
+
+  --card: var(--navy-900);
+  --card-foreground: var(--sky-100);
+
+  --popover: var(--navy-900);
+  --popover-foreground: var(--white);
+
+  --primary: var(--blue-500);
+  --primary-foreground: var(--white);
+
+  --secondary: var(--navy-800);
+  --secondary-foreground: var(--sky-200);
+
+  --muted: var(--navy-800);
+  --muted-foreground: var(--steel-500);
+
+  --accent: var(--blue-600);
+  --accent-foreground: var(--white);
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: var(--white);
+
+  --border: var(--navy-700);
+  --input: var(--navy-800);
+  --ring: var(--blue-500);
+
+  --radius: 0.5rem;
+  --font-display: var(--font-titillium-web);
+  --font-body: var(--font-titillium-web);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-blue-500/30 selection:text-white;
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-medium;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-[#8bdaef] to-[#4fa3bc];
+  }
+
+  .logo-gradient {
+    @apply bg-gradient-to-br from-white via-[#8bdaef] to-[#4fa3bc];
+  }
+
+  .ocean-gradient {
+    background: radial-gradient(circle at 50% 0%, hsl(var(--navy-800)), hsl(var(--navy-950)));
+  }
+
+  .card-gradient {
+    background: linear-gradient(180deg, hsl(var(--navy-900) / 0.8) 0%, hsl(var(--navy-900) / 0.4) 100%);
+  }
+
+  .glass-nav {
+    @apply backdrop-blur-md bg-navy-950/70 border-b border-white/5;
+  }
+}

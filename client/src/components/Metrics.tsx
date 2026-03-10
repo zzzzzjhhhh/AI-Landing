@@ -1,8 +1,11 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import waveImage from "@assets/generated_images/generated_image.png";
 
 function Counter({ from, to, suffix = "" }: { from: number; to: number; suffix?: string }) {
@@ -56,7 +59,6 @@ export function Metrics() {
       </div>
 
       <div className="relative">
-        {/* Full-screen narrow image - darker and blurred */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -64,16 +66,16 @@ export function Metrics() {
           transition={{ duration: 1 }}
           className="w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden relative"
         >
-          <img 
-            src={waveImage} 
+          <Image
+            src={waveImage}
             alt="Ocean wave"
-            className="w-full h-full object-cover brightness-[0.6]"
+            fill
+            sizes="100vw"
+            className="object-cover brightness-[0.6]"
           />
-          {/* Natural transition gradients */}
           <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-transparent to-navy-950" />
         </motion.div>
 
-        {/* Floating text content */}
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="container mx-auto px-6 md:px-12 lg:px-16">
             <motion.div
@@ -89,12 +91,16 @@ export function Metrics() {
               <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-light">
                 Stop bottlenecking your AI roadmap with slow or low quality data vendors. Partner with Oceanveo for scalable, expert-grade annotation.
               </p>
-              <Link href="/book">
-                <Button size="lg" className="rounded-xl px-12 h-14 text-lg font-medium bg-white text-navy-900 hover:bg-sky-50 hover:scale-105 transition-all shadow-2xl shadow-black/50">
+              <Button
+                asChild
+                size="lg"
+                className="h-14 rounded-xl bg-white px-12 text-lg font-medium text-navy-900 shadow-2xl shadow-black/50 transition-all hover:scale-105 hover:bg-sky-50"
+              >
+                <Link href="/book">
                   Connect with us
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
           </div>
         </div>
