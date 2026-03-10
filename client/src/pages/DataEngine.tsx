@@ -65,7 +65,7 @@ function ParallaxColumn({ videoIndices, offset, speed }: { videoIndices: number[
   return (
     <div className="flex-shrink-0 video-col-width overflow-hidden h-full">
       <div
-        className="marquee-track-vertical flex flex-col"
+        className="marquee-track-vertical flex flex-col video-vertical-gap"
         style={{
           animationDuration: `${speed}s`,
           transform: `translateY(${-offset}px)`,
