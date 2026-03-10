@@ -135,37 +135,54 @@ export default function DataEngine() {
     <div className="bg-navy-950 min-h-screen flex flex-col">
       <Navbar />
 
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row justify-center items-stretch gap-2 opacity-40">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0a0a12]">
+        <div className="absolute inset-0 z-0 flex flex-row items-stretch gap-2">
           <MarqueeColumn speed={30} videoIndices={[0, 1, 5, 6]} />
           <MarqueeColumn speed={34} videoIndices={[2, 3, 7, 4]} />
           <MarqueeColumn speed={28} videoIndices={[4, 5, 0, 1]} />
         </div>
-        <div className="absolute inset-0 bg-navy-950/50 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
 
-        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center py-32">
+        <div className="absolute inset-0 z-[1] flex items-center justify-center video-text-mask" style={{ mixBlendMode: "multiply" }}>
+          <div className="w-full text-center px-4">
+            <h1
+              className="video-mask-heading font-display font-bold text-white uppercase tracking-tight leading-[0.9]"
+              data-testid="text-engine-heading"
+              style={{ fontSize: "clamp(80px, 15vw, 220px)" }}
+            >
+              DATA<br />ENGINE
+            </h1>
+          </div>
+        </div>
+
+        <div className="absolute inset-0 z-[2] pointer-events-none">
+          <div className="scattered-video scattered-vid-1">
+            <video src={engineVideos[0]} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+          </div>
+          <div className="scattered-video scattered-vid-2">
+            <video src={engineVideos[3]} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+          </div>
+          <div className="scattered-video scattered-vid-3">
+            <video src={engineVideos[5]} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+          </div>
+          <div className="scattered-video scattered-vid-4">
+            <video src={engineVideos[7]} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+          </div>
+          <div className="scattered-video scattered-vid-5">
+            <video src={engineVideos[2]} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <div className="relative z-[5] flex flex-col items-center mt-auto pb-16 md:pb-24 pointer-events-none">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-center"
           >
-            <p className="text-[#8bdaef] text-sm md:text-base uppercase tracking-[0.2em] font-medium mb-6" data-testid="text-engine-label">
-              System Overview
-            </p>
-            <h1
-              className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white tracking-tight leading-[1.1] mb-8"
-              data-testid="text-engine-heading"
-            >
-              Data Engine
-            </h1>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-6 font-light leading-relaxed">
+            <p className="text-white/50 text-sm md:text-base font-light tracking-wide mb-6">
               Turning raw data into structured, actionable intelligence.
             </p>
-            <p className="text-base text-white/50 max-w-xl mx-auto mb-12 font-light leading-relaxed">
-              Our system collects, processes, organizes, and transforms data into usable insight through a streamlined intelligent workflow.
-            </p>
-            <a href="#how-it-works">
+            <a href="#how-it-works" className="pointer-events-auto">
               <Button
                 size="lg"
                 className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300"
@@ -352,6 +369,59 @@ export default function DataEngine() {
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           will-change: transform;
+        }
+        .video-text-mask {
+          background: #0a0a12;
+        }
+        .video-mask-heading {
+          color: white;
+        }
+        .scattered-video {
+          position: absolute;
+          overflow: hidden;
+          border-radius: 4px;
+          opacity: 0.85;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .scattered-vid-1 {
+          width: 160px;
+          height: 100px;
+          top: 18%;
+          left: 8%;
+          transform: rotate(-3deg);
+        }
+        .scattered-vid-2 {
+          width: 140px;
+          height: 88px;
+          top: 22%;
+          right: 6%;
+          transform: rotate(2deg);
+        }
+        .scattered-vid-3 {
+          width: 180px;
+          height: 112px;
+          bottom: 25%;
+          left: 5%;
+          transform: rotate(1.5deg);
+        }
+        .scattered-vid-4 {
+          width: 150px;
+          height: 94px;
+          bottom: 20%;
+          right: 8%;
+          transform: rotate(-2deg);
+        }
+        .scattered-vid-5 {
+          width: 130px;
+          height: 82px;
+          top: 45%;
+          right: 15%;
+          transform: rotate(3deg);
+        }
+        @media (max-width: 768px) {
+          .scattered-video {
+            display: none;
+          }
         }
       `}</style>
     </div>
