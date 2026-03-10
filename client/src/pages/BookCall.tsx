@@ -164,8 +164,7 @@ function CaseStudyCarousel() {
 
 export default function BookCall() {
   const contactMutation = useContactForm();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showCaseStudies, setShowCaseStudies] = useState(false);
+  const [phase, setPhase] = useState<'form' | 'confirmation' | 'caseStudies'>('form');
 
   const form = useForm<CreateContactInput>({
     resolver: zodResolver(api.contact.submit.input),
@@ -183,9 +182,9 @@ export default function BookCall() {
     contactMutation.mutate(data, {
       onSuccess: () => {
         form.reset();
-        setIsSubmitted(true);
+        setPhase('confirmation');
         setTimeout(() => {
-          setShowCaseStudies(true);
+          setPhase('caseStudies');
         }, 2000);
       }
     });
@@ -206,7 +205,7 @@ export default function BookCall() {
       
       <main className="flex-grow relative z-10">
         <AnimatePresence mode="wait">
-          {!isSubmitted ? (
+          {phase === 'form' ? (
             <motion.div
               key="form"
               initial={{ opacity: 1 }}
@@ -357,52 +356,48 @@ export default function BookCall() {
                 </Form>
               </motion.div>
             </motion.div>
-          ) : (
+          ) : phase === 'confirmation' ? (
             <motion.div
-              key="post-submit"
+              key="confirmation"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="pt-32 pb-24"
+              className="flex items-center justify-center pt-32 pb-24 min-h-[60vh]"
             >
-              <div className="flex items-center justify-center min-h-[40vh]">
-                <div className="text-center max-w-3xl mx-auto px-6">
-                  <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
-                    We received your request.
-                    <br />
-                    <span style={{ color: '#8bdaef' }}>Our team will contact you soon.</span>
-                  </h1>
-                </div>
+              <div className="text-center max-w-3xl mx-auto px-6">
+                <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
+                  We received your request.
+                  <br />
+                  <span style={{ color: '#8bdaef' }}>Our team will contact you soon.</span>
+                </h1>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="case-studies"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="pt-32 pb-[160px]"
+            >
+              <div className="px-6 md:px-[100px] mb-10">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
+                  Case Studies
+                </h2>
+                <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
+                  See how creators and teams are using OceanVeo to produce high-quality AI video content.
+                </p>
+                <div className="border-b border-white/20 mt-8" />
               </div>
 
-              <AnimatePresence>
-                {showCaseStudies && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="mt-[100px] pb-[160px]"
-                  >
-                    <div className="px-6 md:px-[100px] mb-10">
-                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
-                        Case Studies
-                      </h2>
-                      <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
-                        See how creators and teams are using OceanVeo to produce high-quality AI video content.
-                      </p>
-                      <div className="border-b border-white/20 mt-8" />
-                    </div>
-
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.3 }}
-                    >
-                      <CaseStudyCarousel />
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <CaseStudyCarousel />
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
