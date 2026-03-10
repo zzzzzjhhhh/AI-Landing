@@ -19,13 +19,13 @@ const engineVideos = [
 
 function MarqueeColumn({ speed, videoIndices }: { speed: number; videoIndices: number[] }) {
   return (
-    <div className="marquee-col overflow-hidden h-full flex-1 min-w-0" style={{ maxWidth: "280px" }}>
+    <div className="marquee-col overflow-hidden h-full flex-shrink-0 video-col-width">
       <div
         className="marquee-track-vertical flex flex-col"
         style={{ animationDuration: `${speed}s` }}
       >
         {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: "20px", paddingBottom: "20px" }}>
+          <div key={setIdx} className="flex flex-col flex-shrink-0 video-vertical-gap">
             {videoIndices.map((vi, i) => (
               <div
                 key={`${setIdx}-${i}`}
@@ -136,7 +136,7 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row items-stretch gap-6 px-4 opacity-40">
+        <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container">
           <MarqueeColumn speed={30} videoIndices={[0, 1, 5, 6]} />
           <MarqueeColumn speed={34} videoIndices={[2, 3, 7, 4]} />
           <MarqueeColumn speed={28} videoIndices={[4, 5, 0, 1]} />
@@ -329,6 +329,41 @@ export default function DataEngine() {
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           will-change: transform;
+        }
+        .video-col-width {
+          width: 200px;
+        }
+        .video-columns-container {
+          gap: 200px;
+          opacity: 0.4;
+        }
+        .video-vertical-gap {
+          gap: 200px;
+          padding-bottom: 200px;
+        }
+        @media (max-width: 1200px) {
+          .video-col-width {
+            width: 150px;
+          }
+          .video-columns-container {
+            gap: 150px;
+          }
+          .video-vertical-gap {
+            gap: 150px;
+            padding-bottom: 150px;
+          }
+        }
+        @media (max-width: 768px) {
+          .video-col-width {
+            width: 100px;
+          }
+          .video-columns-container {
+            gap: 100px;
+          }
+          .video-vertical-gap {
+            gap: 100px;
+            padding-bottom: 100px;
+          }
         }
       `}</style>
     </div>
