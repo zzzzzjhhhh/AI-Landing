@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Cpu, Layers, Zap, Database, Target, GitBranch } from "lucide-react";
@@ -22,30 +22,65 @@ const engineVideos = [
   "/videos/engine/seq4.mp4",
 ];
 
-function MarqueeColumn({ speed, videoIndices }: { speed: number; videoIndices: number[] }) {
+function useScrollParallax(lagFactors: number[]) {
+  const [offsets, setOffsets] = useState<number[]>(lagFactors.map(() => 0));
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let rafId: number;
+    let currentOffsets = lagFactors.map(() => 0);
+    let targetOffsets = lagFactors.map(() => 0);
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      targetOffsets = lagFactors.map((lag) => scrollY * lag);
+    };
+
+    const animate = () => {
+      let changed = false;
+      currentOffsets = currentOffsets.map((curr, i) => {
+        const next = curr + (targetOffsets[i] - curr) * 0.08;
+        if (Math.abs(next - curr) > 0.1) changed = true;
+        return next;
+      });
+      if (changed) {
+        setOffsets([...currentOffsets]);
+      }
+      rafId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    rafId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  return { offsets, containerRef };
+}
+
+function ParallaxColumn({ videoIndices, offset }: { videoIndices: number[]; offset: number }) {
   return (
-    <div className="marquee-col overflow-hidden h-full flex-shrink-0 video-col-width">
+    <div className="flex-shrink-0 video-col-width">
       <div
-        className="marquee-track-vertical flex flex-col"
-        style={{ animationDuration: `${speed}s` }}
+        className="flex flex-col video-vertical-gap"
+        style={{
+          transform: `translateY(${-offset}px)`,
+          willChange: "transform",
+        }}
       >
-        {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0 video-vertical-gap">
-            {videoIndices.map((vi, i) => (
-              <div
-                key={`${setIdx}-${i}`}
-                className="flex-shrink-0 overflow-hidden"
-              >
-                <video
-                  src={engineVideos[vi]}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            ))}
+        {videoIndices.map((vi, i) => (
+          <div key={i} className="flex-shrink-0 overflow-hidden">
+            <video
+              src={engineVideos[vi]}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto object-contain"
+            />
           </div>
         ))}
       </div>
@@ -135,30 +170,44 @@ function FadeInSection({ children, className = "", delay = 0 }: { children: Reac
   );
 }
 
+const columnConfigs = [
+  { videoIndices: [0, 8, 3, 10], lagFactor: 0.15 },
+  { videoIndices: [9, 2, 6, 11], lagFactor: 0.35 },
+  { videoIndices: [4, 12, 1, 7], lagFactor: 0.25 },
+  { videoIndices: [10, 5, 8, 3], lagFactor: 0.45 },
+];
+
+function HeroSection() {
+  const { offsets } = useScrollParallax(columnConfigs.map((c) => c.lagFactor));
+
+  return (
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container mx-12 md:mx-20 lg:mx-28">
+        {columnConfigs.map((col, i) => (
+          <ParallaxColumn key={i} videoIndices={col.videoIndices} offset={offsets[i]} />
+        ))}
+      </div>
+
+      <div className="relative z-10 flex items-center justify-center min-h-screen">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-[36px] sm:text-[48px] md:text-[250px] font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent"
+          data-testid="text-engine-heading"
+        >
+          Data Engine
+        </motion.h1>
+      </div>
+    </section>
+  );
+}
+
 export default function DataEngine() {
   return (
     <div className="bg-navy-950 min-h-screen flex flex-col">
       <Navbar />
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container mx-12 md:mx-20 lg:mx-28">
-          <MarqueeColumn speed={18} videoIndices={[0, 8, 3, 10]} />
-          <MarqueeColumn speed={20} videoIndices={[9, 2, 6, 11]} />
-          <MarqueeColumn speed={16} videoIndices={[4, 12, 1, 7]} />
-          <MarqueeColumn speed={19} videoIndices={[10, 5, 8, 3]} />
-        </div>
-
-        <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-[36px] sm:text-[48px] md:text-[250px] font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent"
-            data-testid="text-engine-heading"
-          >
-            Data Engine
-          </motion.h1>
-        </div>
-      </section>
+      <HeroSection />
       <section id="how-it-works" className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
@@ -318,26 +367,14 @@ export default function DataEngine() {
       </section>
       <Footer />
       <style>{`
-        @keyframes marquee-scroll-vertical {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
-        }
-        .marquee-track-vertical {
-          animation-name: marquee-scroll-vertical;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          will-change: transform;
-        }
         .video-col-width {
           width: 200px;
         }
         .video-columns-container {
           gap: 300px;
-          opacity: 1;
         }
         .video-vertical-gap {
           gap: 300px;
-          padding-bottom: 300px;
         }
         @media (max-width: 1200px) {
           .video-col-width {
@@ -348,7 +385,6 @@ export default function DataEngine() {
           }
           .video-vertical-gap {
             gap: 220px;
-            padding-bottom: 220px;
           }
         }
         @media (max-width: 768px) {
@@ -360,7 +396,6 @@ export default function DataEngine() {
           }
           .video-vertical-gap {
             gap: 150px;
-            padding-bottom: 150px;
           }
         }
       `}</style>
