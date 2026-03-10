@@ -2,19 +2,20 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
-import bgMain from "@assets/bg_main_1768281613638.jpg";
-
 export function Hero() {
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
-      {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={bgMain} 
-          alt="" 
+        <video
+          src="/videos/hero_bg.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center max-w-6xl">
         <motion.div
