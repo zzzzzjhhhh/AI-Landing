@@ -334,23 +334,23 @@ export default function DataEngine() {
           width: 200px;
         }
         .video-columns-container {
-          gap: 200px;
+          gap: 300px;
           opacity: 0.4;
         }
         .video-vertical-gap {
-          gap: 200px;
-          padding-bottom: 200px;
+          gap: 300px;
+          padding-bottom: 300px;
         }
         @media (max-width: 1200px) {
           .video-col-width {
             width: 150px;
           }
           .video-columns-container {
-            gap: 150px;
+            gap: 220px;
           }
           .video-vertical-gap {
-            gap: 150px;
-            padding-bottom: 150px;
+            gap: 220px;
+            padding-bottom: 220px;
           }
         }
         @media (max-width: 768px) {
@@ -358,11 +358,11 @@ export default function DataEngine() {
             width: 100px;
           }
           .video-columns-container {
-            gap: 100px;
+            gap: 150px;
           }
           .video-vertical-gap {
-            gap: 100px;
-            padding-bottom: 100px;
+            gap: 150px;
+            padding-bottom: 150px;
           }
         }
       `}</style>
