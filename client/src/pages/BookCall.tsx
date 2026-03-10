@@ -116,7 +116,7 @@ function CaseStudyCarousel() {
   }, [checkScroll]);
 
   return (
-    <div className="relative" style={{ paddingLeft: '100px', paddingRight: '40px' }}>
+    <div className="relative">
       <div className="flex justify-end gap-2 mb-6">
         <Button
           size="icon"
@@ -204,6 +204,7 @@ export default function BookCall() {
       <Navbar />
       
       <main className="flex-grow relative z-10">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
         <AnimatePresence mode="wait">
           {phase === 'form' ? (
             <motion.div
@@ -211,7 +212,7 @@ export default function BookCall() {
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex flex-col items-center pt-32 pb-24 px-6"
+              className="flex flex-col items-center pt-32 pb-24"
             >
               <div className="w-full max-w-2xl text-center mb-16">
                 <motion.h1 
@@ -381,7 +382,7 @@ export default function BookCall() {
               transition={{ duration: 0.8 }}
               className="pt-32 pb-[160px]"
             >
-              <div className="px-6 md:px-[100px] mb-10">
+              <div className="mb-10">
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
                   Case Studies
                 </h2>
@@ -401,6 +402,7 @@ export default function BookCall() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </main>
 
       <Footer />
