@@ -61,8 +61,8 @@ function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
         />
       </div>
       <div className="pt-4 px-1">
-        <h4 className="font-display text-white text-lg font-medium mb-1">{video.title}</h4>
-        <p className="text-white/50 text-sm">{video.description}</p>
+        <h4 className="font-display text-white text-xl font-medium mb-1.5">{video.title}</h4>
+        <p className="text-white/50 text-base leading-relaxed">{video.description}</p>
       </div>
     </div>
   );
@@ -379,10 +379,10 @@ export default function BookCall() {
               key="case-studies"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               className="pt-32 pb-[160px]"
             >
-              <div className="mb-10">
+              <div className="mb-14 mt-8">
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
                   Case Studies
                 </h2>
@@ -392,13 +392,7 @@ export default function BookCall() {
                 <div className="border-b border-white/20 mt-8" />
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <CaseStudyCarousel />
-              </motion.div>
+              <CaseStudyCarousel />
             </motion.div>
           )}
         </AnimatePresence>
