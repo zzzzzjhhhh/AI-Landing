@@ -61,26 +61,30 @@ function useScrollParallax(lagFactors: number[]) {
   return { offsets, containerRef };
 }
 
-function ParallaxColumn({ videoIndices, offset }: { videoIndices: number[]; offset: number }) {
+function ParallaxColumn({ videoIndices, offset, speed }: { videoIndices: number[]; offset: number; speed: number }) {
   return (
-    <div className="flex-shrink-0 video-col-width">
+    <div className="flex-shrink-0 video-col-width overflow-hidden h-full">
       <div
-        className="flex flex-col video-vertical-gap"
+        className="marquee-track-vertical flex flex-col"
         style={{
+          animationDuration: `${speed}s`,
           transform: `translateY(${-offset}px)`,
-          willChange: "transform",
         }}
       >
-        {videoIndices.map((vi, i) => (
-          <div key={i} className="flex-shrink-0 overflow-hidden">
-            <video
-              src={engineVideos[vi]}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto object-contain"
-            />
+        {[0, 1].map((setIdx) => (
+          <div key={setIdx} className="flex flex-col flex-shrink-0 video-vertical-gap">
+            {videoIndices.map((vi, i) => (
+              <div key={`${setIdx}-${i}`} className="flex-shrink-0 overflow-hidden">
+                <video
+                  src={engineVideos[vi]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -171,10 +175,10 @@ function FadeInSection({ children, className = "", delay = 0 }: { children: Reac
 }
 
 const columnConfigs = [
-  { videoIndices: [0, 8, 3, 10], lagFactor: 0.15 },
-  { videoIndices: [9, 2, 6, 11], lagFactor: 0.35 },
-  { videoIndices: [4, 12, 1, 7], lagFactor: 0.25 },
-  { videoIndices: [10, 5, 8, 3], lagFactor: 0.45 },
+  { videoIndices: [0, 8, 3, 10], lagFactor: 0.15, speed: 18 },
+  { videoIndices: [9, 2, 6, 11], lagFactor: 0.35, speed: 20 },
+  { videoIndices: [4, 12, 1, 7], lagFactor: 0.25, speed: 16 },
+  { videoIndices: [10, 5, 8, 3], lagFactor: 0.45, speed: 19 },
 ];
 
 function HeroSection() {
@@ -184,7 +188,7 @@ function HeroSection() {
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
       <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container mx-12 md:mx-20 lg:mx-28">
         {columnConfigs.map((col, i) => (
-          <ParallaxColumn key={i} videoIndices={col.videoIndices} offset={offsets[i]} />
+          <ParallaxColumn key={i} videoIndices={col.videoIndices} offset={offsets[i]} speed={col.speed} />
         ))}
       </div>
 
@@ -367,6 +371,16 @@ export default function DataEngine() {
       </section>
       <Footer />
       <style>{`
+        @keyframes marquee-scroll-vertical {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+        .marquee-track-vertical {
+          animation-name: marquee-scroll-vertical;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          will-change: transform;
+        }
         .video-col-width {
           width: 200px;
         }
