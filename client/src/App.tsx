@@ -6,12 +6,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import BookCall from "@/pages/BookCall";
+import DataEngine from "@/pages/DataEngine";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/book" component={BookCall} />
+      <Route path="/data-engine" component={DataEngine} />
       <Route component={NotFound} />
     </Switch>
   );

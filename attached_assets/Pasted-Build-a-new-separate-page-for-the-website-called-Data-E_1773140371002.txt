@@ -1,0 +1,226 @@
+Build a new separate page for the website called “Data Engine.”
+This page should feel consistent with the existing website style, branding, typography, spacing, and visual language.
+
+
+Goal of the page
+
+
+
+The purpose of this page is to explain how our software / system works in a clear, modern, visual way.
+It should feel high-end, tech, elegant, and easy to understand, not too generic SaaS, not too playful, and not overly corporate.
+
+
+Structure of the page
+
+
+
+1. Hero section
+
+The first screen of the page should be a full-screen hero section dominated by an animation.
+
+
+I already have the animation prompt / concept, so for now:
+ create a large hero container for the animation
+
+ make it the main visual focus of the first screen
+
+ place a headline and short supporting text in a clean, elegant way
+
+ keep the layout minimal so the animation has space to breathe
+
+
+
+
+Use placeholder text for now:
+ Headline: Data Engine
+
+ Subheadline: Turning raw data into structured, actionable intelligence.
+
+ Supporting text: Our system collects, processes, organizes, and transforms data into usable insight through a streamlined intelligent workflow.
+
+
+
+
+Also add a subtle CTA button under the text:
+ Button text: Explore How It Works
+
+
+
+
+2. How it works section
+
+Under the hero, create a section that explains the workflow of the software in a clean visual way.
+
+
+This section should include 4 to 6 steps/cards, for example:
+ Data Input
+
+ Processing
+
+ Analysis
+
+ Structuring
+
+ Output
+
+ Actionable Insight
+
+
+
+
+Each step should have:
+ a short title
+
+ 1–2 lines of description
+
+ a simple clean visual treatment
+
+ subtle hover interaction
+
+
+
+
+The layout should feel premium and breathable.
+Use either a horizontal flow, grid, or connected diagram style — whichever looks most polished.
+
+
+3. System logic / architecture section
+
+Create a section that visually suggests how the engine works behind the scenes.
+
+
+This can include:
+ layered blocks
+
+ flow lines
+
+ nodes
+
+ subtle animated gradients
+
+ moving particles or data trails
+
+ abstract UI elements
+
+
+
+
+It should feel like an intelligent system, not a literal engineering dashboard.
+The visual language should be minimal, refined, and brand-driven.
+
+
+4. Key capabilities section
+
+Add a section highlighting the core capabilities of the Data Engine.
+
+
+Example cards:
+ Intelligent Data Parsing
+
+ Automated Classification
+
+ Real-Time Processing
+
+ Scalable Infrastructure
+
+ High Precision Output
+
+ Workflow Integration
+
+
+
+
+Each capability card should be sleek and modern, with:
+ a title
+
+ short description
+
+ optional small icon or abstract graphic
+
+
+
+
+5. Closing section
+
+End the page with a clean closing CTA section inviting the user to learn more or get in touch.
+
+
+Example:
+ Headline: Built to transform complexity into clarity.
+
+ Button: Contact Us
+
+
+
+
+Design direction
+
+
+
+The page should feel:
+ elegant
+
+ minimal
+
+ cinematic
+
+ modern tech
+
+ high-end
+
+ structured but not rigid
+
+
+
+
+Avoid:
+ generic startup SaaS visuals
+
+ overly colorful gradients
+
+ cheesy stock-style icons
+
+ cluttered layouts
+
+ overly corporate UI
+
+
+
+
+Style notes
+
+ Keep plenty of whitespace
+
+ Use clean typography hierarchy
+
+ Make the animation / motion feel refined and subtle
+
+ Use smooth transitions on scroll
+
+ Keep the page visually immersive
+
+ Make sure everything is responsive
+
+
+
+
+Technical requirements
+
+ Create this as a separate page called Data Engine
+
+ Keep the page reusable and modular
+
+ Match the existing website style and navigation
+
+ Use clean code structure
+
+ Make it responsive for desktop and mobile
+
+ Add smooth scroll-based reveal animations where appropriate
+
+ Use placeholder assets where needed
+
+
+
+
+Important

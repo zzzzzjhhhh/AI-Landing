@@ -10,6 +10,7 @@ Oceanveo is a premium marketing website for a Physical Intelligence data company
 - Ocean wave visual with floating CTA ("Move your model forward — faster")
 - Contact form with database persistence and email notifications
 - Book a Call page with "The future is embodied" messaging
+- Data Engine page explaining system workflow with video marquee hero, workflow steps, architecture diagram, capabilities, and CTA
 
 The site targets enterprise AI teams, startups, and institutions seeking expert-powered data for autonomy and robotics.
 
@@ -65,7 +66,7 @@ client/           # React frontend
   src/
     components/   # UI components (Navbar, Hero, Capabilities, Metrics, Footer)
     components/ui # shadcn/ui primitives
-    pages/        # Route components (Home, BookCall)
+    pages/        # Route components (Home, BookCall, DataEngine)
     hooks/        # Custom React hooks
     lib/          # Utilities and query client
 server/           # Express backend

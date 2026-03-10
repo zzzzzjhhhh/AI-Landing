@@ -68,12 +68,15 @@ export function Navbar() {
           <img src={logoImg} alt="Oceanveo" className="h-[44px] md:h-[54px] w-auto cursor-pointer select-none" />
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
+          <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide" data-testid="link-data-engine">
+            Data Engine
+          </Link>
           <Link href="/book">
             <Button 
               variant="outline" 
               className="border-white/20 text-white hover:bg-white/10 hover:text-white hover:border-white/40 transition-all rounded-xl px-6"
+              data-testid="button-book-call"
             >
               Book a call
             </Button>
@@ -92,6 +95,9 @@ export function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-navy-950/95 backdrop-blur-xl border-b border-white/5 p-6 flex flex-col gap-6 animate-in slide-in-from-top-2">
+          <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-base font-medium text-center py-2" onClick={() => setMobileMenuOpen(false)}>
+            Data Engine
+          </Link>
           <Link href="/book">
             <Button 
               variant="outline"

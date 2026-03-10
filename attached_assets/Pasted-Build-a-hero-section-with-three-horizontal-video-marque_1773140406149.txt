@@ -1,0 +1,44 @@
+Build a hero section with three horizontal video marquee rows, inspired by the layout on appycamper.com.
+ Each row is a horizontal strip of short looping video thumbnails that scroll infinitely using a CSS translateX keyframe animation. There should be 3 rows, each scrolling at a slightly different speed, and alternating direction (row 1 scrolls left, row 2 scrolls right, row 3 scrolls left).
+ Each video thumbnail should:
+  
+Use a <video> element with autoplay, muted, loop, playsinline attributes, and no controls
+ 
+Have rounded corners (border-radius ~12px)
+ 
+Have a consistent height per row (~180px on desktop) with object-fit: cover
+ 
+Have a small gap between each video (~12px)
+ 
+ The marquee animation logic:
+  
+Duplicate the full set of videos in each row so the loop is seamless (render the list twice inside a flex container)
+ 
+Use a @keyframes animation that translates the inner flex container from 0 to -50% (since the content is doubled, shifting 50% resets perfectly)
+ 
+Reverse the animation direction on the middle row
+ 
+Speeds should be roughly: row 1 = 30s, row 2 = 35s, row 3 = 40s
+ 
+Animation should be linear and infinite
+ 
+ Layout:
+  
+Rows should be stacked vertically with a small gap (~12px)
+ 
+Each row should overflow hidden so the scroll is clipped
+ 
+The entire section should have a dark background
+ 
+On top of the marquee, overlay a large hero headline in white, centered, with a semi-transparent or blended treatment so the text is readable over the moving videos
+ 
+ Responsive:
+  
+On mobile, reduce thumbnail height to ~120px
+ 
+Keep the same animation logic, just scaled down
+ 
+ For now, use placeholder video URLs — I'll swap in my own clips later. Use short royalty-free .mp4 clips or even just colored placeholder <div>s I can replace.
+ 
+  A couple of extra tips for when you're preparing your actual video files: keep each clip under 5MB if possible (ideally under 2MB), stick to 720p max resolution since they're displaying as small thumbnails, and make sure they're encoded as H.264 .mp4. Tools like Handbrake or FFmpeg can compress them quickly. The muted + autoplay combo is essential — without muted, mobile browsers will refuse to autoplay.
+ Want me to refine the prompt further, or help you think through the video content for each row?
