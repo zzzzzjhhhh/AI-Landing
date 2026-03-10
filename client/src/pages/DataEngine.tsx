@@ -140,11 +140,11 @@ export default function DataEngine() {
     <div className="bg-navy-950 min-h-screen flex flex-col">
       <Navbar />
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container">
-          <MarqueeColumn speed={30} videoIndices={[0, 8, 3, 10]} />
-          <MarqueeColumn speed={34} videoIndices={[9, 2, 6, 11]} />
-          <MarqueeColumn speed={28} videoIndices={[4, 12, 1, 7]} />
-          <MarqueeColumn speed={32} videoIndices={[10, 5, 8, 3]} />
+        <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container mx-12 md:mx-20 lg:mx-28">
+          <MarqueeColumn speed={18} videoIndices={[0, 8, 3, 10]} />
+          <MarqueeColumn speed={20} videoIndices={[9, 2, 6, 11]} />
+          <MarqueeColumn speed={16} videoIndices={[4, 12, 1, 7]} />
+          <MarqueeColumn speed={19} videoIndices={[10, 5, 8, 3]} />
         </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen">
@@ -152,7 +152,7 @@ export default function DataEngine() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="sm:text-[48px] md:text-[70px] font-display font-medium text-white tracking-tight text-[250px]"
+            className="text-[36px] sm:text-[48px] md:text-[250px] font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent"
             data-testid="text-engine-heading"
           >
             Data Engine
