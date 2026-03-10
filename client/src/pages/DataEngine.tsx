@@ -6,13 +6,48 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Cpu, Layers, Zap, Database, Target, GitBranch } from "lucide-react";
 
-function AmbientBackground() {
+const engineVideos = [
+  "/videos/engine/1.mp4",
+  "/videos/engine/2.mp4",
+  "/videos/engine/3.mp4",
+  "/videos/engine/4.mp4",
+  "/videos/engine/5.mp4",
+  "/videos/engine/6.mp4",
+  "/videos/engine/7.mp4",
+  "/videos/engine/8.mp4",
+];
+
+function MarqueeColumn({ speed, reverse, videoIndices }: { speed: number; reverse?: boolean; videoIndices: number[] }) {
   return (
-    <div className="ambient-bg absolute inset-0">
-      <div className="ambient-orb ambient-orb-1" />
-      <div className="ambient-orb ambient-orb-2" />
-      <div className="ambient-orb ambient-orb-3" />
-      <div className="ambient-orb ambient-orb-4" />
+    <div className="marquee-col overflow-hidden h-full flex-1 min-w-0">
+      <div
+        className="marquee-track-vertical flex flex-col"
+        style={{
+          animationDuration: `${speed}s`,
+          animationDirection: reverse ? "reverse" : "normal",
+        }}
+      >
+        {[0, 1].map((setIdx) => (
+          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: "12px", paddingBottom: "12px" }}>
+            {videoIndices.map((vi, i) => (
+              <div
+                key={`${setIdx}-${i}`}
+                className="flex-shrink-0 rounded-xl overflow-hidden border border-white/[0.06]"
+                style={{ height: "220px" }}
+              >
+                <video
+                  src={engineVideos[vi]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -105,8 +140,17 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <AmbientBackground />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/60 z-[1]" />
+        <div className="absolute inset-0 z-0 flex flex-row justify-center items-stretch gap-3 opacity-40">
+          <MarqueeColumn speed={28} videoIndices={[0, 3, 5, 7]} />
+          <MarqueeColumn speed={32} reverse videoIndices={[1, 4, 6, 2]} />
+          <MarqueeColumn speed={26} videoIndices={[2, 7, 0, 4]} />
+          <MarqueeColumn speed={34} reverse videoIndices={[3, 5, 1, 6]} />
+          <MarqueeColumn speed={30} videoIndices={[4, 6, 3, 0]} />
+          <MarqueeColumn speed={36} reverse videoIndices={[5, 2, 7, 1]} />
+          <MarqueeColumn speed={29} videoIndices={[6, 0, 4, 3]} />
+        </div>
+        <div className="absolute inset-0 bg-navy-950/50 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center py-32">
           <motion.div
@@ -307,66 +351,15 @@ export default function DataEngine() {
       <Footer />
 
       <style>{`
-        .ambient-bg {
-          overflow: hidden;
-          filter: blur(60px);
+        @keyframes marquee-scroll-vertical {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
         }
-        .ambient-orb {
-          position: absolute;
-          border-radius: 50%;
+        .marquee-track-vertical {
+          animation-name: marquee-scroll-vertical;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
           will-change: transform;
-        }
-        .ambient-orb-1 {
-          width: 70vw;
-          height: 70vw;
-          top: -30%;
-          left: -20%;
-          background: radial-gradient(circle, rgba(139,218,239,0.4) 0%, rgba(57,114,198,0.15) 40%, rgba(6,21,46,0) 70%);
-          animation: drift-1 13s ease-in-out infinite alternate;
-        }
-        .ambient-orb-2 {
-          width: 60vw;
-          height: 60vw;
-          bottom: -25%;
-          right: -15%;
-          background: radial-gradient(circle, rgba(23,61,132,0.5) 0%, rgba(31,48,85,0.2) 40%, rgba(6,21,46,0) 70%);
-          animation: drift-2 15s ease-in-out infinite alternate;
-        }
-        .ambient-orb-3 {
-          width: 50vw;
-          height: 50vw;
-          top: 20%;
-          left: 30%;
-          background: radial-gradient(circle, rgba(139,218,239,0.3) 0%, rgba(79,163,188,0.1) 40%, rgba(6,21,46,0) 70%);
-          animation: drift-3 12s ease-in-out infinite alternate;
-        }
-        .ambient-orb-4 {
-          width: 55vw;
-          height: 55vw;
-          top: 5%;
-          right: 10%;
-          background: radial-gradient(circle, rgba(31,75,149,0.35) 0%, rgba(23,61,132,0.12) 40%, rgba(6,21,46,0) 70%);
-          animation: drift-4 14s ease-in-out infinite alternate;
-        }
-        @keyframes drift-1 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(5vw, 10vh) scale(1.05); }
-          100% { transform: translate(10vw, 4vh) scale(1.1); }
-        }
-        @keyframes drift-2 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-4vw, -12vh) scale(1.08); }
-          100% { transform: translate(-8vw, -5vh) scale(1.03); }
-        }
-        @keyframes drift-3 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-8vw, 8vh) scale(1.12); }
-          100% { transform: translate(-3vw, 3vh) scale(1.06); }
-        }
-        @keyframes drift-4 {
-          0% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(6vw, -10vh) scale(1.06); }
-          100% { transform: translate(3vw, -4vh) scale(1.1); }
         }
       `}</style>
     </div>
