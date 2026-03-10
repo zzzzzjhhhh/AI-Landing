@@ -49,10 +49,10 @@ const caseStudyVideos = [
 function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
   return (
     <div
-      className="relative rounded-2xl overflow-hidden group"
+      className="group"
       data-testid={`card-video-${video.id}`}
     >
-      <div className="aspect-[4/3] relative overflow-hidden bg-navy-900">
+      <div className="aspect-[16/10] relative overflow-hidden bg-navy-900 rounded-2xl shadow-lg shadow-black/30">
         <video
           src={video.videoUrl}
           muted
@@ -62,11 +62,10 @@ function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
           preload="auto"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <h4 className="font-display text-white text-lg font-medium mb-1">{video.title}</h4>
-          <p className="text-white/60 text-sm">{video.description}</p>
-        </div>
+      </div>
+      <div className="pt-4 px-1">
+        <h4 className="font-display text-white text-lg font-medium mb-1">{video.title}</h4>
+        <p className="text-white/50 text-sm">{video.description}</p>
       </div>
     </div>
   );
@@ -98,7 +97,7 @@ function CaseStudyCarousel() {
 
   return (
     <div className="relative">
-      <div className="flex justify-end gap-2 mb-6 px-6 md:px-12 lg:px-16">
+      <div className="flex justify-end gap-2 mb-6 px-5 md:px-20 lg:px-28">
         <Button
           size="icon"
           variant="ghost"
@@ -124,13 +123,30 @@ function CaseStudyCarousel() {
       <div
         ref={scrollRef}
         onScroll={checkScroll}
-        className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory px-6 md:px-12 lg:px-16"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex gap-6 overflow-x-auto pb-4 px-5 md:px-20 lg:px-28 cursor-grab active:cursor-grabbing"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
+        onMouseDown={(e) => {
+          const el = scrollRef.current;
+          if (!el) return;
+          const startX = e.pageX - el.offsetLeft;
+          const scrollLeft = el.scrollLeft;
+          const onMove = (ev: MouseEvent) => {
+            const x = ev.pageX - el.offsetLeft;
+            el.scrollLeft = scrollLeft - (x - startX);
+          };
+          const onUp = () => {
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+            setTimeout(checkScroll, 100);
+          };
+          document.addEventListener('mousemove', onMove);
+          document.addEventListener('mouseup', onUp);
+        }}
       >
         {caseStudyVideos.map((video) => (
           <div
             key={video.id}
-            className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[340px] snap-start"
+            className="flex-shrink-0 snap-start w-[calc((100%-1.5rem)/1.2)] md:w-[calc((100%-4.5rem)/3.2)]"
           >
             <VideoCard video={video} />
           </div>
@@ -408,9 +424,9 @@ export default function BookCall() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full"
+              className="w-full mt-[140px]"
             >
-              <div className="px-6 md:px-12 lg:px-16 mb-10">
+              <div className="px-5 md:px-20 lg:px-28 mb-10">
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
                   Case Studies
                 </h2>
@@ -423,7 +439,7 @@ export default function BookCall() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="w-full"
+                className="w-full pb-[160px]"
               >
                 <CaseStudyCarousel />
               </motion.div>
