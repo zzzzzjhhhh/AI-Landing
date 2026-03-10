@@ -141,7 +141,6 @@ export default function DataEngine() {
           <MarqueeColumn speed={34} videoIndices={[2, 3, 7, 4]} />
           <MarqueeColumn speed={28} videoIndices={[4, 5, 0, 1]} />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[1]" />
 
         <div className="relative z-10 flex items-center justify-center min-h-screen">
           <motion.h1
@@ -335,7 +334,7 @@ export default function DataEngine() {
         }
         .video-columns-container {
           gap: 300px;
-          opacity: 0.4;
+          opacity: 1;
         }
         .video-vertical-gap {
           gap: 300px;
