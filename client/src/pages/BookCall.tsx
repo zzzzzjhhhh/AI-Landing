@@ -144,15 +144,14 @@ function CaseStudyCarousel() {
         ref={scrollRef}
         onScroll={checkScroll}
         onMouseDown={handleMouseDown}
-        className="flex gap-6 overflow-x-auto pb-4 px-6 md:px-[100px] cursor-grab active:cursor-grabbing select-none"
+        className="flex gap-6 overflow-x-auto pb-4 pl-6 pr-6 md:pl-[100px] md:pr-[60px] cursor-grab active:cursor-grabbing select-none"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth' }}
       >
         {caseStudyVideos.map((video) => (
           <div
             key={video.id}
             data-card
-            className="flex-shrink-0 snap-start"
-            style={{ width: 'clamp(260px, calc((100% - 72px) / 3.15), 500px)' }}
+            className="flex-shrink-0 snap-start w-[80vw] md:w-[28vw]"
           >
             <VideoCard video={video} />
           </div>
