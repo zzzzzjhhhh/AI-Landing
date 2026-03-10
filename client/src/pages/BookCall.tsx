@@ -203,6 +203,7 @@ function ConfirmationSection() {
 export default function BookCall() {
   const contactMutation = useContactForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showCaseStudies, setShowCaseStudies] = useState(false);
 
   const form = useForm<CreateContactInput>({
     resolver: zodResolver(api.contact.submit.input),
@@ -221,6 +222,9 @@ export default function BookCall() {
       onSuccess: () => {
         form.reset();
         setIsSubmitted(true);
+        setTimeout(() => {
+          setShowCaseStudies(true);
+        }, 2000);
       }
     });
   };
@@ -391,15 +395,47 @@ export default function BookCall() {
                 </Form>
               </motion.div>
             </motion.div>
-          ) : (
+          ) : !showCaseStudies ? (
             <motion.div
-              key="confirmation"
+              key="confirmation-message"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="w-full flex items-center justify-center min-h-[40vh]"
+            >
+              <div className="text-center max-w-3xl mx-auto px-6">
+                <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
+                  We received your request.
+                  <br />
+                  <span style={{ color: '#8bdaef' }}>Our team will contact you soon.</span>
+                </h1>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="case-studies"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="w-full"
             >
-              <ConfirmationSection />
+              <div className="text-center max-w-3xl mx-auto mb-12 px-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white mb-5 font-medium tracking-tight" data-testid="text-case-studies-heading">
+                  Case Studies
+                </h2>
+                <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] mx-auto font-light">
+                  See how creators and teams are using OceanVeo to produce high-quality AI video content.
+                </p>
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="max-w-5xl mx-auto"
+              >
+                <CaseStudyCarousel />
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
