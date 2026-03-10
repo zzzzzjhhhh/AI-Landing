@@ -11,24 +11,24 @@ const placeholderColors = [
   "bg-blue-600/40", "bg-navy-800", "bg-navy-700/80", "bg-blue-700/30", "bg-navy-800",
 ];
 
-function MarqueeRow({ speed, reverse, offset = 0 }: { speed: number; reverse?: boolean; offset?: number }) {
+function MarqueeColumn({ speed, reverse, offset = 0 }: { speed: number; reverse?: boolean; offset?: number }) {
   const colors = [...placeholderColors.slice(offset), ...placeholderColors.slice(0, offset)];
-  const items = colors.slice(0, 8);
+  const items = colors.slice(0, 6);
   return (
-    <div className="marquee-row overflow-hidden">
+    <div className="marquee-col overflow-hidden h-full">
       <div
-        className="marquee-track flex"
+        className="marquee-track-vertical flex flex-col"
         style={{
           animationDuration: `${speed}s`,
           animationDirection: reverse ? 'reverse' : 'normal',
         }}
       >
         {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-shrink-0" style={{ gap: '12px', paddingRight: '12px' }}>
+          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: '12px', paddingBottom: '12px' }}>
             {items.map((color, i) => (
               <div
                 key={`${setIdx}-${i}`}
-                className={`flex-shrink-0 h-[120px] md:h-[180px] w-[200px] md:w-[300px] rounded-xl ${color} border border-white/[0.04]`}
+                className={`flex-shrink-0 h-[180px] md:h-[220px] w-[160px] md:w-[220px] rounded-xl ${color} border border-white/[0.04]`}
               />
             ))}
           </div>
@@ -126,10 +126,14 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-col justify-center gap-3 opacity-50">
-          <MarqueeRow speed={30} offset={0} />
-          <MarqueeRow speed={35} reverse offset={3} />
-          <MarqueeRow speed={40} offset={5} />
+        <div className="absolute inset-0 z-0 flex flex-row justify-center items-stretch gap-3 opacity-50">
+          <MarqueeColumn speed={25} offset={0} />
+          <MarqueeColumn speed={30} reverse offset={2} />
+          <MarqueeColumn speed={28} offset={4} />
+          <MarqueeColumn speed={32} reverse offset={1} />
+          <MarqueeColumn speed={26} offset={3} />
+          <MarqueeColumn speed={34} reverse offset={5} />
+          <MarqueeColumn speed={27} offset={6} />
         </div>
         <div className="absolute inset-0 bg-navy-950/60 z-[1]" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
@@ -333,12 +337,12 @@ export default function DataEngine() {
       <Footer />
 
       <style>{`
-        @keyframes marquee-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        @keyframes marquee-scroll-vertical {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
         }
-        .marquee-track {
-          animation-name: marquee-scroll;
+        .marquee-track-vertical {
+          animation-name: marquee-scroll-vertical;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           will-change: transform;
