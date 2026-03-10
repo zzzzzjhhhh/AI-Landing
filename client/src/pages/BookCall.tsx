@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, ArrowRight, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { Loader2, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useRef, useCallback } from "react";
 import bgMain from "@assets/bg_main_1768281613638.jpg";
 
@@ -47,44 +47,22 @@ const caseStudyVideos = [
 ];
 
 function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    videoRef.current?.play();
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-  };
-
   return (
     <div
-      className="relative rounded-2xl overflow-hidden cursor-pointer group"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="relative rounded-2xl overflow-hidden group"
       data-testid={`card-video-${video.id}`}
     >
       <div className="aspect-[4/3] relative overflow-hidden bg-navy-900">
         <video
-          ref={videoRef}
           src={video.videoUrl}
           muted
           loop
+          autoPlay
           playsInline
-          preload="metadata"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          preload="auto"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent" />
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-70'}`}>
-          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-            <Play className="w-7 h-7 text-white ml-1" fill="white" />
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <h4 className="font-display text-white text-lg font-medium mb-1">{video.title}</h4>
           <p className="text-white/60 text-sm">{video.description}</p>
@@ -120,7 +98,7 @@ function CaseStudyCarousel() {
 
   return (
     <div className="relative">
-      <div className="flex justify-end gap-2 mb-6 px-6 md:px-0">
+      <div className="flex justify-end gap-2 mb-6 px-6 md:px-12 lg:px-16">
         <Button
           size="icon"
           variant="ghost"
@@ -146,7 +124,7 @@ function CaseStudyCarousel() {
       <div
         ref={scrollRef}
         onScroll={checkScroll}
-        className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory px-6 md:px-0"
+        className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory px-6 md:px-12 lg:px-16"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {caseStudyVideos.map((video) => (
@@ -254,7 +232,7 @@ export default function BookCall() {
       
       <Navbar />
       
-      <main className="flex-grow flex flex-col items-center pt-32 pb-24 px-0 md:px-12 relative z-10">
+      <main className="flex-grow flex flex-col items-center pt-32 pb-24 relative z-10">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
@@ -432,19 +410,20 @@ export default function BookCall() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="w-full"
             >
-              <div className="text-center max-w-3xl mx-auto mb-12 px-6">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white mb-5 font-medium tracking-tight" data-testid="text-case-studies-heading">
+              <div className="px-6 md:px-12 lg:px-16 mb-10">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
                   Case Studies
                 </h2>
-                <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] mx-auto font-light">
+                <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
                   See how creators and teams are using OceanVeo to produce high-quality AI video content.
                 </p>
+                <div className="border-b border-white/20 mt-8" />
               </div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="max-w-5xl mx-auto"
+                className="w-full"
               >
                 <CaseStudyCarousel />
               </motion.div>
