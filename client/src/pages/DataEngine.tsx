@@ -15,6 +15,11 @@ const engineVideos = [
   "/videos/engine/6.mp4",
   "/videos/engine/7.mp4",
   "/videos/engine/8.mp4",
+  "/videos/engine/seq0.mp4",
+  "/videos/engine/seq1.mp4",
+  "/videos/engine/seq2.mp4",
+  "/videos/engine/seq3.mp4",
+  "/videos/engine/seq4.mp4",
 ];
 
 function MarqueeColumn({ speed, videoIndices }: { speed: number; videoIndices: number[] }) {
@@ -137,9 +142,10 @@ export default function DataEngine() {
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container">
-          <MarqueeColumn speed={30} videoIndices={[0, 1, 5, 6]} />
-          <MarqueeColumn speed={34} videoIndices={[2, 3, 7, 4]} />
-          <MarqueeColumn speed={28} videoIndices={[4, 5, 0, 1]} />
+          <MarqueeColumn speed={30} videoIndices={[0, 8, 3, 10]} />
+          <MarqueeColumn speed={34} videoIndices={[9, 2, 6, 11]} />
+          <MarqueeColumn speed={28} videoIndices={[4, 12, 1, 7]} />
+          <MarqueeColumn speed={32} videoIndices={[10, 5, 8, 3]} />
         </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen">
