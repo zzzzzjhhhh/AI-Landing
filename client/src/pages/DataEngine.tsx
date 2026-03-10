@@ -6,34 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Cpu, Layers, Zap, Database, Target, GitBranch } from "lucide-react";
 
-const placeholderColors = [
-  "bg-navy-800", "bg-navy-700", "bg-blue-700/50", "bg-navy-800", "bg-navy-700",
-  "bg-blue-600/40", "bg-navy-800", "bg-navy-700/80", "bg-blue-700/30", "bg-navy-800",
-];
-
-function MarqueeColumn({ speed, reverse, offset = 0 }: { speed: number; reverse?: boolean; offset?: number }) {
-  const colors = [...placeholderColors.slice(offset), ...placeholderColors.slice(0, offset)];
-  const items = colors.slice(0, 6);
+function AmbientBackground() {
   return (
-    <div className="marquee-col overflow-hidden h-full">
-      <div
-        className="marquee-track-vertical flex flex-col"
-        style={{
-          animationDuration: `${speed}s`,
-          animationDirection: reverse ? 'reverse' : 'normal',
-        }}
-      >
-        {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: '12px', paddingBottom: '12px' }}>
-            {items.map((color, i) => (
-              <div
-                key={`${setIdx}-${i}`}
-                className={`flex-shrink-0 h-[180px] md:h-[220px] w-[160px] md:w-[220px] rounded-xl ${color} border border-white/[0.04]`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
+    <div className="ambient-bg absolute inset-0">
+      <div className="ambient-orb ambient-orb-1" />
+      <div className="ambient-orb ambient-orb-2" />
+      <div className="ambient-orb ambient-orb-3" />
+      <div className="ambient-orb ambient-orb-4" />
     </div>
   );
 }
@@ -126,17 +105,8 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row justify-center items-stretch gap-3 opacity-50">
-          <MarqueeColumn speed={25} offset={0} />
-          <MarqueeColumn speed={30} reverse offset={2} />
-          <MarqueeColumn speed={28} offset={4} />
-          <MarqueeColumn speed={32} reverse offset={1} />
-          <MarqueeColumn speed={26} offset={3} />
-          <MarqueeColumn speed={34} reverse offset={5} />
-          <MarqueeColumn speed={27} offset={6} />
-        </div>
-        <div className="absolute inset-0 bg-navy-950/60 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
+        <AmbientBackground />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-transparent to-navy-950 z-[1]" />
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center py-32">
           <motion.div
@@ -337,15 +307,63 @@ export default function DataEngine() {
       <Footer />
 
       <style>{`
-        @keyframes marquee-scroll-vertical {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
+        .ambient-bg {
+          overflow: hidden;
+          filter: blur(80px);
+          opacity: 0.5;
         }
-        .marquee-track-vertical {
-          animation-name: marquee-scroll-vertical;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
+        .ambient-orb {
+          position: absolute;
+          border-radius: 50%;
           will-change: transform;
+        }
+        .ambient-orb-1 {
+          width: 60vw;
+          height: 60vw;
+          top: -15%;
+          left: -10%;
+          background: radial-gradient(circle, rgba(139,218,239,0.25) 0%, rgba(6,21,46,0) 70%);
+          animation: drift-1 13s ease-in-out infinite alternate;
+        }
+        .ambient-orb-2 {
+          width: 50vw;
+          height: 50vw;
+          bottom: -20%;
+          right: -10%;
+          background: radial-gradient(circle, rgba(23,61,132,0.35) 0%, rgba(6,21,46,0) 70%);
+          animation: drift-2 15s ease-in-out infinite alternate;
+        }
+        .ambient-orb-3 {
+          width: 40vw;
+          height: 40vw;
+          top: 30%;
+          left: 40%;
+          background: radial-gradient(circle, rgba(139,218,239,0.15) 0%, rgba(6,21,46,0) 70%);
+          animation: drift-3 12s ease-in-out infinite alternate;
+        }
+        .ambient-orb-4 {
+          width: 45vw;
+          height: 45vw;
+          top: 10%;
+          right: 20%;
+          background: radial-gradient(circle, rgba(31,75,149,0.2) 0%, rgba(6,21,46,0) 70%);
+          animation: drift-4 14s ease-in-out infinite alternate;
+        }
+        @keyframes drift-1 {
+          0% { transform: translate(0, 0) scale(1); }
+          100% { transform: translate(8vw, 6vh) scale(1.08); }
+        }
+        @keyframes drift-2 {
+          0% { transform: translate(0, 0) scale(1); }
+          100% { transform: translate(-6vw, -8vh) scale(1.05); }
+        }
+        @keyframes drift-3 {
+          0% { transform: translate(0, 0) scale(1); }
+          100% { transform: translate(-5vw, 4vh) scale(1.1); }
+        }
+        @keyframes drift-4 {
+          0% { transform: translate(0, 0) scale(1); }
+          100% { transform: translate(4vw, -5vh) scale(1.06); }
         }
       `}</style>
     </div>
