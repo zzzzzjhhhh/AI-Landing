@@ -106,7 +106,7 @@ export default function DataEngine() {
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
         <AmbientBackground />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-transparent to-navy-950 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/60 z-[1]" />
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center py-32">
           <motion.div
@@ -309,8 +309,7 @@ export default function DataEngine() {
       <style>{`
         .ambient-bg {
           overflow: hidden;
-          filter: blur(80px);
-          opacity: 0.5;
+          filter: blur(60px);
         }
         .ambient-orb {
           position: absolute;
@@ -318,52 +317,56 @@ export default function DataEngine() {
           will-change: transform;
         }
         .ambient-orb-1 {
-          width: 60vw;
-          height: 60vw;
-          top: -15%;
-          left: -10%;
-          background: radial-gradient(circle, rgba(139,218,239,0.25) 0%, rgba(6,21,46,0) 70%);
+          width: 70vw;
+          height: 70vw;
+          top: -30%;
+          left: -20%;
+          background: radial-gradient(circle, rgba(139,218,239,0.4) 0%, rgba(57,114,198,0.15) 40%, rgba(6,21,46,0) 70%);
           animation: drift-1 13s ease-in-out infinite alternate;
         }
         .ambient-orb-2 {
-          width: 50vw;
-          height: 50vw;
-          bottom: -20%;
-          right: -10%;
-          background: radial-gradient(circle, rgba(23,61,132,0.35) 0%, rgba(6,21,46,0) 70%);
+          width: 60vw;
+          height: 60vw;
+          bottom: -25%;
+          right: -15%;
+          background: radial-gradient(circle, rgba(23,61,132,0.5) 0%, rgba(31,48,85,0.2) 40%, rgba(6,21,46,0) 70%);
           animation: drift-2 15s ease-in-out infinite alternate;
         }
         .ambient-orb-3 {
-          width: 40vw;
-          height: 40vw;
-          top: 30%;
-          left: 40%;
-          background: radial-gradient(circle, rgba(139,218,239,0.15) 0%, rgba(6,21,46,0) 70%);
+          width: 50vw;
+          height: 50vw;
+          top: 20%;
+          left: 30%;
+          background: radial-gradient(circle, rgba(139,218,239,0.3) 0%, rgba(79,163,188,0.1) 40%, rgba(6,21,46,0) 70%);
           animation: drift-3 12s ease-in-out infinite alternate;
         }
         .ambient-orb-4 {
-          width: 45vw;
-          height: 45vw;
-          top: 10%;
-          right: 20%;
-          background: radial-gradient(circle, rgba(31,75,149,0.2) 0%, rgba(6,21,46,0) 70%);
+          width: 55vw;
+          height: 55vw;
+          top: 5%;
+          right: 10%;
+          background: radial-gradient(circle, rgba(31,75,149,0.35) 0%, rgba(23,61,132,0.12) 40%, rgba(6,21,46,0) 70%);
           animation: drift-4 14s ease-in-out infinite alternate;
         }
         @keyframes drift-1 {
           0% { transform: translate(0, 0) scale(1); }
-          100% { transform: translate(8vw, 6vh) scale(1.08); }
+          50% { transform: translate(5vw, 10vh) scale(1.05); }
+          100% { transform: translate(10vw, 4vh) scale(1.1); }
         }
         @keyframes drift-2 {
           0% { transform: translate(0, 0) scale(1); }
-          100% { transform: translate(-6vw, -8vh) scale(1.05); }
+          50% { transform: translate(-4vw, -12vh) scale(1.08); }
+          100% { transform: translate(-8vw, -5vh) scale(1.03); }
         }
         @keyframes drift-3 {
           0% { transform: translate(0, 0) scale(1); }
-          100% { transform: translate(-5vw, 4vh) scale(1.1); }
+          50% { transform: translate(-8vw, 8vh) scale(1.12); }
+          100% { transform: translate(-3vw, 3vh) scale(1.06); }
         }
         @keyframes drift-4 {
           0% { transform: translate(0, 0) scale(1); }
-          100% { transform: translate(4vw, -5vh) scale(1.06); }
+          50% { transform: translate(6vw, -10vh) scale(1.06); }
+          100% { transform: translate(3vw, -4vh) scale(1.1); }
         }
       `}</style>
     </div>
