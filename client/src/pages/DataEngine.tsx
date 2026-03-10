@@ -139,7 +139,6 @@ export default function DataEngine() {
   return (
     <div className="bg-navy-950 min-h-screen flex flex-col">
       <Navbar />
-
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container">
           <MarqueeColumn speed={30} videoIndices={[0, 8, 3, 10]} />
@@ -153,14 +152,13 @@ export default function DataEngine() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white tracking-tight leading-[1.1]"
+            className="sm:text-[48px] md:text-[70px] font-display font-medium text-white tracking-tight text-[250px]"
             data-testid="text-engine-heading"
           >
             Data Engine
           </motion.h1>
         </div>
       </section>
-
       <section id="how-it-works" className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
@@ -198,7 +196,6 @@ export default function DataEngine() {
           </div>
         </div>
       </section>
-
       <section className="relative py-28 md:py-36 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/50 to-navy-950" />
@@ -256,7 +253,6 @@ export default function DataEngine() {
           </FadeInSection>
         </div>
       </section>
-
       <section className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
@@ -293,7 +289,6 @@ export default function DataEngine() {
           </div>
         </div>
       </section>
-
       <section className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
@@ -321,9 +316,7 @@ export default function DataEngine() {
           </FadeInSection>
         </div>
       </section>
-
       <Footer />
-
       <style>{`
         @keyframes marquee-scroll-vertical {
           0% { transform: translateY(0); }
