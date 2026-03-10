@@ -1,4 +1,4 @@
-import { db } from "./db";
+import { getDb } from "./db";
 import {
   contactRequests,
   type CreateContactRequest,
@@ -11,7 +11,7 @@ export interface IStorage {
 
 export class DatabaseStorage implements IStorage {
   async createContactRequest(contact: CreateContactRequest): Promise<ContactRequestResponse> {
-    const [newContact] = await db.insert(contactRequests).values(contact).returning();
+    const [newContact] = await getDb().insert(contactRequests).values(contact).returning();
     return newContact;
   }
 }

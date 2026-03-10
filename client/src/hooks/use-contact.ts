@@ -1,5 +1,7 @@
+"use client";
+
 import { useMutation } from "@tanstack/react-query";
-import { api, type CreateContactInput, type ContactResponse } from "@shared/routes";
+import { api, type CreateContactInput } from "@shared/routes";
 import { useToast } from "@/hooks/use-toast";
 
 export function useContactForm() {
@@ -17,7 +19,7 @@ export function useContactForm() {
       });
 
       if (!res.ok) {
-        const errorData = await res.json();
+        const errorData = await res.json().catch(() => null);
         // Try to parse known error schema
         const parsedError = api.contact.submit.responses[400].safeParse(errorData);
         if (parsedError.success) {

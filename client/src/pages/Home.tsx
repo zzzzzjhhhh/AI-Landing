@@ -1,19 +1,12 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { Capabilities } from "@/components/Capabilities";
-import { Workflow } from "@/components/Workflow";
-import { Metrics } from "@/components/Metrics";
 import { Footer } from "@/components/Footer";
-import { motion } from "framer-motion";
+import { Hero } from "@/components/Hero";
+import { Navbar } from "@/components/Navbar";
+import { Capabilities } from "@/components/Capabilities";
+import { Metrics } from "@/components/Metrics";
 
 export default function Home() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="bg-navy-950 min-h-screen"
-    >
+    <div className="min-h-screen bg-navy-950">
       <Navbar />
       <main>
         <Hero />
@@ -21,6 +14,6 @@ export default function Home() {
         <Metrics />
       </main>
       <Footer />
-    </motion.div>
+    </div>
   );
 }

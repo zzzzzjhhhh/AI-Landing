@@ -1,10 +1,13 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Eye, MessageSquareText, ShieldCheck, Cog, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Cog, Eye, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import qualityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_20_13_PM_1772515231076.png";
 import quantityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_19_56_PM_1772515240642.png";
 import diversityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_21_13_PM_1772515277539.png";
+import Image from "next/image";
 
 const capabilities = [
   {
@@ -55,8 +58,6 @@ export function Capabilities() {
     <section id="capabilities" className="py-20 lg:py-24 bg-navy-950 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         
-        {/* Visual Abstract Strip - Removed per user request or for cleaner look */}
-        {/* Title and Description - Centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +73,6 @@ export function Capabilities() {
           </p>
         </motion.div>
 
-        {/* Navigation Controls */}
         <div className="flex justify-end gap-2 mb-6">
           <Button
             size="icon"
@@ -96,7 +96,6 @@ export function Capabilities() {
           </Button>
         </div>
 
-        {/* Horizontal Slider */}
         <div 
           ref={scrollRef}
           onScroll={checkScroll}
@@ -112,17 +111,16 @@ export function Capabilities() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group flex-shrink-0 w-[320px] md:w-[380px] snap-start"
             >
-              {/* Square card */}
               <div className="aspect-square bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl relative overflow-hidden hover:border-blue-500/30 transition-all duration-300">
-                {/* Subtle glow */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
                 
-                {/* Image fills entire card, or icon in corner */}
                 {cap.image ? (
-                  <img 
-                    src={cap.image} 
+                  <Image
+                    src={cap.image}
                     alt={cap.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 320px, 380px"
+                    className="object-cover"
                   />
                 ) : (
                   <div className="relative z-10 p-8 md:p-10">
@@ -133,7 +131,6 @@ export function Capabilities() {
                 )}
               </div>
               
-              {/* Text content BELOW the square */}
               <div className="pt-6 px-2">
                 <h3 className="font-display text-white mb-3 text-[28px]">{cap.title}</h3>
                 <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
