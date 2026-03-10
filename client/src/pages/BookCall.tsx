@@ -48,11 +48,8 @@ const caseStudyVideos = [
 
 function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
   return (
-    <div
-      className="group"
-      data-testid={`card-video-${video.id}`}
-    >
-      <div className="aspect-[16/10] relative overflow-hidden bg-navy-900 rounded-2xl shadow-lg shadow-black/30">
+    <div className="group" data-testid={`card-video-${video.id}`}>
+      <div className="relative overflow-hidden bg-navy-900 rounded-2xl shadow-lg shadow-black/30">
         <video
           src={video.videoUrl}
           muted
@@ -60,7 +57,7 @@ function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
           autoPlay
           playsInline
           preload="auto"
-          className="w-full h-full object-cover"
+          className="w-full h-auto block"
         />
       </div>
       <div className="pt-4 px-1">
@@ -75,6 +72,7 @@ function CaseStudyCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const isDragging = useRef(false);
 
   const checkScroll = useCallback(() => {
     if (scrollRef.current) {
@@ -86,18 +84,40 @@ function CaseStudyCarousel() {
 
   const scroll = useCallback((direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 340;
+      const cardWidth = scrollRef.current.querySelector('[data-card]')?.clientWidth || 400;
       scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        left: direction === 'left' ? -cardWidth - 24 : cardWidth + 24,
         behavior: 'smooth'
       });
       setTimeout(checkScroll, 400);
     }
   }, [checkScroll]);
 
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isDragging.current = false;
+    const startX = e.pageX;
+    const scrollLeft = el.scrollLeft;
+    el.style.scrollSnapType = 'none';
+    const onMove = (ev: MouseEvent) => {
+      const dx = ev.pageX - startX;
+      if (Math.abs(dx) > 5) isDragging.current = true;
+      el.scrollLeft = scrollLeft - dx;
+    };
+    const onUp = () => {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      el.style.scrollSnapType = 'x mandatory';
+      setTimeout(checkScroll, 100);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  }, [checkScroll]);
+
   return (
     <div className="relative">
-      <div className="flex justify-end gap-2 mb-6 px-5 md:px-20 lg:px-28">
+      <div className="flex justify-end gap-2 mb-6 px-6 md:px-[100px]">
         <Button
           size="icon"
           variant="ghost"
@@ -123,86 +143,22 @@ function CaseStudyCarousel() {
       <div
         ref={scrollRef}
         onScroll={checkScroll}
-        className="flex gap-6 overflow-x-auto pb-4 px-5 md:px-20 lg:px-28 cursor-grab active:cursor-grabbing"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory' }}
-        onMouseDown={(e) => {
-          const el = scrollRef.current;
-          if (!el) return;
-          const startX = e.pageX - el.offsetLeft;
-          const scrollLeft = el.scrollLeft;
-          const onMove = (ev: MouseEvent) => {
-            const x = ev.pageX - el.offsetLeft;
-            el.scrollLeft = scrollLeft - (x - startX);
-          };
-          const onUp = () => {
-            document.removeEventListener('mousemove', onMove);
-            document.removeEventListener('mouseup', onUp);
-            setTimeout(checkScroll, 100);
-          };
-          document.addEventListener('mousemove', onMove);
-          document.addEventListener('mouseup', onUp);
-        }}
+        onMouseDown={handleMouseDown}
+        className="flex gap-6 overflow-x-auto pb-4 px-6 md:px-[100px] cursor-grab active:cursor-grabbing select-none"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth' }}
       >
         {caseStudyVideos.map((video) => (
           <div
             key={video.id}
-            className="flex-shrink-0 snap-start w-[calc((100%-1.5rem)/1.2)] md:w-[calc((100%-4.5rem)/3.2)]"
+            data-card
+            className="flex-shrink-0 snap-start"
+            style={{ width: 'clamp(260px, calc((100% - 72px) / 3.15), 500px)' }}
           >
             <VideoCard video={video} />
           </div>
         ))}
       </div>
     </div>
-  );
-}
-
-function ConfirmationSection() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="w-full"
-    >
-      <div className="text-center max-w-3xl mx-auto mb-20 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white mb-6 tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
-            We received your request.
-            <br />
-            <span style={{ color: '#8bdaef' }}>Our team will contact you soon.</span>
-          </h1>
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="w-full"
-      >
-        <div className="text-center max-w-3xl mx-auto mb-12 px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display text-white mb-5 font-medium tracking-tight" data-testid="text-case-studies-heading">
-            Case Studies
-          </h2>
-          <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] mx-auto font-light">
-            See how creators and teams are using OceanVeo to produce high-quality AI video content.
-          </p>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="max-w-5xl mx-auto"
-        >
-          <CaseStudyCarousel />
-        </motion.div>
-      </motion.div>
-    </motion.div>
   );
 }
 
@@ -248,15 +204,15 @@ export default function BookCall() {
       
       <Navbar />
       
-      <main className="flex-grow flex flex-col items-center pt-32 pb-24 relative z-10">
+      <main className="flex-grow relative z-10">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
               key="form"
               initial={{ opacity: 1 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="w-full flex flex-col items-center px-6"
+              className="flex flex-col items-center pt-32 pb-24 px-6"
             >
               <div className="w-full max-w-2xl text-center mb-16">
                 <motion.h1 
@@ -401,48 +357,52 @@ export default function BookCall() {
                 </Form>
               </motion.div>
             </motion.div>
-          ) : !showCaseStudies ? (
-            <motion.div
-              key="confirmation-message"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="w-full flex items-center justify-center min-h-[40vh]"
-            >
-              <div className="text-center max-w-3xl mx-auto px-6">
-                <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
-                  We received your request.
-                  <br />
-                  <span style={{ color: '#8bdaef' }}>Our team will contact you soon.</span>
-                </h1>
-              </div>
-            </motion.div>
           ) : (
             <motion.div
-              key="case-studies"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full mt-[140px]"
+              key="post-submit"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="pt-32 pb-24"
             >
-              <div className="px-5 md:px-20 lg:px-28 mb-10">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
-                  Case Studies
-                </h2>
-                <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
-                  See how creators and teams are using OceanVeo to produce high-quality AI video content.
-                </p>
-                <div className="border-b border-white/20 mt-8" />
+              <div className="flex items-center justify-center min-h-[40vh]">
+                <div className="text-center max-w-3xl mx-auto px-6">
+                  <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
+                    We received your request.
+                    <br />
+                    <span style={{ color: '#8bdaef' }}>Our team will contact you soon.</span>
+                  </h1>
+                </div>
               </div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="w-full pb-[160px]"
-              >
-                <CaseStudyCarousel />
-              </motion.div>
+
+              <AnimatePresence>
+                {showCaseStudies && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8 }}
+                    className="mt-[100px] pb-[160px]"
+                  >
+                    <div className="px-6 md:px-[100px] mb-10">
+                      <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
+                        Case Studies
+                      </h2>
+                      <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
+                        See how creators and teams are using OceanVeo to produce high-quality AI video content.
+                      </p>
+                      <div className="border-b border-white/20 mt-8" />
+                    </div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      <CaseStudyCarousel />
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           )}
         </AnimatePresence>
