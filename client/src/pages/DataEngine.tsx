@@ -19,13 +19,13 @@ const engineVideos = [
 
 function MarqueeColumn({ speed, videoIndices }: { speed: number; videoIndices: number[] }) {
   return (
-    <div className="marquee-col overflow-hidden h-full flex-1 min-w-0">
+    <div className="marquee-col overflow-hidden h-full flex-1 min-w-0" style={{ maxWidth: "280px" }}>
       <div
         className="marquee-track-vertical flex flex-col"
         style={{ animationDuration: `${speed}s` }}
       >
         {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: "8px", paddingBottom: "8px" }}>
+          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: "20px", paddingBottom: "20px" }}>
             {videoIndices.map((vi, i) => (
               <div
                 key={`${setIdx}-${i}`}
@@ -136,46 +136,23 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row items-stretch gap-2 opacity-40">
+        <div className="absolute inset-0 z-0 flex flex-row items-stretch gap-6 px-4 opacity-40">
           <MarqueeColumn speed={30} videoIndices={[0, 1, 5, 6]} />
           <MarqueeColumn speed={34} videoIndices={[2, 3, 7, 4]} />
           <MarqueeColumn speed={28} videoIndices={[4, 5, 0, 1]} />
         </div>
-        <div className="absolute inset-0 bg-navy-950/50 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[1]" />
 
-        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center py-32">
-          <motion.div
+        <div className="relative z-10 flex items-center justify-center min-h-screen">
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white tracking-tight leading-[1.1]"
+            data-testid="text-engine-heading"
           >
-            <p className="text-[#8bdaef] text-sm md:text-base uppercase tracking-[0.2em] font-medium mb-6" data-testid="text-engine-label">
-              System Overview
-            </p>
-            <h1
-              className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white tracking-tight leading-[1.1] mb-8"
-              data-testid="text-engine-heading"
-            >
-              Data Engine
-            </h1>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-6 font-light leading-relaxed">
-              Turning raw data into structured, actionable intelligence.
-            </p>
-            <p className="text-base text-white/50 max-w-xl mx-auto mb-12 font-light leading-relaxed">
-              Our system collects, processes, organizes, and transforms data into usable insight through a streamlined intelligent workflow.
-            </p>
-            <a href="#how-it-works">
-              <Button
-                size="lg"
-                className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300"
-                data-testid="button-explore"
-              >
-                Explore How It Works
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </a>
-          </motion.div>
+            Data Engine
+          </motion.h1>
         </div>
       </section>
 
