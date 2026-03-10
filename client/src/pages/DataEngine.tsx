@@ -6,36 +6,31 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Cpu, Layers, Zap, Database, Target, GitBranch } from "lucide-react";
 
-const marqueeVideos = [
-  "/videos/1.mp4",
-  "/videos/2.mp4",
-  "/videos/3.mp4",
-  "/videos/4.mp4",
-  "/videos/5.mp4",
+const placeholderColors = [
+  "bg-navy-800", "bg-navy-700", "bg-blue-700/50", "bg-navy-800", "bg-navy-700",
+  "bg-blue-600/40", "bg-navy-800", "bg-navy-700/80", "bg-blue-700/30", "bg-navy-800",
 ];
 
-function MarqueeRow({ speed, reverse }: { speed: number; reverse?: boolean }) {
-  const videos = [...marqueeVideos, ...marqueeVideos];
+function MarqueeRow({ speed, reverse, offset = 0 }: { speed: number; reverse?: boolean; offset?: number }) {
+  const colors = [...placeholderColors.slice(offset), ...placeholderColors.slice(0, offset)];
+  const items = colors.slice(0, 8);
   return (
-    <div className="overflow-hidden">
+    <div className="marquee-row overflow-hidden">
       <div
-        className="flex gap-3"
+        className="marquee-track flex"
         style={{
-          animation: `marquee-${reverse ? 'reverse' : 'forward'} ${speed}s linear infinite`,
-          width: 'max-content',
+          animationDuration: `${speed}s`,
+          animationDirection: reverse ? 'reverse' : 'normal',
         }}
       >
-        {videos.map((src, i) => (
-          <div key={i} className="flex-shrink-0 h-[120px] md:h-[180px] w-[200px] md:w-[300px] rounded-xl overflow-hidden">
-            <video
-              src={src}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="w-full h-full object-cover"
-            />
+        {[0, 1].map((setIdx) => (
+          <div key={setIdx} className="flex flex-shrink-0" style={{ gap: '12px', paddingRight: '12px' }}>
+            {items.map((color, i) => (
+              <div
+                key={`${setIdx}-${i}`}
+                className={`flex-shrink-0 h-[120px] md:h-[180px] w-[200px] md:w-[300px] rounded-xl ${color} border border-white/[0.04]`}
+              />
+            ))}
           </div>
         ))}
       </div>
@@ -131,10 +126,10 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-col justify-center gap-3 opacity-40">
-          <MarqueeRow speed={30} />
-          <MarqueeRow speed={35} reverse />
-          <MarqueeRow speed={40} />
+        <div className="absolute inset-0 z-0 flex flex-col justify-center gap-3 opacity-50">
+          <MarqueeRow speed={30} offset={0} />
+          <MarqueeRow speed={35} reverse offset={3} />
+          <MarqueeRow speed={40} offset={5} />
         </div>
         <div className="absolute inset-0 bg-navy-950/60 z-[1]" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
@@ -338,13 +333,15 @@ export default function DataEngine() {
       <Footer />
 
       <style>{`
-        @keyframes marquee-forward {
+        @keyframes marquee-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        @keyframes marquee-reverse {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
+        .marquee-track {
+          animation-name: marquee-scroll;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          will-change: transform;
         }
       `}</style>
     </div>
