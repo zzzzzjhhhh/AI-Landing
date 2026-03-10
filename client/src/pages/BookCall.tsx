@@ -18,58 +18,70 @@ const caseStudyVideos = [
     id: 1,
     title: "Autonomous Navigation",
     description: "Real-world trajectory data for self-driving systems",
-    thumbnail: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop",
-    videoUrl: "",
+    videoUrl: "/videos/1.mp4",
   },
   {
     id: 2,
     title: "Robotic Manipulation",
     description: "Expert-annotated grasping and assembly sequences",
-    thumbnail: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
-    videoUrl: "",
+    videoUrl: "/videos/2.mp4",
   },
   {
     id: 3,
     title: "Warehouse Automation",
     description: "Large-scale pick-and-place dataset pipelines",
-    thumbnail: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
-    videoUrl: "",
+    videoUrl: "/videos/3.mp4",
   },
   {
     id: 4,
     title: "Drone Intelligence",
     description: "Aerial perception and obstacle avoidance data",
-    thumbnail: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&h=400&fit=crop",
-    videoUrl: "",
+    videoUrl: "/videos/4.mp4",
   },
   {
     id: 5,
     title: "Human-Robot Interaction",
     description: "Behavioral datasets for collaborative robotics",
-    thumbnail: "https://images.unsplash.com/photo-1531746790095-e6b1258b7e31?w=600&h=400&fit=crop",
-    videoUrl: "",
+    videoUrl: "/videos/5.mp4",
   },
 ];
 
 function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    videoRef.current?.play();
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
 
   return (
     <div
       className="relative rounded-2xl overflow-hidden cursor-pointer group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       data-testid={`card-video-${video.id}`}
     >
-      <div className="aspect-[4/3] relative overflow-hidden">
-        <img
-          src={video.thumbnail}
-          alt={video.title}
+      <div className="aspect-[4/3] relative overflow-hidden bg-navy-900">
+        <video
+          ref={videoRef}
+          src={video.videoUrl}
+          muted
+          loop
+          playsInline
+          preload="metadata"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent" />
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-70'}`}>
-          <div className={`w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 transition-all duration-300 ${isHovered ? 'scale-110 bg-white/30' : ''}`}>
+        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-70'}`}>
+          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
             <Play className="w-7 h-7 text-white ml-1" fill="white" />
           </div>
         </div>
