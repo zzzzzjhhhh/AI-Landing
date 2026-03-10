@@ -116,8 +116,8 @@ function CaseStudyCarousel() {
   }, [checkScroll]);
 
   return (
-    <div className="relative">
-      <div className="flex justify-end gap-2 mb-6 px-6 md:px-[100px]">
+    <div className="relative" style={{ paddingLeft: '100px', paddingRight: '40px' }}>
+      <div className="flex justify-end gap-2 mb-6">
         <Button
           size="icon"
           variant="ghost"
@@ -144,14 +144,15 @@ function CaseStudyCarousel() {
         ref={scrollRef}
         onScroll={checkScroll}
         onMouseDown={handleMouseDown}
-        className="flex gap-6 overflow-x-auto pb-4 pl-6 pr-6 md:pl-[100px] md:pr-[60px] cursor-grab active:cursor-grabbing select-none"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth' }}
+        className="flex overflow-x-auto pb-4 cursor-grab active:cursor-grabbing select-none"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth', gap: '24px' }}
       >
         {caseStudyVideos.map((video) => (
           <div
             key={video.id}
             data-card
-            className="flex-shrink-0 snap-start w-[80vw] md:w-[28vw]"
+            className="flex-shrink-0 snap-start"
+            style={{ width: 'calc((100% - 48px) / 3)' }}
           >
             <VideoCard video={video} />
           </div>
