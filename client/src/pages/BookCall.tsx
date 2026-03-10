@@ -144,20 +144,32 @@ function CaseStudyCarousel() {
         ref={scrollRef}
         onScroll={checkScroll}
         onMouseDown={handleMouseDown}
-        className="flex overflow-x-auto pb-4 cursor-grab active:cursor-grabbing select-none"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth', gap: '24px' }}
+        className="flex overflow-x-auto pb-4 cursor-grab active:cursor-grabbing select-none carousel-scroll"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth', gap: '16px' }}
       >
         {caseStudyVideos.map((video) => (
           <div
             key={video.id}
             data-card
-            className="flex-shrink-0 snap-start"
-            style={{ width: 'calc((100% - 48px) / 3)' }}
+            className="flex-shrink-0 snap-center md:snap-start carousel-card"
           >
             <VideoCard video={video} />
           </div>
         ))}
       </div>
+      <style>{`
+        .carousel-card {
+          width: 75vw;
+        }
+        @media (min-width: 768px) {
+          .carousel-card {
+            width: calc((100% - 32px) / 3);
+          }
+          .carousel-scroll {
+            gap: 16px;
+          }
+        }
+      `}</style>
     </div>
   );
 }
