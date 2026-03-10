@@ -17,23 +17,19 @@ const engineVideos = [
   "/videos/engine/8.mp4",
 ];
 
-function MarqueeColumn({ speed, reverse, videoIndices }: { speed: number; reverse?: boolean; videoIndices: number[] }) {
+function MarqueeColumn({ speed, videoIndices }: { speed: number; videoIndices: number[] }) {
   return (
     <div className="marquee-col overflow-hidden h-full flex-1 min-w-0">
       <div
         className="marquee-track-vertical flex flex-col"
-        style={{
-          animationDuration: `${speed}s`,
-          animationDirection: reverse ? "reverse" : "normal",
-        }}
+        style={{ animationDuration: `${speed}s` }}
       >
         {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: "12px", paddingBottom: "12px" }}>
+          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: "8px", paddingBottom: "8px" }}>
             {videoIndices.map((vi, i) => (
               <div
                 key={`${setIdx}-${i}`}
-                className="flex-shrink-0 rounded-xl overflow-hidden border border-white/[0.06]"
-                style={{ height: "220px" }}
+                className="flex-shrink-0 overflow-hidden"
               >
                 <video
                   src={engineVideos[vi]}
@@ -41,7 +37,7 @@ function MarqueeColumn({ speed, reverse, videoIndices }: { speed: number; revers
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             ))}
@@ -140,14 +136,10 @@ export default function DataEngine() {
       <Navbar />
 
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0 flex flex-row justify-center items-stretch gap-3 opacity-40">
-          <MarqueeColumn speed={28} videoIndices={[0, 3, 5, 7]} />
-          <MarqueeColumn speed={32} reverse videoIndices={[1, 4, 6, 2]} />
-          <MarqueeColumn speed={26} videoIndices={[2, 7, 0, 4]} />
-          <MarqueeColumn speed={34} reverse videoIndices={[3, 5, 1, 6]} />
-          <MarqueeColumn speed={30} videoIndices={[4, 6, 3, 0]} />
-          <MarqueeColumn speed={36} reverse videoIndices={[5, 2, 7, 1]} />
-          <MarqueeColumn speed={29} videoIndices={[6, 0, 4, 3]} />
+        <div className="absolute inset-0 z-0 flex flex-row justify-center items-stretch gap-2 opacity-40">
+          <MarqueeColumn speed={30} videoIndices={[0, 1, 5, 6]} />
+          <MarqueeColumn speed={34} videoIndices={[2, 3, 7, 4]} />
+          <MarqueeColumn speed={28} videoIndices={[4, 5, 0, 1]} />
         </div>
         <div className="absolute inset-0 bg-navy-950/50 z-[1]" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950 z-[2]" />
