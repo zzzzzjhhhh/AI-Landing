@@ -135,7 +135,9 @@ function ScrollIntroSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="text-white/60 md:text-lg font-light max-w-3xl mx-auto text-[22px] ml-[74px] mr-[74px] mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[110px] pr-[110px]"
           >
-            Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
+            Oceanveo transforms human perception, movement, and decision-making in physical environments into structured training data for robots, humanoids, and autonomous systems.
+            <br /><br />
+            Built not for screens, but for AI that has to operate in the real world.
           </motion.p>
         )}
       </AnimatePresence>
