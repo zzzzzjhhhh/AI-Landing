@@ -1877,11 +1877,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: .5rem;
 }
 
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
 .py-24 {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -2248,6 +2243,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff3;
 }
 
+.text-white\/30 {
+  color: #ffffff4d;
+}
+
 .text-white\/40 {
   color: #fff6;
 }
@@ -2270,10 +2269,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-white\/80 {
   color: #fffc;
-}
-
-.text-white\/30 {
-  color: #ffffff4d;
 }
 
 .opacity-0 {
@@ -3751,11 +3746,6 @@ h1, h2, h3, h4, h5, h6 {
   .md\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-
-  .md\:py-28 {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
   }
 
   .md\:py-36 {
