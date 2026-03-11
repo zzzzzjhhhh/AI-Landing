@@ -54,7 +54,7 @@ function ScrollTextSection() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
             >
-              The next leap in AI is happening in the real world — in warehouses, kitchens, hospitals, and factories — where machines must perceive, decide, and act.
+              The next leap in AI won't happen in data centers. It will happen in warehouses, kitchens, hospitals, and factories — wherever machines must perceive, decide, and act in physical space.
             </motion.p>
           )}
         </AnimatePresence>
