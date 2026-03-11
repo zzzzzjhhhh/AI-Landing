@@ -1044,6 +1044,10 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 20rem;
 }
 
+.max-w-\[260px\] {
+  max-width: 260px;
+}
+
 .flex-1 {
   flex: 1;
 }
