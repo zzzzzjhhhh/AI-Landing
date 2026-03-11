@@ -380,6 +380,7 @@ const capabilities = [
   {
     label: "Manipulation & grasping",
     description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
+    video: "/videos/grasping.mp4",
   },
   {
     label: "Environment diversity",
@@ -409,8 +410,12 @@ function CapabilitiesSection() {
           {capabilities.map((cap, i) => (
             <FadeInSection key={cap.label}>
               <div data-testid={`card-capability-${i}`}>
-                <div className="w-full aspect-video rounded-2xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] border border-white/[0.08] flex items-center justify-center mb-5">
-                  <span className="text-white/20 text-sm font-light">Video placeholder</span>
+                <div className="w-full aspect-video rounded-2xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] border border-white/[0.08] flex items-center justify-center mb-5 overflow-hidden">
+                  {cap.video ? (
+                    <video src={cap.video} autoPlay muted loop playsInline className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-white/20 text-sm font-light">Video placeholder</span>
+                  )}
                 </div>
                 <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
                   {cap.label}
