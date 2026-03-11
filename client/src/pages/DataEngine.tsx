@@ -477,7 +477,7 @@ export default function DataEngine() {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent mb-6">
-              Human-Robot Comparative Sequences
+              For AI & Robotics Teams
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mb-16">
               Parallel recordings of humans and robots performing the same tasks, for alignment and fine-tuning.
