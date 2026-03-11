@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import logoImg from "@assets/Oceanveo_Icon_white_footer@3x_1772681185827.png";
 
@@ -47,23 +46,33 @@ export function Logo() {
 }
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setScrollProgress(Math.min(window.scrollY / 72, 1));
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navProgress = mobileMenuOpen ? 1 : scrollProgress;
+  const headerPadding = 24 - navProgress * 8;
+
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled || mobileMenuOpen ? "glass-nav py-4" : "bg-transparent py-6"
-      )}
+      className="fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow,padding] duration-300"
+      style={{
+        paddingTop: `${headerPadding}px`,
+        paddingBottom: `${headerPadding}px`,
+        backgroundColor: `rgba(2, 10, 24, ${0.72 * navProgress})`,
+        borderBottom: `1px solid rgba(255, 255, 255, ${0.05 * navProgress})`,
+        backdropFilter: `blur(${12 * navProgress}px)`,
+        WebkitBackdropFilter: `blur(${12 * navProgress}px)`,
+        boxShadow: `0 18px 40px rgba(0, 0, 0, ${0.12 * navProgress})`,
+      }}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="block">
