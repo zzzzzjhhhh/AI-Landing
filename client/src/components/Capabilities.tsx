@@ -28,9 +28,7 @@ export function Capabilities() {
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-8 leading-tight">
-                The world's robots learn by watching humans.
-                <br />
-                <span className="text-[#8bdaef]">We make that possible.</span>
+                <span className="text-[#8bdaef]">Engineered for Autonomy</span>
               </h2>
               <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto">
                 Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.

@@ -32,7 +32,7 @@ export function Hero() {
           </h1>
 
           <p className="text-base md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef]">
-            The world's robots learn by watching humans. We make that possible.
+            Expert-powered data for autonomy and robotics.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
