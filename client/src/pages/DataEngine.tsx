@@ -245,7 +245,7 @@ function PipelineSlides() {
       className="relative"
       style={{ height: `${pipelineSteps.length * 100}vh` }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950">
         {pipelineSteps.map((item, i) => (
           <div
             key={item.step}
@@ -262,20 +262,20 @@ function PipelineSlides() {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 h-full">
               <div className="flex flex-col justify-start px-8 md:px-16 lg:px-24 pt-[10vh] pb-16">
-                <span className="text-navy-900/40 text-xs uppercase tracking-[0.3em] font-mono mb-6">
+                <span className="text-[#8bdaef]/50 text-xs uppercase tracking-[0.3em] font-mono mb-6">
                   Step {item.step}
                 </span>
-                <h3 className="text-navy-950 text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight mb-6 leading-tight">
+                <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight mb-6 leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-navy-900/70 text-base md:text-lg font-medium mb-8">
+                <p className="text-[#8bdaef] text-base md:text-lg font-medium mb-8">
                   {item.label}
                 </p>
-                <p className="text-navy-900/50 text-lg md:text-xl leading-relaxed font-light mb-4 max-w-xl">
+                <p className="text-white/60 text-lg md:text-xl leading-relaxed font-light mb-4 max-w-xl">
                   {item.body}
                 </p>
                 {item.detail && (
-                  <p className="text-navy-900/35 text-base leading-relaxed font-light italic max-w-xl">
+                  <p className="text-white/35 text-base leading-relaxed font-light italic max-w-xl">
                     {item.detail}
                   </p>
                 )}
@@ -354,7 +354,7 @@ function PipelineSlides() {
               className="h-1 rounded-full transition-all duration-500"
               style={{
                 width: activeIndex === i ? 32 : 12,
-                backgroundColor: activeIndex === i ? "#0d1b2a" : "rgba(0,0,0,0.12)",
+                backgroundColor: activeIndex === i ? "#8bdaef" : "rgba(255,255,255,0.15)",
               }}
             />
           ))}
@@ -372,7 +372,7 @@ export default function DataEngine() {
 
 
       {/* TRANSITION HEADING */}
-      <section className="relative py-32 md:py-44" style={{ background: "linear-gradient(to bottom, hsl(218, 44%, 5%) 0%, hsl(218, 77%, 10%) 20%, hsl(219, 49%, 17%) 40%, hsl(216, 57%, 50%) 65%, hsl(201, 46%, 78%) 85%, #ffffff 100%)" }}>
+      <section className="relative py-24 md:py-32">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto">
