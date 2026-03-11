@@ -173,14 +173,6 @@ function HeroSection() {
           >
             Where human experience becomes training data.
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-white text-base md:text-lg font-light text-center max-w-2xl mx-auto mt-8 px-6 drop-shadow-lg"
-          >
-            Our Data Engine is an end-to-end pipeline for collecting, structuring, and delivering high-fidelity real-world datasets built for robotics and physical AI.
-          </motion.p>
         </div>
       </div>
     </section>
