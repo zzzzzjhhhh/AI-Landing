@@ -52,7 +52,7 @@ const caseStudyVideos = [
 function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
   return (
     <div className="group" data-testid={`card-video-${video.id}`}>
-      <div className="relative overflow-hidden bg-navy-900 rounded-2xl shadow-lg shadow-black/30">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-navy-900 shadow-lg shadow-black/30">
         <video
           src={video.videoUrl}
           muted
@@ -60,7 +60,7 @@ function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
           autoPlay
           playsInline
           preload="auto"
-          className="w-full h-auto block"
+          className="block h-full w-full object-cover"
         />
       </div>
       <div className="pt-4 px-1">
