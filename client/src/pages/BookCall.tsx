@@ -371,7 +371,7 @@ export default function BookCall() {
                           )}
                         </Button>
                       </div>
-                      <p className="text-white/30 text-xs text-center mt-4 font-light">
+                      <p className="text-white/30 text-xs text-left mt-4 font-light">
                         We send early access video examples and dataset previews to qualified teams.
                       </p>
                     </form>
