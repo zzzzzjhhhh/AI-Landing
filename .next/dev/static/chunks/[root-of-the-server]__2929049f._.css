@@ -1945,14 +1945,14 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: .75rem;
 }
 
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.py-44 {
-  padding-top: 11rem;
-  padding-bottom: 11rem;
 }
 
 .py-6 {
@@ -2219,6 +2219,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #8bdaef4d;
 }
 
+.text-\[\#8bdaef\]\/50 {
+  color: #8bdaef80;
+}
+
 .text-blue-400\/80 {
   color: #60a5facc;
 }
@@ -2269,22 +2273,6 @@ h1, h2, h3, h4, h5, h6 {
 .text-navy-900 {
   --tw-text-opacity: 1;
   color: hsl(var(--navy-900) / var(--tw-text-opacity, 1));
-}
-
-.text-navy-900\/35 {
-  color: hsl(var(--navy-900) / .35);
-}
-
-.text-navy-900\/40 {
-  color: hsl(var(--navy-900) / .4);
-}
-
-.text-navy-900\/50 {
-  color: hsl(var(--navy-900) / .5);
-}
-
-.text-navy-900\/70 {
-  color: hsl(var(--navy-900) / .7);
 }
 
 .text-popover-foreground {
@@ -2338,6 +2326,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff4d;
 }
 
+.text-white\/35 {
+  color: #ffffff59;
+}
+
 .text-white\/45 {
   color: #ffffff73;
 }
@@ -2358,16 +2350,29 @@ h1, h2, h3, h4, h5, h6 {
   color: #fffc;
 }
 
+.text-navy-900\/35 {
+  color: hsl(var(--navy-900) / .35);
+}
+
+.text-navy-900\/40 {
+  color: hsl(var(--navy-900) / .4);
+}
+
+.text-navy-900\/50 {
+  color: hsl(var(--navy-900) / .5);
+}
+
+.text-navy-900\/70 {
+  color: hsl(var(--navy-900) / .7);
+}
+
+.text-navy-950 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--navy-950) / var(--tw-text-opacity, 1));
+}
+
 .opacity-0 {
   opacity: 0;
-}
-
-.opacity-20 {
-  opacity: .2;
-}
-
-.opacity-30 {
-  opacity: .3;
 }
 
 .opacity-50 {
@@ -2740,35 +2745,6 @@ h1, h2, h3, h4, h5, h6 {
   --radius: .5rem;
   --font-display: var(--font-titillium-web);
   --font-body: var(--font-titillium-web);
-}
-
-@keyframes gradientPulse {
-  0%, 100% {
-    opacity: .3;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: .5;
-    transform: scale(1.15);
-  }
-}
-
-@keyframes gradientDrift {
-  0%, 100% {
-    opacity: .2;
-    transform: translateX(0)translateY(0);
-  }
-
-  33% {
-    opacity: .35;
-    transform: translateX(5%)translateY(-3%);
-  }
-
-  66% {
-    opacity: .25;
-    transform: translateX(-3%)translateY(2%);
-  }
 }
 
 @keyframes trackBox1 {
@@ -4000,9 +3976,9 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 9rem;
   }
 
-  .md\:py-56 {
-    padding-top: 14rem;
-    padding-bottom: 14rem;
+  .md\:py-44 {
+    padding-top: 11rem;
+    padding-bottom: 11rem;
   }
 
   .md\:text-5xl {

@@ -100,17 +100,6 @@
   }
 }
 
-@keyframes gradientPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.15); }
-}
-
-@keyframes gradientDrift {
-  0%, 100% { opacity: 0.2; transform: translateX(0) translateY(0); }
-  33% { opacity: 0.35; transform: translateX(5%) translateY(-3%); }
-  66% { opacity: 0.25; transform: translateX(-3%) translateY(2%); }
-}
-
 @keyframes trackBox1 {
   0% { top: 30%; left: 35%; }
   25% { top: 28%; left: 40%; }
