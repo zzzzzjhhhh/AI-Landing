@@ -65,7 +65,7 @@ export function Metrics() {
           className="w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden relative"
         >
           <Image
-            src="/images/human-robot.jpg"
+            src="/images/human-robot2.jpg"
             alt="Human and robot connection"
             fill
             sizes="100vw"

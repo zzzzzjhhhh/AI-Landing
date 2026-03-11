@@ -686,6 +686,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2rem;
 }
 
+.mb-\[10px\] {
+  margin-bottom: 10px;
+}
+
 .ml-1 {
   margin-left: .25rem;
 }
@@ -730,16 +734,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem;
 }
 
-.mt-auto {
-  margin-top: auto;
-}
-
-.mb-\[10px\] {
-  margin-bottom: 10px;
-}
-
 .mt-\[0px\] {
   margin-top: 0;
+}
+
+.mt-auto {
+  margin-top: auto;
 }
 
 .block {
@@ -941,10 +941,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .min-h-\[80px\] {
   min-height: 80px;
-}
-
-.min-h-\[85vh\] {
-  min-height: 85vh;
 }
 
 .min-h-screen {
@@ -2049,8 +2045,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 36px;
 }
 
-.text-\[41px\] {
-  font-size: 41px;
+.text-\[45px\] {
+  font-size: 45px;
 }
 
 .text-\[48px\] {
@@ -2080,14 +2076,6 @@ h1, h2, h3, h4, h5, h6 {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
-}
-
-.text-\[32px\] {
-  font-size: 32px;
-}
-
-.text-\[45px\] {
-  font-size: 45px;
 }
 
 .font-bold {
@@ -3789,16 +3777,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 36px;
   }
 
+  .sm\:text-\[40px\] {
+    font-size: 40px;
+  }
+
   .sm\:text-\[48px\] {
     font-size: 48px;
   }
 
   .sm\:text-\[64px\] {
     font-size: 64px;
-  }
-
-  .sm\:text-\[40px\] {
-    font-size: 40px;
   }
 
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full[data-state="open"] {
@@ -3924,8 +3912,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 48px;
   }
 
-  .md\:text-\[70px\] {
-    font-size: 70px;
+  .md\:text-\[56px\] {
+    font-size: 56px;
   }
 
   .md\:text-\[72px\] {
@@ -3949,10 +3937,6 @@ h1, h2, h3, h4, h5, h6 {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-\[56px\] {
-    font-size: 56px;
   }
 
   .md\:opacity-0 {
