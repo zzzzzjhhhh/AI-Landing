@@ -1998,6 +1998,14 @@ function BookCall() {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
                                                     lineNumber: 354,
                                                     columnNumber: 23
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-white/30 text-xs text-center mt-4 font-light",
+                                                    children: "We send early access video examples and dataset previews to qualified teams."
+                                                }, void 0, false, {
+                                                    fileName: "[project]/client/src/pages/BookCall.tsx",
+                                                    lineNumber: 374,
+                                                    columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
@@ -2043,7 +2051,7 @@ function BookCall() {
                                         "We received your request.",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 390,
+                                            lineNumber: 393,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2053,23 +2061,23 @@ function BookCall() {
                                             children: "Our team will contact you soon."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 391,
+                                            lineNumber: 394,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 388,
+                                    lineNumber: 391,
                                     columnNumber: 19
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                                lineNumber: 387,
+                                lineNumber: 390,
                                 columnNumber: 17
                             }, this)
                         }, "confirmation", false, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 379,
+                            lineNumber: 382,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                             initial: {
@@ -2092,7 +2100,7 @@ function BookCall() {
                                             children: "Case Studies"
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 404,
+                                            lineNumber: 407,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2100,31 +2108,31 @@ function BookCall() {
                                             children: "See how creators and teams are using OceanVeo to produce high-quality AI video content."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 407,
+                                            lineNumber: 410,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "border-b border-white/20 mt-8"
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 410,
+                                            lineNumber: 413,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 403,
+                                    lineNumber: 406,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CaseStudyCarousel, {}, void 0, false, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 413,
+                                    lineNumber: 416,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, "case-studies", true, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 396,
+                            lineNumber: 399,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
@@ -2144,7 +2152,7 @@ function BookCall() {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Footer"], {}, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 420,
+                lineNumber: 423,
                 columnNumber: 7
             }, this)
         ]
