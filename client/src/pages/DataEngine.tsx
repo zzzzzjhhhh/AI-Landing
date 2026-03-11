@@ -193,7 +193,6 @@ const pipelineSteps = [
     title: "Capture",
     label: "Real World. Real People. Real Scenarios.",
     body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
-    detail: "This isn't screen recording. It's embodied data collection — first-person, multi-angle, environment-rich.",
     video: "/videos/capture.mp4",
   },
   {
@@ -262,7 +261,7 @@ function PipelineSlides() {
             data-testid={`card-step-${item.step}`}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-              <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16">
+              <div className="flex flex-col justify-start px-8 md:px-16 lg:px-24 pt-[10vh] pb-16">
                 <span className="text-[#8bdaef]/50 text-xs uppercase tracking-[0.3em] font-mono mb-6">
                   Step {item.step}
                 </span>
