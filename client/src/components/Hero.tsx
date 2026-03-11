@@ -22,7 +22,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="sm:text-[40px] md:text-[56px] font-display text-white tracking-tight mb-[10px] text-[45px] font-medium mt-[0px]">
+          <h1 className="sm:text-[40px] md:text-[56px] font-display text-white tracking-tight mb-[10px] text-[45px] font-medium mt-[0px] leading-[1.1]">
             Translate human perception into<br />
             <span className="text-gradient">structured intelligence.</span>
           </h1>
