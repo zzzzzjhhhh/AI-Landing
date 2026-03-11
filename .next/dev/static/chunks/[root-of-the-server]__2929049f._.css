@@ -1079,6 +1079,10 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1280px;
 }
 
+.max-w-\[280px\] {
+  max-width: 280px;
+}
+
 .max-w-\[600px\] {
   max-width: 600px;
 }
@@ -3724,6 +3728,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .md\:p-20 {
     padding: 5rem;
+  }
+
+  .md\:p-8 {
+    padding: 2rem;
   }
 
   .md\:px-12 {

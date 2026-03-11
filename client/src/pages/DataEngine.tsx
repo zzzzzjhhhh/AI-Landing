@@ -317,7 +317,7 @@ export default function DataEngine() {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FadeInSection>
-              <div className="aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
+              <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
                 <video
                   src="/videos/hero_pov1.mp4"
                   autoPlay
@@ -326,10 +326,18 @@ export default function DataEngine() {
                   playsInline
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
+                  <div className="border-b border-white/20 mb-4" />
+                  <h3 className="text-white text-xl font-display font-medium mb-4">Human</h3>
+                  <div className="border-b border-white/20 mb-4" />
+                  <p className="text-white/50 text-sm font-light leading-relaxed">
+                    Real human actions captured in natural environments — the raw foundation every model learns from.
+                  </p>
+                </div>
               </div>
             </FadeInSection>
             <FadeInSection delay={0.15}>
-              <div className="aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
+              <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
                 <video
                   src="/videos/hero_pov2.mp4"
                   autoPlay
@@ -338,6 +346,14 @@ export default function DataEngine() {
                   playsInline
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
+                  <div className="border-b border-white/20 mb-4" />
+                  <h3 className="text-white text-xl font-display font-medium mb-4">AI Intelligence</h3>
+                  <div className="border-b border-white/20 mb-4" />
+                  <p className="text-white/50 text-sm font-light leading-relaxed">
+                    Structured perception and spatial reasoning — trained on the richness of real-world experience.
+                  </p>
+                </div>
               </div>
             </FadeInSection>
           </div>
