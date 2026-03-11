@@ -24,12 +24,14 @@ function ScrollTextSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [showP1, setShowP1] = useState(false);
   const [showP2, setShowP2] = useState(false);
+  const [showP3, setShowP3] = useState(false);
 
   useEffect(() => {
     if (isInView) {
       const t1 = setTimeout(() => setShowP1(true), 600);
       const t2 = setTimeout(() => setShowP2(true), 1400);
-      return () => { clearTimeout(t1); clearTimeout(t2); };
+      const t3 = setTimeout(() => setShowP3(true), 2200);
+      return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
     }
   }, [isInView]);
 
@@ -65,6 +67,18 @@ function ScrollTextSection() {
               className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
             >
               That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.
+            </motion.p>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {showP3 && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
+            >
+              That data doesn't exist at scale yet. That's what Oceanveo is building.
             </motion.p>
           )}
         </AnimatePresence>
