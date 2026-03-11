@@ -261,10 +261,10 @@ export default function DataEngine() {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/50 to-navy-950" />
         </div>
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <FadeInSection>
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-5">
                   <div className="w-2 h-2 rounded-full bg-[#8bdaef]" />
                   <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium">
                     Dataset Capabilities
@@ -278,7 +278,7 @@ export default function DataEngine() {
 
             <div>
               <FadeInSection>
-                <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-12">
+                <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-10">
                   Our datasets cover the full spectrum of physical interaction — from object-level perception to complex multi-step human behavior in diverse environments.
                 </p>
               </FadeInSection>
@@ -308,14 +308,16 @@ export default function DataEngine() {
                 ].map((cap, i) => (
                   <FadeInSection key={cap.title} delay={i * 0.08}>
                     <div
-                      className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
+                      className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
                       data-testid={`card-capability-${i}`}
                     >
-                      <div className="flex items-start gap-6">
-                        <div className="w-10 h-10 rounded-xl bg-[#8bdaef]/10 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-[#8bdaef]/20 transition-colors duration-500">
-                          <span className="text-[#8bdaef]/70 text-sm font-mono">{String(i + 1).padStart(2, "0")}</span>
+                      <div className="flex flex-col sm:flex-row gap-5">
+                        <div className="w-full sm:w-[220px] h-[160px] rounded-xl bg-navy-900/80 flex-shrink-0 overflow-hidden">
+                          <div className="w-full h-full bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] flex items-center justify-center">
+                            <span className="text-[#8bdaef]/30 text-4xl font-mono font-bold">{String(i + 1).padStart(2, "0")}</span>
+                          </div>
                         </div>
-                        <div>
+                        <div className="flex flex-col justify-center py-1">
                           <h3 className="text-white text-lg font-display font-medium mb-2">
                             {cap.title}
                           </h3>
