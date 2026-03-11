@@ -365,7 +365,7 @@ export default function BookCall() {
                             </>
                           ) : (
                             <>
-                              <span>Submit Request</span>
+                              <span>Request Access</span>
                               <ArrowRight className="ml-2 w-4 h-4" />
                             </>
                           )}
