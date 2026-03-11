@@ -334,6 +334,9 @@ export default function DataEngine() {
                     Real human actions captured in natural environments — the raw foundation every model learns from.
                   </p>
                 </div>
+                <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
+                  <p className="text-white/30 text-xs font-light">First-person capture · Controlled environment</p>
+                </div>
               </div>
             </FadeInSection>
             <FadeInSection delay={0.15}>
@@ -353,6 +356,9 @@ export default function DataEngine() {
                   <p className="text-white/50 text-sm font-light leading-relaxed">
                     Structured perception and spatial reasoning — trained on the richness of real-world experience.
                   </p>
+                </div>
+                <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
+                  <p className="text-white/30 text-xs font-light">Robotic replication · Aligned behavior</p>
                 </div>
               </div>
             </FadeInSection>
