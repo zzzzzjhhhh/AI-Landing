@@ -1,6 +1,4 @@
 {
-  "/api/contact/route": "app/api/contact/route.js",
   "/book/page": "app/book/page.js",
-  "/data-engine/page": "app/data-engine/page.js",
   "/page": "app/page.js"
 }

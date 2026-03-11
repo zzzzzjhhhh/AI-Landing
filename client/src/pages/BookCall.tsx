@@ -247,7 +247,7 @@ export default function BookCall() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-lg md:text-xl text-steel-400 leading-relaxed font-light"
                   >
-                    The future is embodied. Give your models a world to learn from.
+                    Whether you're building robots, training foundation models, or exploring what physical AI data could unlock for your system — we want to hear from you.
                   </motion.p>
                 </div>
 

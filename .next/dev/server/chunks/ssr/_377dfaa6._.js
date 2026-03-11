@@ -1458,7 +1458,7 @@ function BookCall() {
                                                 delay: 0.1
                                             },
                                             className: "text-lg md:text-xl text-steel-400 leading-relaxed font-light",
-                                            children: "The future is embodied. Give your models a world to learn from."
+                                            children: "Whether you're building robots, training foundation models, or exploring what physical AI data could unlock for your system — we want to hear from you."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
                                             lineNumber: 244,
