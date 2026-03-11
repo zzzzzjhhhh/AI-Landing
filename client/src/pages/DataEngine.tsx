@@ -281,7 +281,7 @@ function PipelineSlides() {
                 )}
               </div>
               <div className="hidden md:flex items-start justify-end overflow-hidden h-full pt-[10vh]">
-                <div className="h-[80vh] aspect-square bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] flex items-center justify-center overflow-hidden">
+                <div className="h-[80vh] aspect-square bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] flex items-center justify-center overflow-hidden relative">
                   {item.video ? (
                     <video
                       src={item.video}
@@ -294,6 +294,17 @@ function PipelineSlides() {
                   ) : (
                     <span className="text-[#8bdaef]/20 text-8xl font-mono font-bold">{item.step}</span>
                   )}
+                  <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[260px]">
+                    <div className="border-b border-white/20 mb-4" />
+                    <h4 className="text-white text-lg font-display font-medium mb-4">{item.title}</h4>
+                    <div className="border-b border-white/20 mb-4" />
+                    <p className="text-white/50 text-sm font-light leading-relaxed">
+                      {item.label}
+                    </p>
+                  </div>
+                  <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
+                    <p className="text-white/30 text-xs font-light">Step {item.step} · Oceanveo Data Engine</p>
+                  </div>
                 </div>
               </div>
             </div>
