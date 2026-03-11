@@ -194,6 +194,7 @@ const pipelineSteps = [
     label: "Real World. Real People. Real Scenarios.",
     body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
     detail: "This isn't screen recording. It's embodied data collection — first-person, multi-angle, environment-rich.",
+    video: "/videos/capture.mp4",
   },
   {
     step: "02",
@@ -282,7 +283,18 @@ function PipelineSlides() {
               </div>
               <div className="hidden md:flex items-center justify-center p-12 lg:p-16">
                 <div className="w-full max-w-[480px] aspect-square rounded-2xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] border border-white/[0.06] flex items-center justify-center overflow-hidden">
-                  <span className="text-[#8bdaef]/20 text-8xl font-mono font-bold">{item.step}</span>
+                  {item.video ? (
+                    <video
+                      src={item.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-[#8bdaef]/20 text-8xl font-mono font-bold">{item.step}</span>
+                  )}
                 </div>
               </div>
             </div>
