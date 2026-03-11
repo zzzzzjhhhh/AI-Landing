@@ -1041,6 +1041,10 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 20rem;
 }
 
+.max-w-5xl {
+  max-width: 64rem;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -1979,16 +1983,16 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 1rem;
 }
 
+.pt-44 {
+  padding-top: 11rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pt-44 {
-  padding-top: 11rem;
 }
 
 .text-left {
@@ -2034,6 +2038,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 36px;
 }
 
+.text-\[48px\] {
+  font-size: 48px;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2057,10 +2065,6 @@ h1, h2, h3, h4, h5, h6 {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
-}
-
-.text-\[48px\] {
-  font-size: 48px;
 }
 
 .font-bold {
@@ -3809,6 +3813,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 70px;
   }
 
+  .md\:text-\[90px\] {
+    font-size: 90px;
+  }
+
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -3824,8 +3832,8 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.75rem;
   }
 
-  .md\:text-\[90px\] {
-    font-size: 90px;
+  .md\:text-\[80px\] {
+    font-size: 80px;
   }
 
   .md\:opacity-0 {
