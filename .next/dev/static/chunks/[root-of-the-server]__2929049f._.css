@@ -859,6 +859,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 56px;
 }
 
+.h-\[80vh\] {
+  height: 80vh;
+}
+
 .h-\[var\(--radix-navigation-menu-viewport-height\)\] {
   height: var(--radix-navigation-menu-viewport-height);
 }
@@ -885,10 +889,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .h-svh {
   height: 100svh;
-}
-
-.h-\[80vh\] {
-  height: 80vh;
 }
 
 .max-h-\[--radix-context-menu-content-available-height\] {
@@ -1095,12 +1095,12 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1280px;
 }
 
-.max-w-\[280px\] {
-  max-width: 280px;
+.max-w-\[260px\] {
+  max-width: 260px;
 }
 
-.max-w-\[480px\] {
-  max-width: 480px;
+.max-w-\[280px\] {
+  max-width: 280px;
 }
 
 .max-w-\[600px\] {
@@ -1586,8 +1586,16 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #fff3;
 }
 
+.border-white\/30 {
+  border-color: #ffffff4d;
+}
+
 .border-white\/5 {
   border-color: #ffffff0d;
+}
+
+.border-white\/70 {
+  border-color: #ffffffb3;
 }
 
 .border-white\/\[0\.06\] {
@@ -1917,11 +1925,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: .375rem;
 }
 
-.py-16 {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
 .py-2 {
   padding-top: .5rem;
   padding-bottom: .5rem;
@@ -1954,6 +1957,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .pb-12 {
   padding-bottom: 3rem;
+}
+
+.pb-16 {
+  padding-bottom: 4rem;
 }
 
 .pb-20 {
@@ -2032,14 +2039,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 2rem;
 }
 
-.pr-0 {
-  padding-right: 0;
-}
-
-.pb-16 {
-  padding-bottom: 4rem;
-}
-
 .pt-\[10vh\] {
   padding-top: 10vh;
 }
@@ -2082,6 +2081,10 @@ h1, h2, h3, h4, h5, h6 {
 .text-8xl {
   font-size: 6rem;
   line-height: 1;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
 }
 
 .text-\[28px\] {
@@ -2716,6 +2719,119 @@ h1, h2, h3, h4, h5, h6 {
   --radius: .5rem;
   --font-display: var(--font-titillium-web);
   --font-body: var(--font-titillium-web);
+}
+
+@keyframes trackBox1 {
+  0% {
+    top: 30%;
+    left: 35%;
+  }
+
+  25% {
+    top: 28%;
+    left: 40%;
+  }
+
+  50% {
+    top: 20%;
+    left: 45%;
+  }
+
+  75% {
+    top: 25%;
+    left: 38%;
+  }
+
+  100% {
+    top: 30%;
+    left: 35%;
+  }
+}
+
+@keyframes trackBox2 {
+  0% {
+    top: 27%;
+    left: 32%;
+  }
+
+  25% {
+    top: 25%;
+    left: 37%;
+  }
+
+  50% {
+    top: 17%;
+    left: 42%;
+  }
+
+  75% {
+    top: 22%;
+    left: 35%;
+  }
+
+  100% {
+    top: 27%;
+    left: 32%;
+  }
+}
+
+@keyframes trackBox3 {
+  0% {
+    top: 55%;
+    left: 60%;
+  }
+
+  20% {
+    top: 50%;
+    left: 55%;
+  }
+
+  40% {
+    top: 45%;
+    left: 50%;
+  }
+
+  60% {
+    top: 48%;
+    left: 58%;
+  }
+
+  80% {
+    top: 52%;
+    left: 62%;
+  }
+
+  100% {
+    top: 55%;
+    left: 60%;
+  }
+}
+
+@keyframes trackLabel {
+  0% {
+    top: 24%;
+    left: 35%;
+  }
+
+  25% {
+    top: 22%;
+    left: 40%;
+  }
+
+  50% {
+    top: 14%;
+    left: 45%;
+  }
+
+  75% {
+    top: 19%;
+    left: 38%;
+  }
+
+  100% {
+    top: 24%;
+    left: 35%;
+  }
 }
 
 .file\:border-0::file-selector-button {
@@ -3939,10 +4055,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .lg\:self-start {
     align-self: flex-start;
-  }
-
-  .lg\:p-16 {
-    padding: 4rem;
   }
 
   .lg\:px-16 {

@@ -305,6 +305,42 @@ function PipelineSlides() {
                   <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
                     <p className="text-white/30 text-xs font-light">Step {item.step} · Oceanveo Data Engine</p>
                   </div>
+                  {item.video && (
+                    <div className="absolute inset-0 z-10 pointer-events-none">
+                      <div
+                        className="absolute border-2 border-white/70 rounded-sm"
+                        style={{
+                          width: "72px",
+                          height: "72px",
+                          animation: "trackBox1 6s ease-in-out infinite",
+                        }}
+                      />
+                      <div
+                        className="absolute border border-white/30 rounded-sm"
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          animation: "trackBox2 6s ease-in-out infinite",
+                        }}
+                      />
+                      <div
+                        className="absolute border border-white/20 rounded-sm"
+                        style={{
+                          width: "56px",
+                          height: "56px",
+                          animation: "trackBox3 8s ease-in-out infinite",
+                        }}
+                      />
+                      <div
+                        className="absolute text-white/50 text-[10px] font-mono"
+                        style={{
+                          animation: "trackLabel 6s ease-in-out infinite",
+                        }}
+                      >
+                        tennis_ball · 0.97
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
