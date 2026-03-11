@@ -549,7 +549,7 @@ export default function DataEngine() {
 
 
       {/* SECTION 4 — EARLY ACCESS */}
-      <section className="relative py-28 md:py-36 overflow-hidden">
+      <section className="relative py-44 md:py-56 overflow-hidden">
         <video
           src="/videos/hero_bg.mp4"
           autoPlay
