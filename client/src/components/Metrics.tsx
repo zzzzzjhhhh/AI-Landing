@@ -88,8 +88,8 @@ export function Metrics() {
                 size="lg"
                 className="h-14 rounded-xl bg-white px-12 text-lg font-medium text-navy-900 shadow-2xl shadow-black/50 transition-all hover:scale-105 hover:bg-sky-50"
               >
-                <Link href="/data-engine" data-testid="link-data-engine-cta">
-                  See How Our Data Engine Works
+                <Link href="/book" data-testid="link-data-engine-cta">
+                  Get in touch
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
