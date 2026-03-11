@@ -1136,6 +1136,10 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 64rem;
 }
 
+.max-w-4xl {
+  max-width: 56rem;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -3877,6 +3881,11 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 9rem;
   }
 
+  .md\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -3929,6 +3938,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .md\:text-\[56px\] {
     font-size: 56px;
+  }
+
+  .md\:text-\[72px\] {
+    font-size: 72px;
   }
 
   .md\:opacity-0 {

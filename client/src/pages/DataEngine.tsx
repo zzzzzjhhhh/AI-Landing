@@ -214,6 +214,17 @@ export default function DataEngine() {
     <div className="bg-navy-950 min-h-screen flex flex-col">
       <Navbar />
       <HeroSection />
+
+      <section className="relative py-20 md:py-28">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-16 text-center">
+          <FadeInSection>
+            <p className="text-white/60 text-lg md:text-xl leading-relaxed font-light">
+              Our Data Engine is an end-to-end pipeline for collecting, structuring, and delivering high-fidelity real-world datasets built for robotics and physical AI.
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
       <section id="how-it-works" className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
