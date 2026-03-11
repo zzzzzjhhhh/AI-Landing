@@ -377,16 +377,16 @@ const capabilities = [
     description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
   },
   {
-    label: "The Process",
-    description: "Every object named. Every interaction structured. Nothing left unread.",
+    label: "Manipulation & grasping",
+    description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
   },
   {
-    label: "The Goal",
-    description: "When robots learn well, they begin to move like us.",
+    label: "Environment diversity",
+    description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
   },
   {
-    label: "The Edge",
-    description: "Real-world complexity captured — every edge case, every failure mode.",
+    label: "Edge cases & failure modes",
+    description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
   },
 ];
 
