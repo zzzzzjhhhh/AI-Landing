@@ -418,25 +418,29 @@ function CapabilitiesSection() {
             ))}
           </div>
 
-          <div className="relative h-[140px] overflow-hidden">
-            {capabilities.map((cap, i) => (
-              <div
-                key={cap.title}
-                className="absolute inset-0 transition-all duration-700 ease-out flex flex-col items-center justify-center"
-                style={{
-                  opacity: activeIndex === i ? 1 : 0,
-                  transform: activeIndex === i ? "translateY(0)" : activeIndex > i ? "translateY(-40px)" : "translateY(40px)",
-                }}
-                data-testid={`card-capability-${i}`}
-              >
-                <h3 className="text-white text-xl md:text-2xl font-display font-medium mb-3 text-center">
-                  {cap.title}
-                </h3>
-                <p className="text-white/45 text-sm md:text-base leading-relaxed font-light text-center max-w-xl">
-                  {cap.description}
-                </p>
-              </div>
-            ))}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-6 transition-transform duration-700 ease-out" style={{ transform: `translateX(-${activeIndex * (100 / capabilities.length)}%)`, width: `${capabilities.length * 100}%` }}>
+              {capabilities.map((cap, i) => (
+                <div
+                  key={cap.title}
+                  className="flex-shrink-0 px-4"
+                  style={{ width: `${100 / capabilities.length}%` }}
+                  data-testid={`card-capability-${i}`}
+                >
+                  <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-8 md:p-10 min-h-[280px] flex flex-col items-center justify-center text-center">
+                    <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] mb-6 flex items-center justify-center">
+                      <span className="text-[#8bdaef]/25 text-5xl font-mono font-bold">{String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                    <h3 className="text-white text-xl md:text-2xl font-display font-medium mb-3">
+                      {cap.title}
+                    </h3>
+                    <p className="text-white/50 text-sm md:text-base leading-relaxed font-light max-w-md">
+                      {cap.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
