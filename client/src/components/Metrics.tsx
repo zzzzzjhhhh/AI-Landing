@@ -55,7 +55,7 @@ export function Metrics() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center max-w-3xl mx-auto drop-shadow-2xl"
             >
-              <h2 className="text-white font-display font-medium tracking-tight text-3xl sm:text-4xl md:text-5xl leading-tight mb-8">
+              <h2 className="text-white font-display font-medium tracking-tight text-3xl sm:text-4xl md:text-5xl leading-tight mb-8 mr-[100px]">
                 Built for AI that has to operate in the real world.
               </h2>
               <Button
