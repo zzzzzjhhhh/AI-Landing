@@ -1,0 +1,65 @@
+HERO SECTION
+Headline:
+
+The world's robots learn by watching humans.
+We make that possible.
+
+Subheadline:
+Oceanveo builds the richest real-world datasets on the planet —
+human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
+CTA Button: Explore Our Data Engine
+
+SECTION 1 — THE PROBLEM WE'RE SOLVING
+Label: Why It Matters
+Headline:
+AI that moves through the world needs data from the world.
+Body:
+The next leap in artificial intelligence isn't happening inside a data center. It's happening in warehouses, kitchens, hospitals, and factories — anywhere a machine needs to perceive, decide, and act in physical space.
+Training these systems is the defining bottleneck of the decade. Language models learned from text. Vision models learned from images. But embodied AI — robotics, humanoids, physical automation — has to learn from something far more complex: the full texture of human experience in the real world.
+That data doesn't exist at scale yet.
+That's what Oceanveo is building.
+
+SECTION 2 — WHAT WE DO
+Label: Our Work
+Headline:
+We translate human perception into structured intelligence.
+Body:
+Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
+We don't just label data. We engineer it — curating scenarios that expose AI systems to the full range of how humans actually move, see, and solve problems in physical space.
+The result: training data that makes robots more capable, more reliable, and more ready for the world they'll operate in.
+
+VIDEO SECTION — THREE MOMENTS
+Intro text:
+Watch what we capture.
+Video 1 — Raw Human Action
+Label: The Source
+Caption: Everyday human actions — the foundation of every model we train.
+Video 2 — Annotation in Action
+Label: The Process
+Caption: Every object named. Every interaction structured. Nothing left unread.
+Video 3 — Human & Robot, Side by Side
+Label: The Goal
+Caption: When robots learn well, they begin to move like us.
+
+SECTION 3 — WHY OCEANVEO
+Label: Our Difference
+Headline:
+Most data annotation is built for language.
+We're built for the physical world.
+Three pillars (icons optional):
+Robotics-Specific by Design
+Our data collection protocols, annotation taxonomy, and quality standards are built exclusively around embodied AI — not repurposed from NLP or image classification pipelines.
+Human Intelligence at Every Layer
+Our annotators aren't crowdsourced checkbox-fillers. They're trained to capture nuance — the kinds of spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.
+Depth Over Volume
+An ocean isn't just wide. It's deep. We go where others won't — diverse environments, rare scenarios, edge cases — because the hardest situations are exactly where AI systems break down.
+
+SECTION 4 — THE SCALE OF THE OPPORTUNITY
+Label: The Market
+Headline:
+Physical AI is the next trillion-dollar frontier.
+Body:
+The global robotics market is projected to exceed $260 billion by 2030. Humanoid robots alone are drawing billions in investment from the world's most ambitious technology companies. Behind every one of these systems is a hunger for training data that nobody has yet satisfied at scale.
+Oceanveo is positioning now — at the base of this curve — to become the essential data infrastructure for physical AI.
+We are building the ocean that the next generation of machines will learn from.
+CTA: See How Our Data Engine Works →

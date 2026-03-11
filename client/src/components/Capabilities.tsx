@@ -1,147 +1,167 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Cog, Eye, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import qualityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_20_13_PM_1772515231076.png";
-import quantityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_19_56_PM_1772515240642.png";
-import diversityImage from "@assets/ChatGPT_Image_Mar_2,_2026,_09_21_13_PM_1772515277539.png";
-import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-const capabilities = [
-  {
-    icon: Eye,
-    title: "Quality",
-    description: "Quality determines whether data sharpens a model or distorts it. Rigorous validation, tight ontologies, and expert oversight ensure every annotation strengthens signal rather than introducing noise.",
-    image: qualityImage
-  },
-  {
-    icon: Cog,
-    title: "Quantity",
-    description: "Quantity is the force multiplier of intelligence. High-volume, precisely structured human data enables models to generalize beyond edge cases and converge toward real-world reliability at scale.",
-    image: quantityImage
-  },
-  {
-    icon: ShieldCheck,
-    title: "Diversity",
-    description: "Diversity prevents brittleness. Broad coverage across environments, demographics, edge cases, and behaviors produces models that remain stable under real-world variation instead of collapsing outside narrow distributions.",
-    image: diversityImage
-  }
-];
+function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: "easeOut", delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export function Capabilities() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth * 0.8;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-      setTimeout(checkScroll, 300);
-    }
-  };
-
   return (
-    <section id="capabilities" className="py-20 lg:py-24 bg-navy-950 relative overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display text-white mb-6">
-            Engineered for Autonomy.
-          </h3>
-          <p className="text-lg leading-relaxed" style={{ color: '#8bdaef' }}>
-            Oceanveo is partnering with startups, institutions, & industry leaders alike to hasten the world's transition toward autonomy. We provide massive scale, human-collected & annotated datasets suited to your engineering needs.
-          </p>
-        </motion.div>
+    <>
+      {/* SECTION 1 — THE PROBLEM */}
+      <section className="py-24 lg:py-32 bg-navy-950">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
+              Why It Matters
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-10 max-w-3xl leading-tight">
+              AI that moves through the world needs data from the world.
+            </h2>
+          </FadeIn>
 
-        <div className="flex justify-end gap-2 mb-6">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            className="rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30"
-            data-testid="button-scroll-left"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            className="rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30"
-            data-testid="button-scroll-right"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
+          <FadeIn delay={0.15}>
+            <div className="max-w-3xl space-y-6">
+              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
+                The next leap in artificial intelligence isn't happening inside a data center. It's happening in warehouses, kitchens, hospitals, and factories — anywhere a machine needs to perceive, decide, and act in physical space.
+              </p>
+              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
+                Training these systems is the defining bottleneck of the decade. Language models learned from text. Vision models learned from images. But embodied AI — robotics, humanoids, physical automation — has to learn from something far more complex: the full texture of human experience in the real world.
+              </p>
+              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
+                That data doesn't exist at scale yet.
+              </p>
+              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
+                That's what Oceanveo is building.
+              </p>
+            </div>
+          </FadeIn>
         </div>
+      </section>
 
-        <div 
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {capabilities.map((cap, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex-shrink-0 w-[320px] md:w-[380px] snap-start"
-            >
-              <div className="aspect-square bg-gradient-to-br from-slate-800/80 to-navy-900/80 border border-slate-700/50 rounded-3xl relative overflow-hidden hover:border-blue-500/30 transition-all duration-300">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-                
-                {cap.image ? (
-                  <Image
-                    src={cap.image}
-                    alt={cap.title}
-                    fill
-                    sizes="(max-width: 768px) 320px, 380px"
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="relative z-10 p-8 md:p-10">
-                    <div className="w-14 h-14 rounded-xl bg-navy-800/80 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5">
-                      <cap.icon className="w-7 h-7 text-sky-300 group-hover:text-blue-400 transition-colors" />
-                    </div>
+      {/* SECTION 2 — WHAT WE DO */}
+      <section className="py-24 lg:py-32 bg-navy-950 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950 pointer-events-none" />
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative">
+          <FadeIn>
+            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
+              Our Work
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-10 max-w-3xl leading-tight">
+              We translate human perception into structured intelligence.
+            </h2>
+          </FadeIn>
+
+          <FadeIn delay={0.15}>
+            <div className="max-w-3xl space-y-6">
+              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
+                Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
+              </p>
+              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
+                We don't just label data. We engineer it — curating scenarios that expose AI systems to the full range of how humans actually move, see, and solve problems in physical space.
+              </p>
+              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
+                The result: training data that makes robots more capable, more reliable, and more ready for the world they'll operate in.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* VIDEO SECTION — THREE MOMENTS */}
+      <section className="py-24 lg:py-32 bg-navy-950">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <p className="text-white/60 text-lg md:text-xl text-center mb-16 font-light">
+              Watch what we capture.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                label: "The Source",
+                caption: "Everyday human actions — the foundation of every model we train.",
+              },
+              {
+                label: "The Process",
+                caption: "Every object named. Every interaction structured. Nothing left unread.",
+              },
+              {
+                label: "The Goal",
+                caption: "When robots learn well, they begin to move like us.",
+              },
+            ].map((item, i) => (
+              <FadeIn key={item.label} delay={i * 0.1}>
+                <div className="group" data-testid={`card-video-${i}`}>
+                  <div className="aspect-video bg-white/[0.03] border border-white/[0.06] rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
+                    <p className="text-white/20 text-sm font-light">Video placeholder</p>
                   </div>
-                )}
-              </div>
-              
-              <div className="pt-6 px-2">
-                <h3 className="font-display text-white mb-3 text-[28px]">{cap.title}</h3>
-                <p className="text-steel-400 text-base leading-relaxed group-hover:text-sky-100/70 transition-colors">
-                  {cap.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                  <p className="text-[#8bdaef] text-sm font-medium mb-2">{item.label}</p>
+                  <p className="text-white/50 text-sm leading-relaxed font-light">{item.caption}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      {/* SECTION 3 — WHY OCEANVEO */}
+      <section className="py-24 lg:py-32 bg-navy-950">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
+              Our Difference
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-16 max-w-4xl leading-tight">
+              Most data annotation is built for language.
+              <br />
+              We're built for the physical world.
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Robotics-Specific by Design",
+                description: "Our data collection protocols, annotation taxonomy, and quality standards are built exclusively around embodied AI — not repurposed from NLP or image classification pipelines.",
+              },
+              {
+                title: "Human Intelligence at Every Layer",
+                description: "Our annotators aren't crowdsourced checkbox-fillers. They're trained to capture nuance — the kinds of spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
+              },
+              {
+                title: "Depth Over Volume",
+                description: "An ocean isn't just wide. It's deep. We go where others won't — diverse environments, rare scenarios, edge cases — because the hardest situations are exactly where AI systems break down.",
+              },
+            ].map((pillar, i) => (
+              <FadeIn key={pillar.title} delay={i * 0.1}>
+                <div
+                  className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 h-full"
+                  data-testid={`card-pillar-${i}`}
+                >
+                  <h3 className="text-white text-xl font-display font-medium mb-4">{pillar.title}</h3>
+                  <p className="text-white/45 text-sm leading-relaxed font-light">{pillar.description}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

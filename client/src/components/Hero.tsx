@@ -27,11 +27,14 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-[36px] sm:text-[48px] md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
-            An Ocean of <span className="text-gradient">Real World Data.</span>
+            The world's robots learn by watching humans.
+            <br />
+            <span className="text-gradient">We make that possible.</span>
           </h1>
 
           <p className="text-base md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef]">
-            Oceanic-scale data engineered to train and refine world models.
+            Oceanveo builds the richest real-world datasets on the planet —
+            human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -40,17 +43,11 @@ export function Hero() {
               size="lg"
               className="h-14 w-full rounded-xl bg-white px-8 text-base font-medium text-navy-900 transition-all duration-300 hover:scale-105 hover:bg-sky-100 sm:w-auto"
             >
-              <Link href="/book">
-                Partner with us
+              <Link href="/data-engine" data-testid="link-data-engine">
+                Explore Our Data Engine
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
-
-            <a href="#capabilities">
-              <Button variant="outline" size="lg" className="h-14 w-full rounded-xl border-white/20 px-8 text-base font-medium text-white hover:bg-white/5 sm:w-auto">
-                See how it works
-              </Button>
-            </a>
           </div>
         </motion.div>
       </div>
