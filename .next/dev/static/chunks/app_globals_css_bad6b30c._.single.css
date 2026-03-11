@@ -1950,6 +1950,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 36px;
 }
 
+.text-\[41px\] {
+  font-size: 41px;
+}
+
 .text-\[48px\] {
   font-size: 48px;
 }
@@ -1977,10 +1981,6 @@ h1, h2, h3, h4, h5, h6 {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
-}
-
-.text-\[41px\] {
-  font-size: 41px;
 }
 
 .font-bold {
