@@ -563,13 +563,10 @@ export default function DataEngine() {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           <FadeInSection>
             <div className="text-center">
-                <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-                  Coming Soon
-                </p>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-6 leading-tight">
                   More to see. More to show.
                 </h2>
-                <p className="text-white/50 text-base md:text-lg max-w-[600px] mx-auto font-light mb-10">
+                <p className="text-white text-base md:text-lg max-w-[600px] mx-auto font-light mb-10">
                   We're releasing extended video examples, annotation previews, and dataset documentation to qualified partners. Leave your contact details and we'll be in touch.
                 </p>
                 <Link href="/book">
