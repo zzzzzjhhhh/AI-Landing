@@ -856,6 +856,10 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100svh;
 }
 
+.min-h-\[360px\] {
+  min-height: 360px;
+}
+
 .w-0 {
   width: 0;
 }
@@ -1946,6 +1950,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 2rem;
 }
 
+.pb-8 {
+  padding-bottom: 2rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1956,6 +1964,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .align-middle {
   vertical-align: middle;
+}
+
+.align-super {
+  vertical-align: super;
 }
 
 .font-display {
@@ -2016,6 +2028,10 @@ h1, h2, h3, h4, h5, h6 {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
+}
+
+.text-\[72px\] {
+  font-size: 72px;
 }
 
 .font-bold {
@@ -2237,6 +2253,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-\[\#8bdaef\]\/30 {
   color: #8bdaef4d;
+}
+
+.text-white\/90 {
+  color: #ffffffe6;
 }
 
 .opacity-0 {
@@ -2746,6 +2766,10 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #ffffff1f;
 }
 
+.hover\:border-white\/\[0\.1\]:hover {
+  border-color: #ffffff1a;
+}
+
 .hover\:bg-accent:hover {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--accent) / var(--tw-bg-opacity, 1));
@@ -2786,6 +2810,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .hover\:bg-white\/\[0\.06\]:hover {
   background-color: #ffffff0f;
+}
+
+.hover\:bg-white\/\[0\.05\]:hover {
+  background-color: #ffffff0d;
 }
 
 .hover\:text-accent-foreground:hover {
@@ -3714,6 +3742,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2rem;
   }
 
+  .md\:p-10 {
+    padding: 2.5rem;
+  }
+
   .md\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -3773,6 +3805,14 @@ h1, h2, h3, h4, h5, h6 {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-\[36px\] {
+    font-size: 36px;
+  }
+
+  .md\:text-\[96px\] {
+    font-size: 96px;
   }
 
   .md\:opacity-0 {

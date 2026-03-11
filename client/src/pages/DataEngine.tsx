@@ -308,10 +308,6 @@ export default function DataEngine() {
                     title: "Edge Cases & Failure Modes",
                     description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
                   },
-                  {
-                    title: "Human-Robot Comparative Sequences",
-                    description: "Parallel recordings of humans and robots performing the same tasks, for alignment and fine-tuning.",
-                  },
                 ].map((cap, i) => (
                   <FadeInSection key={cap.title} delay={i * 0.08}>
                     <div
