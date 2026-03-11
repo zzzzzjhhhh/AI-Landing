@@ -9,16 +9,12 @@ export function Hero() {
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
       <div className="absolute inset-0 z-0">
-        <video
-          src="/videos/hero_bg.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+        <img
+          src="/images/hero_bg.jpg"
+          alt="Hero background"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/80" />
       </div>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center max-w-6xl">
         <motion.div
