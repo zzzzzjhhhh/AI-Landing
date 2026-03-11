@@ -310,6 +310,7 @@ const capabilities = [
   {
     label: "Edge cases & failure modes",
     description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
+    video: "/videos/edge_cases.mp4",
   },
 ];
 
