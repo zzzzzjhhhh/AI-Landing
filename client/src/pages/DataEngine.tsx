@@ -201,6 +201,7 @@ const pipelineSteps = [
     label: "Nothing Goes Unnamed.",
     body: "Every object, surface, action, and spatial relationship is labelled with precision. Our annotation protocols are purpose-built for robotics — capturing not just what is in a scene, but how things relate, how they move, and how a human navigates them.",
     detail: "We go beyond bounding boxes. We deliver structured intelligence.",
+    video: "/videos/annotate.mp4",
   },
   {
     step: "03",
