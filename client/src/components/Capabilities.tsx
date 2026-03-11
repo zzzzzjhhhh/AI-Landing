@@ -179,37 +179,6 @@ export function Capabilities() {
         </div>
       </section>
 
-      {/* SECTION 1 — THE PROBLEM */}
-      <section className="py-24 lg:py-32 bg-navy-950">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeIn>
-            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-              Why It Matters
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-10 max-w-3xl leading-tight">
-              AI that moves through the world needs data from the world.
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.15}>
-            <div className="max-w-3xl space-y-6">
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                The next leap in artificial intelligence isn't happening inside a data center. It's happening in warehouses, kitchens, hospitals, and factories — anywhere a machine needs to perceive, decide, and act in physical space.
-              </p>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                Training these systems is the defining bottleneck of the decade. Language models learned from text. Vision models learned from images. But embodied AI — robotics, humanoids, physical automation — has to learn from something far more complex: the full texture of human experience in the real world.
-              </p>
-              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-                That data doesn't exist at scale yet.
-              </p>
-              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-                That's what Oceanveo is building.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* SECTION 2 — WHAT WE DO */}
       <section className="py-24 lg:py-32 bg-navy-950 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950 pointer-events-none" />
