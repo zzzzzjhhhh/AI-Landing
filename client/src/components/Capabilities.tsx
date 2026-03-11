@@ -19,6 +19,60 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
+function ScrollTextSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [showP1, setShowP1] = useState(false);
+  const [showP2, setShowP2] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      const t1 = setTimeout(() => setShowP1(true), 600);
+      const t2 = setTimeout(() => setShowP2(true), 1400);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
+    }
+  }, [isInView]);
+
+  return (
+    <div ref={ref} className="max-w-4xl mx-auto text-center">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-10"
+      >
+        Real-world intelligence starts with real-world data.
+      </motion.h2>
+      <div className="ml-[74px] mr-[74px] pl-[110px] pr-[110px] space-y-6">
+        <AnimatePresence>
+          {showP1 && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="text-white/60 md:text-lg font-light text-[22px]"
+            >
+              The next leap in AI is happening in the real world — in warehouses, kitchens, hospitals, and factories — where machines must perceive, decide, and act.
+            </motion.p>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {showP2 && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="text-white/60 md:text-lg font-light text-[22px]"
+            >
+              That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
 function ScrollIntroSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -101,6 +155,13 @@ export function Capabilities() {
               />
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* SCROLL TEXT SECTION — AFTER VIDEO */}
+      <section className="bg-navy-950 pt-[168px] pb-[168px]">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <ScrollTextSection />
         </div>
       </section>
 
