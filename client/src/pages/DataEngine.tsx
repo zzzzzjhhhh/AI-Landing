@@ -265,7 +265,7 @@ function PipelineSlides() {
                 <span className="text-navy-900/40 text-xs uppercase tracking-[0.3em] font-mono mb-6">
                   Step {item.step}
                 </span>
-                <h3 className="text-navy-950 text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight mb-6 leading-tight">
+                <h3 className="text-[#8bdaef] text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight mb-6 leading-tight">
                   {item.title}
                 </h3>
                 <p className="text-navy-900/70 text-base md:text-lg font-medium mb-8">
