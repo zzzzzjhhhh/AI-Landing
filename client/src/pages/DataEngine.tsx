@@ -433,7 +433,7 @@ export default function DataEngine() {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent">
-              From the physical world to a model-ready dataset — with nothing lost in translation.
+              Rich data for the full complexity of physical space.
             </h2>
           </FadeInSection>
         </div>
