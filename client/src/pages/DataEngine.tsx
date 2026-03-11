@@ -364,6 +364,92 @@ function PipelineSlides() {
   );
 }
 
+const capabilities = [
+  {
+    title: "Object Recognition & Spatial Mapping",
+    description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
+  },
+  {
+    title: "Manipulation & Grasping",
+    description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
+  },
+  {
+    title: "Environment Diversity",
+    description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
+  },
+  {
+    title: "Edge Cases & Failure Modes",
+    description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
+  },
+];
+
+function CapabilitiesSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrolled = -rect.top;
+      const titleZone = sectionHeight * 0.2;
+      const cardsZone = sectionHeight - titleZone;
+      const cardSlice = cardsZone / capabilities.length;
+
+      if (scrolled < titleZone) {
+        setVisibleCount(0);
+      } else {
+        const count = Math.min(
+          capabilities.length,
+          Math.floor((scrolled - titleZone) / cardSlice) + 1
+        );
+        setVisibleCount(count);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative"
+      style={{ height: `${(capabilities.length + 1) * 80}vh` }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center px-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mb-16">
+          Rich data for the full complexity of physical space.
+        </h2>
+
+        <div className="w-full max-w-3xl space-y-4">
+          {capabilities.map((cap, i) => (
+            <div
+              key={cap.title}
+              className="transition-all duration-700 ease-out"
+              style={{
+                opacity: i < visibleCount ? 1 : 0,
+                transform: i < visibleCount ? "translateY(0)" : "translateY(30px)",
+              }}
+              data-testid={`card-capability-${i}`}
+            >
+              <div className="border-t border-white/[0.08] pt-6 pb-4">
+                <h3 className="text-white text-xl md:text-2xl font-display font-medium mb-2 text-center">
+                  {cap.title}
+                </h3>
+                <p className="text-white/45 text-sm md:text-base leading-relaxed font-light text-center max-w-xl mx-auto">
+                  {cap.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function DataEngine() {
   return (
     <div className="bg-navy-950 min-h-screen flex flex-col">
@@ -385,81 +471,8 @@ export default function DataEngine() {
       {/* SECTION 1 — THE PIPELINE (scroll-driven slides) */}
       <PipelineSlides />
 
-      {/* SECTION 2 — WHAT WE ANNOTATE */}
-      <section className="relative py-28 md:py-36 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/50 to-navy-950" />
-        </div>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20">
-            <div className="lg:sticky lg:top-32 lg:self-start">
-              <FadeInSection>
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-2 h-2 rounded-full bg-[#8bdaef]" />
-                  <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium">
-                    Dataset Capabilities
-                  </p>
-                </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight leading-tight">
-                  Rich data for the full complexity of physical space.
-                </h2>
-              </FadeInSection>
-            </div>
-
-            <div>
-              <FadeInSection>
-                <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-10">
-                  Our datasets cover the full spectrum of physical interaction — from object-level perception to complex multi-step human behavior in diverse environments.
-                </p>
-              </FadeInSection>
-
-              <div className="space-y-6">
-                {[
-                  {
-                    title: "Object Recognition & Spatial Mapping",
-                    description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
-                  },
-                  {
-                    title: "Manipulation & Grasping",
-                    description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
-                  },
-                  {
-                    title: "Environment Diversity",
-                    description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
-                  },
-                  {
-                    title: "Edge Cases & Failure Modes",
-                    description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
-                  },
-                ].map((cap, i) => (
-                  <FadeInSection key={cap.title} delay={i * 0.08}>
-                    <div
-                      className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
-                      data-testid={`card-capability-${i}`}
-                    >
-                      <div className="flex flex-col sm:flex-row gap-5">
-                        <div className="w-full sm:w-[220px] h-[160px] rounded-xl bg-navy-900/80 flex-shrink-0 overflow-hidden">
-                          <div className="w-full h-full bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] flex items-center justify-center">
-                            <span className="text-[#8bdaef]/30 text-4xl font-mono font-bold">{String(i + 1).padStart(2, "0")}</span>
-                          </div>
-                        </div>
-                        <div className="flex flex-col justify-center py-1">
-                          <h3 className="text-white text-lg font-display font-medium mb-2">
-                            {cap.title}
-                          </h3>
-                          <p className="text-white/45 text-sm leading-relaxed font-light">
-                            {cap.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </FadeInSection>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION 2 — WHAT WE ANNOTATE (scroll-driven) */}
+      <CapabilitiesSection />
 
       {/* VIDEO SHOWCASE */}
       <section className="relative py-28 md:py-36">
