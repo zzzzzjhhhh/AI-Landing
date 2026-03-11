@@ -1858,8 +1858,16 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 0;
 }
 
+.pb-\[100px\] {
+  padding-bottom: 100px;
+}
+
 .pb-\[160px\] {
   padding-bottom: 160px;
+}
+
+.pb-\[168px\] {
+  padding-bottom: 168px;
 }
 
 .pl-2\.5 {
@@ -1930,8 +1938,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 0;
 }
 
-.pb-\[168px\] {
-  padding-bottom: 168px;
+.pt-\[100px\] {
+  padding-top: 100px;
 }
 
 .pt-\[168px\] {

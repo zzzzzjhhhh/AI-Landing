@@ -159,7 +159,7 @@ export function Capabilities() {
       </section>
 
       {/* SCROLL TEXT SECTION — AFTER VIDEO */}
-      <section className="bg-navy-950 pt-[168px] pb-[168px]">
+      <section className="bg-navy-950 pt-[100px] pb-[100px]">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <ScrollTextSection />
         </div>
