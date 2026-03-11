@@ -1771,6 +1771,10 @@ h1, h2, h3, h4, h5, h6 {
   --tw-gradient-to: hsl(var(--navy-950) / .8) var(--tw-gradient-to-position);
 }
 
+.to-transparent {
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+
 .to-white {
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
 }

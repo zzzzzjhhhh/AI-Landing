@@ -71,7 +71,7 @@ export function Metrics() {
             sizes="100vw"
             className="object-cover brightness-[0.6]"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-transparent" />
         </motion.div>
 
         <div className="absolute inset-0 flex items-center justify-center z-20">
