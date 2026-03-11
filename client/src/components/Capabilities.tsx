@@ -225,8 +225,8 @@ export function Capabilities() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Robotics-Specific by Design",
-                description: "Our data collection protocols, annotation taxonomy, and quality standards are built exclusively around embodied AI — not repurposed from NLP or image classification pipelines.",
+                title: "Built for Physical Intelligence",
+                description: "Our collection protocols, behavioral taxonomy, and quality systems are designed specifically for robotics, humanoids, and embodied AI — not adapted from language workflows or generic image labeling.",
               },
               {
                 title: "Human Intelligence at Every Layer",
