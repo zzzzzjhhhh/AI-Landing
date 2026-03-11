@@ -3799,6 +3799,11 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 9rem;
   }
 
+  .md\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
@@ -3913,6 +3918,11 @@ h1, h2, h3, h4, h5, h6 {
   .lg\:py-32 {
     padding-top: 8rem;
     padding-bottom: 8rem;
+  }
+
+  .lg\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
 
