@@ -373,82 +373,45 @@ function PipelineSlides() {
 
 const capabilities = [
   {
-    title: "Object Recognition & Spatial Mapping",
-    description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
+    label: "The Source",
+    description: "Everyday human actions — the foundation of every model we train.",
   },
   {
-    title: "Manipulation & Grasping",
-    description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
+    label: "The Process",
+    description: "Every object named. Every interaction structured. Nothing left unread.",
   },
   {
-    title: "Environment Diversity",
-    description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
-  },
-  {
-    title: "Edge Cases & Failure Modes",
-    description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
+    label: "The Goal",
+    description: "When robots learn well, they begin to move like us.",
   },
 ];
 
 function CapabilitiesSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % capabilities.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="relative py-28 md:py-36 bg-navy-950">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
         <FadeInSection>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto mb-20">
-            Rich data for the full complexity of physical space.
-          </h2>
+          <p className="text-white/50 text-center text-lg md:text-xl font-light mb-16">
+            Watch what we capture.
+          </p>
         </FadeInSection>
 
-        <div className="relative w-full max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 justify-center mb-10">
-            {capabilities.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveIndex(i)}
-                className="h-1 rounded-full transition-all duration-500 cursor-pointer"
-                style={{
-                  width: activeIndex === i ? 32 : 12,
-                  backgroundColor: activeIndex === i ? "#8bdaef" : "rgba(255,255,255,0.15)",
-                }}
-                data-testid={`btn-capability-dot-${i}`}
-              />
-            ))}
-          </div>
-
-          <div className="relative overflow-hidden">
-            <div className="flex gap-6 transition-transform duration-700 ease-out" style={{ transform: `translateX(-${activeIndex * (100 / capabilities.length)}%)`, width: `${capabilities.length * 100}%` }}>
-              {capabilities.map((cap, i) => (
-                <div
-                  key={cap.title}
-                  className="flex-shrink-0 px-4"
-                  style={{ width: `${100 / capabilities.length}%` }}
-                  data-testid={`card-capability-${i}`}
-                >
-                  <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-8 md:p-10 min-h-[280px] flex flex-col items-center justify-center text-center">
-                    <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] mb-6 flex items-center justify-center">
-                      <span className="text-[#8bdaef]/25 text-5xl font-mono font-bold">{String(i + 1).padStart(2, "0")}</span>
-                    </div>
-                    <h3 className="text-white text-xl md:text-2xl font-display font-medium mb-3">
-                      {cap.title}
-                    </h3>
-                    <p className="text-white/50 text-sm md:text-base leading-relaxed font-light max-w-md">
-                      {cap.description}
-                    </p>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {capabilities.map((cap, i) => (
+            <FadeInSection key={cap.label}>
+              <div data-testid={`card-capability-${i}`}>
+                <div className="w-full aspect-video rounded-2xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] border border-white/[0.08] flex items-center justify-center mb-5">
+                  <span className="text-white/20 text-sm font-light">Video placeholder</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
+                  {cap.label}
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed font-light">
+                  {cap.description}
+                </p>
+              </div>
+            </FadeInSection>
+          ))}
         </div>
       </div>
     </section>

@@ -583,14 +583,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
 }
 
-.mb-20 {
-  margin-bottom: 5rem;
-}
-
-.mb-3 {
-  margin-bottom: .75rem;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -846,10 +838,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .min-h-\[120px\] {
   min-height: 120px;
-}
-
-.min-h-\[280px\] {
-  min-height: 280px;
 }
 
 .min-h-\[60vh\] {
@@ -1631,10 +1619,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #ffffff08;
 }
 
-.bg-white\/\[0\.04\] {
-  background-color: #ffffff0a;
-}
-
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1968,11 +1952,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 2.5rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-8xl {
   font-size: 6rem;
   line-height: 1;
@@ -2108,10 +2087,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-\[\#8bdaef\]\/20 {
   color: #8bdaef33;
-}
-
-.text-\[\#8bdaef\]\/25 {
-  color: #8bdaef40;
 }
 
 .text-\[\#8bdaef\]\/50 {
@@ -3822,10 +3797,6 @@ h1, h2, h3, h4, h5, h6 {
     gap: 6rem;
   }
 
-  .md\:p-10 {
-    padding: 2.5rem;
-  }
-
   .md\:p-8 {
     padding: 2rem;
   }
@@ -3865,11 +3836,6 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 14rem;
   }
 
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -3899,11 +3865,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .md\:text-\[90px\] {
     font-size: 90px;
-  }
-
-  .md\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
   }
 
   .md\:text-lg {
