@@ -372,10 +372,24 @@ export default function DataEngine() {
 
 
       {/* TRANSITION HEADING */}
-      <section className="relative py-32 md:py-44" style={{ background: "linear-gradient(to bottom, hsl(218, 44%, 5%) 0%, hsl(218, 77%, 10%) 20%, hsl(219, 49%, 17%) 40%, hsl(216, 57%, 50%) 65%, hsl(201, 46%, 78%) 85%, #ffffff 100%)" }}>
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+      <section className="relative py-44 md:py-56 overflow-hidden" style={{ background: "linear-gradient(to bottom, hsl(218, 44%, 5%) 0%, hsl(218, 77%, 10%) 15%, hsl(219, 49%, 17%) 30%, hsl(216, 57%, 50%) 55%, hsl(201, 46%, 78%) 80%, #ffffff 100%)" }}>
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: "radial-gradient(ellipse at 50% 30%, hsl(201, 46%, 78%) 0%, transparent 60%)",
+            animation: "gradientPulse 8s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: "radial-gradient(ellipse at 30% 60%, hsl(216, 57%, 50%) 0%, transparent 50%)",
+            animation: "gradientDrift 12s ease-in-out infinite",
+          }}
+        />
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           <FadeInSection>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto drop-shadow-lg">
               From the physical world to a model-ready dataset — with nothing lost in translation.
             </h2>
           </FadeInSection>
