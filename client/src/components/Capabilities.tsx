@@ -89,7 +89,7 @@ export function Capabilities() {
       <section className="bg-navy-950 pb-24 lg:pb-32">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeIn>
-            <div className="rounded-2xl overflow-hidden aspect-video w-full">
+            <div className="rounded-2xl overflow-hidden w-full relative" style={{ paddingBottom: "56.25%" }}>
               <video
                 src="/videos/intro_bg.mp4"
                 autoPlay
@@ -97,7 +97,7 @@ export function Capabilities() {
                 muted
                 playsInline
                 preload="auto"
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
           </FadeIn>

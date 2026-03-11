@@ -4001,6 +4001,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 8rem;
   }
 
+  .lg\:pb-32 {
+    padding-bottom: 8rem;
+  }
+
   .lg\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
