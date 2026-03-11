@@ -103,7 +103,7 @@ function ScrollIntroSection() {
 
   const lines = {
     first: ["The world's robots learn", "by watching humans."],
-    second: ["We make that possible."],
+    second: ["Real-world intelligence infrastructure for embodied AI"],
   };
 
   return (
