@@ -552,8 +552,16 @@ export default function DataEngine() {
       <section className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
-            <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.02] p-12 md:p-20 text-center overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#8bdaef]/[0.03] via-transparent to-[#8bdaef]/[0.03]" />
+            <div className="relative rounded-2xl border border-white/[0.06] p-12 md:p-20 text-center overflow-hidden">
+              <video
+                src="/videos/hero_bg.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-navy-950/40" />
               <div className="relative z-10">
                 <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
                   Coming Soon
