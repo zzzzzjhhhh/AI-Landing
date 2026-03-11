@@ -384,66 +384,60 @@ const capabilities = [
 ];
 
 function CapabilitiesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visibleCount, setVisibleCount] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionHeight = sectionRef.current.offsetHeight;
-      const scrolled = -rect.top;
-      const titleZone = sectionHeight * 0.2;
-      const cardsZone = sectionHeight - titleZone;
-      const cardSlice = cardsZone / capabilities.length;
-
-      if (scrolled < titleZone) {
-        setVisibleCount(0);
-      } else {
-        const count = Math.min(
-          capabilities.length,
-          Math.floor((scrolled - titleZone) / cardSlice) + 1
-        );
-        setVisibleCount(count);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % capabilities.length);
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative"
-      style={{ height: `${(capabilities.length + 1) * 80}vh` }}
-    >
-      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center px-6">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mb-16">
-          Rich data for the full complexity of physical space.
-        </h2>
+    <section className="relative py-28 md:py-36 bg-navy-950">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+        <FadeInSection>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto mb-20">
+            Rich data for the full complexity of physical space.
+          </h2>
+        </FadeInSection>
 
-        <div className="w-full max-w-3xl space-y-4">
-          {capabilities.map((cap, i) => (
-            <div
-              key={cap.title}
-              className="transition-all duration-700 ease-out"
-              style={{
-                opacity: i < visibleCount ? 1 : 0,
-                transform: i < visibleCount ? "translateY(0)" : "translateY(30px)",
-              }}
-              data-testid={`card-capability-${i}`}
-            >
-              <div className="border-t border-white/[0.08] pt-6 pb-4">
-                <h3 className="text-white text-xl md:text-2xl font-display font-medium mb-2 text-center">
+        <div className="relative w-full max-w-3xl mx-auto">
+          <div className="flex items-center gap-2 justify-center mb-10">
+            {capabilities.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className="h-1 rounded-full transition-all duration-500 cursor-pointer"
+                style={{
+                  width: activeIndex === i ? 32 : 12,
+                  backgroundColor: activeIndex === i ? "#8bdaef" : "rgba(255,255,255,0.15)",
+                }}
+                data-testid={`btn-capability-dot-${i}`}
+              />
+            ))}
+          </div>
+
+          <div className="relative h-[140px] overflow-hidden">
+            {capabilities.map((cap, i) => (
+              <div
+                key={cap.title}
+                className="absolute inset-0 transition-all duration-700 ease-out flex flex-col items-center justify-center"
+                style={{
+                  opacity: activeIndex === i ? 1 : 0,
+                  transform: activeIndex === i ? "translateY(0)" : activeIndex > i ? "translateY(-40px)" : "translateY(40px)",
+                }}
+                data-testid={`card-capability-${i}`}
+              >
+                <h3 className="text-white text-xl md:text-2xl font-display font-medium mb-3 text-center">
                   {cap.title}
                 </h3>
-                <p className="text-white/45 text-sm md:text-base leading-relaxed font-light text-center max-w-xl mx-auto">
+                <p className="text-white/45 text-sm md:text-base leading-relaxed font-light text-center max-w-xl">
                   {cap.description}
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
