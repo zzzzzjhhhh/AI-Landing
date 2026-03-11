@@ -1,23 +1,5 @@
 {
   "app": {
-    "[project]/app/_not-found/page": [
-      "static/media/5c27158bc5efb2d9-s.p.db674ee2.woff2",
-      "static/media/fd3f2d7cff5f3729-s.p.6cff3a18.woff2",
-      "static/media/d88fc5ebcdbec3b6-s.p.b5ae0f11.woff2",
-      "static/media/202f69fb654d2e8e-s.p.7b953fae.woff2"
-    ],
-    "[project]/app/book/page": [
-      "static/media/5c27158bc5efb2d9-s.p.db674ee2.woff2",
-      "static/media/fd3f2d7cff5f3729-s.p.6cff3a18.woff2",
-      "static/media/d88fc5ebcdbec3b6-s.p.b5ae0f11.woff2",
-      "static/media/202f69fb654d2e8e-s.p.7b953fae.woff2"
-    ],
-    "[project]/app/data-engine/page": [
-      "static/media/5c27158bc5efb2d9-s.p.db674ee2.woff2",
-      "static/media/fd3f2d7cff5f3729-s.p.6cff3a18.woff2",
-      "static/media/d88fc5ebcdbec3b6-s.p.b5ae0f11.woff2",
-      "static/media/202f69fb654d2e8e-s.p.7b953fae.woff2"
-    ],
     "[project]/app/page": [
       "static/media/5c27158bc5efb2d9-s.p.db674ee2.woff2",
       "static/media/fd3f2d7cff5f3729-s.p.6cff3a18.woff2",
