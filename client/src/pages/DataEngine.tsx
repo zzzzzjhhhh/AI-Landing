@@ -197,56 +197,63 @@ export default function DataEngine() {
       {/* SECTION 1 — THE PIPELINE */}
       <section id="how-it-works" className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeInSection>
-            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-              How It Works
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-16 max-w-3xl">
-              From the physical world to a model-ready dataset — with nothing lost in translation.
-            </h2>
-          </FadeInSection>
-
-          <div className="space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
                 step: "01",
                 title: "Capture",
-                label: "Real World. Real People. Real Scenarios.",
-                body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
-                detail: "This isn't screen recording. It's embodied data collection — first-person, multi-angle, environment-rich.",
+                metric: "500+",
+                metricSuffix: "",
+                label: "Expert Collectors",
+                body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Embodied, first-person, multi-angle data collection.",
               },
               {
                 step: "02",
                 title: "Annotate",
-                label: "Nothing Goes Unnamed.",
-                body: "Every object, surface, action, and spatial relationship is labelled with precision. Our annotation protocols are purpose-built for robotics — capturing not just what is in a scene, but how things relate, how they move, and how a human navigates them.",
-                detail: "We go beyond bounding boxes. We deliver structured intelligence.",
+                metric: "10",
+                metricSuffix: "M+",
+                label: "Labels & Growing",
+                body: "Every object, surface, action, and spatial relationship is labelled with precision. Purpose-built annotation protocols for robotics and physical AI.",
               },
               {
                 step: "03",
                 title: "Validate",
-                label: "Quality That Compounds.",
-                body: "Every dataset undergoes rigorous multi-pass quality review before delivery. We track consistency across annotators, environments, and edge cases — because a single systematic error in training data becomes a systematic failure in the field.",
+                metric: "99.7",
+                metricSuffix: "%",
+                label: "QA Accuracy",
+                body: "Rigorous multi-pass quality review before delivery. We track consistency across annotators, environments, and edge cases.",
               },
               {
                 step: "04",
                 title: "Deliver",
-                label: "Ready to Train On.",
-                body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
+                metric: "40",
+                metricSuffix: "%",
+                label: "Faster Training Cycles",
+                body: "Model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate, not complicate.",
               },
             ].map((item, i) => (
               <FadeInSection key={item.step} delay={i * 0.1}>
-                <div className="group grid grid-cols-1 md:grid-cols-[120px_1fr] gap-6 md:gap-12 border-t border-white/[0.06] pt-10" data-testid={`card-step-${item.step}`}>
-                  <div>
-                    <span className="text-[#8bdaef]/40 text-sm font-mono tracking-wider">{item.step}</span>
-                    <h3 className="text-white text-2xl font-display font-medium mt-2">{item.title}</h3>
+                <div
+                  className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 md:p-10 hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-500 h-full flex flex-col justify-between min-h-[360px]"
+                  data-testid={`card-step-${item.step}`}
+                >
+                  <div className="flex items-center justify-center flex-1 pb-8">
+                    <div className="text-center">
+                      <span className="text-white/90 text-[72px] md:text-[96px] font-display font-light leading-none tracking-tight">
+                        {item.metric}
+                      </span>
+                      <span className="text-white/40 text-[28px] md:text-[36px] font-display font-light align-super ml-1">
+                        {item.metricSuffix}
+                      </span>
+                    </div>
                   </div>
                   <div>
-                    <p className="text-[#8bdaef] text-sm font-medium mb-3">{item.label}</p>
-                    <p className="text-white/60 text-base leading-relaxed font-light mb-3">{item.body}</p>
-                    {item.detail && (
-                      <p className="text-white/40 text-sm leading-relaxed font-light italic">{item.detail}</p>
-                    )}
+                    <h3 className="text-white text-lg font-display font-medium mb-2">
+                      {item.label}
+                    </h3>
+                    <p className="text-white/40 text-sm leading-relaxed font-light">
+                      {item.body}
+                    </p>
                   </div>
                 </div>
               </FadeInSection>

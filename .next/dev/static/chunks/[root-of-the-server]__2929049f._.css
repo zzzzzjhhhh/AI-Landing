@@ -883,6 +883,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 100svh;
 }
 
+.h-\[160px\] {
+  height: 160px;
+}
+
 .max-h-\[--radix-context-menu-content-available-height\] {
   max-height: var(--radix-context-menu-content-available-height);
 }
@@ -1369,6 +1373,10 @@ h1, h2, h3, h4, h5, h6 {
   gap: .75rem;
 }
 
+.gap-5 {
+  gap: 1.25rem;
+}
+
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(.25rem * var(--tw-space-x-reverse));
@@ -1713,6 +1721,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #8bdaef1a;
 }
 
+.bg-navy-900\/80 {
+  background-color: hsl(var(--navy-900) / .8);
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1749,6 +1761,12 @@ h1, h2, h3, h4, h5, h6 {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-\[\#0d1b2a\] {
+  --tw-gradient-from: #0d1b2a var(--tw-gradient-from-position);
+  --tw-gradient-to: #0d1b2a00 var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .via-\[\#8bdaef\] {
   --tw-gradient-to: #8bdaef00 var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #8bdaef var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -1779,6 +1797,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .to-white {
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+
+.to-\[\#1a2d42\] {
+  --tw-gradient-to: #1a2d42 var(--tw-gradient-to-position);
 }
 
 .bg-clip-text {
@@ -1830,6 +1852,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .p-\[1px\] {
   padding: 1px;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-0 {
@@ -2298,6 +2324,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-\[\#8bdaef\]\/70 {
   color: #8bdaefb3;
+}
+
+.text-\[\#8bdaef\]\/30 {
+  color: #8bdaef4d;
 }
 
 .opacity-0 {
@@ -3633,6 +3663,10 @@ h1, h2, h3, h4, h5, h6 {
     width: auto;
   }
 
+  .sm\:w-\[220px\] {
+    width: 220px;
+  }
+
   .sm\:max-w-sm {
     max-width: 24rem;
   }
@@ -3881,8 +3915,16 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr 1.2fr;
   }
 
+  .lg\:grid-cols-\[0\.8fr_1\.2fr\] {
+    grid-template-columns: .8fr 1.2fr;
+  }
+
   .lg\:gap-24 {
     gap: 6rem;
+  }
+
+  .lg\:gap-20 {
+    gap: 5rem;
   }
 
   .lg\:self-start {
