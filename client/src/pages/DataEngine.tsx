@@ -547,48 +547,6 @@ export default function DataEngine() {
         </div>
       </section>
 
-      {/* SECTION 3 — WHY IT MATTERS */}
-      <section className="relative py-28 md:py-36">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeInSection>
-            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-              For AI & Robotics Teams
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-10 max-w-4xl leading-tight">
-              The difference between a robot that works in a lab and one that works in the world is the data it trained on.
-            </h2>
-          </FadeInSection>
-
-          <FadeInSection delay={0.15}>
-            <div className="max-w-3xl space-y-6">
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                Synthetic data gets you started. Simulation gets you close. But the gap between a controlled test environment and real-world deployment is filled with exactly the kinds of moments we capture — unexpected angles, unfamiliar objects, variations in human behavior, and situations that weren't in the spec.
-              </p>
-              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-                Oceanveo datasets are built to close that gap.
-              </p>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                Whether you're training a manipulation policy, fine-tuning a perception model, or benchmarking generalization across environments — our data gives your system the grounding it needs.
-              </p>
-            </div>
-          </FadeInSection>
-
-          <FadeInSection delay={0.3}>
-            <div className="mt-12">
-              <Link href="/book">
-                <Button
-                  size="lg"
-                  className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300"
-                  data-testid="button-contact-data"
-                >
-                  Get in Touch to Discuss Your Data Needs
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </FadeInSection>
-        </div>
-      </section>
 
       {/* SECTION 4 — EARLY ACCESS */}
       <section className="relative py-28 md:py-36">
