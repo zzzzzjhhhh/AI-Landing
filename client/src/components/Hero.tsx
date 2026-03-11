@@ -31,9 +31,6 @@ export function Hero() {
             <span className="text-gradient">structured intelligence.</span>
           </h1>
 
-          <p className="text-base md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef]">
-            Expert-powered data for autonomy and robotics.
-          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
