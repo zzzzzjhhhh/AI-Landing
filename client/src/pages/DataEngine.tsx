@@ -368,17 +368,6 @@ export default function DataEngine() {
       <HeroSection />
 
 
-      {/* TRANSITION HEADING */}
-      <section className="relative py-24 md:py-32">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeInSection>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent">
-              From the physical world to a model-ready dataset — with nothing lost in translation.
-            </h2>
-          </FadeInSection>
-        </div>
-      </section>
-
       {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
       <ProcessSteps />
 
