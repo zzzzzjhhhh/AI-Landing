@@ -161,7 +161,7 @@ function HeroSection() {
         </div>
 
         <div
-          className="relative z-10 flex items-center justify-center h-full transition-opacity duration-500"
+          className="relative z-10 flex flex-col items-center justify-center h-full transition-opacity duration-500"
           style={{ opacity: titleOpacity }}
         >
           <motion.h1
