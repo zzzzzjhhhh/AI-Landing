@@ -27,14 +27,12 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-[36px] sm:text-[48px] md:text-[70px] font-display mb-10 text-white font-medium tracking-tight leading-[1.1]">
-            The world's robots learn by watching humans.
-            <br />
-            <span className="text-gradient">We make that possible.</span>
+            Translate human perception into{" "}
+            <span className="text-gradient">structured intelligence.</span>
           </h1>
 
           <p className="text-base md:text-xl max-w-3xl mx-auto mb-14 font-light text-[#8bdaef]">
-            Oceanveo builds the richest real-world datasets on the planet —
-            human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
+            The world's robots learn by watching humans. We make that possible.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

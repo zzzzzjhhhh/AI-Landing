@@ -22,6 +22,24 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export function Capabilities() {
   return (
     <>
+      {/* INTRO — OCEANVEO PITCH */}
+      <section className="py-24 lg:py-32 bg-navy-950">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-8 leading-tight">
+                The world's robots learn by watching humans.
+                <br />
+                <span className="text-[#8bdaef]">We make that possible.</span>
+              </h2>
+              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto">
+                Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* SECTION 1 — THE PROBLEM */}
       <section className="py-24 lg:py-32 bg-navy-950">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
