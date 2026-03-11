@@ -65,8 +65,8 @@ export function Metrics() {
           className="w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden relative"
         >
           <Image
-            src={waveImage}
-            alt="Ocean wave"
+            src="/images/human-robot.jpg"
+            alt="Human and robot connection"
             fill
             sizes="100vw"
             className="object-cover brightness-[0.6]"
