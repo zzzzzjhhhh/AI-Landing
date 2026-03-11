@@ -312,6 +312,38 @@ export default function DataEngine() {
         </div>
       </section>
 
+      {/* VIDEO SHOWCASE */}
+      <section className="relative py-28 md:py-36">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FadeInSection>
+              <div className="aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
+                <video
+                  src="/videos/hero_pov1.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </FadeInSection>
+            <FadeInSection delay={0.15}>
+              <div className="aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
+                <video
+                  src="/videos/hero_pov2.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 3 — WHY IT MATTERS */}
       <section className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
