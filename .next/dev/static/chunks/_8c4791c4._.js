@@ -1580,6 +1580,55 @@ function Metrics() {
                                         fileName: "[project]/client/src/components/Metrics.tsx",
                                         lineNumber: 94,
                                         columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mt-10 text-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-white/60 text-base font-medium mb-2",
+                                                children: "Not ready to sign up?"
+                                            }, void 0, false, {
+                                                fileName: "[project]/client/src/components/Metrics.tsx",
+                                                lineNumber: 106,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-white/40 text-sm font-light leading-relaxed",
+                                                children: [
+                                                    "Explore our",
+                                                    " ",
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                        href: "/data-engine",
+                                                        className: "text-[#8bdaef] hover:text-white transition-colors underline underline-offset-2",
+                                                        children: "Data Engine"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/client/src/components/Metrics.tsx",
+                                                        lineNumber: 109,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    " ",
+                                                    "to understand what we build and how we build it — or reach us directly at",
+                                                    " ",
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                        href: "mailto:hello@oceanveo.ai",
+                                                        className: "text-[#8bdaef] hover:text-white transition-colors underline underline-offset-2",
+                                                        children: "hello@oceanveo.ai"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/client/src/components/Metrics.tsx",
+                                                        lineNumber: 113,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/client/src/components/Metrics.tsx",
+                                                lineNumber: 107,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/client/src/components/Metrics.tsx",
+                                        lineNumber: 105,
+                                        columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {

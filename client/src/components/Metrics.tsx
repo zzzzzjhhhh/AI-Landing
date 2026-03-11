@@ -101,6 +101,20 @@ export function Metrics() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
+
+              <div className="mt-10 text-center">
+                <p className="text-white/60 text-base font-medium mb-2">Not ready to sign up?</p>
+                <p className="text-white/40 text-sm font-light leading-relaxed">
+                  Explore our{" "}
+                  <Link href="/data-engine" className="text-[#8bdaef] hover:text-white transition-colors underline underline-offset-2">
+                    Data Engine
+                  </Link>{" "}
+                  to understand what we build and how we build it — or reach us directly at{" "}
+                  <a href="mailto:hello@oceanveo.ai" className="text-[#8bdaef] hover:text-white transition-colors underline underline-offset-2">
+                    hello@oceanveo.ai
+                  </a>
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
