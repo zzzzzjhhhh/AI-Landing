@@ -65,7 +65,7 @@ function ScrollIntroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto mt-8"
+            className="text-white/60 md:text-lg font-light max-w-3xl mx-auto text-[22px] mt-[0px] ml-[74px] mr-[74px]"
           >
             Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
           </motion.p>
