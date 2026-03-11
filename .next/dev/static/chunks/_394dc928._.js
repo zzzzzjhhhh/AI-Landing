@@ -1217,7 +1217,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$hookform$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-left.js [app-client] (ecmascript) <export default as ChevronLeft>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-right.js [app-client] (ecmascript) <export default as ChevronRight>");
@@ -1236,7 +1235,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$shared$2f$routes$2e$ts__$5b$
 ;
 var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 "use client";
-;
 ;
 ;
 ;
@@ -1301,12 +1299,12 @@ function VideoCard({ video }) {
                     className: "w-full h-auto block"
                 }, void 0, false, {
                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                    lineNumber: 57,
+                    lineNumber: 56,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 56,
+                lineNumber: 55,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1317,7 +1315,7 @@ function VideoCard({ video }) {
                         children: video.title
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 68,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1325,19 +1323,19 @@ function VideoCard({ video }) {
                         children: video.description
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 69,
+                        lineNumber: 68,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 67,
+                lineNumber: 66,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/client/src/pages/BookCall.tsx",
-        lineNumber: 55,
+        lineNumber: 54,
         columnNumber: 5
     }, this);
 }
@@ -1417,12 +1415,12 @@ function CaseStudyCarousel() {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 133,
+                            lineNumber: 132,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 125,
+                        lineNumber: 124,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1436,18 +1434,18 @@ function CaseStudyCarousel() {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 143,
+                            lineNumber: 142,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 135,
+                        lineNumber: 134,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 124,
+                lineNumber: 123,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1469,17 +1467,17 @@ function CaseStudyCarousel() {
                             video: video
                         }, void 0, false, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 160,
+                            lineNumber: 159,
                             columnNumber: 13
                         }, this)
                     }, video.id, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 155,
+                        lineNumber: 154,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 147,
+                lineNumber: 146,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
@@ -1498,13 +1496,13 @@ function CaseStudyCarousel() {
       `
             }, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 164,
+                lineNumber: 163,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/client/src/pages/BookCall.tsx",
-        lineNumber: 123,
+        lineNumber: 122,
         columnNumber: 5
     }, this);
 }
@@ -1551,25 +1549,25 @@ function BookCall() {
                         className: "absolute inset-0 h-full w-full object-cover"
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 212,
+                        lineNumber: 211,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-gradient-to-b from-transparent to-navy-950"
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 220,
+                        lineNumber: 219,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 211,
+                lineNumber: 210,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$Navbar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Navbar"], {}, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 223,
+                lineNumber: 222,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -1609,7 +1607,7 @@ function BookCall() {
                                             children: "Let's talk data."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 237,
+                                            lineNumber: 236,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -1629,13 +1627,13 @@ function BookCall() {
                                             children: "Whether you're building robots, training foundation models, or exploring what physical AI data could unlock for your system — we want to hear from you."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 245,
+                                            lineNumber: 244,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 236,
+                                    lineNumber: 235,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1671,7 +1669,7 @@ function BookCall() {
                                                                             children: "First Name"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 269,
+                                                                            lineNumber: 268,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1682,28 +1680,28 @@ function BookCall() {
                                                                                 "data-testid": "input-first-name"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                                lineNumber: 271,
+                                                                                lineNumber: 270,
                                                                                 columnNumber: 33
                                                                             }, void 0)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 270,
+                                                                            lineNumber: 269,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 273,
+                                                                            lineNumber: 272,
                                                                             columnNumber: 31
                                                                         }, void 0)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 268,
+                                                                    lineNumber: 267,
                                                                     columnNumber: 29
                                                                 }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                            lineNumber: 264,
+                                                            lineNumber: 263,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1716,7 +1714,7 @@ function BookCall() {
                                                                             children: "Last Name"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 282,
+                                                                            lineNumber: 281,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1727,34 +1725,34 @@ function BookCall() {
                                                                                 "data-testid": "input-last-name"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                                lineNumber: 284,
+                                                                                lineNumber: 283,
                                                                                 columnNumber: 33
                                                                             }, void 0)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 283,
+                                                                            lineNumber: 282,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 286,
+                                                                            lineNumber: 285,
                                                                             columnNumber: 31
                                                                         }, void 0)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 281,
+                                                                    lineNumber: 280,
                                                                     columnNumber: 29
                                                                 }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                            lineNumber: 277,
+                                                            lineNumber: 276,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 263,
+                                                    lineNumber: 262,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1767,7 +1765,7 @@ function BookCall() {
                                                                     children: "Work Email"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 297,
+                                                                    lineNumber: 296,
                                                                     columnNumber: 29
                                                                 }, void 0),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1779,28 +1777,28 @@ function BookCall() {
                                                                         "data-testid": "input-email"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                        lineNumber: 299,
+                                                                        lineNumber: 298,
                                                                         columnNumber: 31
                                                                     }, void 0)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 298,
+                                                                    lineNumber: 297,
                                                                     columnNumber: 29
                                                                 }, void 0),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 301,
+                                                                    lineNumber: 300,
                                                                     columnNumber: 29
                                                                 }, void 0)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                            lineNumber: 296,
+                                                            lineNumber: 295,
                                                             columnNumber: 27
                                                         }, void 0)
                                                 }, void 0, false, {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 292,
+                                                    lineNumber: 291,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1816,7 +1814,7 @@ function BookCall() {
                                                                             children: "Company"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 312,
+                                                                            lineNumber: 311,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1827,28 +1825,28 @@ function BookCall() {
                                                                                 "data-testid": "input-company"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                                lineNumber: 314,
+                                                                                lineNumber: 313,
                                                                                 columnNumber: 33
                                                                             }, void 0)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 313,
+                                                                            lineNumber: 312,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 316,
+                                                                            lineNumber: 315,
                                                                             columnNumber: 31
                                                                         }, void 0)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 311,
+                                                                    lineNumber: 310,
                                                                     columnNumber: 29
                                                                 }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                            lineNumber: 307,
+                                                            lineNumber: 306,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1861,7 +1859,7 @@ function BookCall() {
                                                                             children: "Phone (Optional)"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 325,
+                                                                            lineNumber: 324,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1873,34 +1871,34 @@ function BookCall() {
                                                                                 "data-testid": "input-phone"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                                lineNumber: 327,
+                                                                                lineNumber: 326,
                                                                                 columnNumber: 33
                                                                             }, void 0)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 326,
+                                                                            lineNumber: 325,
                                                                             columnNumber: 31
                                                                         }, void 0),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                            lineNumber: 329,
+                                                                            lineNumber: 328,
                                                                             columnNumber: 31
                                                                         }, void 0)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 324,
+                                                                    lineNumber: 323,
                                                                     columnNumber: 29
                                                                 }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                            lineNumber: 320,
+                                                            lineNumber: 319,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 306,
+                                                    lineNumber: 305,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1913,7 +1911,7 @@ function BookCall() {
                                                                     children: "What are you building?"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 340,
+                                                                    lineNumber: 339,
                                                                     columnNumber: 29
                                                                 }, void 0),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1925,28 +1923,28 @@ function BookCall() {
                                                                         "data-testid": "input-message"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                        lineNumber: 342,
+                                                                        lineNumber: 341,
                                                                         columnNumber: 31
                                                                     }, void 0)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 341,
+                                                                    lineNumber: 340,
                                                                     columnNumber: 29
                                                                 }, void 0),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 350,
+                                                                    lineNumber: 349,
                                                                     columnNumber: 29
                                                                 }, void 0)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                            lineNumber: 339,
+                                                            lineNumber: 338,
                                                             columnNumber: 27
                                                         }, void 0)
                                                 }, void 0, false, {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 335,
+                                                    lineNumber: 334,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1962,14 +1960,14 @@ function BookCall() {
                                                                     className: "h-5 w-5 animate-spin"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 364,
+                                                                    lineNumber: 363,
                                                                     columnNumber: 31
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     children: "Sending..."
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 365,
+                                                                    lineNumber: 364,
                                                                     columnNumber: 31
                                                                 }, this)
                                                             ]
@@ -1979,26 +1977,26 @@ function BookCall() {
                                                                     children: "Request Access"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 369,
+                                                                    lineNumber: 368,
                                                                     columnNumber: 31
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                                                     className: "ml-2 w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                                    lineNumber: 370,
+                                                                    lineNumber: 369,
                                                                     columnNumber: 31
                                                                 }, this)
                                                             ]
                                                         }, void 0, true)
                                                     }, void 0, false, {
                                                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                        lineNumber: 356,
+                                                        lineNumber: 355,
                                                         columnNumber: 25
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 355,
+                                                    lineNumber: 354,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2006,87 +2004,29 @@ function BookCall() {
                                                     children: "We send early access video examples and dataset previews to qualified teams."
                                                 }, void 0, false, {
                                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 375,
+                                                    lineNumber: 374,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 262,
+                                            lineNumber: 261,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 260,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 255,
-                                    columnNumber: 17
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                    initial: {
-                                        opacity: 0,
-                                        y: 20
-                                    },
-                                    animate: {
-                                        opacity: 1,
-                                        y: 0
-                                    },
-                                    transition: {
-                                        duration: 0.6,
-                                        delay: 0.3
-                                    },
-                                    className: "text-center mt-16 max-w-xl mx-auto",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "text-white text-lg font-medium mb-2",
-                                            children: "Not ready to sign up?"
-                                        }, void 0, false, {
-                                            fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 388,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-white/60 text-sm font-light leading-relaxed",
-                                            children: [
-                                                "Explore our ",
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                    href: "/data-engine",
-                                                    className: "text-[#8bdaef] underline underline-offset-2 hover:text-white transition-colors",
-                                                    children: "Data Engine"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 390,
-                                                    columnNumber: 33
-                                                }, this),
-                                                " to understand what we build and how we build it — or reach us directly at ",
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                    href: "mailto:hello@oceanveo.ai",
-                                                    className: "text-[#8bdaef] underline underline-offset-2 hover:text-white transition-colors",
-                                                    children: "hello@oceanveo.ai"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/client/src/pages/BookCall.tsx",
-                                                    lineNumber: 390,
-                                                    columnNumber: 243
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 389,
-                                            columnNumber: 19
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 382,
+                                    lineNumber: 254,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, "form", true, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 229,
+                            lineNumber: 228,
                             columnNumber: 15
                         }, this) : phase === "confirmation" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                             initial: {
@@ -2111,7 +2051,7 @@ function BookCall() {
                                         "We received your request.",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 406,
+                                            lineNumber: 393,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2121,23 +2061,23 @@ function BookCall() {
                                             children: "Our team will contact you soon."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 407,
+                                            lineNumber: 394,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 404,
+                                    lineNumber: 391,
                                     columnNumber: 19
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                                lineNumber: 403,
+                                lineNumber: 390,
                                 columnNumber: 17
                             }, this)
                         }, "confirmation", false, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 395,
+                            lineNumber: 382,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                             initial: {
@@ -2160,7 +2100,7 @@ function BookCall() {
                                             children: "Case Studies"
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 420,
+                                            lineNumber: 407,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2168,57 +2108,57 @@ function BookCall() {
                                             children: "See how creators and teams are using OceanVeo to produce high-quality AI video content."
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 423,
+                                            lineNumber: 410,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "border-b border-white/20 mt-8"
                                         }, void 0, false, {
                                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                                            lineNumber: 426,
+                                            lineNumber: 413,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 419,
+                                    lineNumber: 406,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CaseStudyCarousel, {}, void 0, false, {
                                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                                    lineNumber: 429,
+                                    lineNumber: 416,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, "case-studies", true, {
                             fileName: "[project]/client/src/pages/BookCall.tsx",
-                            lineNumber: 412,
+                            lineNumber: 399,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/client/src/pages/BookCall.tsx",
-                        lineNumber: 227,
+                        lineNumber: 226,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/client/src/pages/BookCall.tsx",
-                    lineNumber: 226,
+                    lineNumber: 225,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 225,
+                lineNumber: 224,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$client$2f$src$2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Footer"], {}, void 0, false, {
                 fileName: "[project]/client/src/pages/BookCall.tsx",
-                lineNumber: 436,
+                lineNumber: 423,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/client/src/pages/BookCall.tsx",
-        lineNumber: 210,
+        lineNumber: 209,
         columnNumber: 5
     }, this);
 }

@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useCallback, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
@@ -377,18 +376,6 @@ export default function BookCall() {
                       </p>
                     </form>
                   </Form>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-center mt-16 max-w-xl mx-auto"
-                >
-                  <h3 className="text-white text-lg font-medium mb-2">Not ready to sign up?</h3>
-                  <p className="text-white/60 text-sm font-light leading-relaxed">
-                    Explore our <Link href="/data-engine" className="text-[#8bdaef] underline underline-offset-2 hover:text-white transition-colors">Data Engine</Link> to understand what we build and how we build it — or reach us directly at <a href="mailto:hello@oceanveo.ai" className="text-[#8bdaef] underline underline-offset-2 hover:text-white transition-colors">hello@oceanveo.ai</a>
-                  </p>
                 </motion.div>
               </motion.div>
             ) : phase === "confirmation" ? (
