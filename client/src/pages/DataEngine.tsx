@@ -376,6 +376,7 @@ const capabilities = [
   {
     label: "Object recognition & spatial mapping",
     description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
+    video: "/videos/spatial.mp4",
   },
   {
     label: "Manipulation & grasping",
