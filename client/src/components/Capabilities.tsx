@@ -41,7 +41,7 @@ function ScrollTextSection() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-10"
       >
-        Real-world intelligence starts with real-world data.
+        Real-world intelligence starts with<br />real-world data.
       </motion.h2>
       <div className="ml-[74px] mr-[74px] pl-[110px] pr-[110px] space-y-6">
         <AnimatePresence>
