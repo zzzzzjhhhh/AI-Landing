@@ -480,9 +480,7 @@ export default function DataEngine() {
               For AI & Robotics Teams
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mb-16">
-              The difference between a robot that works in the lab and one that works in the real world is the data behind it.
-              <br /><br />
-              Synthetic data and simulation help — but real-world performance depends on edge cases, human unpredictability, and environments no spec can fully capture.
+              The difference between a robot that works in the lab and one that works in the real world is the data behind it. Synthetic data and simulation help — but real-world performance depends on edge cases, human unpredictability, and environments no spec can fully capture.
             </p>
           </FadeInSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
