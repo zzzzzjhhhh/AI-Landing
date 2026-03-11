@@ -531,6 +531,11 @@ export default function DataEngine() {
               </div>
             </FadeInSection>
           </div>
+          <FadeInSection>
+            <p className="text-white text-2xl md:text-3xl lg:text-4xl font-display font-medium tracking-tight text-center mt-16 max-w-3xl mx-auto">
+              Oceanveo datasets are built to close that gap.
+            </p>
+          </FadeInSection>
         </div>
       </section>
 
