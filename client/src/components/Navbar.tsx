@@ -86,7 +86,7 @@ export function Navbar() {
             data-testid="button-book-call"
           >
             <Link href="/book">
-              Book a call
+              Connect
             </Link>
           </Button>
         </nav>
@@ -112,7 +112,7 @@ export function Navbar() {
             className="h-12 w-full rounded-xl border-white/20 text-white hover:border-white/40 hover:bg-white/10"
           >
             <Link href="/book" onClick={() => setMobileMenuOpen(false)}>
-              Book a call
+              Connect
             </Link>
           </Button>
         </div>
