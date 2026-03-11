@@ -229,12 +229,12 @@ export function Capabilities() {
                 description: "Our collection protocols, behavioral taxonomy, and quality systems are designed specifically for robotics, humanoids, and embodied AI — not adapted from language workflows or generic image labeling.",
               },
               {
-                title: "Human Intelligence at Every Layer",
-                description: "Our annotators aren't crowdsourced checkbox-fillers. They're trained to capture nuance — the kinds of spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
+                title: "Human Nuance, Structured for Machines",
+                description: "Our teams are trained to capture the spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
               },
               {
-                title: "Depth Over Volume",
-                description: "An ocean isn't just wide. It's deep. We go where others won't — diverse environments, rare scenarios, edge cases — because the hardest situations are exactly where AI systems break down.",
+                title: "Scenario Depth Over Dataset Scale",
+                description: "We focus on the situations that matter most: diverse environments, rare interactions, and failure-prone edge cases where physical AI systems actually break.",
               },
             ].map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.1}>
