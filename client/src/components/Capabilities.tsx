@@ -85,6 +85,25 @@ export function Capabilities() {
         </div>
       </section>
 
+      {/* VIDEO SECTION — INTRO */}
+      <section className="bg-navy-950 pb-24 lg:pb-32">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <div className="rounded-2xl overflow-hidden aspect-video w-full">
+              <video
+                src="/videos/intro_bg.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* SECTION 1 — THE PROBLEM */}
       <section className="py-24 lg:py-32 bg-navy-950">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
