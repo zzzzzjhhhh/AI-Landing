@@ -50,7 +50,7 @@ function ScrollTextSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="text-white/60 md:text-lg font-light text-[22px]"
+              className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
             >
               The next leap in AI is happening in the real world — in warehouses, kitchens, hospitals, and factories — where machines must perceive, decide, and act.
             </motion.p>
@@ -62,7 +62,7 @@ function ScrollTextSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="text-white/60 md:text-lg font-light text-[22px]"
+              className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
             >
               That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.
             </motion.p>
