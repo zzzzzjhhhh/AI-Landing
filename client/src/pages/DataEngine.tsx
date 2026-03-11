@@ -390,28 +390,6 @@ const capabilities = [
   },
 ];
 
-const capabilityDetails = [
-  {
-    title: "Object recognition & spatial mapping",
-    body: "3D object identification, size, position, surface properties, and physical relationships within a scene",
-  },
-  {
-    title: "Manipulation & grasping",
-    body: "how humans pick up, move, and place objects; hand positioning, grip type, force signals",
-  },
-  {
-    title: "Environment diversity",
-    body: "kitchens, workshops, warehouses, public spaces, and custom environments on request",
-  },
-  {
-    title: "Edge cases & failure modes",
-    body: "cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions",
-  },
-  {
-    title: "Human-robot comparative sequences",
-    body: "parallel recordings of humans and robots performing the same tasks, for alignment and fine-tuning",
-  },
-];
 
 function CapabilitiesSection() {
   return (
@@ -444,16 +422,6 @@ function CapabilitiesSection() {
           ))}
         </div>
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
-          {capabilityDetails.map((item, i) => (
-            <FadeInSection key={i}>
-              <div data-testid={`text-capability-detail-${i}`}>
-                <span className="text-white font-medium">{item.title}</span>
-                <span className="text-white/50 font-light"> — {item.body}</span>
-              </div>
-            </FadeInSection>
-          ))}
-        </div>
       </div>
     </section>
   );
