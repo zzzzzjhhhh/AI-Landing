@@ -549,20 +549,19 @@ export default function DataEngine() {
 
 
       {/* SECTION 4 — EARLY ACCESS */}
-      <section className="relative py-28 md:py-36">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+      <section className="relative py-28 md:py-36 overflow-hidden">
+        <video
+          src="/videos/hero_bg.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-950/50" />
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           <FadeInSection>
-            <div className="relative rounded-2xl border border-white/[0.06] p-12 md:p-20 text-center overflow-hidden">
-              <video
-                src="/videos/hero_bg.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-navy-950/40" />
-              <div className="relative z-10">
+            <div className="text-center">
                 <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
                   Coming Soon
                 </p>
@@ -582,7 +581,6 @@ export default function DataEngine() {
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
-              </div>
             </div>
           </FadeInSection>
         </div>
