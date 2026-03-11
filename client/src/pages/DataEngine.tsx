@@ -391,6 +391,9 @@ function CapabilitiesSection() {
     <section className="relative py-28 md:py-36 bg-navy-950">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
         <FadeInSection>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-white font-medium tracking-tight leading-tight text-center max-w-4xl mx-auto mb-6">
+            Rich data for the full complexity of physical space.
+          </h2>
           <p className="text-white/50 text-center text-lg md:text-xl font-light mb-16">
             Watch what we capture.
           </p>
