@@ -213,7 +213,7 @@ const pipelineSteps = [
     title: "Deliver",
     label: "Ready to Train On.",
     body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
-    image: "/images/deliver.png",
+    image: "/images/deliver.jpg",
   },
 ];
 
