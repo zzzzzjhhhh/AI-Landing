@@ -1,3 +1,4 @@
 {
+  "/data-engine/page": "app/data-engine/page.js",
   "/page": "app/page.js"
 }

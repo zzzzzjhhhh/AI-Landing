@@ -187,7 +187,7 @@ function HeroSection() {
   const { offsets } = useScrollParallax(columnConfigs.map((c) => c.lagFactor));
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)" }}>
       <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container mx-12 md:mx-20 lg:mx-28">
         {columnConfigs.map((col, i) => (
           <ParallaxColumn key={i} videoIndices={col.videoIndices} offset={offsets[i]} speed={col.speed} />
