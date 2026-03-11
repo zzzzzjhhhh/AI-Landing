@@ -400,7 +400,7 @@ export default function DataEngine() {
             <FadeInSection>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
                 <video
-                  src="/videos/hero_pov1.mp4"
+                  src="/videos/human_pov.mp4"
                   autoPlay
                   loop
                   muted
@@ -423,7 +423,7 @@ export default function DataEngine() {
             <FadeInSection delay={0.15}>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
                 <video
-                  src="/videos/hero_pov2.mp4"
+                  src="/videos/ai_pov.mp4"
                   autoPlay
                   loop
                   muted
