@@ -104,8 +104,8 @@ export function Capabilities() {
               </div>
             </FadeIn>
           </div>
-          {/* Right — video flush to edge */}
-          <div className="flex-1 relative min-h-[360px] md:min-h-[500px]">
+          {/* Right — video flush to edge, 1:1 */}
+          <div className="flex-1 relative" style={{ aspectRatio: "1 / 1" }}>
             <video
               src="/videos/intro_bg.mp4"
               autoPlay
@@ -113,7 +113,7 @@ export function Capabilities() {
               muted
               playsInline
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain bg-navy-950"
             />
           </div>
         </div>
