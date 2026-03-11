@@ -27,34 +27,6 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export function Metrics() {
   return (
     <section id="metrics" className="bg-navy-950 overflow-hidden">
-      {/* SECTION 4 — THE SCALE OF THE OPPORTUNITY */}
-      <div className="py-24 lg:py-32">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeIn>
-            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-              The Market
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-10 max-w-3xl leading-tight">
-              Physical AI is the next trillion-dollar frontier.
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.15}>
-            <div className="max-w-3xl space-y-6">
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                The global robotics market is projected to exceed $260 billion by 2030. Humanoid robots alone are drawing billions in investment from the world's most ambitious technology companies. Behind every one of these systems is a hunger for training data that nobody has yet satisfied at scale.
-              </p>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                Oceanveo is positioning now — at the base of this curve — to become the essential data infrastructure for physical AI.
-              </p>
-              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-                We are building the ocean that the next generation of machines will learn from.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-
       {/* WAVE CTA */}
       <div className="relative">
         <motion.div
