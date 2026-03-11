@@ -1987,6 +1987,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 2rem;
 }
 
+.pt-44 {
+  padding-top: 11rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2053,6 +2057,10 @@ h1, h2, h3, h4, h5, h6 {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
+}
+
+.text-\[48px\] {
+  font-size: 48px;
 }
 
 .font-bold {
@@ -3664,6 +3672,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 48px;
   }
 
+  .sm\:text-\[64px\] {
+    font-size: 64px;
+  }
+
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full[data-state="open"] {
     --tw-enter-translate-y: 100%;
   }
@@ -3810,6 +3822,10 @@ h1, h2, h3, h4, h5, h6 {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-\[90px\] {
+    font-size: 90px;
   }
 
   .md\:opacity-0 {

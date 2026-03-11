@@ -230,14 +230,14 @@ export default function BookCall() {
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-col items-center pt-32 pb-24"
+                className="flex flex-col items-center pt-44 pb-24"
               >
                 <div className="w-full max-w-2xl text-center mb-16">
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
+                    className="text-[48px] sm:text-[64px] md:text-[90px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
                   >
                     Let's talk data.
                   </motion.h1>
