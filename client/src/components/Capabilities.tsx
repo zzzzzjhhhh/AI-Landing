@@ -86,21 +86,36 @@ export function Capabilities() {
       </section>
 
       {/* VIDEO SECTION — INTRO */}
-      <section className="bg-navy-950 pb-24 lg:pb-32">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeIn>
-            <div className="rounded-2xl overflow-hidden w-full relative" style={{ paddingBottom: "56.25%" }}>
-              <video
-                src="/videos/intro_bg.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-          </FadeIn>
+      <section className="bg-navy-950 pb-24 lg:pb-32 overflow-hidden">
+        <div className="flex flex-col md:flex-row items-stretch gap-0">
+          {/* Left — text */}
+          <div className="flex-1 flex items-center pl-6 md:pl-12 lg:pl-16 pr-8 md:pr-12 py-16 md:py-24">
+            <FadeIn>
+              <div className="max-w-md">
+                <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-6">
+                  Real-World Data
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-display text-white font-medium tracking-tight leading-tight mb-6">
+                  Every frame is a lesson for the machines of tomorrow.
+                </h2>
+                <p className="text-white/55 text-base leading-relaxed font-light">
+                  Our annotators capture human action in the environments that matter — so the AI systems you build are trained on reality, not simulation.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+          {/* Right — video flush to edge */}
+          <div className="flex-1 relative min-h-[360px] md:min-h-[500px]">
+            <video
+              src="/videos/intro_bg.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
