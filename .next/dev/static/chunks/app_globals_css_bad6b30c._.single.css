@@ -595,6 +595,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2rem;
 }
 
+.mb-\[0px\] {
+  margin-bottom: 0;
+}
+
 .mb-\[10px\] {
   margin-bottom: 10px;
 }
@@ -1850,6 +1854,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 1rem;
 }
 
+.pb-\[0px\] {
+  padding-bottom: 0;
+}
+
 .pb-\[160px\] {
   padding-bottom: 160px;
 }
@@ -1866,8 +1874,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 2rem;
 }
 
-.pl-\[100px\] {
-  padding-left: 100px;
+.pl-\[110px\] {
+  padding-left: 110px;
 }
 
 .pr-2 {
@@ -1882,8 +1890,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 2rem;
 }
 
-.pr-\[100px\] {
-  padding-right: 100px;
+.pr-\[110px\] {
+  padding-right: 110px;
 }
 
 .pt-0 {
@@ -1916,6 +1924,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pt-\[0px\] {
+  padding-top: 0;
 }
 
 .text-left {
