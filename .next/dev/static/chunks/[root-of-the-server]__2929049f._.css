@@ -734,6 +734,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: auto;
 }
 
+.mb-\[10px\] {
+  margin-bottom: 10px;
+}
+
+.mt-\[0px\] {
+  margin-top: 0;
+}
+
 .block {
   display: block;
 }
@@ -2076,6 +2084,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-\[32px\] {
   font-size: 32px;
+}
+
+.text-\[45px\] {
+  font-size: 45px;
 }
 
 .font-bold {
