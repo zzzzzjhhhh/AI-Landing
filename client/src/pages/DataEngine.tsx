@@ -384,6 +384,33 @@ const capabilities = [
     label: "The Goal",
     description: "When robots learn well, they begin to move like us.",
   },
+  {
+    label: "The Edge",
+    description: "Real-world complexity captured — every edge case, every failure mode.",
+  },
+];
+
+const capabilityDetails = [
+  {
+    title: "Object recognition & spatial mapping",
+    body: "3D object identification, size, position, surface properties, and physical relationships within a scene",
+  },
+  {
+    title: "Manipulation & grasping",
+    body: "how humans pick up, move, and place objects; hand positioning, grip type, force signals",
+  },
+  {
+    title: "Environment diversity",
+    body: "kitchens, workshops, warehouses, public spaces, and custom environments on request",
+  },
+  {
+    title: "Edge cases & failure modes",
+    body: "cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions",
+  },
+  {
+    title: "Human-robot comparative sequences",
+    body: "parallel recordings of humans and robots performing the same tasks, for alignment and fine-tuning",
+  },
 ];
 
 function CapabilitiesSection() {
@@ -399,7 +426,7 @@ function CapabilitiesSection() {
           </p>
         </FadeInSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {capabilities.map((cap, i) => (
             <FadeInSection key={cap.label}>
               <div data-testid={`card-capability-${i}`}>
@@ -412,6 +439,17 @@ function CapabilitiesSection() {
                 <p className="text-white/50 text-sm leading-relaxed font-light">
                   {cap.description}
                 </p>
+              </div>
+            </FadeInSection>
+          ))}
+        </div>
+
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+          {capabilityDetails.map((item, i) => (
+            <FadeInSection key={i}>
+              <div data-testid={`text-capability-detail-${i}`}>
+                <span className="text-white font-medium">{item.title}</span>
+                <span className="text-white/50 font-light"> — {item.body}</span>
               </div>
             </FadeInSection>
           ))}
