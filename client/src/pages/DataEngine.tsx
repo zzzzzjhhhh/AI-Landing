@@ -185,12 +185,12 @@ export default function DataEngine() {
       <Navbar />
       <HeroSection />
 
-      <section className="relative py-20 md:py-28">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-16 text-center">
+      <section className="relative py-24 md:py-32">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 text-center">
           <FadeInSection>
-            <p className="text-white/60 text-lg md:text-xl leading-relaxed font-light">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-medium tracking-tight leading-[1.2] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent">
               Our Data Engine is an end-to-end pipeline for collecting, structuring, and delivering high-fidelity real-world datasets built for robotics and physical AI.
-            </p>
+            </h2>
           </FadeInSection>
         </div>
       </section>
