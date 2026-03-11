@@ -188,6 +188,117 @@ function HeroSection() {
 }
 
 
+const processSteps = [
+  {
+    step: "01",
+    title: "Capture",
+    body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
+  },
+  {
+    step: "02",
+    title: "Annotate",
+    body: "Every object, surface, action, and spatial relationship is labelled with precision. Our annotation protocols are purpose-built for robotics — capturing not just what is in a scene, but how things relate, how they move, and how a human navigates them.",
+  },
+  {
+    step: "03",
+    title: "Validate",
+    body: "Every dataset undergoes rigorous multi-pass quality review before delivery. We track consistency across annotators, environments, and edge cases — because a single systematic error in training data becomes a systematic failure in the field.",
+  },
+  {
+    step: "04",
+    title: "Deliver",
+    body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
+  },
+];
+
+function ProcessSteps() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrolled = -rect.top;
+      const slideHeight = sectionHeight / processSteps.length;
+      const index = Math.min(
+        processSteps.length - 1,
+        Math.max(0, Math.floor(scrolled / slideHeight))
+      );
+      setActiveIndex(index);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="how-it-works"
+      className="relative"
+      style={{ height: `${processSteps.length * 100}vh` }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center">
+        <div className="w-full max-w-4xl mx-auto px-6 md:px-12 flex flex-col items-center">
+          <div className="w-full max-w-3xl aspect-video rounded-2xl overflow-hidden mb-12 bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]">
+            <video
+              src="/videos/capture.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="relative w-full text-center min-h-[180px] flex items-start justify-center">
+            {processSteps.map((step, i) => (
+              <div
+                key={step.step}
+                className="absolute inset-0 flex flex-col items-center transition-all duration-700 ease-out"
+                style={{
+                  opacity: activeIndex === i ? 1 : 0,
+                  transform: activeIndex === i
+                    ? "translateY(0)"
+                    : activeIndex > i
+                      ? "translateY(-30px)"
+                      : "translateY(30px)",
+                }}
+                data-testid={`process-step-${step.step}`}
+              >
+                <span className="text-[#8bdaef]/40 text-xs uppercase tracking-[0.3em] font-mono mb-4">
+                  Step {step.step}
+                </span>
+                <h3 className="text-white text-3xl md:text-4xl lg:text-5xl font-display font-medium tracking-tight mb-5">
+                  {step.title}
+                </h3>
+                <p className="text-white/50 text-base md:text-lg leading-relaxed font-light max-w-2xl">
+                  {step.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-2 mt-16">
+            {processSteps.map((_, i) => (
+              <div
+                key={i}
+                className="h-1 rounded-full transition-all duration-500"
+                style={{
+                  width: activeIndex === i ? 32 : 12,
+                  backgroundColor: activeIndex === i ? "#8bdaef" : "rgba(255,255,255,0.15)",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const capabilities = [
   {
     label: "Object recognition & spatial mapping",
@@ -268,7 +379,8 @@ export default function DataEngine() {
         </div>
       </section>
 
-      {/* SECTION 1 — THE PIPELINE (scroll-driven slides) */}
+      {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
+      <ProcessSteps />
 
       {/* SECTION 2 — WHAT WE ANNOTATE (scroll-driven) */}
       <CapabilitiesSection />

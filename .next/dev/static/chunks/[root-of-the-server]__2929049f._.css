@@ -730,6 +730,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: auto;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .block {
   display: block;
 }
@@ -875,6 +879,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 100svh;
 }
 
+.h-1 {
+  height: .25rem;
+}
+
 .max-h-\[--radix-context-menu-content-available-height\] {
   max-height: var(--radix-context-menu-content-available-height);
 }
@@ -933,6 +941,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .min-h-svh {
   min-height: 100svh;
+}
+
+.min-h-\[180px\] {
+  min-height: 180px;
 }
 
 .w-0 {
@@ -2113,6 +2125,10 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: .1em;
 }
 
+.tracking-\[0\.3em\] {
+  letter-spacing: .3em;
+}
+
 .\!text-\[\#09111d\] {
   --tw-text-opacity: 1 !important;
   color: rgb(9 17 29 / var(--tw-text-opacity, 1)) !important;
@@ -2244,6 +2260,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-white\/80 {
   color: #fffc;
+}
+
+.text-\[\#8bdaef\]\/40 {
+  color: #8bdaef66;
 }
 
 .opacity-0 {
@@ -3903,6 +3923,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.75rem;
   }
 
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   .md\:opacity-0 {
     opacity: 0;
   }
@@ -3957,6 +3982,11 @@ h1, h2, h3, h4, h5, h6 {
 
   .lg\:text-6xl {
     font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .lg\:text-5xl {
+    font-size: 3rem;
     line-height: 1;
   }
 }
