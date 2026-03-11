@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import logoImg from "@assets/Oceanveo_logo_white@3x_1772679900635.png";
+import logoImg from "@assets/Oceanveo_Icon_white_footer@3x_1772681185827.png";
 
 export function Logo() {
   return (
