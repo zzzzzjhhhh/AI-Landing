@@ -305,6 +305,7 @@ const capabilities = [
   {
     label: "Environment diversity",
     description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
+    video: "/videos/environment.mp4",
   },
   {
     label: "Edge cases & failure modes",
