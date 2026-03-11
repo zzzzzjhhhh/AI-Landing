@@ -38,8 +38,8 @@ export function Hero() {
               size="lg"
               className="h-14 w-full rounded-xl bg-white px-8 text-base font-medium text-navy-900 transition-all duration-300 hover:scale-105 hover:bg-sky-100 sm:w-auto"
             >
-              <Link href="/data-engine" data-testid="link-data-engine">
-                Explore Our Data Engine
+              <Link href="/book" data-testid="link-get-in-touch">
+                Get in touch
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
