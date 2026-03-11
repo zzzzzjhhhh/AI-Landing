@@ -39,7 +39,7 @@ export function Footer() {
               <p className="text-white text-sm leading-relaxed mb-2">
                 Turning human experience into machine intelligence.
               </p>
-              <p className="text-sm leading-relaxed text-[#8bdaef]">
+              <p className="text-white text-sm leading-relaxed">
                 Sunnyvale, CA | Data for Physical Intelligence.
               </p>
             </div>
