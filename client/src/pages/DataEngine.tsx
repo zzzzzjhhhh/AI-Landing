@@ -405,6 +405,8 @@ export default function DataEngine() {
                   loop
                   muted
                   playsInline
+                  preload="auto"
+                  onEnded={(e) => { e.currentTarget.currentTime = 0; e.currentTarget.play(); }}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
@@ -428,6 +430,8 @@ export default function DataEngine() {
                   loop
                   muted
                   playsInline
+                  preload="auto"
+                  onEnded={(e) => { e.currentTarget.currentTime = 0; e.currentTarget.play(); }}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
