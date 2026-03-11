@@ -56,7 +56,7 @@ export function Metrics() {
               className="text-center max-w-3xl mx-auto drop-shadow-2xl"
             >
               <h2 className="text-white font-display font-medium tracking-tight text-3xl sm:text-4xl md:text-5xl leading-tight mb-8">
-                We are building the ocean<br />that the next generation of machines will learn from.
+                Built for AI that has to operate in the real world.
               </h2>
               <Button
                 asChild
