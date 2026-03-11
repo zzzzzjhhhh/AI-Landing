@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -24,75 +24,6 @@ const engineVideos = [
   "/videos/engine/seq4.mp4",
 ];
 
-function useScrollParallax(lagFactors: number[]) {
-  const [offsets, setOffsets] = useState<number[]>(lagFactors.map(() => 0));
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let rafId: number;
-    let currentOffsets = lagFactors.map(() => 0);
-    let targetOffsets = lagFactors.map(() => 0);
-
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      targetOffsets = lagFactors.map((lag) => scrollY * lag);
-    };
-
-    const animate = () => {
-      let changed = false;
-      currentOffsets = currentOffsets.map((curr, i) => {
-        const next = curr + (targetOffsets[i] - curr) * 0.08;
-        if (Math.abs(next - curr) > 0.1) changed = true;
-        return next;
-      });
-      if (changed) {
-        setOffsets([...currentOffsets]);
-      }
-      rafId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    rafId = requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  return { offsets, containerRef };
-}
-
-function ParallaxColumn({ videoIndices, offset, speed }: { videoIndices: number[]; offset: number; speed: number }) {
-  return (
-    <div className="flex-shrink-0 video-col-width overflow-hidden h-full">
-      <div
-        className="marquee-track-vertical flex flex-col video-vertical-gap"
-        style={{
-          animationDuration: `${speed}s`,
-          transform: `translateY(${-offset}px)`,
-        }}
-      >
-        {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0 video-vertical-gap">
-            {videoIndices.map((vi, i) => (
-              <div key={`${setIdx}-${i}`} className="flex-shrink-0 overflow-hidden">
-                <video
-                  src={engineVideos[vi]}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 
 function FadeInSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -111,34 +42,138 @@ function FadeInSection({ children, className = "", delay = 0 }: { children: Reac
   );
 }
 
-const columnConfigs = [
-  { videoIndices: [0, 8, 3, 10], lagFactor: 0.15, speed: 18 },
-  { videoIndices: [9, 2, 6, 11], lagFactor: 0.35, speed: 20 },
-  { videoIndices: [4, 12, 1, 7], lagFactor: 0.25, speed: 16 },
-  { videoIndices: [10, 5, 8, 3], lagFactor: 0.45, speed: 19 },
+const phase1Columns = [
+  { videoIndices: [0, 8, 3, 10], speed: 18 },
+  { videoIndices: [9, 2, 6, 11], speed: 20 },
+  { videoIndices: [4, 12, 1, 7], speed: 16 },
+  { videoIndices: [10, 5, 8, 3], speed: 19 },
 ];
 
-function HeroSection() {
-  const { offsets } = useScrollParallax(columnConfigs.map((c) => c.lagFactor));
+const phase2Columns = [
+  { videoIndices: [0, 8, 3, 10], speed: 18 },
+  { videoIndices: [9, 2, 6, 11], speed: 20 },
+  { videoIndices: [4, 12, 1, 7], speed: 16 },
+  { videoIndices: [10, 5, 8, 3], speed: 19 },
+  { videoIndices: [1, 11, 5, 9], speed: 17 },
+  { videoIndices: [6, 0, 12, 4], speed: 21 },
+  { videoIndices: [3, 7, 10, 2], speed: 15 },
+  { videoIndices: [8, 4, 0, 11], speed: 18 },
+];
 
+const phase3Columns = [
+  { videoIndices: [0, 8, 3], speed: 18 },
+  { videoIndices: [9, 2, 6], speed: 20 },
+  { videoIndices: [4, 12, 1], speed: 16 },
+  { videoIndices: [10, 5, 8], speed: 19 },
+  { videoIndices: [1, 11, 5], speed: 17 },
+  { videoIndices: [6, 0, 12], speed: 21 },
+  { videoIndices: [3, 7, 10], speed: 15 },
+  { videoIndices: [8, 4, 0], speed: 18 },
+  { videoIndices: [2, 9, 7], speed: 20 },
+  { videoIndices: [11, 3, 5], speed: 16 },
+  { videoIndices: [7, 1, 9], speed: 19 },
+  { videoIndices: [12, 6, 2], speed: 17 },
+];
+
+function ScrollVideoColumn({ videoIndices, speed, colWidth, gap }: { videoIndices: number[]; speed: number; colWidth: number; gap: number }) {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)" }}>
-      <div className="absolute inset-0 z-0 flex flex-row items-center justify-center video-columns-container mx-12 md:mx-20 lg:mx-28">
-        {columnConfigs.map((col, i) => (
-          <ParallaxColumn key={i} videoIndices={col.videoIndices} offset={offsets[i]} speed={col.speed} />
+    <div className="flex-shrink-0 overflow-hidden h-full" style={{ width: colWidth }}>
+      <div
+        className="marquee-track-vertical flex flex-col"
+        style={{
+          animationDuration: `${speed}s`,
+          gap: gap,
+        }}
+      >
+        {[0, 1].map((setIdx) => (
+          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: gap }}>
+            {videoIndices.map((vi, i) => (
+              <div key={`${setIdx}-${i}`} className="flex-shrink-0 overflow-hidden rounded-lg">
+                <video
+                  src={engineVideos[vi]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
         ))}
       </div>
+    </div>
+  );
+}
 
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-[36px] sm:text-[48px] md:text-[72px] font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent max-w-4xl text-center mx-auto px-12 md:px-24"
-          data-testid="text-engine-heading"
+function HeroSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [scrollPhase, setScrollPhase] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrolled = -rect.top;
+      const viewportHeight = window.innerHeight;
+      const progress = scrolled / (sectionHeight - viewportHeight);
+
+      if (progress < 0.33) {
+        setScrollPhase(0);
+      } else if (progress < 0.66) {
+        setScrollPhase(1);
+      } else {
+        setScrollPhase(2);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const activeColumns = scrollPhase === 0 ? phase1Columns : scrollPhase === 1 ? phase2Columns : phase3Columns;
+  const colWidth = scrollPhase === 0 ? 200 : scrollPhase === 1 ? 120 : 80;
+  const colGap = scrollPhase === 0 ? 80 : scrollPhase === 1 ? 24 : 12;
+  const videoGap = scrollPhase === 0 ? 300 : scrollPhase === 1 ? 100 : 40;
+  const titleOpacity = scrollPhase === 0 ? 1 : 0;
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative"
+      style={{ height: "300vh" }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)" }}>
+        <div
+          className="absolute inset-0 z-0 flex flex-row items-center justify-center transition-all duration-700 ease-out"
+          style={{ gap: colGap, padding: "0 24px" }}
         >
-          Where human experience becomes training data.
-        </motion.h1>
+          {activeColumns.map((col, i) => (
+            <ScrollVideoColumn
+              key={`${scrollPhase}-${i}`}
+              videoIndices={col.videoIndices}
+              speed={col.speed}
+              colWidth={colWidth}
+              gap={videoGap}
+            />
+          ))}
+        </div>
+
+        <div
+          className="relative z-10 flex items-center justify-center h-full transition-opacity duration-500"
+          style={{ opacity: titleOpacity }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-[36px] sm:text-[48px] md:text-[72px] font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent max-w-4xl text-center mx-auto px-12 md:px-24"
+            data-testid="text-engine-heading"
+          >
+            Where human experience becomes training data.
+          </motion.h1>
+        </div>
       </div>
     </section>
   );
@@ -362,37 +397,6 @@ export default function DataEngine() {
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           will-change: transform;
-        }
-        .video-col-width {
-          width: 200px;
-        }
-        .video-columns-container {
-          gap: 300px;
-        }
-        .video-vertical-gap {
-          gap: 300px;
-        }
-        @media (max-width: 1200px) {
-          .video-col-width {
-            width: 150px;
-          }
-          .video-columns-container {
-            gap: 220px;
-          }
-          .video-vertical-gap {
-            gap: 220px;
-          }
-        }
-        @media (max-width: 768px) {
-          .video-col-width {
-            width: 100px;
-          }
-          .video-columns-container {
-            gap: 150px;
-          }
-          .video-vertical-gap {
-            gap: 150px;
-          }
         }
       `}</style>
     </div>
