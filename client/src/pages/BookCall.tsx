@@ -336,7 +336,7 @@ export default function BookCall() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-steel-400 text-sm font-medium">Message (Optional)</FormLabel>
+                            <FormLabel className="text-steel-400 text-sm font-medium">What are you building?</FormLabel>
                             <FormControl>
                               <Textarea
                                 placeholder="Tell us about your project requirements..."
