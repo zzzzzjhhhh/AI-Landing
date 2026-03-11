@@ -373,8 +373,8 @@ function PipelineSlides() {
 
 const capabilities = [
   {
-    label: "The Source",
-    description: "Everyday human actions — the foundation of every model we train.",
+    label: "Object recognition & spatial mapping",
+    description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
   },
   {
     label: "The Process",
