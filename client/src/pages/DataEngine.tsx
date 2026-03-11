@@ -315,6 +315,11 @@ export default function DataEngine() {
       {/* VIDEO SHOWCASE */}
       <section className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeInSection>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent mb-16">
+              Human-Robot Comparative Sequences
+            </h2>
+          </FadeInSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FadeInSection>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
