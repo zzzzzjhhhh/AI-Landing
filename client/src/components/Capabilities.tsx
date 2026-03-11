@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -19,22 +19,62 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
+function ScrollChangingHeading() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [phase, setPhase] = useState<"first" | "second">("first");
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setPhase("second"), 1800);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
+
+  const lines = {
+    first: ["The world's robots learn", "by watching humans."],
+    second: ["We make that possible."],
+  };
+
+  return (
+    <div ref={ref} className="max-w-4xl mx-auto text-center min-h-[120px] md:min-h-[140px] flex items-center justify-center">
+      <AnimatePresence mode="wait">
+        <motion.h2
+          key={phase}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef]"
+        >
+          {lines[phase].map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < lines[phase].length - 1 && <br />}
+            </span>
+          ))}
+        </motion.h2>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function Capabilities() {
   return (
     <>
       {/* INTRO — OCEANVEO PITCH */}
       <section className="py-24 lg:py-32 bg-navy-950">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-8 leading-tight">
-                <span className="text-[#8bdaef]">The world's robots learn<br />by watching humans.</span>
-              </h2>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto">
-                Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
-              </p>
-            </div>
-          </FadeIn>
+          <ScrollChangingHeading />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto text-center mt-8"
+          >
+            Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
+          </motion.p>
         </div>
       </section>
 
