@@ -3814,6 +3814,10 @@ h1, h2, h3, h4, h5, h6 {
     height: 70px;
   }
 
+  .md\:min-h-\[140px\] {
+    min-height: 140px;
+  }
+
   .md\:w-\[var\(--radix-navigation-menu-viewport-width\)\] {
     width: var(--radix-navigation-menu-viewport-width);
   }

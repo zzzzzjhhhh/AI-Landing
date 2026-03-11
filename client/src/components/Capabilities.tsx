@@ -19,15 +19,17 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
-function ScrollChangingHeading() {
+function ScrollIntroSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [phase, setPhase] = useState<"first" | "second">("first");
+  const [showSubtitle, setShowSubtitle] = useState(false);
 
   useEffect(() => {
     if (isInView) {
-      const timer = setTimeout(() => setPhase("second"), 1800);
-      return () => clearTimeout(timer);
+      const t1 = setTimeout(() => setPhase("second"), 1800);
+      const t2 = setTimeout(() => setShowSubtitle(true), 2600);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
     }
   }, [isInView]);
 
@@ -37,23 +39,37 @@ function ScrollChangingHeading() {
   };
 
   return (
-    <div ref={ref} className="max-w-4xl mx-auto text-center min-h-[120px] md:min-h-[140px] flex items-center justify-center">
-      <AnimatePresence mode="wait">
-        <motion.h2
-          key={phase}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef]"
-        >
-          {lines[phase].map((line, i) => (
-            <span key={i}>
-              {line}
-              {i < lines[phase].length - 1 && <br />}
-            </span>
-          ))}
-        </motion.h2>
+    <div ref={ref} className="max-w-4xl mx-auto text-center">
+      <div className="min-h-[120px] md:min-h-[140px] flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          <motion.h2
+            key={phase}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef]"
+          >
+            {lines[phase].map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < lines[phase].length - 1 && <br />}
+              </span>
+            ))}
+          </motion.h2>
+        </AnimatePresence>
+      </div>
+      <AnimatePresence>
+        {showSubtitle && (
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto mt-8"
+          >
+            Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
+          </motion.p>
+        )}
       </AnimatePresence>
     </div>
   );
@@ -65,16 +81,7 @@ export function Capabilities() {
       {/* INTRO — OCEANVEO PITCH */}
       <section className="py-24 lg:py-32 bg-navy-950">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <ScrollChangingHeading />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto text-center mt-8"
-          >
-            Oceanveo builds the richest real-world datasets on the planet — human-collected, precisely annotated, engineered for the physical AI systems that will reshape how the world works.
-          </motion.p>
+          <ScrollIntroSection />
         </div>
       </section>
 
