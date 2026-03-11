@@ -280,7 +280,7 @@ function PipelineSlides() {
                   </p>
                 )}
               </div>
-              <div className="hidden md:flex items-center justify-end overflow-hidden h-full pr-0">
+              <div className="hidden md:flex items-start justify-end overflow-hidden h-full pt-[10vh]">
                 <div className="h-[80vh] aspect-square bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] flex items-center justify-center overflow-hidden">
                   {item.video ? (
                     <video

@@ -2036,6 +2036,14 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 0;
 }
 
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
+.pt-\[10vh\] {
+  padding-top: 10vh;
+}
+
 .text-left {
   text-align: left;
 }
