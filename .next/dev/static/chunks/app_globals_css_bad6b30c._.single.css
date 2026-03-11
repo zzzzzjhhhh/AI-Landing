@@ -639,6 +639,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: auto;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1664,6 +1668,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .to-white {
   --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+
+.to-navy-950\/80 {
+  --tw-gradient-to: hsl(var(--navy-950) / .8) var(--tw-gradient-to-position);
 }
 
 .bg-clip-text {
@@ -3817,6 +3825,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.75rem;
   }
 
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .md\:opacity-0 {
     opacity: 0;
   }
@@ -3872,6 +3885,11 @@ h1, h2, h3, h4, h5, h6 {
   .lg\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 }
 

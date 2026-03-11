@@ -18,7 +18,7 @@ export function Hero() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-950/80" />
       </div>
       <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center max-w-6xl">
         <motion.div
