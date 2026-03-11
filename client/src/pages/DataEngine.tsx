@@ -261,52 +261,74 @@ export default function DataEngine() {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/50 to-navy-950" />
         </div>
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-          <FadeInSection>
-            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-              Dataset Capabilities
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-16 max-w-3xl">
-              Rich data for the full complexity of physical space.
-            </h2>
-          </FadeInSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Object Recognition & Spatial Mapping",
-                description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
-              },
-              {
-                title: "Manipulation & Grasping",
-                description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
-              },
-              {
-                title: "Environment Diversity",
-                description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
-              },
-              {
-                title: "Edge Cases & Failure Modes",
-                description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
-              },
-              {
-                title: "Human-Robot Comparative Sequences",
-                description: "Parallel recordings of humans and robots performing the same tasks, for alignment and fine-tuning.",
-              },
-            ].map((cap, i) => (
-              <FadeInSection key={cap.title} delay={i * 0.08}>
-                <div
-                  className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 h-full"
-                  data-testid={`card-capability-${i}`}
-                >
-                  <h3 className="text-white text-lg font-display font-medium mb-3">
-                    {cap.title}
-                  </h3>
-                  <p className="text-white/45 text-sm leading-relaxed font-light">
-                    {cap.description}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24">
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <FadeInSection>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-[#8bdaef]" />
+                  <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium">
+                    Dataset Capabilities
                   </p>
                 </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight leading-tight">
+                  Rich data for the full complexity of physical space.
+                </h2>
               </FadeInSection>
-            ))}
+            </div>
+
+            <div>
+              <FadeInSection>
+                <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-12">
+                  Our datasets cover the full spectrum of physical interaction — from object-level perception to complex multi-step human behavior in diverse environments.
+                </p>
+              </FadeInSection>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Object Recognition & Spatial Mapping",
+                    description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
+                  },
+                  {
+                    title: "Manipulation & Grasping",
+                    description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
+                  },
+                  {
+                    title: "Environment Diversity",
+                    description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
+                  },
+                  {
+                    title: "Edge Cases & Failure Modes",
+                    description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
+                  },
+                  {
+                    title: "Human-Robot Comparative Sequences",
+                    description: "Parallel recordings of humans and robots performing the same tasks, for alignment and fine-tuning.",
+                  },
+                ].map((cap, i) => (
+                  <FadeInSection key={cap.title} delay={i * 0.08}>
+                    <div
+                      className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
+                      data-testid={`card-capability-${i}`}
+                    >
+                      <div className="flex items-start gap-6">
+                        <div className="w-10 h-10 rounded-xl bg-[#8bdaef]/10 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-[#8bdaef]/20 transition-colors duration-500">
+                          <span className="text-[#8bdaef]/70 text-sm font-mono">{String(i + 1).padStart(2, "0")}</span>
+                        </div>
+                        <div>
+                          <h3 className="text-white text-lg font-display font-medium mb-2">
+                            {cap.title}
+                          </h3>
+                          <p className="text-white/45 text-sm leading-relaxed font-light">
+                            {cap.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </FadeInSection>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
