@@ -187,6 +187,125 @@ function HeroSection() {
   );
 }
 
+const pipelineSteps = [
+  {
+    step: "01",
+    title: "Capture",
+    label: "Real World. Real People. Real Scenarios.",
+    body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
+    detail: "This isn't screen recording. It's embodied data collection — first-person, multi-angle, environment-rich.",
+  },
+  {
+    step: "02",
+    title: "Annotate",
+    label: "Nothing Goes Unnamed.",
+    body: "Every object, surface, action, and spatial relationship is labelled with precision. Our annotation protocols are purpose-built for robotics — capturing not just what is in a scene, but how things relate, how they move, and how a human navigates them.",
+    detail: "We go beyond bounding boxes. We deliver structured intelligence.",
+  },
+  {
+    step: "03",
+    title: "Validate",
+    label: "Quality That Compounds.",
+    body: "Every dataset undergoes rigorous multi-pass quality review before delivery. We track consistency across annotators, environments, and edge cases — because a single systematic error in training data becomes a systematic failure in the field.",
+  },
+  {
+    step: "04",
+    title: "Deliver",
+    label: "Ready to Train On.",
+    body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
+  },
+];
+
+function PipelineSlides() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrolled = -rect.top;
+      const slideHeight = sectionHeight / pipelineSteps.length;
+      const index = Math.min(
+        pipelineSteps.length - 1,
+        Math.max(0, Math.floor(scrolled / slideHeight))
+      );
+      setActiveIndex(index);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="how-it-works"
+      className="relative"
+      style={{ height: `${pipelineSteps.length * 100}vh` }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950">
+        {pipelineSteps.map((item, i) => (
+          <div
+            key={item.step}
+            className="absolute inset-0 transition-all duration-700 ease-out"
+            style={{
+              opacity: activeIndex === i ? 1 : 0,
+              transform: activeIndex === i
+                ? "translateY(0)"
+                : activeIndex > i
+                  ? "translateY(-100%)"
+                  : "translateY(100%)",
+            }}
+            data-testid={`card-step-${item.step}`}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+              <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16">
+                <span className="text-[#8bdaef]/50 text-xs uppercase tracking-[0.3em] font-mono mb-6">
+                  Step {item.step}
+                </span>
+                <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-tight mb-6 leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-[#8bdaef] text-base md:text-lg font-medium mb-8">
+                  {item.label}
+                </p>
+                <p className="text-white/60 text-lg md:text-xl leading-relaxed font-light mb-4 max-w-xl">
+                  {item.body}
+                </p>
+                {item.detail && (
+                  <p className="text-white/35 text-base leading-relaxed font-light italic max-w-xl">
+                    {item.detail}
+                  </p>
+                )}
+              </div>
+              <div className="hidden md:flex items-center justify-center p-12 lg:p-16">
+                <div className="w-full max-w-[480px] aspect-square rounded-2xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] border border-white/[0.06] flex items-center justify-center overflow-hidden">
+                  <span className="text-[#8bdaef]/20 text-8xl font-mono font-bold">{item.step}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <div className="absolute bottom-8 left-8 md:left-16 lg:left-24 flex gap-2 z-20">
+          {pipelineSteps.map((_, i) => (
+            <div
+              key={i}
+              className="h-1 rounded-full transition-all duration-500"
+              style={{
+                width: activeIndex === i ? 32 : 12,
+                backgroundColor: activeIndex === i ? "#8bdaef" : "rgba(255,255,255,0.15)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function DataEngine() {
   return (
     <div className="bg-navy-950 min-h-screen flex flex-col">
@@ -205,69 +324,8 @@ export default function DataEngine() {
         </div>
       </section>
 
-      {/* SECTION 1 — THE PIPELINE */}
-      <section id="how-it-works" className="relative">
-        <div className="space-y-0">
-          {[
-            {
-              step: "01",
-              title: "Capture",
-              label: "Real World. Real People. Real Scenarios.",
-              body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
-              detail: "This isn't screen recording. It's embodied data collection — first-person, multi-angle, environment-rich.",
-            },
-            {
-              step: "02",
-              title: "Annotate",
-              label: "Nothing Goes Unnamed.",
-              body: "Every object, surface, action, and spatial relationship is labelled with precision. Our annotation protocols are purpose-built for robotics — capturing not just what is in a scene, but how things relate, how they move, and how a human navigates them.",
-              detail: "We go beyond bounding boxes. We deliver structured intelligence.",
-            },
-            {
-              step: "03",
-              title: "Validate",
-              label: "Quality That Compounds.",
-              body: "Every dataset undergoes rigorous multi-pass quality review before delivery. We track consistency across annotators, environments, and edge cases — because a single systematic error in training data becomes a systematic failure in the field.",
-            },
-            {
-              step: "04",
-              title: "Deliver",
-              label: "Ready to Train On.",
-              body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
-            },
-          ].map((item, i) => (
-            <FadeInSection key={item.step} delay={0}>
-              <div
-                className="grid grid-cols-1 md:grid-cols-2 min-h-[520px] md:min-h-[600px]"
-                data-testid={`card-step-${item.step}`}
-              >
-                <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 md:py-20 bg-navy-950">
-                  <span className="text-[#8bdaef]/50 text-xs uppercase tracking-[0.3em] font-mono mb-4">
-                    Step {item.step}
-                  </span>
-                  <h3 className="text-white text-3xl md:text-4xl font-display font-medium tracking-tight mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-[#8bdaef] text-sm font-medium mb-6">
-                    {item.label}
-                  </p>
-                  <p className="text-white/55 text-base leading-relaxed font-light mb-4">
-                    {item.body}
-                  </p>
-                  {item.detail && (
-                    <p className="text-white/35 text-sm leading-relaxed font-light italic">
-                      {item.detail}
-                    </p>
-                  )}
-                </div>
-                <div className="relative bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] overflow-hidden flex items-end justify-end">
-                  <div className="w-[85%] h-[75%] rounded-tl-2xl bg-white/[0.04] border border-white/[0.08]" />
-                </div>
-              </div>
-            </FadeInSection>
-          ))}
-        </div>
-      </section>
+      {/* SECTION 1 — THE PIPELINE (scroll-driven slides) */}
+      <PipelineSlides />
 
       {/* SECTION 2 — WHAT WE ANNOTATE */}
       <section className="relative py-28 md:py-36 overflow-hidden">
