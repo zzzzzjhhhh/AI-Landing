@@ -1945,6 +1945,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: .75rem;
 }
 
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -2343,6 +2348,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-white\/80 {
   color: #fffc;
+}
+
+.text-navy-900\/35 {
+  color: hsl(var(--navy-900) / .35);
+}
+
+.text-navy-900\/40 {
+  color: hsl(var(--navy-900) / .4);
+}
+
+.text-navy-900\/50 {
+  color: hsl(var(--navy-900) / .5);
+}
+
+.text-navy-900\/70 {
+  color: hsl(var(--navy-900) / .7);
+}
+
+.text-navy-950 {
+  --tw-text-opacity: 1;
+  color: hsl(var(--navy-950) / var(--tw-text-opacity, 1));
 }
 
 .opacity-0 {
@@ -3945,14 +3971,14 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 1.5rem;
   }
 
-  .md\:py-32 {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-
   .md\:py-36 {
     padding-top: 9rem;
     padding-bottom: 9rem;
+  }
+
+  .md\:py-44 {
+    padding-top: 11rem;
+    padding-bottom: 11rem;
   }
 
   .md\:text-5xl {
