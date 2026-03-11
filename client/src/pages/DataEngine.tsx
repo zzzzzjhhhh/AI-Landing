@@ -535,6 +535,14 @@ export default function DataEngine() {
             <p className="text-white text-2xl md:text-3xl lg:text-4xl font-display font-medium tracking-tight text-center mt-16 max-w-3xl mx-auto">
               Oceanveo datasets are built to close that gap.
             </p>
+            <div className="flex justify-center mt-10">
+              <Link href="/book">
+                <Button className="rounded-xl px-8 py-6 text-base font-medium bg-white text-navy-950 hover:bg-white/90 transition-colors" data-testid="btn-get-in-touch">
+                  Get in touch
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </FadeInSection>
         </div>
       </section>
