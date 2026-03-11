@@ -213,6 +213,7 @@ const pipelineSteps = [
     title: "Deliver",
     label: "Ready to Train On.",
     body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
+    image: "/images/deliver.png",
   },
 ];
 
@@ -289,6 +290,12 @@ function PipelineSlides() {
                       muted
                       loop
                       playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
                       className="w-full h-full object-cover"
                     />
                   ) : (
