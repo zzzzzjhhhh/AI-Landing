@@ -2074,6 +2074,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1rem;
 }
 
+.text-\[32px\] {
+  font-size: 32px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -3781,6 +3785,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 64px;
   }
 
+  .sm\:text-\[40px\] {
+    font-size: 40px;
+  }
+
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full[data-state="open"] {
     --tw-enter-translate-y: 100%;
   }
@@ -3929,6 +3937,10 @@ h1, h2, h3, h4, h5, h6 {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-\[56px\] {
+    font-size: 56px;
   }
 
   .md\:opacity-0 {
