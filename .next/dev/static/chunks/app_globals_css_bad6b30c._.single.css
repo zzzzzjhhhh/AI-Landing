@@ -655,6 +655,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 4rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -2253,6 +2257,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #fffc;
 }
 
+.\!text-\[\#09111d\] {
+  --tw-text-opacity: 1 !important;
+  color: rgb(9 17 29 / var(--tw-text-opacity, 1)) !important;
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -2913,6 +2922,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .hover\:bg-white\/\[0\.06\]:hover {
   background-color: #ffffff0f;
+}
+
+.hover\:bg-white\/90:hover {
+  background-color: #ffffffe6;
 }
 
 .hover\:text-accent-foreground:hover {
