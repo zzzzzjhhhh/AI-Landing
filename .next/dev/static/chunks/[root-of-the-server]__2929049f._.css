@@ -2070,6 +2070,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1rem;
 }
 
+.text-\[41px\] {
+  font-size: 41px;
+}
+
 .font-bold {
   font-weight: 700;
 }
