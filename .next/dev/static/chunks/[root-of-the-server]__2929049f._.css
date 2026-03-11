@@ -2021,6 +2021,14 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 0;
 }
 
+.pb-\[168px\] {
+  padding-bottom: 168px;
+}
+
+.pt-\[168px\] {
+  padding-top: 168px;
+}
+
 .text-left {
   text-align: left;
 }

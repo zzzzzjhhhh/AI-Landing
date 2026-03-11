@@ -79,7 +79,7 @@ export function Capabilities() {
   return (
     <>
       {/* INTRO — OCEANVEO PITCH */}
-      <section className="py-24 lg:py-32 bg-navy-950">
+      <section className="py-24 lg:py-32 bg-navy-950 pt-[168px] pb-[168px]">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <ScrollIntroSection />
         </div>
