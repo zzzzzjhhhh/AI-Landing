@@ -2204,6 +2204,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #8bdaef66;
 }
 
+.text-\[\#ffffffdb\] {
+  color: #ffffffdb;
+}
+
 .text-blue-400\/80 {
   color: #60a5facc;
 }
@@ -2325,10 +2329,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-white\/80 {
   color: #fffc;
-}
-
-.text-\[\#ffffffdb\] {
-  color: #ffffffdb;
 }
 
 .opacity-0 {

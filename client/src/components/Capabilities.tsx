@@ -208,44 +208,6 @@ export function Capabilities() {
         </div>
       </section>
 
-      {/* VIDEO SECTION — THREE MOMENTS */}
-      <section className="py-24 lg:py-32 bg-navy-950">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeIn>
-            <p className="text-white/60 text-lg md:text-xl text-center mb-16 font-light">
-              Watch what we capture.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                label: "The Source",
-                caption: "Everyday human actions — the foundation of every model we train.",
-              },
-              {
-                label: "The Process",
-                caption: "Every object named. Every interaction structured. Nothing left unread.",
-              },
-              {
-                label: "The Goal",
-                caption: "When robots learn well, they begin to move like us.",
-              },
-            ].map((item, i) => (
-              <FadeIn key={item.label} delay={i * 0.1}>
-                <div className="group" data-testid={`card-video-${i}`}>
-                  <div className="aspect-video bg-white/[0.03] border border-white/[0.06] rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
-                    <p className="text-white/20 text-sm font-light">Video placeholder</p>
-                  </div>
-                  <p className="text-[#8bdaef] text-sm font-medium mb-2">{item.label}</p>
-                  <p className="text-white/50 text-sm leading-relaxed font-light">{item.caption}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 3 — WHY OCEANVEO */}
       <section className="py-24 lg:py-32 bg-navy-950">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
