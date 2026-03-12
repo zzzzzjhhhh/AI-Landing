@@ -11,3 +11,4 @@ vite.config.ts.*
 skills-lock.json
 .vercel
 .env*.local
+.next/
