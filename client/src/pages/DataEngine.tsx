@@ -184,22 +184,22 @@ const processSteps = [
   {
     step: "01",
     title: "Capture",
-    body: "We deploy trained annotators into the environments that matter — homes, workshops, industrial settings, and beyond. Every collection session is designed around the specific use cases, object categories, and interaction types our clients need their AI to understand.",
+    body: "We deploy trained annotators into the environments that matter most to the model. Each session is planned around the objects, actions, and interaction types a client needs their system to learn.",
   },
   {
     step: "02",
-    title: "Annotate",
-    body: "Every object, surface, action, and spatial relationship is labelled with precision. Our annotation protocols are purpose-built for robotics — capturing not just what is in a scene, but how things relate, how they move, and how a human navigates them.",
+    title: "Structure",
+    body: "We map objects, surfaces, actions, and spatial relationships using protocols built specifically for robotics. The goal is not just scene labeling, but usable structure for physical-world learning.",
   },
   {
     step: "03",
     title: "Validate",
-    body: "Every dataset undergoes rigorous multi-pass quality review before delivery. We track consistency across annotators, environments, and edge cases — because a single systematic error in training data becomes a systematic failure in the field.",
+    body: "Each dataset goes through multi-pass review to check consistency across annotators, environments, and failure-prone cases. Because repeated annotation errors become repeated system failures.",
   },
   {
     step: "04",
     title: "Deliver",
-    body: "Datasets are delivered in model-ready formats, structured to client specification. Clean, consistent, documented — built to accelerate training cycles, not complicate them.",
+    body: "Outputs are delivered in model-ready formats, aligned to client specifications and training requirements. Clean, documented, and ready to integrate into the pipeline.",
   },
 ];
 
