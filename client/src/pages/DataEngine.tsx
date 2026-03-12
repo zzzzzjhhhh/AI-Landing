@@ -236,31 +236,32 @@ function ProcessSteps() {
           <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
         </div>
 
-        {/* Top steps: 01 and 02 — with dashed lines extending down */}
+        {/* Top steps: 01 and 02 — dashed line departs FROM the divider bar */}
         <div className="grid grid-cols-2 gap-16">
           {processSteps.slice(0, 2).map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
               <div data-testid={`process-step-${step.step}`} className="flex flex-col">
-                <StepContent step={step} />
-                {/* dashed line down from step to video */}
-                <div className="mt-6 flex justify-start pl-1">
-                  <DashedLine height={56} />
+                <span
+                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
+                  style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
+                >
+                  {step.step}
+                </span>
+                <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
+                <p className="text-white/45 text-sm leading-relaxed font-light mb-6">{step.body}</p>
+                {/* Divider bar connects directly into dashed line */}
+                <div className="flex items-center gap-0 mb-0">
+                  <div className="w-8 h-px bg-white/30" />
                 </div>
-                {/* end cap bar */}
-                <div className="flex justify-start pl-[3px]">
-                  <div className="w-3 h-px bg-white/30" />
+                <div className="flex justify-start">
+                  <DashedLine height={52} />
+                </div>
+                {/* Node circle sitting on video top border */}
+                <div className="flex justify-start -mb-[6px]">
+                  <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" />
                 </div>
               </div>
             </FadeInSection>
-          ))}
-        </div>
-
-        {/* Node dots sitting ON the top video border */}
-        <div className="grid grid-cols-2 gap-16 -mb-[6px]">
-          {[0, 1].map(i => (
-            <div key={i} className="flex justify-start pl-0">
-              <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" style={{marginLeft: "2px"}} />
-            </div>
           ))}
         </div>
 
@@ -277,29 +278,31 @@ function ProcessSteps() {
           />
         </div>
 
-        {/* Node dots sitting ON the bottom video border */}
-        <div className="grid grid-cols-2 gap-16 -mt-[6px]">
-          {[0, 1].map(i => (
-            <div key={i} className="flex justify-start pl-0">
-              <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" style={{marginLeft: "2px"}} />
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom steps: 03 and 04 — with dashed lines extending up */}
+        {/* Bottom steps: 03 and 04 — node on video border → dashed line → divider bar → content */}
         <div className="grid grid-cols-2 gap-16">
           {processSteps.slice(2, 4).map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
               <div data-testid={`process-step-${step.step}`} className="flex flex-col">
-                {/* end cap bar */}
-                <div className="flex justify-start pl-[3px]">
-                  <div className="w-3 h-px bg-white/30" />
+                {/* Node circle sitting on video bottom border */}
+                <div className="flex justify-start -mt-[6px]">
+                  <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" />
                 </div>
-                {/* dashed line up to video */}
-                <div className="mb-6 flex justify-start pl-1">
-                  <DashedLine height={56} />
+                {/* Dashed line going down to content */}
+                <div className="flex justify-start">
+                  <DashedLine height={52} />
                 </div>
-                <StepContent step={step} />
+                {/* Divider bar — terminus of dashed line, same left alignment */}
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-px bg-white/30" />
+                </div>
+                <span
+                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
+                  style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
+                >
+                  {step.step}
+                </span>
+                <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
+                <p className="text-white/45 text-sm leading-relaxed font-light">{step.body}</p>
               </div>
             </FadeInSection>
           ))}
