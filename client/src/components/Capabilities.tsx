@@ -206,57 +206,65 @@ export function Capabilities() {
         </div>
       </section>
 
-      {/* MICRO MOVES VIDEO SECTION */}
-      <section className="bg-navy-950 pb-24 lg:pb-32">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <FadeIn>
-            <div className="rounded-2xl overflow-hidden w-full relative" style={{ paddingBottom: "56.25%" }}>
-              <video
-                src="/videos/micro_moves.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              {/* Top-left overlay — Fine Motor Skills */}
-              <div className="absolute top-0 left-0 mt-6 ml-8 z-20 max-w-[220px]">
-                <p className="text-white text-[9px] uppercase tracking-[0.2em] font-semibold mb-2">Human Fine Motor Skills</p>
-                <div className="mb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.6)" }} />
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Finger pressure mapping</p>
+      {/* MICRO MOVES VIDEO SECTION — two-column layout */}
+      <section className="bg-navy-950 pb-24 lg:pb-32 overflow-hidden">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-start">
+
+            {/* Left: text */}
+            <FadeIn>
+              <div className="px-6 md:pl-12 lg:pl-16 md:pr-10 lg:pr-14 flex flex-col justify-start pt-0">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6">
+                  We translate human perception into structured intelligence.
+                </h2>
+                <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.25)" }} />
+                <p className="text-[22px] font-normal text-[#ffffffdb] leading-relaxed">
+                  Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Right: 1:1 square video, flush to right edge */}
+            <FadeIn delay={0.1}>
+              <div className="relative aspect-square overflow-hidden rounded-2xl md:rounded-r-none">
+                <video
+                  src="/videos/hand_grip_square.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full object-cover"
+                />
+                {/* Top-left overlay — Fine Motor Skills */}
+                <div className="absolute top-0 left-0 mt-6 ml-8 z-20 max-w-[220px]">
+                  <p className="text-white text-[9px] uppercase tracking-[0.2em] font-semibold mb-2">Human Fine Motor Skills</p>
+                  <div className="mb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.6)" }} />
+                  <div className="flex items-center gap-2 py-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                    <p className="text-white text-[11px] font-light">Finger pressure mapping</p>
+                  </div>
+                  <div className="flex items-center gap-2 py-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                    <p className="text-white text-[11px] font-light">Wrist rotation angle</p>
+                  </div>
+                  <div className="flex items-center gap-2 py-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                    <p className="text-white text-[11px] font-light">Grasp force variance</p>
+                  </div>
+                  <div className="flex items-center gap-2 py-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                    <p className="text-white text-[11px] font-light">Contact timing</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Wrist rotation angle</p>
-                </div>
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Grasp force variance</p>
-                </div>
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Contact timing</p>
+                {/* Bottom-left caption */}
+                <div className="absolute bottom-0 left-0 mb-6 ml-8 z-20">
+                  <p className="text-white/50 text-[10px] font-light tracking-wide">Dexterous manipulation · VLA-ready labels</p>
                 </div>
               </div>
-              {/* Bottom-left caption */}
-              <div className="absolute bottom-0 left-0 mb-6 ml-8 z-20">
-                <p className="text-white/50 text-[10px] font-light tracking-wide">Dexterous manipulation · VLA-ready labels</p>
-              </div>
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <div className="max-w-4xl text-center mx-auto mt-14">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-8">
-                We translate human perception into structured intelligence.
-              </h2>
-              <p className="md:text-lg text-[22px] font-normal text-[#ffffffdb] pl-[110px] pr-[110px]">
-                Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
-              </p>
-            </div>
-          </FadeIn>
+            </FadeIn>
+
+          </div>
         </div>
       </section>
 
