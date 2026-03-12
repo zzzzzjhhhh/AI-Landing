@@ -391,7 +391,9 @@ export default function DataEngine() {
               For AI & Robotics Teams
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mb-16">
-              The difference between a robot that works in the lab and one that works in the real world is the data behind it. Synthetic data and simulation help — but real-world performance depends on edge cases, human unpredictability, and environments no spec can fully capture.
+              The gap between a system that performs in testing and one that performs in the real world is usually not the model alone — it is the training data behind it.
+              <br /><br />
+              Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
             </p>
           </FadeInSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
