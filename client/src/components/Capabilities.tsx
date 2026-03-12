@@ -220,6 +220,31 @@ export function Capabilities() {
                 preload="auto"
                 className="absolute inset-0 w-full h-full object-cover"
               />
+              {/* Top-left overlay — Fine Motor Skills */}
+              <div className="absolute top-0 left-0 mt-6 ml-8 z-20 max-w-[220px]">
+                <p className="text-white text-[9px] uppercase tracking-[0.2em] font-semibold mb-2">Human Fine Motor Skills</p>
+                <div className="mb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.6)" }} />
+                <div className="flex items-center gap-2 py-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                  <p className="text-white text-[11px] font-light">Finger pressure mapping</p>
+                </div>
+                <div className="flex items-center gap-2 py-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                  <p className="text-white text-[11px] font-light">Wrist rotation angle</p>
+                </div>
+                <div className="flex items-center gap-2 py-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                  <p className="text-white text-[11px] font-light">Grasp force variance</p>
+                </div>
+                <div className="flex items-center gap-2 py-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
+                  <p className="text-white text-[11px] font-light">Contact timing</p>
+                </div>
+              </div>
+              {/* Bottom-left caption */}
+              <div className="absolute bottom-0 left-0 mb-6 ml-8 z-20">
+                <p className="text-white/50 text-[10px] font-light tracking-wide">Dexterous manipulation · VLA-ready labels</p>
+              </div>
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
