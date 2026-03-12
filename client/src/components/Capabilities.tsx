@@ -208,20 +208,22 @@ export function Capabilities() {
 
       {/* MICRO MOVES VIDEO SECTION */}
       <section className="bg-navy-950 pb-24 lg:pb-32">
-        <div className="flex flex-col items-center px-6 md:px-12 lg:px-16">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeIn>
-            <video
-              src="/videos/micro_moves.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="rounded-2xl max-w-4xl w-full object-cover"
-            />
+            <div className="rounded-2xl overflow-hidden w-full relative" style={{ paddingBottom: "56.25%" }}>
+              <video
+                src="/videos/micro_moves.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <div className="max-w-4xl text-center mt-14">
+            <div className="max-w-4xl text-center mx-auto mt-14">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-8">
                 We translate human perception into structured intelligence.
               </h2>
