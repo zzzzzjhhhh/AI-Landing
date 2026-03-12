@@ -225,8 +225,11 @@ function ProcessSteps() {
           {processSteps.map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
               <div data-testid={`process-step-${step.step}`}>
-                <span className="text-[#8bdaef]/50 text-xs uppercase tracking-[0.3em] font-mono block mb-4">
-                  Step {step.step}
+                <span
+                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-4"
+                  style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
+                >
+                  {step.step}
                 </span>
                 <div className="w-8 h-px bg-white/20 mb-4" />
                 <h3 className="text-white text-xl font-display font-medium tracking-tight mb-3">
