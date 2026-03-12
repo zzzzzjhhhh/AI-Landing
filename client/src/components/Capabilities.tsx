@@ -116,7 +116,7 @@ function ScrollIntroSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef]"
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-gradient"
           >
             {lines[phase].map((line, i) => (
               <span key={i}>
