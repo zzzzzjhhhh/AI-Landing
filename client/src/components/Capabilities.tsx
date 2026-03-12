@@ -312,35 +312,6 @@ export function Capabilities() {
         </div>
       </section>
 
-      {/* SECTION 2 — WHAT WE DO */}
-      <section className="py-24 lg:py-32 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950 pointer-events-none" />
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative">
-          <FadeIn>
-            <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
-              Our Work
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-10 max-w-3xl leading-tight">
-              We translate human perception into structured intelligence.
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.15}>
-            <div className="max-w-3xl space-y-6">
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
-              </p>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
-              </p>
-              <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-                The result is training data that makes robots more capable, more reliable, and more ready for the world they will operate in.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* SECTION 3 — WHY OCEANVEO */}
       <section className="py-24 lg:py-32 bg-navy-950">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
