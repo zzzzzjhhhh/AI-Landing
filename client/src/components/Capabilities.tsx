@@ -206,6 +206,23 @@ export function Capabilities() {
         </div>
       </section>
 
+      {/* MICRO MOVES VIDEO SECTION */}
+      <section className="bg-navy-950 pb-24 lg:pb-32">
+        <div className="flex justify-center px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <video
+              src="/videos/micro_moves.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="rounded-2xl max-w-4xl w-full object-cover"
+            />
+          </FadeIn>
+        </div>
+      </section>
+
       {/* SECTION 2 — WHAT WE DO */}
       <section className="py-24 lg:py-32 bg-navy-950 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950 pointer-events-none" />
