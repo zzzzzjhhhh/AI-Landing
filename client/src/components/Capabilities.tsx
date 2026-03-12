@@ -207,7 +207,7 @@ export function Capabilities() {
       </section>
 
       {/* MICRO MOVES VIDEO SECTION — two-column layout */}
-      <section className="bg-navy-950 pb-24 lg:pb-32 overflow-hidden">
+      <section className="bg-navy-950 pb-24 lg:pb-32 overflow-hidden pt-[200px]">
         <div className="max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 items-start">
 
