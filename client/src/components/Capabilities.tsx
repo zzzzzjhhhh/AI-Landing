@@ -314,7 +314,7 @@ export function Capabilities() {
       </section>
 
       {/* SECTION 3 — WHY OCEANVEO */}
-      <section className="py-24 lg:py-32 bg-navy-950">
+      <section className="py-24 lg:py-32" style={{background: "linear-gradient(135deg, #080e1c 0%, #050a12 40%, #04060a 100%)"}}>
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeIn>
             <p className="text-[#8bdaef] text-sm uppercase tracking-[0.2em] font-medium mb-4">
