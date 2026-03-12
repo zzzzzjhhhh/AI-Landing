@@ -278,17 +278,29 @@ export function Capabilities() {
           </FadeIn>
           <FadeIn delay={0.15}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <img src="/images/finger_1.png" alt="Finger precision" className="w-full h-full object-cover" />
+              <div className="flex flex-col gap-3">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <img src="/images/finger_1.png" alt="Finger precision" className="w-full h-full object-cover" />
+                </div>
+                <p className="text-white/50 text-xs font-light text-center">Index approach · contact initiation</p>
               </div>
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <img src="/images/finger_2.png" alt="Finger contact" className="w-full h-full object-cover" />
+              <div className="flex flex-col gap-3">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <img src="/images/finger_2.png" alt="Finger contact" className="w-full h-full object-cover" />
+                </div>
+                <p className="text-white/50 text-xs font-light text-center">Fingertip pressure · surface contact</p>
               </div>
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <img src="/images/hands_3.png" alt="Hand motion" className="w-full h-full object-cover" />
+              <div className="flex flex-col gap-3">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <img src="/images/hands_3.png" alt="Hand motion" className="w-full h-full object-cover" />
+                </div>
+                <p className="text-white/50 text-xs font-light text-center">Dual-hand coordination · reach phase</p>
               </div>
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <img src="/images/grip_4.png" alt="Grip study" className="w-full h-full object-cover" />
+              <div className="flex flex-col gap-3">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <img src="/images/grip_4.png" alt="Grip study" className="w-full h-full object-cover" />
+                </div>
+                <p className="text-white/50 text-xs font-light text-center">Multi-finger grip · object stabilisation</p>
               </div>
             </div>
           </FadeIn>
