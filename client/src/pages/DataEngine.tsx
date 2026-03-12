@@ -203,6 +203,74 @@ const processSteps = [
   },
 ];
 
+const infrastructureItems = [
+  {
+    name: "World Engine",
+    description: "Real-world data collection across homes, workshops, industrial settings, and other physical environments where embodied AI must operate.",
+  },
+  {
+    name: "Scenario Engine",
+    description: "Design of task flows, edge cases, object interactions, and environmental conditions tailored to each client's use case.",
+  },
+  {
+    name: "Behavior Engine",
+    description: "Structured annotation of movement, manipulation, intent, recovery, spatial context, and human-environment interaction.",
+  },
+  {
+    name: "Validation Engine",
+    description: "Multi-pass review systems for consistency, spatial accuracy, annotation quality, and edge-case reliability across datasets.",
+  },
+  {
+    name: "Training Intelligence",
+    description: "Model-ready outputs delivered to specification, with the structure and documentation needed for robotics training and evaluation.",
+  },
+];
+
+function InfrastructureStack() {
+  return (
+    <section className="bg-navy-950 py-24 lg:py-32">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+        {/* Header row */}
+        <FadeInSection>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+            <div>
+              <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium mb-4">Infrastructure Stack</p>
+              <h2 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-white leading-tight max-w-sm">
+                Five engines.<br />One system.
+              </h2>
+            </div>
+            <p className="text-white/40 text-sm leading-relaxed max-w-xs md:text-right">
+              Each layer of the stack handles a distinct phase of the data pipeline — from collection to delivery.
+            </p>
+          </div>
+        </FadeInSection>
+
+        {/* Items — full-width rows with dividers */}
+        <div className="divide-y divide-white/[0.08]">
+          {infrastructureItems.map((item, i) => (
+            <FadeInSection key={item.name} delay={i * 0.07}>
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-16 py-8 group">
+                {/* Left: index + name */}
+                <div className="flex items-start gap-5">
+                  <span
+                    className="text-[13px] font-light tabular-nums mt-0.5"
+                    style={{color: "rgba(139,218,239,0.45)"}}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-white text-xl font-display font-medium tracking-tight">{item.name}</h3>
+                </div>
+                {/* Right: description */}
+                <p className="text-white/45 text-sm leading-relaxed font-light max-w-xl">{item.description}</p>
+              </div>
+            </FadeInSection>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProcessSteps() {
   const leftSteps = processSteps.slice(0, 2);  // 01 Capture, 02 Structure
   const rightSteps = processSteps.slice(2, 4); // 03 Validate, 04 Deliver
@@ -357,6 +425,9 @@ export default function DataEngine() {
           </FadeInSection>
         </div>
       </section>
+
+      {/* INFRASTRUCTURE STACK SECTION */}
+      <InfrastructureStack />
 
       {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
       <ProcessSteps />
