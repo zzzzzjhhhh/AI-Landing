@@ -273,7 +273,7 @@ export function Capabilities() {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeIn>
             <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium text-center mb-6">How It Works</p>
-            <p className="text-[22px] font-normal text-[#ffffffdb] text-center max-w-4xl mx-auto mb-16 leading-relaxed pl-[150px] pr-[150px]">
+            <p className="md:text-lg text-[#ffffffdb] font-medium text-[22px] text-center max-w-4xl mx-auto mb-16 leading-relaxed pl-[150px] pr-[150px]">
               We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
             </p>
           </FadeIn>
