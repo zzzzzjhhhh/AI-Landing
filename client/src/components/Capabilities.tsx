@@ -272,6 +272,7 @@ export function Capabilities() {
       <section className="bg-navy-950 py-24 lg:py-32">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeIn>
+            <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium text-center mb-6">How It Works</p>
             <p className="text-[22px] font-normal text-[#ffffffdb] text-center max-w-4xl mx-auto mb-16 leading-relaxed pl-[150px] pr-[150px]">
               We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
             </p>
