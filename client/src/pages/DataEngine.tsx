@@ -204,8 +204,8 @@ const processSteps = [
 ];
 
 function ProcessSteps() {
-  const leftSteps = processSteps.slice(0, 3); // 01 Capture, 02 Structure, 03 Validate
-  const rightSteps = processSteps.slice(3, 4); // 04 Deliver
+  const leftSteps = processSteps.slice(0, 2);  // 01 Capture, 02 Structure
+  const rightSteps = processSteps.slice(2, 4); // 03 Validate, 04 Deliver
 
   return (
     <section id="how-it-works" className="bg-navy-950 py-24 lg:py-32">
@@ -227,7 +227,7 @@ function ProcessSteps() {
           />
         </div>
 
-        {/* Steps below: left col = 01+02+03, right col = 04 */}
+        {/* Steps below: left col = 01+02, right col = 03+04 */}
         <div className="grid grid-cols-2 gap-x-16 gap-y-0">
           {/* Left column */}
           <div className="flex flex-col gap-10">
@@ -240,7 +240,7 @@ function ProcessSteps() {
                   >
                     {step.step}
                   </span>
-                  <div className="w-8 h-px bg-white/20 mb-3" />
+                  <div className="w-full h-px bg-white/20 mb-3" />
                   <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
                   <p className="text-white/45 text-sm leading-relaxed font-light mr-[60px]">{step.body}</p>
                 </div>
@@ -259,7 +259,7 @@ function ProcessSteps() {
                   >
                     {step.step}
                   </span>
-                  <div className="w-8 h-px bg-white/20 mb-3" />
+                  <div className="w-full h-px bg-white/20 mb-3" />
                   <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
                   <p className="text-white/45 text-sm leading-relaxed font-light mr-[60px]">{step.body}</p>
                 </div>
