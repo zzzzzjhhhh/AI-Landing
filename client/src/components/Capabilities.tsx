@@ -268,6 +268,33 @@ export function Capabilities() {
         </div>
       </section>
 
+      {/* IMAGE GRID SECTION */}
+      <section className="bg-navy-950 py-24 lg:py-32">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeIn>
+            <p className="text-[22px] font-normal text-[#ffffffdb] text-center max-w-4xl mx-auto mb-16 leading-relaxed">
+              We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img src="/images/finger_1.png" alt="Finger precision" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img src="/images/finger_2.png" alt="Finger contact" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img src="/images/hands_3.png" alt="Hand motion" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img src="/images/grip_4.png" alt="Grip study" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* SECTION 2 — WHAT WE DO */}
       <section className="py-24 lg:py-32 bg-navy-950 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950 pointer-events-none" />
