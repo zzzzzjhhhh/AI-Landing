@@ -232,7 +232,7 @@ function ProcessSteps() {
       className="relative"
       style={{ height: `${processSteps.length * 100}vh` }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center">
+      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center mt-[100px] mb-[100px]">
         <div className="w-full max-w-4xl mx-auto px-6 md:px-12 flex flex-col items-center">
           <div className="w-full text-left mb-4">
             <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
