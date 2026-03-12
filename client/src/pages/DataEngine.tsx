@@ -203,27 +203,10 @@ const processSteps = [
   },
 ];
 
-function StepContent({ step }: { step: typeof processSteps[0] }) {
-  return (
-    <div>
-      <span
-        className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
-        style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
-      >
-        {step.step}
-      </span>
-      <div className="w-8 h-px bg-white/20 mb-4" />
-      <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-      <p className="text-white/45 text-sm leading-relaxed font-light">{step.body}</p>
-    </div>
-  );
-}
-
-function SolidLine({ height = 64 }: { height?: number }) {
-  return <div style={{width: 1, height, background: "rgba(139,218,239,0.35)"}} />;
-}
-
 function ProcessSteps() {
+  const leftSteps = processSteps.slice(0, 3); // 01 Capture, 02 Structure, 03 Validate
+  const rightSteps = processSteps.slice(3, 4); // 04 Deliver
+
   return (
     <section id="how-it-works" className="bg-navy-950 py-24 lg:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
@@ -231,32 +214,8 @@ function ProcessSteps() {
           <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
         </div>
 
-        {/* Top steps: 01 and 02 — dashed line departs FROM the divider bar */}
-        <div className="grid grid-cols-2 gap-16">
-          {processSteps.slice(0, 2).map((step, i) => (
-            <FadeInSection key={step.step} delay={i * 0.1}>
-              <div data-testid={`process-step-${step.step}`} className="flex flex-col">
-                <span
-                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
-                  style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
-                >
-                  {step.step}
-                </span>
-                <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed font-light mb-6 mr-[80px]">{step.body}</p>
-                {/* Solid line down to video */}
-                <SolidLine height={60} />
-                {/* Node circle sitting on video top border */}
-                <div className="-mb-[6px]">
-                  <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" />
-                </div>
-              </div>
-            </FadeInSection>
-          ))}
-        </div>
-
-        {/* Video */}
-        <div className="w-full rounded-2xl overflow-hidden border border-white/[0.1]" style={{maxHeight: "60vh"}}>
+        {/* Video — full width at top */}
+        <div className="w-full rounded-2xl overflow-hidden border border-white/[0.08] mb-16" style={{maxHeight: "60vh"}}>
           <video
             src="/videos/apple_video.mp4"
             autoPlay
@@ -268,28 +227,45 @@ function ProcessSteps() {
           />
         </div>
 
-        {/* Bottom steps: 03 and 04 — node on video border → dashed line → divider bar → content */}
-        <div className="grid grid-cols-2 gap-16">
-          {processSteps.slice(2, 4).map((step, i) => (
-            <FadeInSection key={step.step} delay={i * 0.1}>
-              <div data-testid={`process-step-${step.step}`} className="flex flex-col">
-                {/* Node circle sitting on video bottom border */}
-                <div className="-mt-[6px]">
-                  <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" />
+        {/* Steps below: left col = 01+02+03, right col = 04 */}
+        <div className="grid grid-cols-2 gap-x-16 gap-y-0">
+          {/* Left column */}
+          <div className="flex flex-col gap-10">
+            {leftSteps.map((step, i) => (
+              <FadeInSection key={step.step} delay={i * 0.08}>
+                <div data-testid={`process-step-${step.step}`}>
+                  <span
+                    className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
+                    style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
+                  >
+                    {step.step}
+                  </span>
+                  <div className="w-8 h-px bg-white/20 mb-3" />
+                  <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
+                  <p className="text-white/45 text-sm leading-relaxed font-light mr-[60px]">{step.body}</p>
                 </div>
-                {/* Solid line down to content */}
-                <SolidLine height={60} />
-                <span
-                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-3 mt-4"
-                  style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
-                >
-                  {step.step}
-                </span>
-                <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed font-light mr-[80px]">{step.body}</p>
-              </div>
-            </FadeInSection>
-          ))}
+              </FadeInSection>
+            ))}
+          </div>
+
+          {/* Right column */}
+          <div className="flex flex-col gap-10">
+            {rightSteps.map((step, i) => (
+              <FadeInSection key={step.step} delay={i * 0.08}>
+                <div data-testid={`process-step-${step.step}`}>
+                  <span
+                    className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
+                    style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
+                  >
+                    {step.step}
+                  </span>
+                  <div className="w-8 h-px bg-white/20 mb-3" />
+                  <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
+                  <p className="text-white/45 text-sm leading-relaxed font-light mr-[60px]">{step.body}</p>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
         </div>
       </div>
     </section>
