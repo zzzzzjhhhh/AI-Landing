@@ -327,28 +327,38 @@ export function Capabilities() {
             </h2>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
+                num: "01",
                 title: "Built for Physical Intelligence",
                 description: "Our collection protocols, behavioral taxonomy, and quality systems are designed specifically for robotics, humanoids, and embodied AI — not adapted from language workflows or generic image labeling.",
               },
               {
+                num: "02",
                 title: "Human Nuance, Structured for Machines",
                 description: "Our teams are trained to capture the spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
               },
               {
+                num: "03",
                 title: "Scenario Depth Over Dataset Scale",
                 description: "We focus on the situations that matter most: diverse environments, rare interactions, and failure-prone edge cases where physical AI systems actually break.",
               },
             ].map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.1}>
                 <div
-                  className="group bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 h-full"
+                  className="relative flex flex-col justify-between bg-[#0e1117] border border-white/[0.07] rounded-3xl p-8 overflow-hidden h-[340px] hover:border-white/[0.14] transition-all duration-500"
                   data-testid={`card-pillar-${i}`}
                 >
-                  <h3 className="text-white text-xl font-display font-medium mb-4">{pillar.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed font-light">{pillar.description}</p>
+                  <div className="flex justify-end">
+                    <span className="text-[110px] font-thin leading-none text-white/10 select-none tracking-tighter">
+                      {pillar.num}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-white text-lg font-display font-medium mb-3 leading-snug">{pillar.title}</h3>
+                    <p className="text-white/40 text-sm leading-relaxed font-light">{pillar.description}</p>
+                  </div>
                 </div>
               </FadeIn>
             ))}
