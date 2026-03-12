@@ -269,7 +269,7 @@ export function Capabilities() {
       </section>
 
       {/* IMAGE GRID SECTION */}
-      <section className="py-24 lg:py-32" style={{background: "linear-gradient(180deg, #060c14 0%, #07121e 20%, rgba(139,218,239,0.07) 50%, #07121e 80%, #060c14 100%)"}}>
+      <section className="py-24 lg:py-32 mt-[0px] mb-[0px] pt-[158px] pb-[158px]" style={{background: "linear-gradient(180deg, #060c14 0%, #07121e 20%, rgba(139,218,239,0.07) 50%, #07121e 80%, #060c14 100%)"}}>
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeIn>
             <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium text-center mb-6">How It Works</p>
