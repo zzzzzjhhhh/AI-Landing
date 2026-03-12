@@ -363,7 +363,7 @@ export default function DataEngine() {
 
 
       {/* INTRO TEXT SECTION */}
-      <section className="bg-navy-950 pt-[100px] pb-[100px]">
+      <section className="bg-navy-950 pt-[100px] pb-[100px] text-center">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6 max-w-4xl">
