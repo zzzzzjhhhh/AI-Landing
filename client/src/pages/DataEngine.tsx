@@ -224,9 +224,12 @@ function ProcessSteps() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {processSteps.map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
-              <div data-testid={`process-step-${step.step}`}>
+              <div
+                data-testid={`process-step-${step.step}`}
+                className="border border-white/[0.1] rounded-xl p-6 h-full flex flex-col"
+              >
                 <span
-                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-4"
+                  className="text-[56px] font-extralight leading-none tracking-tighter block mb-5"
                   style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
                 >
                   {step.step}
