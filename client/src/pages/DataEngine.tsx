@@ -234,6 +234,9 @@ function ProcessSteps() {
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center">
         <div className="w-full max-w-4xl mx-auto px-6 md:px-12 flex flex-col items-center">
+          <div className="w-full mb-6 text-left">
+            <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
+          </div>
           <div className="w-full max-w-5xl aspect-video rounded-2xl overflow-hidden mb-12 bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]">
             <video
               src="/videos/apple_video.mp4"
