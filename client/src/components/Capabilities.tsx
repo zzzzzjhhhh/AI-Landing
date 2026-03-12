@@ -209,11 +209,11 @@ export function Capabilities() {
       {/* MICRO MOVES VIDEO SECTION — two-column layout */}
       <section className="bg-navy-950 pb-24 lg:pb-32 overflow-hidden pt-[200px]">
         <div className="max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-16 lg:gap-24 px-6 md:px-12 lg:px-16">
 
             {/* Left: text */}
             <FadeIn>
-              <div className="px-6 md:pl-12 lg:pl-16 md:pr-10 lg:pr-14 flex flex-col justify-start pt-0">
+              <div className="flex flex-col justify-start pt-0">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6">
                   We translate human perception into structured intelligence.
                 </h2>
@@ -226,7 +226,7 @@ export function Capabilities() {
 
             {/* Right: 1:1 square video, flush to right edge */}
             <FadeIn delay={0.1}>
-              <div className="relative aspect-square overflow-hidden rounded-2xl md:rounded-r-none">
+              <div className="relative aspect-square overflow-hidden rounded-2xl">
                 <video
                   src="/videos/hand_grip_square.mp4"
                   autoPlay
