@@ -219,13 +219,8 @@ function StepContent({ step }: { step: typeof processSteps[0] }) {
   );
 }
 
-/* Dashed vertical line rendered via repeating SVG pattern */
-function DashedLine({ height = 64 }: { height?: number }) {
-  return (
-    <svg width="1" height={height} viewBox={`0 0 1 ${height}`} className="mx-auto block">
-      <line x1="0.5" y1="0" x2="0.5" y2={height} stroke="rgba(139,218,239,0.35)" strokeWidth="1" strokeDasharray="4 4" />
-    </svg>
-  );
+function SolidLine({ height = 64 }: { height?: number }) {
+  return <div style={{width: 1, height, background: "rgba(139,218,239,0.35)"}} />;
 }
 
 function ProcessSteps() {
@@ -249,15 +244,10 @@ function ProcessSteps() {
                 </span>
                 <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
                 <p className="text-white/45 text-sm leading-relaxed font-light mb-6 mr-[80px]">{step.body}</p>
-                {/* Divider bar connects directly into dashed line */}
-                <div className="flex items-center gap-0 mb-0">
-                  <div className="w-8 h-px bg-white/30" />
-                </div>
-                <div className="flex justify-start">
-                  <DashedLine height={52} />
-                </div>
+                {/* Solid line down to video */}
+                <SolidLine height={60} />
                 {/* Node circle sitting on video top border */}
-                <div className="flex justify-start -mb-[6px]">
+                <div className="-mb-[6px]">
                   <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" />
                 </div>
               </div>
@@ -284,19 +274,13 @@ function ProcessSteps() {
             <FadeInSection key={step.step} delay={i * 0.1}>
               <div data-testid={`process-step-${step.step}`} className="flex flex-col">
                 {/* Node circle sitting on video bottom border */}
-                <div className="flex justify-start -mt-[6px]">
+                <div className="-mt-[6px]">
                   <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" />
                 </div>
-                {/* Dashed line going down to content */}
-                <div className="flex justify-start">
-                  <DashedLine height={52} />
-                </div>
-                {/* Divider bar — terminus of dashed line, same left alignment */}
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-px bg-white/30" />
-                </div>
+                {/* Solid line down to content */}
+                <SolidLine height={60} />
                 <span
-                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
+                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-3 mt-4"
                   style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
                 >
                   {step.step}
