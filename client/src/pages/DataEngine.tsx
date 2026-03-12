@@ -203,19 +203,9 @@ const processSteps = [
   },
 ];
 
-function StepCard({ step, connectBottom = false, connectTop = false }: { step: typeof processSteps[0]; connectBottom?: boolean; connectTop?: boolean }) {
+function StepContent({ step }: { step: typeof processSteps[0] }) {
   return (
-    <div className="relative">
-      {connectTop && (
-        <div className="flex justify-center mb-0">
-          <div className="w-px h-10 bg-gradient-to-b from-[#8bdaef]/30 to-[#8bdaef]/10" />
-        </div>
-      )}
-      {connectTop && (
-        <div className="flex justify-center mb-4">
-          <div className="w-2 h-2 rounded-full border border-[#8bdaef]/50 bg-navy-950" />
-        </div>
-      )}
+    <div>
       <span
         className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
         style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
@@ -225,17 +215,16 @@ function StepCard({ step, connectBottom = false, connectTop = false }: { step: t
       <div className="w-8 h-px bg-white/20 mb-4" />
       <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
       <p className="text-white/45 text-sm leading-relaxed font-light">{step.body}</p>
-      {connectBottom && (
-        <div className="flex justify-center mt-4">
-          <div className="w-2 h-2 rounded-full border border-[#8bdaef]/50 bg-navy-950" />
-        </div>
-      )}
-      {connectBottom && (
-        <div className="flex justify-center mt-0">
-          <div className="w-px h-10 bg-gradient-to-b from-[#8bdaef]/10 to-[#8bdaef]/30" />
-        </div>
-      )}
     </div>
+  );
+}
+
+/* Dashed vertical line rendered via repeating SVG pattern */
+function DashedLine({ height = 64 }: { height?: number }) {
+  return (
+    <svg width="1" height={height} viewBox={`0 0 1 ${height}`} className="mx-auto block">
+      <line x1="0.5" y1="0" x2="0.5" y2={height} stroke="rgba(139,218,239,0.35)" strokeWidth="1" strokeDasharray="4 4" />
+    </svg>
   );
 }
 
@@ -247,58 +236,70 @@ function ProcessSteps() {
           <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
         </div>
 
-        {/* Top steps: 01 and 02 */}
+        {/* Top steps: 01 and 02 — with dashed lines extending down */}
         <div className="grid grid-cols-2 gap-16">
           {processSteps.slice(0, 2).map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
-              <div data-testid={`process-step-${step.step}`}>
-                <StepCard step={step} connectBottom />
+              <div data-testid={`process-step-${step.step}`} className="flex flex-col">
+                <StepContent step={step} />
+                {/* dashed line down from step to video */}
+                <div className="mt-6 flex justify-start pl-1">
+                  <DashedLine height={56} />
+                </div>
+                {/* end cap bar */}
+                <div className="flex justify-start pl-[3px]">
+                  <div className="w-3 h-px bg-white/30" />
+                </div>
               </div>
             </FadeInSection>
           ))}
         </div>
 
-        {/* Video with top connector dots */}
-        <div className="relative">
-          {/* Top connector dots aligned to column centers */}
-          <div className="absolute -top-0 left-[25%] -translate-x-1/2 z-10 w-px h-0" />
-          <div className="absolute top-0 left-[25%] -translate-x-1/2 z-10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
-          </div>
-          <div className="absolute top-0 left-[75%] -translate-x-1/2 z-10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
-          </div>
-          {/* Horizontal line across top of video connecting the two dots */}
-          <div className="absolute top-[3px] left-[25%] right-[25%] h-px bg-[#8bdaef]/15 z-10" />
-          {/* Bottom connector dots */}
-          <div className="absolute bottom-0 left-[25%] -translate-x-1/2 z-10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
-          </div>
-          <div className="absolute bottom-0 left-[75%] -translate-x-1/2 z-10">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
-          </div>
-          {/* Horizontal line across bottom of video */}
-          <div className="absolute bottom-[3px] left-[25%] right-[25%] h-px bg-[#8bdaef]/15 z-10" />
-
-          <div className="w-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]" style={{maxHeight: "60vh"}}>
-            <video
-              src="/videos/apple_video.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full object-cover"
-              style={{maxHeight: "60vh"}}
-            />
-          </div>
+        {/* Node dots sitting ON the top video border */}
+        <div className="grid grid-cols-2 gap-16 -mb-[6px]">
+          {[0, 1].map(i => (
+            <div key={i} className="flex justify-start pl-0">
+              <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" style={{marginLeft: "2px"}} />
+            </div>
+          ))}
         </div>
 
-        {/* Bottom steps: 03 and 04 */}
+        {/* Video */}
+        <div className="w-full rounded-2xl overflow-hidden border border-white/[0.1]" style={{maxHeight: "60vh"}}>
+          <video
+            src="/videos/apple_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full object-cover"
+            style={{maxHeight: "60vh"}}
+          />
+        </div>
+
+        {/* Node dots sitting ON the bottom video border */}
+        <div className="grid grid-cols-2 gap-16 -mt-[6px]">
+          {[0, 1].map(i => (
+            <div key={i} className="flex justify-start pl-0">
+              <div className="w-3 h-3 rounded-full border border-white/40 bg-navy-950" style={{marginLeft: "2px"}} />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom steps: 03 and 04 — with dashed lines extending up */}
         <div className="grid grid-cols-2 gap-16">
           {processSteps.slice(2, 4).map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
-              <div data-testid={`process-step-${step.step}`}>
-                <StepCard step={step} connectTop />
+              <div data-testid={`process-step-${step.step}`} className="flex flex-col">
+                {/* end cap bar */}
+                <div className="flex justify-start pl-[3px]">
+                  <div className="w-3 h-px bg-white/30" />
+                </div>
+                {/* dashed line up to video */}
+                <div className="mb-6 flex justify-start pl-1">
+                  <DashedLine height={56} />
+                </div>
+                <StepContent step={step} />
               </div>
             </FadeInSection>
           ))}
