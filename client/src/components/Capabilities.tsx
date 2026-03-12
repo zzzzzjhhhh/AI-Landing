@@ -200,10 +200,10 @@ export function Capabilities() {
                 Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
               </p>
               <p className="text-white/60 text-base md:text-lg leading-relaxed font-light">
-                We don't just label data. We engineer it — curating scenarios that expose AI systems to the full range of how humans actually move, see, and solve problems in physical space.
+                We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
               </p>
               <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-                The result: training data that makes robots more capable, more reliable, and more ready for the world they'll operate in.
+                The result is training data that makes robots more capable, more reliable, and more ready for the world they will operate in.
               </p>
             </div>
           </FadeIn>
