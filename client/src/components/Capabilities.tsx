@@ -327,36 +327,42 @@ export function Capabilities() {
             </h2>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {[
               {
-                num: "01",
+                stat: "10",
+                suffix: "M+",
                 title: "Built for Physical Intelligence",
                 description: "Our collection protocols, behavioral taxonomy, and quality systems are designed specifically for robotics, humanoids, and embodied AI — not adapted from language workflows or generic image labeling.",
               },
               {
-                num: "02",
+                stat: "99",
+                suffix: ".7%",
                 title: "Human Nuance, Structured for Machines",
                 description: "Our teams are trained to capture the spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
               },
               {
-                num: "03",
+                stat: "500",
+                suffix: "+",
                 title: "Scenario Depth Over Dataset Scale",
                 description: "We focus on the situations that matter most: diverse environments, rare interactions, and failure-prone edge cases where physical AI systems actually break.",
               },
             ].map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.1}>
                 <div
-                  className="relative flex flex-col justify-between bg-[#0e1117] border border-white/[0.07] rounded-3xl p-8 overflow-hidden h-[340px] hover:border-white/[0.14] transition-all duration-500"
+                  className="relative flex flex-col justify-between bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden h-[360px] hover:border-white/[0.15] transition-all duration-500"
                   data-testid={`card-pillar-${i}`}
                 >
-                  <div className="flex justify-end">
-                    <span className="text-[110px] font-thin leading-none text-white/10 select-none tracking-tighter">
-                      {pillar.num}
+                  <div className="flex items-start justify-end">
+                    <span className="text-[130px] font-extralight leading-none text-white/[0.12] select-none tracking-tighter">
+                      {pillar.stat}
+                    </span>
+                    <span className="text-[40px] font-extralight leading-none text-white/[0.12] select-none mt-4 ml-1">
+                      {pillar.suffix}
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-white text-lg font-display font-medium mb-3 leading-snug">{pillar.title}</h3>
+                    <h3 className="text-white text-base font-display font-medium mb-3 leading-snug">{pillar.title}</h3>
                     <p className="text-white/40 text-sm leading-relaxed font-light">{pillar.description}</p>
                   </div>
                 </div>
