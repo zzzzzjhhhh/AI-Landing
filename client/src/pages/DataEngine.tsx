@@ -204,91 +204,40 @@ const processSteps = [
 ];
 
 function ProcessSteps() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionHeight = sectionRef.current.offsetHeight;
-      const scrolled = -rect.top;
-      const slideHeight = sectionHeight / processSteps.length;
-      const index = Math.min(
-        processSteps.length - 1,
-        Math.max(0, Math.floor(scrolled / slideHeight))
-      );
-      setActiveIndex(index);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="how-it-works"
-      className="relative"
-      style={{ height: `${processSteps.length * 100}vh` }}
-    >
-      <div className="sticky top-0 h-screen overflow-hidden bg-navy-950 flex flex-col items-center justify-center mt-[100px] mb-[100px]">
-        <div className="w-full max-w-4xl mx-auto px-6 md:px-12 flex flex-col items-center">
-          <div className="w-full text-left mb-4">
-            <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
-          </div>
-          <div className="w-full max-w-5xl rounded-2xl overflow-hidden mb-8 bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]" style={{maxHeight: "48vh"}}>
-            <video
-              src="/videos/apple_video.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-              style={{maxHeight: "48vh"}}
-            />
-          </div>
-
-          <div className="relative w-full text-center min-h-[180px] flex items-start justify-center">
-            {processSteps.map((step, i) => (
-              <div
-                key={step.step}
-                className="absolute inset-0 flex flex-col items-center transition-all duration-700 ease-out"
-                style={{
-                  opacity: activeIndex === i ? 1 : 0,
-                  transform: activeIndex === i
-                    ? "translateY(0)"
-                    : activeIndex > i
-                      ? "translateY(-30px)"
-                      : "translateY(30px)",
-                }}
-                data-testid={`process-step-${step.step}`}
-              >
-                <span className="text-[#8bdaef]/40 text-xs uppercase tracking-[0.3em] font-mono mb-4">
+    <section id="how-it-works" className="bg-navy-950 py-24 lg:py-32">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="mb-6 text-left">
+          <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
+        </div>
+        <div className="w-full rounded-2xl overflow-hidden mb-16 bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]">
+          <video
+            src="/videos/apple_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full object-cover"
+            style={{maxHeight: "60vh"}}
+          />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {processSteps.map((step, i) => (
+            <FadeInSection key={step.step} delay={i * 0.1}>
+              <div data-testid={`process-step-${step.step}`}>
+                <span className="text-[#8bdaef]/50 text-xs uppercase tracking-[0.3em] font-mono block mb-4">
                   Step {step.step}
                 </span>
-                <h3 className="text-white text-3xl md:text-4xl lg:text-5xl font-display font-medium tracking-tight mb-5">
+                <div className="w-8 h-px bg-white/20 mb-4" />
+                <h3 className="text-white text-xl font-display font-medium tracking-tight mb-3">
                   {step.title}
                 </h3>
-                <p className="text-white/50 text-base md:text-lg leading-relaxed font-light max-w-2xl">
+                <p className="text-white/45 text-sm leading-relaxed font-light">
                   {step.body}
                 </p>
               </div>
-            ))}
-          </div>
-
-          <div className="flex gap-2 mt-16">
-            {processSteps.map((_, i) => (
-              <div
-                key={i}
-                className="h-1 rounded-full transition-all duration-500"
-                style={{
-                  width: activeIndex === i ? 32 : 12,
-                  backgroundColor: activeIndex === i ? "#8bdaef" : "rgba(255,255,255,0.15)",
-                }}
-              />
-            ))}
-          </div>
+            </FadeInSection>
+          ))}
         </div>
       </div>
     </section>
