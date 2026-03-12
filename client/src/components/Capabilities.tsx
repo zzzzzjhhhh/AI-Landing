@@ -208,7 +208,7 @@ export function Capabilities() {
 
       {/* MICRO MOVES VIDEO SECTION */}
       <section className="bg-navy-950 pb-24 lg:pb-32">
-        <div className="flex justify-center px-6 md:px-12 lg:px-16">
+        <div className="flex flex-col items-center px-6 md:px-12 lg:px-16">
           <FadeIn>
             <video
               src="/videos/micro_moves.mp4"
@@ -219,6 +219,16 @@ export function Capabilities() {
               preload="auto"
               className="rounded-2xl max-w-4xl w-full object-cover"
             />
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <div className="max-w-4xl text-center mt-14">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-8">
+                We translate human perception into structured intelligence.
+              </h2>
+              <p className="md:text-lg text-[22px] font-normal text-[#ffffffdb]">
+                Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>
