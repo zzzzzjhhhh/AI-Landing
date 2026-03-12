@@ -169,6 +169,36 @@ export function Capabilities() {
                 preload="auto"
                 className="absolute inset-0 w-full h-full object-cover"
               />
+              {/* Top-left overlay — Behavioural Signals */}
+              <div className="absolute top-0 left-0 m-5 z-20 bg-black/50 backdrop-blur-sm rounded-lg px-4 py-3 max-w-[210px]">
+                <p className="text-[#8bdaef] text-[9px] uppercase tracking-[0.2em] font-semibold mb-2">Behavioural Signals</p>
+                <div className="border-b border-white/30 mb-2" />
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-[#8bdaef]/70 flex-shrink-0" />
+                    <p className="text-white/70 text-[11px] font-light">Grip force variance</p>
+                  </div>
+                  <div className="border-b border-white/10" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-[#8bdaef]/70 flex-shrink-0" />
+                    <p className="text-white/70 text-[11px] font-light">Gaze trajectory</p>
+                  </div>
+                  <div className="border-b border-white/10" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-[#8bdaef]/70 flex-shrink-0" />
+                    <p className="text-white/70 text-[11px] font-light">Hesitation index</p>
+                  </div>
+                  <div className="border-b border-white/10" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 rounded-full bg-[#8bdaef]/70 flex-shrink-0" />
+                    <p className="text-white/70 text-[11px] font-light">Recovery pattern</p>
+                  </div>
+                </div>
+              </div>
+              {/* Bottom-left caption */}
+              <div className="absolute bottom-0 left-0 m-5 z-20 bg-black/40 backdrop-blur-sm rounded-md px-3 py-1.5">
+                <p className="text-white/60 text-[10px] font-light tracking-wide">Embodied inference · Structured for VLA</p>
+              </div>
             </div>
           </FadeIn>
         </div>
