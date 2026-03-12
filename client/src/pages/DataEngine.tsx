@@ -203,41 +203,102 @@ const processSteps = [
   },
 ];
 
+function StepCard({ step, connectBottom = false, connectTop = false }: { step: typeof processSteps[0]; connectBottom?: boolean; connectTop?: boolean }) {
+  return (
+    <div className="relative">
+      {connectTop && (
+        <div className="flex justify-center mb-0">
+          <div className="w-px h-10 bg-gradient-to-b from-[#8bdaef]/30 to-[#8bdaef]/10" />
+        </div>
+      )}
+      {connectTop && (
+        <div className="flex justify-center mb-4">
+          <div className="w-2 h-2 rounded-full border border-[#8bdaef]/50 bg-navy-950" />
+        </div>
+      )}
+      <span
+        className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
+        style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
+      >
+        {step.step}
+      </span>
+      <div className="w-8 h-px bg-white/20 mb-4" />
+      <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
+      <p className="text-white/45 text-sm leading-relaxed font-light">{step.body}</p>
+      {connectBottom && (
+        <div className="flex justify-center mt-4">
+          <div className="w-2 h-2 rounded-full border border-[#8bdaef]/50 bg-navy-950" />
+        </div>
+      )}
+      {connectBottom && (
+        <div className="flex justify-center mt-0">
+          <div className="w-px h-10 bg-gradient-to-b from-[#8bdaef]/10 to-[#8bdaef]/30" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ProcessSteps() {
   return (
     <section id="how-it-works" className="bg-navy-950 py-24 lg:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-        <div className="mb-6 text-left">
+        <div className="mb-10 text-left">
           <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium">How it works</p>
         </div>
-        <div className="w-full rounded-2xl overflow-hidden mb-16 bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]">
-          <video
-            src="/videos/apple_video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full object-cover"
-            style={{maxHeight: "60vh"}}
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {processSteps.map((step, i) => (
+
+        {/* Top steps: 01 and 02 */}
+        <div className="grid grid-cols-2 gap-16">
+          {processSteps.slice(0, 2).map((step, i) => (
             <FadeInSection key={step.step} delay={i * 0.1}>
               <div data-testid={`process-step-${step.step}`}>
-                <span
-                  className="text-[32px] font-extralight leading-none tracking-tighter block mb-4"
-                  style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
-                >
-                  {step.step}
-                </span>
-                <div className="w-8 h-px bg-white/20 mb-4" />
-                <h3 className="text-white text-xl font-display font-medium tracking-tight mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-white/45 text-sm leading-relaxed font-light">
-                  {step.body}
-                </p>
+                <StepCard step={step} connectBottom />
+              </div>
+            </FadeInSection>
+          ))}
+        </div>
+
+        {/* Video with top connector dots */}
+        <div className="relative">
+          {/* Top connector dots aligned to column centers */}
+          <div className="absolute -top-0 left-[25%] -translate-x-1/2 z-10 w-px h-0" />
+          <div className="absolute top-0 left-[25%] -translate-x-1/2 z-10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
+          </div>
+          <div className="absolute top-0 left-[75%] -translate-x-1/2 z-10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
+          </div>
+          {/* Horizontal line across top of video connecting the two dots */}
+          <div className="absolute top-[3px] left-[25%] right-[25%] h-px bg-[#8bdaef]/15 z-10" />
+          {/* Bottom connector dots */}
+          <div className="absolute bottom-0 left-[25%] -translate-x-1/2 z-10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
+          </div>
+          <div className="absolute bottom-0 left-[75%] -translate-x-1/2 z-10">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#8bdaef]/60" />
+          </div>
+          {/* Horizontal line across bottom of video */}
+          <div className="absolute bottom-[3px] left-[25%] right-[25%] h-px bg-[#8bdaef]/15 z-10" />
+
+          <div className="w-full rounded-2xl overflow-hidden bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42]" style={{maxHeight: "60vh"}}>
+            <video
+              src="/videos/apple_video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full object-cover"
+              style={{maxHeight: "60vh"}}
+            />
+          </div>
+        </div>
+
+        {/* Bottom steps: 03 and 04 */}
+        <div className="grid grid-cols-2 gap-16">
+          {processSteps.slice(2, 4).map((step, i) => (
+            <FadeInSection key={step.step} delay={i * 0.1}>
+              <div data-testid={`process-step-${step.step}`}>
+                <StepCard step={step} connectTop />
               </div>
             </FadeInSection>
           ))}
