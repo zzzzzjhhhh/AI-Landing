@@ -354,10 +354,16 @@ export function Capabilities() {
                   data-testid={`card-pillar-${i}`}
                 >
                   <div className="flex items-start justify-end">
-                    <span className="text-[130px] font-extralight leading-none text-white/[0.12] select-none tracking-tighter">
+                    <span
+                      className="text-[130px] font-extralight leading-none select-none tracking-tighter"
+                      style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.25}}
+                    >
                       {pillar.stat}
                     </span>
-                    <span className="text-[40px] font-extralight leading-none text-white/[0.12] select-none mt-4 ml-1">
+                    <span
+                      className="text-[40px] font-extralight leading-none select-none mt-4 ml-1"
+                      style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.25}}
+                    >
                       {pillar.suffix}
                     </span>
                   </div>
