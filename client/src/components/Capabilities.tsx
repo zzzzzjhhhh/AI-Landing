@@ -305,7 +305,7 @@ export function Capabilities() {
             </div>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-white mt-16 text-left">
+            <h2 className="sm:text-4xl md:text-5xl font-display font-medium tracking-tight text-white mt-16 text-left mr-[300px] text-[38px]">
               The result is training data that makes robots more capable, more reliable, and more ready for the world they will operate in.
             </h2>
           </FadeIn>
