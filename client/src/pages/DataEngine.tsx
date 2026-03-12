@@ -362,6 +362,21 @@ export default function DataEngine() {
       <HeroSection />
 
 
+      {/* INTRO TEXT SECTION */}
+      <section className="bg-navy-950 pt-[100px] pb-[100px]">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+          <FadeInSection>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6 max-w-4xl">
+              Built to generate training data for the complexity of physical space
+            </h2>
+            <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.25)", maxWidth: "100%" }} />
+            <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl">
+              Oceanveo's Data Engine is the system behind how we collect, structure, validate, and deliver robotics training data. It is designed for physical environments, real human interaction, and the edge cases that determine whether AI systems hold up outside controlled conditions.
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
       {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
       <ProcessSteps />
 
