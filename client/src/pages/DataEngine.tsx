@@ -248,7 +248,7 @@ function ProcessSteps() {
                   {step.step}
                 </span>
                 <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed font-light mb-6">{step.body}</p>
+                <p className="text-white/45 text-sm leading-relaxed font-light mb-6 mr-[80px]">{step.body}</p>
                 {/* Divider bar connects directly into dashed line */}
                 <div className="flex items-center gap-0 mb-0">
                   <div className="w-8 h-px bg-white/30" />
