@@ -168,10 +168,10 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-[36px] sm:text-[48px] md:text-[72px] font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent max-w-4xl text-center mx-auto px-12 md:px-24"
+            className="sm:text-[48px] md:text-[72px] font-display font-medium tracking-tight bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent max-w-4xl text-center mx-auto px-12 md:px-24 text-[130px]"
             data-testid="text-engine-heading"
           >
-            Where human experience becomes training data.
+            Data Engine
           </motion.h1>
         </div>
       </div>
