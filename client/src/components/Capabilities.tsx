@@ -172,27 +172,27 @@ export function Capabilities() {
               {/* Top-left overlay — Behavioural Signals */}
               <div className="absolute top-0 left-0 mt-6 ml-8 z-20 max-w-[220px]">
                 <p className="text-white text-[9px] uppercase tracking-[0.2em] font-semibold mb-2">Behavioural Signals</p>
-                <div className="border-b border-white/40 mb-1" />
+                <div className="border-b border-white/30 mb-1" />
                 <div className="flex items-center gap-2 py-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0" />
                   <p className="text-white/80 text-[11px] font-light">Grip force variance</p>
                 </div>
-                <div className="border-b border-white/20" />
+                <div className="border-b border-white/30" />
                 <div className="flex items-center gap-2 py-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0" />
                   <p className="text-white/80 text-[11px] font-light">Gaze trajectory</p>
                 </div>
-                <div className="border-b border-white/20" />
+                <div className="border-b border-white/30" />
                 <div className="flex items-center gap-2 py-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0" />
                   <p className="text-white/80 text-[11px] font-light">Hesitation index</p>
                 </div>
-                <div className="border-b border-white/20" />
+                <div className="border-b border-white/30" />
                 <div className="flex items-center gap-2 py-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0" />
                   <p className="text-white/80 text-[11px] font-light">Recovery pattern</p>
                 </div>
-                <div className="border-b border-white/40" />
+                <div className="border-b border-white/30" />
               </div>
               {/* Bottom-left caption */}
               <div className="absolute bottom-0 left-0 mb-6 ml-8 z-20">
