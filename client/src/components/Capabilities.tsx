@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -19,69 +19,49 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
+const SCROLL_PARAGRAPHS = [
+  "The next leap in AI won't happen in data centers. It will happen in warehouses, kitchens, hospitals, and factories — wherever machines must perceive, decide, and act in physical space.",
+  "That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.",
+  "That data doesn't exist at scale yet. That's what Oceanveo is building.",
+];
+
 function ScrollTextSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [showP1, setShowP1] = useState(false);
-  const [showP2, setShowP2] = useState(false);
-  const [showP3, setShowP3] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   useEffect(() => {
-    if (isInView) {
-      const t1 = setTimeout(() => setShowP1(true), 600);
-      const t2 = setTimeout(() => setShowP2(true), 1400);
-      const t3 = setTimeout(() => setShowP3(true), 2200);
-      return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-    }
-  }, [isInView]);
+    return scrollYProgress.on("change", (v) => {
+      if (v < 0.38) setActiveIndex(0);
+      else if (v < 0.72) setActiveIndex(1);
+      else setActiveIndex(2);
+    });
+  }, [scrollYProgress]);
 
   return (
-    <div ref={ref} className="max-w-4xl mx-auto text-center">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-10"
-      >
-        Real-world intelligence starts with<br />real-world data.
-      </motion.h2>
-      <div className="ml-[74px] mr-[74px] pl-[110px] pr-[110px] space-y-6">
-        <AnimatePresence>
-          {showP1 && (
+    <div ref={containerRef} style={{ height: "300vh" }}>
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center text-center px-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-10">
+          Real-world intelligence starts with<br />real-world data.
+        </h2>
+        <div className="max-w-2xl mx-auto min-h-[120px] flex items-start justify-center">
+          <AnimatePresence mode="wait">
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              key={activeIndex}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="text-[22px] font-normal text-[#ffffffdb] leading-relaxed"
             >
-              The next leap in AI won't happen in data centers. It will happen in warehouses, kitchens, hospitals, and factories — wherever machines must perceive, decide, and act in physical space.
+              {SCROLL_PARAGRAPHS[activeIndex]}
             </motion.p>
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {showP2 && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
-            >
-              That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.
-            </motion.p>
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {showP3 && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="md:text-lg text-[22px] font-normal text-[#ffffffdb]"
-            >
-              That data doesn't exist at scale yet. That's what Oceanveo is building.
-            </motion.p>
-          )}
-        </AnimatePresence>
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
@@ -200,10 +180,8 @@ export function Capabilities() {
       </section>
 
       {/* SCROLL TEXT SECTION — AFTER VIDEO */}
-      <section className="bg-navy-950 pt-[100px] pb-[100px]">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <ScrollTextSection />
-        </div>
+      <section className="bg-navy-950">
+        <ScrollTextSection />
       </section>
 
       {/* MICRO MOVES VIDEO SECTION — two-column layout */}
