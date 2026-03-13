@@ -472,9 +472,6 @@ export default function DataEngine() {
       {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
       <ProcessSteps />
 
-      {/* SECTION 2 — WHAT WE ANNOTATE (scroll-driven) */}
-      <CapabilitiesSection />
-
       {/* VIDEO SHOWCASE */}
       <section className="relative py-28 md:py-36">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
@@ -540,6 +537,9 @@ export default function DataEngine() {
           </div>
         </div>
       </section>
+
+      {/* SECTION 2 — WHAT WE CAPTURE */}
+      <CapabilitiesSection />
 
       {/* STATEMENT SECTION — after the two videos */}
       <StatementSection />
