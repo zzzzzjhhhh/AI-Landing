@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import bgMain from "@assets/bg_main_1768281613638.jpg";
+import bgMain from "@assets/bg_contact.jpg";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
