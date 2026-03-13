@@ -596,7 +596,7 @@ export default function DataEngine() {
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           <FadeInSection>
             <div className="text-center">
