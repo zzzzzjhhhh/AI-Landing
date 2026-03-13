@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useContactForm } from "@/hooks/use-contact";
+import { ContactSubmissionError, useContactForm } from "@/hooks/use-contact";
 import { api, type CreateContactInput } from "@shared/routes";
 
 const caseStudyVideos = [
@@ -184,6 +184,8 @@ export default function BookCall() {
 
   const form = useForm<CreateContactInput>({
     resolver: zodResolver(api.contact.submit.input),
+    mode: "onBlur",
+    reValidateMode: "onChange",
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -195,6 +197,8 @@ export default function BookCall() {
   });
 
   const onSubmit = (data: CreateContactInput) => {
+    form.clearErrors("root");
+
     contactMutation.mutate(data, {
       onSuccess: () => {
         form.reset();
@@ -205,6 +209,21 @@ export default function BookCall() {
         revealTimeoutRef.current = window.setTimeout(() => {
           setPhase("caseStudies");
         }, 2000);
+      },
+      onError: (error) => {
+        if (error instanceof ContactSubmissionError && error.field) {
+          form.setError(
+            error.field,
+            { type: "server", message: error.message },
+            { shouldFocus: true },
+          );
+          return;
+        }
+
+        form.setError("root", {
+          type: "server",
+          message: error.message || "Something went wrong. Please try again.",
+        });
       },
     });
   };
@@ -355,7 +374,7 @@ export default function BookCall() {
                         className="w-full max-w-xl"
                       >
                         <Form {...form}>
-                          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                          <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <FormField
                                 control={form.control}
@@ -447,6 +466,12 @@ export default function BookCall() {
                                 </FormItem>
                               )}
                             />
+
+                            {form.formState.errors.root?.message ? (
+                              <p role="alert" className="text-sm text-[#f6b2b2]">
+                                {form.formState.errors.root.message}
+                              </p>
+                            ) : null}
 
                             <div className="flex justify-start">
                               <Button
