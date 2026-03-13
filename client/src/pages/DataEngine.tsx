@@ -600,16 +600,12 @@ export default function DataEngine() {
 
       {/* SECTION 4 — EARLY ACCESS */}
       <section className="relative py-44 md:py-56 overflow-hidden">
-        <video
-          src="/videos/hero_bg.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ transform: "scaleY(-1)" }}
+        <img
+          src="/images/fishtank_bg.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/60 to-navy-950" />
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           <FadeInSection>
             <div className="text-center">
