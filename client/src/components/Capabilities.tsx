@@ -67,19 +67,35 @@ function ScrollTextSection() {
   );
 }
 
+const INTRO_PARAGRAPHS = [
+  "Oceanveo transforms human perception, movement, and decision-making in physical environments into structured training data for robots, humanoids, and autonomous systems.",
+  "Built not for screens, but for AI that has to operate in the real world.",
+];
+
 function ScrollIntroSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [phase, setPhase] = useState<"first" | "second">("first");
-  const [showSubtitle, setShowSubtitle] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [titlePhase, setTitlePhase] = useState<"first" | "second">("first");
+  const [paraIndex, setParaIndex] = useState(0); // 0 = none, 1 = para1, 2 = para2
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   useEffect(() => {
-    if (isInView) {
-      const t1 = setTimeout(() => setPhase("second"), 1800);
-      const t2 = setTimeout(() => setShowSubtitle(true), 2600);
-      return () => { clearTimeout(t1); clearTimeout(t2); };
-    }
-  }, [isInView]);
+    return scrollYProgress.on("change", (v) => {
+      if (v < 0.28) {
+        setTitlePhase("first");
+        setParaIndex(0);
+      } else if (v < 0.65) {
+        setTitlePhase("second");
+        setParaIndex(1);
+      } else {
+        setTitlePhase("second");
+        setParaIndex(2);
+      }
+    });
+  }, [scrollYProgress]);
 
   const lines = {
     first: ["The world's robots learn", "by watching humans."],
@@ -87,40 +103,42 @@ function ScrollIntroSection() {
   };
 
   return (
-    <div ref={ref} className="max-w-4xl mx-auto text-center">
-      <div className="min-h-[120px] md:min-h-[140px] flex items-center justify-center">
+    <div ref={containerRef} style={{ height: "250vh" }}>
+      <div className="sticky top-0 flex flex-col items-center justify-center text-center px-6 py-28">
         <AnimatePresence mode="wait">
           <motion.h2
-            key={phase}
+            key={titlePhase}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-gradient"
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-gradient mb-10"
           >
-            {lines[phase].map((line, i) => (
+            {lines[titlePhase].map((line, i) => (
               <span key={i}>
                 {line}
-                {i < lines[phase].length - 1 && <br />}
+                {i < lines[titlePhase].length - 1 && <br />}
               </span>
             ))}
           </motion.h2>
         </AnimatePresence>
+        <div className="max-w-2xl mx-auto min-h-[80px] flex items-start justify-center">
+          <AnimatePresence mode="wait">
+            {paraIndex > 0 && (
+              <motion.p
+                key={paraIndex}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                className="text-white/60 font-light text-[16px] leading-relaxed text-center"
+              >
+                {INTRO_PARAGRAPHS[paraIndex - 1]}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-      <AnimatePresence>
-        {showSubtitle && (
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-white/60 md:text-lg font-light max-w-3xl mx-auto text-[22px] ml-[74px] mr-[74px] mt-[0px] mb-[0px] pt-[0px] pb-[0px] pl-[110px] pr-[110px]"
-          >
-            Oceanveo transforms human perception, movement, and decision-making in physical environments into structured training data for robots, humanoids, and autonomous systems.
-            <br /><br />
-            Built not for screens, but for AI that has to operate in the real world.
-          </motion.p>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
@@ -129,10 +147,8 @@ export function Capabilities() {
   return (
     <>
       {/* INTRO — OCEANVEO PITCH */}
-      <section className="py-24 lg:py-32 bg-navy-950 pt-[168px] pb-[168px]">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <ScrollIntroSection />
-        </div>
+      <section className="bg-navy-950">
+        <ScrollIntroSection />
       </section>
 
       {/* VIDEO SECTION — INTRO */}
