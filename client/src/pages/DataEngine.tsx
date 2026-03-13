@@ -429,7 +429,7 @@ function CapabilitiesSection() {
           {capabilities.map((cap, i) => (
             <FadeInSection key={cap.label}>
               <div data-testid={`card-capability-${i}`}>
-                <div className="w-full aspect-video rounded-2xl border border-white/[0.08] mb-5 overflow-hidden">
+                <div className="w-full aspect-square rounded-2xl border border-white/[0.08] mb-5 overflow-hidden">
                   <img src={cap.image} alt={cap.label} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
