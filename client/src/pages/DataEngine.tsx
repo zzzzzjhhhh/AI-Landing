@@ -382,7 +382,7 @@ function StatementSection() {
   const words = title.split(" ");
 
   return (
-    <section className="bg-navy-950 py-24 lg:py-36">
+    <section className="bg-navy-950 py-24 lg:py-36 pt-[20px] pb-[20px]">
       <div className="max-w-[860px] mx-auto px-6 md:px-12 text-center">
         <FadeInSection>
           <p className="text-white/50 text-base md:text-lg leading-relaxed font-light mb-14 max-w-2xl mx-auto">
