@@ -413,6 +413,12 @@ function StatementSection() {
 }
 
 function CapabilitiesSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const maxIndex = capabilities.length - 3;
+
+  const prev = () => setActiveIndex((i) => Math.max(0, i - 1));
+  const next = () => setActiveIndex((i) => Math.min(maxIndex, i + 1));
+
   return (
     <section className="relative py-28 md:py-36 bg-navy-950">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
@@ -425,21 +431,64 @@ function CapabilitiesSection() {
           </p>
         </FadeInSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {capabilities.map((cap, i) => (
-            <FadeInSection key={cap.label}>
-              <div data-testid={`card-capability-${i}`}>
-                <div className="w-full aspect-square rounded-2xl border border-white/[0.08] mb-5 overflow-hidden">
-                  <img src={cap.image} alt={cap.label} className="w-full h-full object-cover" />
+        {/* Carousel wrapper */}
+        <div className="relative">
+          {/* Prev button */}
+          <button
+            onClick={prev}
+            disabled={activeIndex === 0}
+            data-testid="button-carousel-prev"
+            className="absolute left-[-56px] top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full border border-white/[0.12] bg-white/[0.04] hover:bg-white/[0.10] flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+
+          {/* Track */}
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(calc(-${activeIndex} * (100% / 3 + 8px)))` }}
+            >
+              {capabilities.map((cap, i) => (
+                <div
+                  key={cap.label}
+                  className="flex-shrink-0 w-[calc(33.333%-16px)]"
+                  data-testid={`card-capability-${i}`}
+                >
+                  <div className="w-full aspect-square rounded-2xl border border-white/[0.08] mb-5 overflow-hidden">
+                    <img src={cap.image} alt={cap.label} className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
+                    {cap.label}
+                  </h3>
+                  <p className="text-white/50 text-sm leading-relaxed font-light">
+                    {cap.description}
+                  </p>
                 </div>
-                <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
-                  {cap.label}
-                </h3>
-                <p className="text-white/50 text-sm leading-relaxed font-light">
-                  {cap.description}
-                </p>
-              </div>
-            </FadeInSection>
+              ))}
+            </div>
+          </div>
+
+          {/* Next button */}
+          <button
+            onClick={next}
+            disabled={activeIndex === maxIndex}
+            data-testid="button-carousel-next"
+            className="absolute right-[-56px] top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full border border-white/[0.12] bg-white/[0.04] hover:bg-white/[0.10] flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-10">
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              data-testid={`button-carousel-dot-${i}`}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeIndex === i ? "bg-[#8bdaef] w-4" : "bg-white/20"}`}
+            />
           ))}
         </div>
 
