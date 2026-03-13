@@ -43,7 +43,7 @@ function ScrollTextSection() {
   }, [scrollYProgress]);
 
   return (
-    <div ref={containerRef} style={{ height: "300vh" }}>
+    <div ref={containerRef} style={{ height: "180vh" }}>
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center text-center px-6">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-10">
           Real-world intelligence starts with<br />real-world data.
