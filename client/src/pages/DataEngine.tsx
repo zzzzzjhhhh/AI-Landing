@@ -230,41 +230,52 @@ function InfrastructureStack() {
   return (
     <section className="bg-navy-950 py-24 lg:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-        {/* Header row */}
-        <FadeInSection>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-            <div>
-              <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium mb-4">Infrastructure Stack</p>
-              <h2 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-white leading-tight max-w-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-16 lg:gap-24 items-start">
+
+          {/* LEFT — sticky heading */}
+          <div className="lg:sticky lg:top-28">
+            <FadeInSection>
+              <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium mb-5">
+                Infrastructure Stack
+              </p>
+              <h2 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-white leading-tight mb-6">
                 Five engines.<br />One system.
               </h2>
-            </div>
-            <p className="text-white/40 text-sm leading-relaxed max-w-xs md:text-right">
-              Each layer of the stack handles a distinct phase of the data pipeline — from collection to delivery.
-            </p>
-          </div>
-        </FadeInSection>
-
-        {/* Items — full-width rows with dividers */}
-        <div className="divide-y divide-white/[0.08]">
-          {infrastructureItems.map((item, i) => (
-            <FadeInSection key={item.name} delay={i * 0.07}>
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-16 py-8 group">
-                {/* Left: index + name */}
-                <div className="flex items-start gap-5">
-                  <span
-                    className="text-[13px] font-light tabular-nums mt-0.5"
-                    style={{color: "rgba(139,218,239,0.45)"}}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-white text-xl font-display font-medium tracking-tight">{item.name}</h3>
-                </div>
-                {/* Right: description */}
-                <p className="text-white/45 text-sm leading-relaxed font-light max-w-xl">{item.description}</p>
-              </div>
+              <p className="text-white/40 text-sm leading-relaxed max-w-xs">
+                Each layer of the stack handles a distinct phase of the data pipeline — from collection to delivery.
+              </p>
             </FadeInSection>
-          ))}
+          </div>
+
+          {/* RIGHT — stacked cards matching home page card style */}
+          <div className="flex flex-col gap-4">
+            {infrastructureItems.map((item, i) => (
+              <FadeInSection key={item.name} delay={i * 0.07}>
+                <div
+                  className="relative bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden hover:border-white/[0.15] transition-all duration-500"
+                  data-testid={`card-infra-${i}`}
+                >
+                  {/* Watermark number — top right, same gradient + opacity as home cards */}
+                  <div className="absolute top-3 right-5 select-none pointer-events-none">
+                    <span
+                      className="text-[90px] font-extralight leading-none tracking-tighter"
+                      style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.18}}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  {/* Content */}
+                  <h3 className="text-white text-base font-display font-medium mb-3 leading-snug relative z-10">
+                    {item.name}
+                  </h3>
+                  <p className="text-white/40 text-sm leading-relaxed font-light max-w-sm relative z-10">
+                    {item.description}
+                  </p>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
