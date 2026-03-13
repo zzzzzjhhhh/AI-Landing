@@ -390,9 +390,9 @@ function StatementSection() {
             <motion.span
               key={i}
               className="inline"
-              initial={{ opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-              transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
             >
               {word}{i < words.length - 1 ? "\u00A0" : ""}
             </motion.span>
