@@ -5,15 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { useCallback, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import bgMain from "@assets/bg_main_1768281613638.jpg";
+import bgMain from "@assets/bg_contact.jpg";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useContactForm } from "@/hooks/use-contact";
+import { ContactSubmissionError, useContactForm } from "@/hooks/use-contact";
 import { api, type CreateContactInput } from "@shared/routes";
 
 const caseStudyVideos = [
@@ -52,7 +52,7 @@ const caseStudyVideos = [
 function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
   return (
     <div className="group" data-testid={`card-video-${video.id}`}>
-      <div className="relative overflow-hidden bg-navy-900 rounded-2xl shadow-lg shadow-black/30">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-navy-900 shadow-lg shadow-black/30">
         <video
           src={video.videoUrl}
           muted
@@ -60,12 +60,8 @@ function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
           autoPlay
           playsInline
           preload="auto"
-          className="w-full h-auto block"
+          className="block h-full w-full object-cover"
         />
-      </div>
-      <div className="pt-4 px-1">
-        <h4 className="font-display text-white text-xl font-medium mb-1.5">{video.title}</h4>
-        <p className="text-white/50 text-base leading-relaxed">{video.description}</p>
       </div>
     </div>
   );
@@ -179,10 +175,17 @@ function CaseStudyCarousel() {
 
 export default function BookCall() {
   const contactMutation = useContactForm();
+  const shellSectionRef = useRef<HTMLElement>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
+  const shellAnimationFrame = useRef<number | null>(null);
+  const revealTimeoutRef = useRef<number | null>(null);
   const [phase, setPhase] = useState<"form" | "confirmation" | "caseStudies">("form");
+  const [shellMinHeight, setShellMinHeight] = useState<number | null>(null);
 
   const form = useForm<CreateContactInput>({
     resolver: zodResolver(api.contact.submit.input),
+    mode: "onBlur",
+    reValidateMode: "onChange",
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -194,16 +197,100 @@ export default function BookCall() {
   });
 
   const onSubmit = (data: CreateContactInput) => {
+    form.clearErrors("root");
+
     contactMutation.mutate(data, {
       onSuccess: () => {
         form.reset();
         setPhase("confirmation");
-        setTimeout(() => {
+        if (revealTimeoutRef.current !== null) {
+          window.clearTimeout(revealTimeoutRef.current);
+        }
+        revealTimeoutRef.current = window.setTimeout(() => {
           setPhase("caseStudies");
         }, 2000);
       },
+      onError: (error) => {
+        if (error instanceof ContactSubmissionError && error.field) {
+          form.setError(
+            error.field,
+            { type: "server", message: error.message },
+            { shouldFocus: true },
+          );
+          return;
+        }
+
+        form.setError("root", {
+          type: "server",
+          message: error.message || "Something went wrong. Please try again.",
+        });
+      },
     });
   };
+
+  useEffect(() => {
+    if (phase !== "form") {
+      return;
+    }
+
+    const node = shellRef.current;
+    if (!node) {
+      return;
+    }
+
+    const updateHeight = () => {
+      if (shellAnimationFrame.current !== null) {
+        cancelAnimationFrame(shellAnimationFrame.current);
+      }
+
+      shellAnimationFrame.current = requestAnimationFrame(() => {
+        setShellMinHeight(node.getBoundingClientRect().height);
+      });
+    };
+
+    updateHeight();
+
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+      if (shellAnimationFrame.current !== null) {
+        cancelAnimationFrame(shellAnimationFrame.current);
+        shellAnimationFrame.current = null;
+      }
+    };
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "confirmation") {
+      return;
+    }
+
+    const node = shellSectionRef.current;
+    if (!node) {
+      return;
+    }
+
+    const scrollToConfirmation = () => {
+      const top = Math.max(0, node.getBoundingClientRect().top + window.scrollY - 24);
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToConfirmation);
+    return () => window.cancelAnimationFrame(frame);
+  }, [phase]);
+
+  useEffect(() => {
+    return () => {
+      if (revealTimeoutRef.current !== null) {
+        window.clearTimeout(revealTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-navy-950 min-h-screen flex flex-col relative overflow-hidden">
@@ -216,6 +303,7 @@ export default function BookCall() {
           sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover"
         />
+        <div className="absolute inset-0 bg-navy-950/40" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
 
@@ -223,177 +311,9 @@ export default function BookCall() {
 
       <main className="flex-grow relative z-10">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <AnimatePresence mode="wait">
-            {phase === "form" ? (
-              <motion.div
-                key="form"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="flex flex-col items-center pt-32 pb-24"
-              >
-                <div className="w-full max-w-2xl text-center mb-16">
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-[36px] sm:text-[48px] md:text-[70px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
-                  >
-                    Let's talk about <br /><span style={{ color: "#8bdaef" }}>your data.</span>
-                  </motion.h1>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-lg md:text-xl text-steel-400 leading-relaxed font-light"
-                  >
-                    The future is embodied. Give your models a world to learn from.
-                  </motion.p>
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="w-full max-w-xl"
-                >
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="firstName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-steel-400 text-sm font-medium">First Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Jane" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-first-name" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="lastName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-steel-400 text-sm font-medium">Last Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Doe" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-last-name" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-steel-400 text-sm font-medium">Work Email</FormLabel>
-                            <FormControl>
-                              <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-email" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="company"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-steel-400 text-sm font-medium">Company</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Acme AI" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-company" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-steel-400 text-sm font-medium">Phone (Optional)</FormLabel>
-                              <FormControl>
-                                <Input placeholder="+1 (555) 000-0000" {...field} value={field.value || ""} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-phone" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-steel-400 text-sm font-medium">Message (Optional)</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Tell us about your project requirements..."
-                                className="bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 min-h-[120px] focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all resize-none rounded-none px-0 py-4"
-                                {...field}
-                                value={field.value || ""}
-                                data-testid="input-message"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <div className="flex justify-start">
-                        <Button
-                          type="submit"
-                          disabled={contactMutation.isPending}
-                          className="bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 h-14 px-8 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all duration-300 active:scale-[0.98] flex items-center gap-2 group"
-                          data-testid="button-submit"
-                        >
-                          {contactMutation.isPending ? (
-                            <>
-                              <Loader2 className="h-5 w-5 animate-spin" />
-                              <span>Sending...</span>
-                            </>
-                          ) : (
-                            <>
-                              <span>Submit Request</span>
-                              <ArrowRight className="ml-2 w-4 h-4" />
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    </form>
-                  </Form>
-                </motion.div>
-              </motion.div>
-            ) : phase === "confirmation" ? (
-              <motion.div
-                key="confirmation"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center justify-center pt-32 pb-24 min-h-[60vh]"
-              >
-                <div className="text-center max-w-3xl mx-auto px-6">
-                  <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]" data-testid="text-confirmation-heading">
-                    We received your request.
-                    <br />
-                    <span style={{ color: "#8bdaef" }}>Our team will contact you soon.</span>
-                  </h1>
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div
+          <AnimatePresence initial={false} mode="wait">
+            {phase === "caseStudies" ? (
+              <motion.section
                 key="case-studies"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -405,13 +325,204 @@ export default function BookCall() {
                     Case Studies
                   </h2>
                   <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
-                    See how creators and teams are using OceanVeo to produce high-quality AI video content.
+                    See how we mirror human to humanoid.
                   </p>
                   <div className="border-b border-white/20 mt-8" />
                 </div>
 
                 <CaseStudyCarousel />
-              </motion.div>
+              </motion.section>
+            ) : (
+              <section
+                ref={shellSectionRef}
+                className="pt-44 pb-24"
+                style={shellMinHeight ? { minHeight: `${shellMinHeight}px` } : undefined}
+              >
+                <AnimatePresence initial={false} mode="wait">
+                  {phase === "form" ? (
+                    <motion.div
+                      key="form"
+                      ref={shellRef}
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      className="flex flex-col items-center"
+                    >
+                      <div className="w-full max-w-2xl text-center mb-16">
+                        <motion.h1
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6 }}
+                          className="text-[48px] sm:text-[64px] md:text-[90px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
+                        >
+                          Let's talk data.
+                        </motion.h1>
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 }}
+                          className="text-lg md:text-xl text-steel-400 leading-relaxed font-light"
+                        >
+                          Whether you're building robots, training foundation models, or exploring what physical AI data could unlock for your system — we want to hear from you.
+                        </motion.p>
+                      </div>
+
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="w-full max-w-xl"
+                      >
+                        <Form {...form}>
+                          <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <FormField
+                                control={form.control}
+                                name="firstName"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-steel-400 text-sm font-medium">First Name</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="Jane" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-first-name" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              <FormField
+                                control={form.control}
+                                name="lastName"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-steel-400 text-sm font-medium">Last Name</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="Doe" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-last-name" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </div>
+
+                            <FormField
+                              control={form.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-steel-400 text-sm font-medium">Work Email</FormLabel>
+                                  <FormControl>
+                                    <Input type="email" placeholder="jane@company.com" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-email" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <FormField
+                                control={form.control}
+                                name="company"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-steel-400 text-sm font-medium">Company</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="Acme AI" {...field} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-company" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              <FormField
+                                control={form.control}
+                                name="phone"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-steel-400 text-sm font-medium">Phone (Optional)</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="+1 (555) 000-0000" {...field} value={field.value || ""} className="h-12 bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all rounded-none px-0" data-testid="input-phone" />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </div>
+
+                            <FormField
+                              control={form.control}
+                              name="message"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-steel-400 text-sm font-medium">What are you building?</FormLabel>
+                                  <FormControl>
+                                    <Textarea
+                                      placeholder="Tell us about your project requirements..."
+                                      className="bg-transparent border-0 border-b border-white/20 text-white/60 placeholder:text-white/20 min-h-[120px] focus:border-[#8bdaef] focus:text-white ring-0 outline-none shadow-none transition-all resize-none rounded-none px-0 py-4"
+                                      {...field}
+                                      value={field.value || ""}
+                                      data-testid="input-message"
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+
+                            {form.formState.errors.root?.message ? (
+                              <p role="alert" className="text-sm text-[#f6b2b2]">
+                                {form.formState.errors.root.message}
+                              </p>
+                            ) : null}
+
+                            <div className="flex justify-start">
+                              <Button
+                                type="submit"
+                                disabled={contactMutation.isPending}
+                                className="bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 h-14 px-8 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all duration-300 active:scale-[0.98] flex items-center gap-2 group"
+                                data-testid="button-submit"
+                              >
+                                {contactMutation.isPending ? (
+                                  <>
+                                    <Loader2 className="h-5 w-5 animate-spin" />
+                                    <span>Sending...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <span>Request Access</span>
+                                    <ArrowRight className="ml-2 w-4 h-4" />
+                                  </>
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-white text-xs text-left mt-4 font-light">
+                              We send early access video examples and dataset previews to qualified teams.
+                            </p>
+                          </form>
+                        </Form>
+                      </motion.div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="confirmation"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="flex h-full min-h-full items-center justify-center"
+                    >
+                      <div className="mx-auto w-full max-w-3xl px-6 text-center">
+                        <h1
+                          className="text-[28px] sm:text-[36px] md:text-[48px] font-display font-medium text-white tracking-tight leading-[1.2]"
+                          data-testid="text-confirmation-heading"
+                        >
+                          We received your request.
+                          <br />
+                          <span style={{ color: "#8bdaef" }}>Our team will contact you soon.</span>
+                        </h1>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </section>
             )}
           </AnimatePresence>
         </div>
