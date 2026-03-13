@@ -252,23 +252,28 @@ function InfrastructureStack() {
             {infrastructureItems.map((item, i) => (
               <FadeInSection key={item.name} delay={i * 0.07}>
                 <div
-                  className="relative bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden hover:border-white/[0.15] transition-all duration-500"
+                  className="group relative bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden transition-all duration-500 hover:border-[#8bdaef]/30"
                   data-testid={`card-infra-${i}`}
                 >
+                  {/* Gradient hover overlay */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{background: "linear-gradient(135deg, rgba(139,218,239,0.13) 0%, rgba(79,163,188,0.07) 50%, rgba(255,255,255,0.03) 100%)"}}
+                  />
                   {/* Watermark number — top right, same gradient + opacity as home cards */}
                   <div className="absolute top-3 right-5 select-none pointer-events-none">
                     <span
-                      className="text-[90px] font-extralight leading-none tracking-tighter"
+                      className="text-[90px] font-extralight leading-none tracking-tighter transition-all duration-500"
                       style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.18}}
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   {/* Content */}
-                  <h3 className="text-white text-base font-display font-medium mb-3 leading-snug relative z-10">
+                  <h3 className="text-white text-base font-display font-medium mb-3 leading-snug relative z-10 group-hover:text-[#8bdaef] transition-colors duration-500">
                     {item.name}
                   </h3>
-                  <p className="text-white/40 text-sm leading-relaxed font-light max-w-sm relative z-10">
+                  <p className="text-white/40 text-sm leading-relaxed font-light max-w-sm relative z-10 group-hover:text-white/60 transition-colors duration-500">
                     {item.description}
                   </p>
                 </div>
