@@ -425,7 +425,7 @@ function CapabilitiesSection() {
           </p>
         </FadeInSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {capabilities.map((cap, i) => (
             <FadeInSection key={cap.label}>
               <div data-testid={`card-capability-${i}`}>
