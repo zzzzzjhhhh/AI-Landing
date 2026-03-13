@@ -307,7 +307,7 @@ export function Capabilities() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <h2
-              className="font-display font-medium tracking-tight mt-16 text-center text-[28px]"
+              className="font-display font-medium tracking-tight mt-16 text-center text-[28px] mx-[180px]"
               style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
             >
               The result is training data that makes robots more capable, more reliable, and more ready for the world they will operate in.
