@@ -290,7 +290,7 @@ function ProcessSteps() {
     <section id="how-it-works" className="bg-navy-950 py-24 lg:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="mb-12 text-center">
-          <p className="text-[#8bdaef] text-4xl md:text-5xl font-display font-medium tracking-tight">How it works</p>
+          <p className="text-[#8bdaef] text-4xl md:text-5xl font-display font-medium tracking-tight mt-[20px] mb-[20px]">How it works</p>
         </div>
 
         {/* Video — full width at top */}
