@@ -540,8 +540,8 @@ function StatementSection() {
 
   return (
     <div ref={containerRef} style={{ height: "180vh" }} className="bg-navy-950">
-      <div className="sticky top-0 py-28">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
+      <div className="sticky top-0 flex h-screen items-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
           <AnimatePresence mode="wait">
             {phase === 1 ? (
               <motion.p
