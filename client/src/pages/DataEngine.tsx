@@ -375,6 +375,38 @@ const capabilities = [
 ];
 
 
+function StatementSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-15%" });
+  const title = "Oceanveo data sets are built to close that gap.";
+  const words = title.split(" ");
+
+  return (
+    <section className="bg-navy-950 py-24 lg:py-36">
+      <div className="max-w-[860px] mx-auto px-6 md:px-12 text-center">
+        <FadeInSection>
+          <p className="text-white/50 text-base md:text-lg leading-relaxed font-light mb-14 max-w-2xl mx-auto">
+            Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
+          </p>
+        </FadeInSection>
+        <div ref={ref} className="flex flex-wrap justify-center gap-x-[0.35em] gap-y-1">
+          {words.map((word, i) => (
+            <motion.span
+              key={i}
+              className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight text-white inline-block"
+              initial={{ opacity: 0, y: 28 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+              transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CapabilitiesSection() {
   return (
     <section className="relative py-28 md:py-36 bg-navy-950">
@@ -442,6 +474,9 @@ export default function DataEngine() {
 
       {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
       <ProcessSteps />
+
+      {/* STATEMENT SECTION */}
+      <StatementSection />
 
       {/* SECTION 2 — WHAT WE ANNOTATE (scroll-driven) */}
       <CapabilitiesSection />
