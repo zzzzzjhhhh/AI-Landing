@@ -381,7 +381,7 @@ function StatementSection() {
             Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
           </p>
         </FadeInSection>
-        <div ref={ref} className="flex flex-wrap justify-center gap-x-[0.35em] gap-y-1">
+        <div ref={ref} className="flex flex-wrap justify-center gap-x-[0.35em] gap-y-1 ml-[150px] mr-[150px]">
           {words.map((word, i) => (
             <motion.span
               key={i}
