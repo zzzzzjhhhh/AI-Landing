@@ -192,7 +192,7 @@ export function Capabilities() {
             {/* Left: text */}
             <FadeIn>
               <div className="flex flex-col justify-start pt-0">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-white mb-6">
                   We translate human perception into structured intelligence.
                 </h2>
                 <p className="font-normal text-[#ffffffdb] text-[18px] pl-[0px] pr-[0px] pt-[0px] pb-[0px] ml-[0px] mr-[0px]">
