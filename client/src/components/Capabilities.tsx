@@ -171,30 +171,18 @@ export function Capabilities() {
                 preload="auto"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Top-left overlay — Behavioural Signals */}
-              <div className="absolute top-0 left-0 mt-6 ml-8 z-20 max-w-[220px]">
-                <p className="text-white text-[9px] uppercase tracking-[0.2em] font-semibold mb-2">Behavioural Signals</p>
-                <div className="mb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.6)" }} />
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Grip force variance</p>
-                </div>
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Gaze trajectory</p>
-                </div>
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Hesitation index</p>
-                </div>
-                <div className="flex items-center gap-2 py-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0" />
-                  <p className="text-white text-[11px] font-light">Recovery pattern</p>
-                </div>
+              {/* Top-left overlay */}
+              <div className="absolute top-0 left-0 p-6 md:p-8 z-20 max-w-[280px]">
+                <div className="border-b border-white/20 mb-4" />
+                <h3 className="text-white text-xl font-display font-medium mb-4">Behavioural Signals</h3>
+                <div className="border-b border-white/20 mb-4" />
+                <p className="text-white/50 text-sm font-light leading-relaxed">
+                  Gaze, hesitation, recovery — the full texture of human behaviour captured and structured for embodied AI training.
+                </p>
               </div>
               {/* Bottom-left caption */}
-              <div className="absolute bottom-0 left-0 mb-6 ml-8 z-20">
-                <p className="text-white/50 text-[10px] font-light tracking-wide">Embodied inference · Structured for VLA</p>
+              <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">
+                <p className="text-white/30 text-xs font-light">Embodied inference · Structured for VLA</p>
               </div>
             </div>
           </FadeIn>
