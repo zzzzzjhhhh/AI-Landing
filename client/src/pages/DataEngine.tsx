@@ -368,36 +368,22 @@ const capabilities = [
 
 
 function StatementSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-15%" });
-  const title = "Oceanveo data sets are built to close that gap.";
-  const words = title.split(" ");
-
   return (
-    <section className="bg-navy-950 py-24 lg:py-36 pt-[20px] pb-[20px]">
+    <section className="bg-navy-950 pt-[20px] pb-[20px]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
         <FadeInSection>
           <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl mx-auto ml-[180px] mr-[180px] mb-14">
             Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
           </p>
         </FadeInSection>
-        <div
-          ref={ref}
-          className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-center ml-[150px] mr-[150px]"
-          style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}
-        >
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              className="inline"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
-            >
-              {word}{i < words.length - 1 ? "\u00A0" : ""}
-            </motion.span>
-          ))}
-        </div>
+        <FadeInSection delay={0.15}>
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-center ml-[150px] mr-[150px]"
+            style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
+          >
+            Oceanveo data sets are built to close that gap.
+          </h2>
+        </FadeInSection>
       </div>
     </section>
   );
