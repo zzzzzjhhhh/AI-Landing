@@ -3,24 +3,104 @@
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { motion, useInView, useScroll, AnimatePresence } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { DeferredVideo } from "@/components/DeferredVideo";
+import {
+  motion,
+  useInView,
+  useScroll,
+  AnimatePresence,
+  useReducedMotion,
+} from "framer-motion";
+import {
+  useRef,
+  useEffect,
+  useState,
+  type ComponentPropsWithoutRef,
+} from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const engineVideos = Array.from({ length: 35 }, (_, i) => `/videos/engine/${i + 1}.mp4`);
+const engineVideos = Array.from({ length: 35 }, (_, i) => ({
+  video: `/videos/engine/${i + 1}.mp4`,
+  poster: `/images/data-engine/engine/${i + 1}.jpg`,
+}));
 
+type ViewportVideoProps = Omit<ComponentPropsWithoutRef<"video">, "src"> & {
+  src: string;
+  priority?: boolean;
+  observeMargin?: NonNullable<Parameters<typeof useInView>[1]>["margin"];
+};
 
+function ViewportVideo({
+  src,
+  priority = false,
+  observeMargin = "160px",
+  autoPlay = true,
+  preload,
+  ...props
+}: ViewportVideoProps) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const isInView = useInView(ref, { margin: observeMargin });
+  const [canLoad, setCanLoad] = useState(priority);
 
-function FadeInSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  useEffect(() => {
+    if (isInView) {
+      setCanLoad(true);
+    }
+  }, [isInView]);
+
+  const shouldAutoplay = Boolean(autoPlay && !prefersReducedMotion);
+  const effectivePreload = preload ?? (priority ? "metadata" : "none");
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video || !shouldAutoplay || !canLoad) {
+      return;
+    }
+
+    if (isInView) {
+      video.play().catch(() => undefined);
+      return;
+    }
+
+    video.pause();
+  }, [canLoad, isInView, shouldAutoplay]);
+
+  return (
+    <video
+      ref={ref}
+      src={canLoad ? src : undefined}
+      autoPlay={shouldAutoplay}
+      playsInline={props.playsInline ?? true}
+      preload={effectivePreload}
+      {...props}
+    />
+  );
+}
+
+function FadeInSection({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const prefersReducedMotion = useReducedMotion();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: "easeOut", delay }}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
+      animate={isInView || prefersReducedMotion ? { opacity: 1, y: 0 } : {}}
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : { duration: 0.7, ease: "easeOut", delay }
+      }
       className={className}
     >
       {children}
@@ -62,28 +142,68 @@ const phase3Columns = [
   { videoIndices: [33, 34, 0],  speed: 17 }, // 35 videos total; last slot reuses 0
 ];
 
-function ScrollVideoColumn({ videoIndices, speed, colWidth, gap }: { videoIndices: number[]; speed: number; colWidth: number; gap: number }) {
+function ScrollVideoColumn({
+  videoIndices,
+  speed,
+  colWidth,
+  gap,
+  animate,
+  allowPriorityLoad,
+}: {
+  videoIndices: number[];
+  speed: number;
+  colWidth: number;
+  gap: number;
+  animate: boolean;
+  allowPriorityLoad: boolean;
+}) {
+  const loopCopies = animate ? [0, 1] : [0];
+
   return (
     <div className="flex-shrink-0 overflow-hidden h-full" style={{ width: colWidth }}>
       <div
         className="marquee-track-vertical flex flex-col"
         style={{
-          animationDuration: `${speed}s`,
-          gap: gap,
+          animationDuration: animate ? `${speed}s` : undefined,
+          animationPlayState: animate ? "running" : "paused",
+          gap,
         }}
       >
-        {[0, 1].map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap: gap }}>
-            {videoIndices.map((vi, i) => (
-              <div key={`${setIdx}-${i}`} className="flex-shrink-0 overflow-hidden rounded-lg">
-                <video
-                  src={engineVideos[vi]}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-auto object-contain"
-                />
+        {loopCopies.map((setIdx) => (
+          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap }}>
+            {videoIndices.map((videoIndex, tileIndex) => (
+              <div
+                key={`${setIdx}-${tileIndex}`}
+                className="relative flex-shrink-0 overflow-hidden rounded-lg"
+              >
+                {setIdx === 0 && tileIndex === 0 && allowPriorityLoad ? (
+                  <ViewportVideo
+                    src={engineVideos[videoIndex].video}
+                    autoPlay
+                    loop
+                    muted
+                    preload="metadata"
+                    className="w-full h-auto object-contain"
+                    priority
+                    observeMargin="40px"
+                  />
+                ) : (
+                  <DeferredVideo
+                    src={engineVideos[videoIndex].video}
+                    poster={engineVideos[videoIndex].poster}
+                    alt=""
+                    aria-hidden="true"
+                    autoPlay
+                    loop
+                    muted
+                    preload="none"
+                    className="w-full aspect-square"
+                    videoClassName="object-contain"
+                    imageClassName="object-cover"
+                    imageSizes="(max-width: 640px) 42vw, (max-width: 1024px) 22vw, 200px"
+                    rootMargin="0px"
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -96,27 +216,42 @@ function ScrollVideoColumn({ videoIndices, speed, colWidth, gap }: { videoIndice
 function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollPhase, setScrollPhase] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame: number | null = null;
+
+    const updatePhase = () => {
+      frame = null;
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const sectionHeight = sectionRef.current.offsetHeight;
       const scrolled = -rect.top;
       const viewportHeight = window.innerHeight;
       const progress = scrolled / (sectionHeight - viewportHeight);
-
-      if (progress < 0.33) {
-        setScrollPhase(0);
-      } else if (progress < 0.66) {
-        setScrollPhase(1);
-      } else {
-        setScrollPhase(2);
-      }
+      const nextPhase = progress < 0.33 ? 0 : progress < 0.66 ? 1 : 2;
+      setScrollPhase((prev) => (prev === nextPhase ? prev : nextPhase));
     };
 
+    const handleScroll = () => {
+      if (frame !== null) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(updatePhase);
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      if (frame !== null) {
+        window.cancelAnimationFrame(frame);
+      }
+
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   const activeColumns = scrollPhase === 0 ? phase1Columns : scrollPhase === 1 ? phase2Columns : phase3Columns;
@@ -136,15 +271,29 @@ function HeroSection() {
           className="absolute inset-0 z-0 flex flex-row items-center justify-center transition-all duration-700 ease-out"
           style={{ gap: colGap, padding: "0 24px" }}
         >
-          {activeColumns.map((col, i) => (
-            <ScrollVideoColumn
-              key={`${scrollPhase}-${i}`}
-              videoIndices={col.videoIndices}
-              speed={col.speed}
-              colWidth={colWidth}
-              gap={videoGap}
-            />
-          ))}
+          {activeColumns.map((column, index) => {
+            const visibilityClass =
+              index < 2
+                ? "block"
+                : index < 4
+                  ? "hidden sm:block"
+                  : index < 6
+                    ? "hidden lg:block"
+                    : "hidden xl:block";
+
+            return (
+              <div key={`${scrollPhase}-${index}`} className={visibilityClass}>
+                <ScrollVideoColumn
+                  videoIndices={column.videoIndices}
+                  speed={column.speed}
+                  colWidth={colWidth}
+                  gap={videoGap}
+                  animate={!prefersReducedMotion}
+                  allowPriorityLoad={index === 0}
+                />
+              </div>
+            );
+          })}
         </div>
 
         <div
@@ -152,9 +301,9 @@ function HeroSection() {
           style={{ opacity: titleOpacity }}
         >
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8 }}
             className="sm:text-[48px] md:text-[72px] font-display font-medium tracking-tight bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent max-w-4xl text-center mx-auto px-12 md:px-24 text-[130px]"
             data-testid="text-engine-heading"
           >
@@ -287,13 +436,20 @@ function ProcessSteps() {
 
         {/* Video — full width at top */}
         <div className="w-full rounded-2xl overflow-hidden border border-white/[0.08] mb-16" style={{maxHeight: "60vh"}}>
-          <video
+          <DeferredVideo
             src="/videos/apple_video.mp4"
+            poster="/images/data-engine/apple_video.jpg"
+            alt="Demonstration of the data-engine capture workflow"
             autoPlay
             muted
             loop
             playsInline
-            className="w-full object-cover"
+            preload="none"
+            className="w-full"
+            videoClassName="object-cover"
+            imageClassName="object-cover"
+            imageSizes="(max-width: 1280px) 100vw, 1280px"
+            rootMargin="240px"
             style={{maxHeight: "60vh"}}
           />
         </div>
@@ -559,15 +715,20 @@ export default function DataEngine() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FadeInSection>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
-                <video
+                <DeferredVideo
                   src="/videos/human_hands_cup.mp4"
+                  poster="/images/data-engine/human_hands_cup.jpg"
+                  alt="Human first-person hand interaction with a cup"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="auto"
-                  onEnded={(e) => { e.currentTarget.currentTime = 0; e.currentTarget.play(); }}
-                  className="w-full h-full object-cover"
+                  preload="none"
+                  className="w-full h-full"
+                  videoClassName="object-cover"
+                  imageClassName="object-cover"
+                  imageSizes="(max-width: 768px) 100vw, 50vw"
+                  rootMargin="220px"
                 />
                 <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
                   <div className="border-b border-white/20 mb-4" />
@@ -584,15 +745,20 @@ export default function DataEngine() {
             </FadeInSection>
             <FadeInSection delay={0.15}>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
-                <video
+                <DeferredVideo
                   src="/videos/robot_hands_cup.mp4"
+                  poster="/images/data-engine/robot_hands_cup.jpg"
+                  alt="Robotic hand interaction with a cup"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="auto"
-                  onEnded={(e) => { e.currentTarget.currentTime = 0; e.currentTarget.play(); }}
-                  className="w-full h-full object-cover"
+                  preload="none"
+                  className="w-full h-full"
+                  videoClassName="object-cover"
+                  imageClassName="object-cover"
+                  imageSizes="(max-width: 768px) 100vw, 50vw"
+                  rootMargin="220px"
                 />
                 <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
                   <div className="border-b border-white/20 mb-4" />
