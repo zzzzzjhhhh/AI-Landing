@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const engineVideos = Array.from({ length: 35 }, (_, i) => ({
-  video: `/videos/engine/${i + 1}.mp4`,
+  video: `/videos/data-engine-optimized/engine/${i + 1}.mp4`,
   poster: `/images/data-engine/engine/${i + 1}.jpg`,
 }));
 
@@ -437,7 +437,7 @@ function ProcessSteps() {
         {/* Video — full width at top */}
         <div className="w-full rounded-2xl overflow-hidden border border-white/[0.08] mb-16" style={{maxHeight: "60vh"}}>
           <DeferredVideo
-            src="/videos/apple_video.mp4"
+            src="/videos/data-engine-optimized/apple_video.mp4"
             poster="/images/data-engine/apple_video.jpg"
             alt="Demonstration of the data-engine capture workflow"
             autoPlay
@@ -716,7 +716,7 @@ export default function DataEngine() {
             <FadeInSection>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
                 <DeferredVideo
-                  src="/videos/human_hands_cup.mp4"
+                  src="/videos/data-engine-optimized/human_hands_cup.mp4"
                   poster="/images/data-engine/human_hands_cup.jpg"
                   alt="Human first-person hand interaction with a cup"
                   autoPlay
@@ -746,7 +746,7 @@ export default function DataEngine() {
             <FadeInSection delay={0.15}>
               <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
                 <DeferredVideo
-                  src="/videos/robot_hands_cup.mp4"
+                  src="/videos/data-engine-optimized/robot_hands_cup.mp4"
                   poster="/images/data-engine/robot_hands_cup.jpg"
                   alt="Robotic hand interaction with a cup"
                   autoPlay
