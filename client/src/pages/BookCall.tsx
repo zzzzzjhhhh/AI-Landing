@@ -310,7 +310,7 @@ export default function BookCall() {
                     Case Studies
                   </h2>
                   <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
-                    See how creators and teams are using OceanVeo to produce high-quality AI video content.
+                    See how we mirror human to humanoid.
                   </p>
                   <div className="border-b border-white/20 mt-8" />
                 </div>
