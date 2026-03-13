@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -368,24 +368,53 @@ const capabilities = [
 
 
 function StatementSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState<1 | 2>(1);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      setPhase(v < 0.5 ? 1 : 2);
+    });
+  }, [scrollYProgress]);
+
   return (
-    <section className="bg-navy-950 pt-[20px] pb-[20px]">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
-        <FadeInSection>
-          <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl mx-auto ml-[180px] mr-[180px] mb-14">
-            Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
-          </p>
-        </FadeInSection>
-        <FadeInSection delay={0.15}>
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-center ml-[150px] mr-[150px]"
-            style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
-          >
-            Oceanveo data sets are built to close that gap.
-          </h2>
-        </FadeInSection>
+    <div ref={containerRef} style={{ height: "180vh" }} className="bg-navy-950">
+      <div className="sticky top-0 py-28">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
+          <AnimatePresence mode="wait">
+            {phase === 1 ? (
+              <motion.p
+                key="para"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed mx-auto max-w-2xl"
+              >
+                Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
+              </motion.p>
+            ) : (
+              <motion.h2
+                key="title"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-center mx-[150px]"
+                style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", paddingBottom: "0.12em" }}
+              >
+                Oceanveo data sets are built to close that gap.
+              </motion.h2>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 
