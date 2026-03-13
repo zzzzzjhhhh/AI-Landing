@@ -445,7 +445,7 @@ function ProcessSteps() {
             loop
             playsInline
             preload="none"
-            className="w-full"
+            className="w-full h-[50vh] md:h-[60vh]"
             videoClassName="object-cover"
             imageClassName="object-cover"
             imageSizes="(max-width: 1280px) 100vw, 1280px"
