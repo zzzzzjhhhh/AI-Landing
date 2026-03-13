@@ -459,7 +459,7 @@ export default function DataEngine() {
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6 max-w-4xl">
-              Built to generate training data for the complexity of physical space
+              Training data for the complexity of physical space
             </h2>
             <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.25)", maxWidth: "100%" }} />
             <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl">
