@@ -385,7 +385,8 @@ function StatementSection() {
           {words.map((word, i) => (
             <motion.span
               key={i}
-              className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight text-white inline-block"
+              className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight inline-block"
+              style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
               initial={{ opacity: 0, y: 28 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
               transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
