@@ -375,9 +375,9 @@ function StatementSection() {
 
   return (
     <section className="bg-navy-950 py-24 lg:py-36 pt-[20px] pb-[20px]">
-      <div className="max-w-[860px] mx-auto px-6 md:px-12 text-center ml-[224px] mr-[224px]">
-        <FadeInSection className="ml-[200px] mr-[200px] mt-[20px] mb-[20px]">
-          <p className="text-white/50 text-base md:text-lg leading-relaxed font-light mb-14 max-w-2xl mx-auto">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
+        <FadeInSection>
+          <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl mx-auto ml-[180px] mr-[180px] mb-14">
             Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
           </p>
         </FadeInSection>
