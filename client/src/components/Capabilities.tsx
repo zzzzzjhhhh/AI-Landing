@@ -350,10 +350,15 @@ export function Capabilities() {
             ].map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.1}>
                 <div
-                  className="relative flex flex-col justify-between bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden h-[360px] hover:border-white/[0.15] transition-all duration-500"
+                  className="group relative flex flex-col justify-between bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden h-[360px] hover:border-[#8bdaef]/30 transition-all duration-500"
                   data-testid={`card-pillar-${i}`}
                 >
-                  <div className="flex items-start justify-end">
+                  {/* Gradient hover overlay */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{background: "linear-gradient(135deg, rgba(139,218,239,0.13) 0%, rgba(79,163,188,0.07) 50%, rgba(255,255,255,0.03) 100%)"}}
+                  />
+                  <div className="flex items-start justify-end relative z-10">
                     <span
                       className="text-[130px] font-extralight leading-none select-none tracking-tighter"
                       style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.25}}
@@ -367,9 +372,9 @@ export function Capabilities() {
                       {pillar.suffix}
                     </span>
                   </div>
-                  <div>
-                    <h3 className="text-white text-base font-display font-medium mb-3 leading-snug">{pillar.title}</h3>
-                    <p className="text-white/40 text-sm leading-relaxed font-light">{pillar.description}</p>
+                  <div className="relative z-10">
+                    <h3 className="text-white text-base font-display font-medium mb-3 leading-snug group-hover:text-[#8bdaef] transition-colors duration-500">{pillar.title}</h3>
+                    <p className="text-white/40 text-sm leading-relaxed font-light group-hover:text-white/60 transition-colors duration-500">{pillar.description}</p>
                   </div>
                 </div>
               </FadeIn>
