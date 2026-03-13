@@ -458,7 +458,7 @@ export default function DataEngine() {
       <section className="bg-navy-950 pt-[100px] pb-[100px] text-center">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <FadeInSection>
-            <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl mx-auto">
+            <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl mx-auto ml-[180px] mr-[180px]">
               Oceanveo's Data Engine is the system behind how we collect, structure, validate, and deliver robotics training data. It is designed for physical environments, real human interaction, and the edge cases that determine whether AI systems hold up outside controlled conditions.
             </p>
           </FadeInSection>
