@@ -63,10 +63,6 @@ function VideoCard({ video }: { video: typeof caseStudyVideos[0] }) {
           className="block h-full w-full object-cover"
         />
       </div>
-      <div className="pt-4 px-1">
-        <h4 className="font-display text-white text-xl font-medium mb-1.5">{video.title}</h4>
-        <p className="text-white/50 text-base leading-relaxed">{video.description}</p>
-      </div>
     </div>
   );
 }
