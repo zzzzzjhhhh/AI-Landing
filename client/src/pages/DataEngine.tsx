@@ -592,8 +592,8 @@ export default function DataEngine() {
         </div>
       </section>
 
-      {/* SECTION 2 — WHAT WE CAPTURE */}
-      <CapabilitiesSection />
+      {/* SECTION 2 — WHAT WE CAPTURE (hidden) */}
+      {/* <CapabilitiesSection /> */}
 
       {/* STATEMENT SECTION — after the two videos */}
       <StatementSection />
