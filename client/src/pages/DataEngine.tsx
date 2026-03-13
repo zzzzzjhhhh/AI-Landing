@@ -8,21 +8,7 @@ import { useRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const engineVideos = [
-  "/videos/engine/1.mp4",
-  "/videos/engine/2.mp4",
-  "/videos/engine/3.mp4",
-  "/videos/engine/4.mp4",
-  "/videos/engine/5.mp4",
-  "/videos/engine/6.mp4",
-  "/videos/engine/7.mp4",
-  "/videos/engine/8.mp4",
-  "/videos/engine/seq0.mp4",
-  "/videos/engine/seq1.mp4",
-  "/videos/engine/seq2.mp4",
-  "/videos/engine/seq3.mp4",
-  "/videos/engine/seq4.mp4",
-];
+const engineVideos = Array.from({ length: 35 }, (_, i) => `/videos/engine/${i + 1}.mp4`);
 
 
 
@@ -43,36 +29,36 @@ function FadeInSection({ children, className = "", delay = 0 }: { children: Reac
 }
 
 const phase1Columns = [
-  { videoIndices: [0, 8, 3, 10], speed: 18 },
-  { videoIndices: [9, 2, 6, 11], speed: 20 },
-  { videoIndices: [4, 12, 1, 7], speed: 16 },
-  { videoIndices: [10, 5, 8, 3], speed: 19 },
+  { videoIndices: [0, 8, 16, 24], speed: 18 },
+  { videoIndices: [9, 17, 25, 3], speed: 20 },
+  { videoIndices: [4, 12, 20, 28], speed: 16 },
+  { videoIndices: [13, 21, 29, 5], speed: 19 },
 ];
 
 const phase2Columns = [
-  { videoIndices: [0, 8, 3, 10], speed: 18 },
-  { videoIndices: [9, 2, 6, 11], speed: 20 },
-  { videoIndices: [4, 12, 1, 7], speed: 16 },
-  { videoIndices: [10, 5, 8, 3], speed: 19 },
-  { videoIndices: [1, 11, 5, 9], speed: 17 },
-  { videoIndices: [6, 0, 12, 4], speed: 21 },
-  { videoIndices: [3, 7, 10, 2], speed: 15 },
-  { videoIndices: [8, 4, 0, 11], speed: 18 },
+  { videoIndices: [0, 8, 16, 24], speed: 18 },
+  { videoIndices: [9, 17, 25, 3], speed: 20 },
+  { videoIndices: [4, 12, 20, 28], speed: 16 },
+  { videoIndices: [13, 21, 29, 5], speed: 19 },
+  { videoIndices: [1, 10, 18, 26], speed: 17 },
+  { videoIndices: [6, 14, 22, 30], speed: 21 },
+  { videoIndices: [2, 11, 19, 27], speed: 15 },
+  { videoIndices: [7, 15, 23, 31], speed: 18 },
 ];
 
 const phase3Columns = [
-  { videoIndices: [0, 8, 3], speed: 18 },
-  { videoIndices: [9, 2, 6], speed: 20 },
-  { videoIndices: [4, 12, 1], speed: 16 },
-  { videoIndices: [10, 5, 8], speed: 19 },
-  { videoIndices: [1, 11, 5], speed: 17 },
-  { videoIndices: [6, 0, 12], speed: 21 },
-  { videoIndices: [3, 7, 10], speed: 15 },
-  { videoIndices: [8, 4, 0], speed: 18 },
-  { videoIndices: [2, 9, 7], speed: 20 },
-  { videoIndices: [11, 3, 5], speed: 16 },
-  { videoIndices: [7, 1, 9], speed: 19 },
-  { videoIndices: [12, 6, 2], speed: 17 },
+  { videoIndices: [0, 8, 16], speed: 18 },
+  { videoIndices: [9, 17, 25], speed: 20 },
+  { videoIndices: [4, 12, 20], speed: 16 },
+  { videoIndices: [13, 21, 29], speed: 19 },
+  { videoIndices: [1, 10, 18], speed: 17 },
+  { videoIndices: [6, 14, 22], speed: 21 },
+  { videoIndices: [2, 11, 19], speed: 15 },
+  { videoIndices: [7, 15, 23], speed: 18 },
+  { videoIndices: [3, 24, 32], speed: 20 },
+  { videoIndices: [5, 26, 33], speed: 16 },
+  { videoIndices: [27, 34, 28], speed: 19 },
+  { videoIndices: [30, 31, 34], speed: 17 },
 ];
 
 function ScrollVideoColumn({ videoIndices, speed, colWidth, gap }: { videoIndices: number[]; speed: number; colWidth: number; gap: number }) {
