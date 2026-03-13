@@ -288,6 +288,7 @@ export default function BookCall() {
           sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover"
         />
+        <div className="absolute inset-0 bg-navy-950/40" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-navy-950" />
       </div>
 
