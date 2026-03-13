@@ -475,9 +475,6 @@ export default function DataEngine() {
       {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
       <ProcessSteps />
 
-      {/* STATEMENT SECTION */}
-      <StatementSection />
-
       {/* SECTION 2 — WHAT WE ANNOTATE (scroll-driven) */}
       <CapabilitiesSection />
 
@@ -562,6 +559,8 @@ export default function DataEngine() {
         </div>
       </section>
 
+      {/* STATEMENT SECTION — after the two videos */}
+      <StatementSection />
 
       {/* SECTION 4 — EARLY ACCESS */}
       <section className="relative py-44 md:py-56 overflow-hidden">
