@@ -84,10 +84,14 @@ function ScrollIntroSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (v) => {
-      if (v < 0.28) {
+      if (v < 0.25) {
         setTitlePhase("first");
         setParaIndex(0);
-      } else if (v < 0.65) {
+      } else if (v < 0.5) {
+        // Title 2 visible, NO paragraph yet
+        setTitlePhase("second");
+        setParaIndex(0);
+      } else if (v < 0.75) {
         setTitlePhase("second");
         setParaIndex(1);
       } else {
@@ -104,39 +108,41 @@ function ScrollIntroSection() {
 
   return (
     <div ref={containerRef} style={{ height: "250vh" }}>
-      <div className="sticky top-0 flex flex-col items-center justify-center text-center px-6 py-28">
-        <AnimatePresence mode="wait">
-          <motion.h2
-            key={titlePhase}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.65, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-gradient mb-10"
-          >
-            {lines[titlePhase].map((line, i) => (
-              <span key={i}>
-                {line}
-                {i < lines[titlePhase].length - 1 && <br />}
-              </span>
-            ))}
-          </motion.h2>
-        </AnimatePresence>
-        <div className="max-w-2xl mx-auto min-h-[80px] flex items-start justify-center">
+      <div className="sticky top-0 py-28">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
           <AnimatePresence mode="wait">
-            {paraIndex > 0 && (
-              <motion.p
-                key={paraIndex}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-                className="text-white/60 font-light text-[16px] leading-relaxed text-center"
-              >
-                {INTRO_PARAGRAPHS[paraIndex - 1]}
-              </motion.p>
-            )}
+            <motion.h2
+              key={titlePhase}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.65, ease: "easeOut" }}
+              className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-gradient mb-10"
+            >
+              {lines[titlePhase].map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < lines[titlePhase].length - 1 && <br />}
+                </span>
+              ))}
+            </motion.h2>
           </AnimatePresence>
+          <div className="max-w-2xl mx-auto min-h-[80px]">
+            <AnimatePresence mode="wait">
+              {paraIndex > 0 && (
+                <motion.p
+                  key={paraIndex}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="text-white/60 font-light text-[16px] leading-relaxed text-center"
+                >
+                  {INTRO_PARAGRAPHS[paraIndex - 1]}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
