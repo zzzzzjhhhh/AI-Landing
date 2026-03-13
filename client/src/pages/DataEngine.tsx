@@ -449,7 +449,7 @@ function CapabilitiesSection() {
         </FadeInSection>
 
         {/* Carousel wrapper */}
-        <div className="relative">
+        <div className="relative max-w-[820px] mx-auto">
           {/* Prev button */}
           <button
             onClick={prev}
