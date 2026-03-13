@@ -360,22 +360,22 @@ const capabilities = [
   {
     label: "Object recognition & spatial mapping",
     description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
-    video: "/videos/spoon.mp4",
+    image: "/images/food.jpg",
   },
   {
     label: "Manipulation & grasping",
     description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
-    video: "/videos/grasping.mp4",
+    image: "/images/mouse_hand.jpg",
   },
   {
     label: "Environment diversity",
     description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
-    video: "/videos/environment.mp4",
+    image: "/images/warehouse.jpg",
   },
   {
     label: "Edge cases & failure modes",
     description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
-    video: "/videos/edge_cases.mp4",
+    image: "/images/hospital.jpg",
   },
 ];
 
@@ -429,12 +429,8 @@ function CapabilitiesSection() {
           {capabilities.map((cap, i) => (
             <FadeInSection key={cap.label}>
               <div data-testid={`card-capability-${i}`}>
-                <div className="w-full aspect-video rounded-2xl bg-gradient-to-br from-[#0d1b2a] to-[#1a2d42] border border-white/[0.08] flex items-center justify-center mb-5 overflow-hidden">
-                  {cap.video ? (
-                    <video src={cap.video} autoPlay muted loop playsInline className="w-full h-full object-cover" />
-                  ) : (
-                    <span className="text-white/20 text-sm font-light">Video placeholder</span>
-                  )}
+                <div className="w-full aspect-video rounded-2xl border border-white/[0.08] mb-5 overflow-hidden">
+                  <img src={cap.image} alt={cap.label} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
                   {cap.label}
