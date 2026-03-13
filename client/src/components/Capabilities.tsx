@@ -217,7 +217,6 @@ export function Capabilities() {
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-[#8bdaef] mb-6">
                   We translate human perception into structured intelligence.
                 </h2>
-                <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.25)" }} />
                 <p className="font-normal text-[#ffffffdb] text-[18px] pl-[0px] pr-[0px] pt-[0px] pb-[0px] ml-[0px] mr-[0px]">
                   Oceanveo deploys human annotators across diverse real-world environments — capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
                 </p>
