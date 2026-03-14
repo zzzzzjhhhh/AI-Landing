@@ -275,13 +275,13 @@ export function Capabilities() {
                   </h3>
                   <div className="mb-4 border-b border-white/20" />
                   <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                    Precise hand and finger movements captured at scale, the dexterous actions robots must learn to replicate.
+                    Precise hand and finger movements captured at scale — the complete suite of dexterous actions robots are learning to replicate.
                   </p>
                 </div>
 
                 <div className="absolute bottom-0 left-0 z-20 p-4 sm:p-6 md:p-8">
                   <p className="text-xs font-light text-white/30">
-                    Dexterous manipulation / VLA-ready labels
+                    Dexterous object manipulation & motion
                   </p>
                 </div>
               </div>
