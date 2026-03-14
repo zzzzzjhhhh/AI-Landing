@@ -172,9 +172,9 @@ const pillars = [
   {
     stat: "10",
     suffix: "M+",
-    title: "Built for Physical Intelligence",
+    title: "Quality",
     description:
-      "Our collection protocols, behavioral taxonomy, and quality systems are designed specifically for robotics, humanoids, and embodied AI, not adapted from language workflows or generic image labeling.",
+      "Our teams are trained to capture spatial dynamics, contextual cues, and task-level execution signals that provide the richest signal for machine learning. Our tight feedback loop from top to bottom guarantees pristine, pure datasets dialed in to your needs.",
   },
   {
     stat: "99",
@@ -349,7 +349,7 @@ export function Capabilities() {
 
           <FadeIn delay={0.2}>
             <h2 className="mx-auto mt-12 max-w-4xl text-center font-display text-[clamp(1.75rem,6vw,2.5rem)] font-medium tracking-tight text-[#8bdaef] md:mt-16">
-              The result is training data that makes robots more capable, more reliable, and more ready for the world they will operate in.
+              The result is training data that makes robots more capable, more reliable, and ready for our world.
             </h2>
           </FadeIn>
         </div>
@@ -365,11 +365,9 @@ export function Capabilities() {
         <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeIn>
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-[#8bdaef]">
-              Our Difference
+              Our Commitment to the Big Three:
             </p>
             <h2 className="mb-12 max-w-4xl text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-white md:mb-16">
-              Most data annotation is built for language.
-              <br />
               We are built for the physical world.
             </h2>
           </FadeIn>
