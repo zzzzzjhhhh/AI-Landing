@@ -80,7 +80,7 @@ function ScrollTextSection() {
 
 const INTRO_PARAGRAPHS = [
   "Oceanveo transforms human perception, motion, and decision-making into structured training data for robotics, humanoids, and autonomous systems.",
-  "Built not for screens, but for AI that has to operate in the real world.",
+  "Engineered for autonomy.",
   "Engineered for autonomy.",
 ];
 
