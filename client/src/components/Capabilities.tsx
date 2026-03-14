@@ -220,7 +220,7 @@ export function Capabilities() {
                 </h3>
                 <div className="mb-4 border-b border-white/20" />
                 <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                  Gaze, hesitation, recovery, the full texture of human behaviour captured and structured for embodied AI training.
+                  Attention, Intention, Action & Reaction — the operational patterns of human behavior encoded for embodied system training.
                 </p>
               </div>
 
