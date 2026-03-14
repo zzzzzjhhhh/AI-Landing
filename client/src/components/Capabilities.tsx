@@ -85,7 +85,7 @@ const INTRO_PARAGRAPHS = [
 
 function ScrollIntroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [titlePhase, setTitlePhase] = useState<"first" | "second">("first");
+  const [titlePhase, setTitlePhase] = useState<"first" | "second" | "third">("first");
   const [paragraphIndex, setParagraphIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -95,17 +95,20 @@ function ScrollIntroSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (value) => {
-      if (value < 0.25) {
+      if (value < 0.2) {
         setTitlePhase("first");
         setParagraphIndex(0);
-      } else if (value < 0.5) {
+      } else if (value < 0.4) {
         setTitlePhase("second");
         setParagraphIndex(0);
-      } else if (value < 0.75) {
-        setTitlePhase("second");
+      } else if (value < 0.6) {
+        setTitlePhase("third");
+        setParagraphIndex(0);
+      } else if (value < 0.8) {
+        setTitlePhase("third");
         setParagraphIndex(1);
       } else {
-        setTitlePhase("second");
+        setTitlePhase("third");
         setParagraphIndex(2);
       }
     });
@@ -113,11 +116,12 @@ function ScrollIntroSection() {
 
   const lines = {
     first: ["The world's robots learn", "by watching humans."],
-    second: ["Real-world intelligence infrastructure for embodied AI"],
+    second: ["Physical intelligence is acquired", "by observing human behavior."],
+    third: ["Real-world intelligence infrastructure for embodied AI"],
   };
 
   return (
-    <div ref={containerRef} className="h-[175svh] md:h-[250vh]">
+    <div ref={containerRef} className="h-[210svh] md:h-[300vh]">
       <div className="sticky top-0 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
