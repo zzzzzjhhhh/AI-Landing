@@ -29,7 +29,7 @@ function FadeIn({
 }
 
 const SCROLL_PARAGRAPHS = [
-  "The next leap in AI will not happen in data centers. It will happen in warehouses, kitchens, hospitals, and factories, wherever machines must perceive, decide, and act in physical space.",
+  "The next frontier of AI will emerge beyond data centers, in warehouses, homes, hospitals, and factories — where automation reshapes productivity and everyday life.",
   "That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.",
   "That data does not exist at scale yet. That is what Oceanveo is building.",
 ];
