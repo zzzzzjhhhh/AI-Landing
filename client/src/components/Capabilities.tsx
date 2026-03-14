@@ -247,7 +247,7 @@ export function Capabilities() {
           <div className="grid grid-cols-1 items-start gap-10 px-5 sm:px-6 md:grid-cols-2 md:gap-16 md:px-12 lg:gap-24 lg:px-16">
             <FadeIn>
               <div className="flex flex-col justify-start">
-                <h2 className="mb-5 text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-white sm:mb-6">
+                <h2 className="mb-5 text-[clamp(1.4rem,3vw,2rem)] font-display font-medium leading-tight tracking-tight text-white sm:mb-6">
                   We translate human perception into structured intelligence
                 </h2>
                 <p className="text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
