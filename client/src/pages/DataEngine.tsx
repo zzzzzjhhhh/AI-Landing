@@ -255,21 +255,20 @@ function HeroSection() {
   }, []);
 
   const activeColumns = scrollPhase === 0 ? phase1Columns : scrollPhase === 1 ? phase2Columns : phase3Columns;
-  const colWidth = scrollPhase === 0 ? 200 : scrollPhase === 1 ? 120 : 80;
-  const colGap = scrollPhase === 0 ? 80 : scrollPhase === 1 ? 24 : 12;
-  const videoGap = scrollPhase === 0 ? 300 : scrollPhase === 1 ? 100 : 40;
+  const colWidth = scrollPhase === 0 ? 160 : scrollPhase === 1 ? 108 : 72;
+  const colGap = scrollPhase === 0 ? 32 : scrollPhase === 1 ? 20 : 10;
+  const videoGap = scrollPhase === 0 ? 120 : scrollPhase === 1 ? 64 : 28;
   const titleOpacity = scrollPhase === 0 ? 1 : 0;
 
   return (
     <section
       ref={sectionRef}
-      className="relative"
-      style={{ height: "300vh" }}
+      className="relative h-[220svh] md:h-[300vh]"
     >
-      <div className="sticky top-0 h-screen overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)" }}>
+      <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)" }}>
         <div
-          className="absolute inset-0 z-0 flex flex-row items-center justify-center transition-all duration-700 ease-out"
-          style={{ gap: colGap, padding: "0 24px" }}
+          className="absolute inset-0 z-0 flex flex-row items-center justify-center px-3 transition-all duration-700 ease-out md:px-6"
+          style={{ gap: colGap }}
         >
           {activeColumns.map((column, index) => {
             const visibilityClass =
@@ -304,7 +303,7 @@ function HeroSection() {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8 }}
-            className="sm:text-[48px] md:text-[72px] font-display font-medium tracking-tight bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent max-w-4xl text-center mx-auto px-12 md:px-24 text-[130px]"
+            className="mx-auto max-w-4xl bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text px-6 text-center text-[clamp(3.5rem,18vw,8rem)] font-display font-medium tracking-tight text-transparent md:px-24"
             data-testid="text-engine-heading"
           >
             Data Engine
@@ -364,9 +363,9 @@ const infrastructureItems = [
 
 function InfrastructureStack() {
   return (
-    <section className="bg-navy-950 py-24 lg:py-32">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-16 lg:gap-24 items-start">
+    <section className="bg-navy-950 py-20 md:py-24 lg:py-32">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 items-start gap-10 md:gap-16 lg:grid-cols-[5fr_7fr] lg:gap-24">
 
           {/* LEFT — sticky heading */}
           <div className="lg:sticky lg:top-28">
@@ -374,7 +373,7 @@ function InfrastructureStack() {
               <p className="text-[#8bdaef] text-xs uppercase tracking-[0.2em] font-medium mb-5">
                 Infrastructure Stack
               </p>
-              <h2 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-white leading-tight mb-6">
+              <h2 className="mb-6 text-[clamp(2rem,6vw,2.75rem)] font-display font-medium leading-tight tracking-tight text-white">
                 Five engines.<br />One system.
               </h2>
               <p className="text-white/40 text-sm leading-relaxed max-w-xs">
@@ -388,7 +387,7 @@ function InfrastructureStack() {
             {infrastructureItems.map((item, i) => (
               <FadeInSection key={item.name} delay={i * 0.07}>
                 <div
-                  className="group relative bg-[#111318] border border-white/[0.08] rounded-2xl p-8 overflow-hidden transition-all duration-500 hover:border-[#8bdaef]/30"
+                  className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111318] p-6 transition-all duration-500 hover:border-[#8bdaef]/30 md:p-8"
                   data-testid={`card-infra-${i}`}
                 >
                   {/* Gradient hover overlay */}
@@ -399,7 +398,7 @@ function InfrastructureStack() {
                   {/* Watermark number — top right, same gradient + opacity as home cards */}
                   <div className="absolute top-3 right-5 select-none pointer-events-none">
                     <span
-                      className="text-[90px] font-extralight leading-none tracking-tighter transition-all duration-500"
+                      className="text-[72px] font-extralight leading-none tracking-tighter transition-all duration-500 md:text-[90px]"
                       style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.18}}
                     >
                       {String(i + 1).padStart(2, "0")}
@@ -428,14 +427,14 @@ function ProcessSteps() {
   const rightSteps = processSteps.slice(2, 4); // 03 Validate, 04 Deliver
 
   return (
-    <section id="how-it-works" className="bg-navy-950 py-24 lg:py-32">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="how-it-works" className="bg-navy-950 py-20 md:py-24 lg:py-32">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="mb-12 text-center">
-          <p className="text-[#8bdaef] text-4xl md:text-5xl font-display font-medium tracking-tight mt-[20px] mb-[20px]">How it works</p>
+          <p className="my-5 text-[clamp(2rem,6vw,3rem)] font-display font-medium tracking-tight text-[#8bdaef]">How it works</p>
         </div>
 
         {/* Video — full width at top */}
-        <div className="w-full rounded-2xl overflow-hidden border border-white/[0.08] mb-16" style={{maxHeight: "60vh"}}>
+        <div className="mb-12 w-full overflow-hidden rounded-2xl border border-white/[0.08] md:mb-16" style={{ maxHeight: "60vh" }}>
           <DeferredVideo
             src="/videos/data-engine-optimized/apple_video.mp4"
             poster="/images/data-engine/apple_video.jpg"
@@ -445,7 +444,7 @@ function ProcessSteps() {
             loop
             playsInline
             preload="none"
-            className="w-full h-[50vh] md:h-[60vh]"
+            className="h-[36vh] w-full sm:h-[42vh] md:h-[60vh]"
             videoClassName="object-cover"
             imageClassName="object-cover"
             imageSizes="(max-width: 1280px) 100vw, 1280px"
@@ -455,7 +454,7 @@ function ProcessSteps() {
         </div>
 
         {/* Steps below: left col = 01+02, right col = 03+04 */}
-        <div className="grid grid-cols-2 gap-x-16 gap-y-0">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-16 md:gap-y-0">
           {/* Left column */}
           <div className="flex flex-col gap-10">
             {leftSteps.map((step, i) => (
@@ -469,7 +468,7 @@ function ProcessSteps() {
                   </span>
                   <div className="w-full h-px bg-white/20 mb-3" />
                   <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed font-light mr-[60px]">{step.body}</p>
+                  <p className="text-white/45 text-sm leading-relaxed font-light md:pr-12">{step.body}</p>
                 </div>
               </FadeInSection>
             ))}
@@ -488,7 +487,7 @@ function ProcessSteps() {
                   </span>
                   <div className="w-full h-px bg-white/20 mb-3" />
                   <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed font-light mr-[60px]">{step.body}</p>
+                  <p className="text-white/45 text-sm leading-relaxed font-light md:pr-12">{step.body}</p>
                 </div>
               </FadeInSection>
             ))}
@@ -539,9 +538,9 @@ function StatementSection() {
   }, [scrollYProgress]);
 
   return (
-    <div ref={containerRef} style={{ height: "180vh" }} className="bg-navy-950">
-      <div className="sticky top-0 flex h-screen items-center">
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
+    <div ref={containerRef} className="h-[130svh] bg-navy-950 md:h-[180vh]">
+      <div className="sticky top-0 flex h-[100svh] items-center">
+        <div className="mx-auto w-full max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
             {phase === 1 ? (
               <motion.p
@@ -550,7 +549,7 @@ function StatementSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed mx-auto max-w-2xl"
+                className="mx-auto max-w-2xl text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg"
               >
                 Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
               </motion.p>
@@ -561,7 +560,7 @@ function StatementSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-tight text-center mx-[150px]"
+                className="mx-auto max-w-4xl text-[clamp(2rem,7vw,3.5rem)] text-center font-display font-medium leading-tight tracking-tight"
                 style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", paddingBottom: "0.12em" }}
               >
                 Oceanveo data sets are built to close that gap.
@@ -685,10 +684,10 @@ export default function DataEngine() {
 
 
       {/* INTRO TEXT SECTION */}
-      <section className="bg-navy-950 pt-[100px] pb-[100px] text-center">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+      <section className="bg-navy-950 py-16 text-center md:py-24">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeInSection>
-            <p className="font-normal text-[#ffffffdb] text-[18px] leading-relaxed max-w-3xl mx-auto ml-[180px] mr-[180px]">
+            <p className="mx-auto max-w-3xl text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
               Oceanveo's Data Engine is the system behind how we collect, structure, validate, and deliver robotics training data. It is designed for physical environments, real human interaction, and the edge cases that determine whether AI systems hold up outside controlled conditions.
             </p>
           </FadeInSection>
@@ -702,13 +701,13 @@ export default function DataEngine() {
       <ProcessSteps />
 
       {/* VIDEO SHOWCASE */}
-      <section className="relative py-28 md:py-36">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+      <section className="relative py-20 md:py-28 lg:py-36">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeInSection>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight leading-[1.1] bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-transparent mb-6">
+            <h2 className="mb-6 bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-[1.1] tracking-tight text-transparent">
               For AI & Robotics Teams
             </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed font-light max-w-3xl mb-16">
+            <p className="mb-12 max-w-3xl text-base font-light leading-relaxed text-white/60 md:mb-16 md:text-lg">
               The gap between a system that performs in testing and one that performs in the real world is usually not the model alone — it is the training data behind it.
             </p>
           </FadeInSection>
@@ -730,15 +729,15 @@ export default function DataEngine() {
                   imageSizes="(max-width: 768px) 100vw, 50vw"
                   rootMargin="220px"
                 />
-                <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
+                <div className="absolute left-0 top-0 z-10 max-w-[220px] p-4 sm:max-w-[260px] sm:p-6 md:max-w-[280px] md:p-8">
                   <div className="border-b border-white/20 mb-4" />
-                  <h3 className="text-white text-xl font-display font-medium mb-4">Human</h3>
+                  <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">Human</h3>
                   <div className="border-b border-white/20 mb-4" />
-                  <p className="text-white/50 text-sm font-light leading-relaxed">
+                  <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
                     Real human actions captured in natural environments — the raw foundation every model learns from.
                   </p>
                 </div>
-                <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
+                <div className="absolute bottom-0 left-0 z-10 p-4 sm:p-6 md:p-8">
                   <p className="text-white/30 text-xs font-light">First-person capture · Controlled environment</p>
                 </div>
               </div>
@@ -760,15 +759,15 @@ export default function DataEngine() {
                   imageSizes="(max-width: 768px) 100vw, 50vw"
                   rootMargin="220px"
                 />
-                <div className="absolute top-0 left-0 p-6 md:p-8 z-10 max-w-[280px]">
+                <div className="absolute left-0 top-0 z-10 max-w-[220px] p-4 sm:max-w-[260px] sm:p-6 md:max-w-[280px] md:p-8">
                   <div className="border-b border-white/20 mb-4" />
-                  <h3 className="text-white text-xl font-display font-medium mb-4">AI Intelligence</h3>
+                  <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">AI Intelligence</h3>
                   <div className="border-b border-white/20 mb-4" />
-                  <p className="text-white/50 text-sm font-light leading-relaxed">
+                  <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
                     Structured perception and spatial reasoning — trained on the richness of real-world experience.
                   </p>
                 </div>
-                <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
+                <div className="absolute bottom-0 left-0 z-10 p-4 sm:p-6 md:p-8">
                   <p className="text-white/30 text-xs font-light">Robotic replication · Aligned behavior</p>
                 </div>
               </div>
@@ -784,7 +783,7 @@ export default function DataEngine() {
       <StatementSection />
 
       {/* SECTION 4 — EARLY ACCESS */}
-      <section className="relative py-44 md:py-56 overflow-hidden">
+      <section className="relative overflow-hidden py-24 md:py-44 lg:py-56">
         <img
           src="/images/fishtank_bg.jpg"
           alt=""
@@ -792,7 +791,7 @@ export default function DataEngine() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+        <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <div className="text-center">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-6 leading-tight">
