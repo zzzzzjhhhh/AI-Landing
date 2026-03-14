@@ -251,7 +251,7 @@ export function Capabilities() {
                   Turning perception into vision.
                 </h2>
                 <p className="text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
-                  Oceanveo deploys human annotators across diverse real-world environments, capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
+                  Oceanveo deploys human data collectors around the globe — capturing purpose-built scenarios that deliver the diversity and quality generic datasets don't offer.
                 </p>
               </div>
             </FadeIn>
