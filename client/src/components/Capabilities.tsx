@@ -79,7 +79,7 @@ function ScrollTextSection() {
 }
 
 const INTRO_PARAGRAPHS = [
-  "Oceanveo transforms human perception, movement, and decision-making in physical environments into structured training data for robots, humanoids, and autonomous systems.",
+  "Oceanveo transforms human perception, motion, and decision-making into structured training data for robotics, humanoids, and autonomous systems.",
   "Oceanveo transforms human perception, motion, and decision-making into structured training data for robotics, humanoids, and autonomous systems.",
   "Built not for screens, but for AI that has to operate in the real world.",
   "Engineered for autonomy.",
