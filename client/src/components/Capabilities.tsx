@@ -170,25 +170,25 @@ function ScrollIntroSection() {
 
 const pillars = [
   {
-    stat: "10",
-    suffix: "M+",
+    stat: "99",
+    suffix: ".7%",
     title: "Quality",
     description:
       "Our teams are trained to capture spatial dynamics, contextual cues, and task-level execution signals that provide the richest signal for machine learning. Our tight feedback loop from top to bottom guarantees pristine, pure datasets dialed in to your needs.",
   },
   {
-    stat: "99",
-    suffix: ".7%",
-    title: "Human Nuance, Structured for Machines",
+    stat: "10",
+    suffix: "M+",
+    title: "Quantity",
     description:
-      "Our teams are trained to capture the spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
+      "A scalable workforce capable of producing thousands of hours of training data on the timelines modern AI development demands.",
   },
   {
-    stat: "500",
-    suffix: "+",
-    title: "Scenario Depth Over Dataset Scale",
+    stat: ">30",
+    suffix: "",
+    title: "Diversity",
     description:
-      "We focus on the situations that matter most: diverse environments, rare interactions, and failure-prone edge cases where physical AI systems actually break.",
+      "Our global workforce spans >30 countries, capturing cultural, linguistic, and environmental diversity at scale.",
   },
 ];
 
