@@ -30,8 +30,8 @@ function FadeIn({
 
 const SCROLL_PARAGRAPHS = [
   "The next frontier of AI will emerge beyond data centers, in warehouses, homes, hospitals, and factories — where automation reshapes productivity and everyday life.",
-  "That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.",
-  "That data does not exist at scale yet. That is what Oceanveo is building.",
+  "That makes training data the decade's defining bottleneck. Unlike language models, robots and humanoids must learn from the full complexity of lived human experience.",
+  "To overcome this hurdle, the world needs an ocean of data.",
 ];
 
 function ScrollTextSection() {
