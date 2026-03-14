@@ -248,7 +248,7 @@ export function Capabilities() {
             <FadeIn>
               <div className="flex flex-col justify-start">
                 <h2 className="mb-5 text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-white sm:mb-6">
-                  Turning perception into vision.
+                  We translate human perception into structured intelligence
                 </h2>
                 <p className="text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
                   Oceanveo deploys human data collectors around the globe — capturing purpose-built scenarios that deliver the diversity and quality generic datasets don't offer.
