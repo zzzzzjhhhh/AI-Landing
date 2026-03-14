@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion, useInView, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import oceanveoLogo from "@assets/Oceanveo_logo_white@3x_1772679900635.png";
 
 function FadeIn({
   children,
@@ -226,7 +225,7 @@ export function Capabilities() {
               </div>
 
               <div className="absolute bottom-0 left-0 z-20 p-4 sm:p-6 md:p-8">
-                <img src={oceanveoLogo} alt="Oceanveo" className="h-5 w-auto opacity-40" />
+                <img src="/images/oceanveo-logo-white.png" alt="Oceanveo" className="h-5 w-auto opacity-40" />
               </div>
             </div>
           </FadeIn>
