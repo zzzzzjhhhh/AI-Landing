@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView, useScroll } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function FadeIn({
   children,
@@ -28,10 +28,10 @@ function FadeIn({
   );
 }
 
-const SCROLL_PARAGRAPHS = [
+const SCROLL_PARAGRAPHS: React.ReactNode[] = [
   "The next frontier of AI will emerge beyond data centers, in warehouses, homes, hospitals, and factories — where automation reshapes productivity and everyday life.",
   "That makes training data the decade's defining bottleneck. Unlike language models, robots and humanoids must learn from the full complexity of lived human experience.",
-  "To overcome this hurdle, the world needs an ocean of data.",
+  <>To overcome this hurdle, the world needs <span className="font-semibold text-white">an ocean</span> of data.</>,
 ];
 
 function ScrollTextSection() {
