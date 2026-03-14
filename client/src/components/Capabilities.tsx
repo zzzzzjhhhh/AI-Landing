@@ -216,7 +216,7 @@ export function Capabilities() {
               <div className="absolute left-0 top-0 z-20 max-w-[220px] p-4 sm:max-w-[260px] sm:p-6 md:max-w-[280px] md:p-8">
                 <div className="mb-4 border-b border-white/20" />
                 <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">
-                  Behavioural Signals
+                  Behavioral Signal Capture
                 </h3>
                 <div className="mb-4 border-b border-white/20" />
                 <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
