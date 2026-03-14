@@ -303,7 +303,7 @@ export function Capabilities() {
               How It Works
             </p>
             <p className="mx-auto mb-12 max-w-3xl text-center text-base font-medium leading-relaxed text-[#ffffffdb] sm:text-lg md:mb-16 md:text-xl">
-              We do not just label data. We engineer it, designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
+              We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and enriching the signals models need to learn how humans actually move, see, and solve problems in physical space.
             </p>
           </FadeIn>
 
