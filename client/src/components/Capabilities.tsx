@@ -82,6 +82,7 @@ const INTRO_PARAGRAPHS = [
   "Oceanveo transforms human perception, movement, and decision-making in physical environments into structured training data for robots, humanoids, and autonomous systems.",
   "Oceanveo transforms human perception, motion, and decision-making into structured training data for robotics, humanoids, and autonomous systems.",
   "Built not for screens, but for AI that has to operate in the real world.",
+  "Engineered for autonomy.",
 ];
 
 function ScrollIntroSection() {
@@ -96,24 +97,27 @@ function ScrollIntroSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (value) => {
-      if (value < 0.17) {
+      if (value < 0.14) {
         setTitlePhase("first");
         setParagraphIndex(0);
-      } else if (value < 0.33) {
+      } else if (value < 0.28) {
         setTitlePhase("second");
         setParagraphIndex(0);
-      } else if (value < 0.5) {
+      } else if (value < 0.43) {
         setTitlePhase("third");
         setParagraphIndex(0);
-      } else if (value < 0.67) {
+      } else if (value < 0.57) {
         setTitlePhase("third");
         setParagraphIndex(1);
-      } else if (value < 0.83) {
+      } else if (value < 0.71) {
         setTitlePhase("third");
         setParagraphIndex(2);
-      } else {
+      } else if (value < 0.85) {
         setTitlePhase("third");
         setParagraphIndex(3);
+      } else {
+        setTitlePhase("third");
+        setParagraphIndex(4);
       }
     });
   }, [scrollYProgress]);
@@ -125,7 +129,7 @@ function ScrollIntroSection() {
   };
 
   return (
-    <div ref={containerRef} className="h-[250svh] md:h-[350vh]">
+    <div ref={containerRef} className="h-[290svh] md:h-[400vh]">
       <div className="sticky top-0 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
