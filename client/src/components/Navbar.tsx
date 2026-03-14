@@ -59,7 +59,7 @@ export function Navbar() {
   }, []);
 
   const navProgress = mobileMenuOpen ? 1 : scrollProgress;
-  const headerPadding = 24 - navProgress * 8;
+  const headerPadding = 18 - navProgress * 6;
 
   return (
     <header
@@ -74,13 +74,13 @@ export function Navbar() {
         boxShadow: `0 18px 40px rgba(0, 0, 0, ${0.12 * navProgress})`,
       }}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6">
         <Link href="/" className="block">
           <Image
             src={logoImg}
             alt="Oceanveo"
             priority
-            className="h-[44px] w-auto cursor-pointer select-none md:h-[54px]"
+            className="h-[40px] w-auto cursor-pointer select-none sm:h-[46px] md:h-[54px]"
           />
         </Link>
 
@@ -103,7 +103,7 @@ export function Navbar() {
         <button
           type="button"
           aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          className="md:hidden text-white"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10 md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
@@ -111,8 +111,12 @@ export function Navbar() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-navy-950/95 backdrop-blur-xl border-b border-white/5 p-6 flex flex-col gap-6 animate-in slide-in-from-top-2">
-          <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-base font-medium text-center py-2" onClick={() => setMobileMenuOpen(false)}>
+        <div className="absolute left-0 right-0 top-full flex flex-col gap-4 border-b border-white/5 bg-navy-950/95 px-5 pb-6 pt-5 backdrop-blur-xl animate-in slide-in-from-top-2 md:hidden">
+          <Link
+            href="/data-engine"
+            className="rounded-xl border border-white/10 px-4 py-3 text-center text-base font-medium text-white/70 transition-colors hover:text-white"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Data Engine
           </Link>
           <Button

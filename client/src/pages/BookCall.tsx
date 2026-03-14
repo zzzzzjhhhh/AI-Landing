@@ -310,7 +310,7 @@ export default function BookCall() {
       <Navbar />
 
       <main className="flex-grow relative z-10">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence initial={false} mode="wait">
             {phase === "caseStudies" ? (
               <motion.section
@@ -318,10 +318,10 @@ export default function BookCall() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="pt-32 pb-[160px]"
+                className="pb-24 pt-24 md:pb-[160px] md:pt-32"
               >
-                <div className="mb-14 mt-8">
-                  <h2 className="text-4xl sm:text-5xl md:text-6xl font-display text-white mb-5 font-medium tracking-tight text-left" data-testid="text-case-studies-heading">
+                <div className="mb-12 mt-6 md:mb-14 md:mt-8">
+                  <h2 className="mb-5 text-left font-display text-[clamp(2.25rem,9vw,4.5rem)] font-medium tracking-tight text-white" data-testid="text-case-studies-heading">
                     Case Studies
                   </h2>
                   <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-[700px] font-light text-left">
@@ -335,7 +335,7 @@ export default function BookCall() {
             ) : (
               <section
                 ref={shellSectionRef}
-                className="pt-44 pb-24"
+                className="pb-20 pt-32 md:pb-24 md:pt-44"
                 style={shellMinHeight ? { minHeight: `${shellMinHeight}px` } : undefined}
               >
                 <AnimatePresence initial={false} mode="wait">
@@ -348,12 +348,12 @@ export default function BookCall() {
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       className="flex flex-col items-center"
                     >
-                      <div className="w-full max-w-2xl text-center mb-16">
+                      <div className="mb-12 w-full max-w-2xl text-center md:mb-16">
                         <motion.h1
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6 }}
-                          className="text-[48px] sm:text-[64px] md:text-[90px] font-display font-medium text-white mb-6 tracking-tight leading-[1.1]"
+                          className="mb-6 text-[clamp(2.75rem,12vw,5.625rem)] font-display font-medium leading-[1.05] tracking-tight text-white"
                         >
                           Let's talk data.
                         </motion.h1>
@@ -361,7 +361,7 @@ export default function BookCall() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
-                          className="text-lg md:text-xl text-steel-400 leading-relaxed font-light"
+                          className="text-base font-light leading-relaxed text-steel-400 md:text-xl"
                         >
                           Whether you're building robots, training foundation models, or exploring what physical AI data could unlock for your system — we want to hear from you.
                         </motion.p>
@@ -477,7 +477,7 @@ export default function BookCall() {
                               <Button
                                 type="submit"
                                 disabled={contactMutation.isPending}
-                                className="bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 h-14 px-8 rounded-xl font-medium text-lg mt-4 shadow-xl shadow-blue-900/20 transition-all duration-300 active:scale-[0.98] flex items-center gap-2 group"
+                                className="group mt-4 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-white px-8 text-base font-medium text-navy-900 shadow-xl shadow-blue-900/20 transition-all duration-300 hover:scale-105 hover:bg-sky-100 active:scale-[0.98] sm:w-auto sm:text-lg"
                                 data-testid="button-submit"
                               >
                                 {contactMutation.isPending ? (
