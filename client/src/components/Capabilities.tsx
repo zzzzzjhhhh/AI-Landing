@@ -123,7 +123,7 @@ function ScrollIntroSection() {
   }, [scrollYProgress]);
 
   const lines = {
-    first: ["The world's robots learn", "by watching humans."],
+    first: ["Physical intelligence is acquired by observing human behavior"],
     second: ["Physical intelligence is acquired", "by observing human behavior."],
     third: ["Real-world intelligence infrastructure for embodied AI"],
   };
