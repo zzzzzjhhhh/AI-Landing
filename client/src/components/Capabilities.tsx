@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView, useScroll } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function FadeIn({
   children,
@@ -28,10 +28,10 @@ function FadeIn({
   );
 }
 
-const SCROLL_PARAGRAPHS = [
-  "The next leap in AI will not happen in data centers. It will happen in warehouses, kitchens, hospitals, and factories, wherever machines must perceive, decide, and act in physical space.",
-  "That makes training embodied AI the decade's defining bottleneck. Unlike language or vision models, robots and humanoids must learn from the full complexity of real human experience.",
-  "That data does not exist at scale yet. That is what Oceanveo is building.",
+const SCROLL_PARAGRAPHS: React.ReactNode[] = [
+  "The next frontier of AI will emerge beyond data centers, in warehouses, homes, hospitals, and factories — where automation reshapes productivity and everyday life.",
+  "That makes training data the decade's defining bottleneck. Unlike language models, robots and humanoids must learn from the full complexity of lived human experience.",
+  <>To overcome this hurdle, the world needs <span className="font-semibold text-white">an ocean</span> of data.</>,
 ];
 
 function ScrollTextSection() {
@@ -79,13 +79,14 @@ function ScrollTextSection() {
 }
 
 const INTRO_PARAGRAPHS = [
-  "Oceanveo transforms human perception, movement, and decision-making in physical environments into structured training data for robots, humanoids, and autonomous systems.",
-  "Built not for screens, but for AI that has to operate in the real world.",
+  "Oceanveo transforms human perception, motion, and decision-making into structured training data for robotics, humanoids, and autonomous systems.",
+  "Engineered for autonomy.",
+  "Engineered for autonomy.",
 ];
 
 function ScrollIntroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [titlePhase, setTitlePhase] = useState<"first" | "second">("first");
+  const [titlePhase, setTitlePhase] = useState<"first" | "second" | "third">("first");
   const [paragraphIndex, setParagraphIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -95,29 +96,36 @@ function ScrollIntroSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (value) => {
-      if (value < 0.25) {
+      if (value < 0.17) {
         setTitlePhase("first");
         setParagraphIndex(0);
-      } else if (value < 0.5) {
+      } else if (value < 0.33) {
         setTitlePhase("second");
         setParagraphIndex(0);
-      } else if (value < 0.75) {
-        setTitlePhase("second");
+      } else if (value < 0.5) {
+        setTitlePhase("third");
+        setParagraphIndex(0);
+      } else if (value < 0.67) {
+        setTitlePhase("third");
         setParagraphIndex(1);
-      } else {
-        setTitlePhase("second");
+      } else if (value < 0.83) {
+        setTitlePhase("third");
         setParagraphIndex(2);
+      } else {
+        setTitlePhase("third");
+        setParagraphIndex(3);
       }
     });
   }, [scrollYProgress]);
 
   const lines = {
-    first: ["The world's robots learn", "by watching humans."],
-    second: ["Real-world intelligence infrastructure for embodied AI"],
+    first: ["Physical intelligence is acquired by observing human behavior"],
+    second: ["Physical intelligence is acquired", "by observing human behavior."],
+    third: ["Real-world intelligence infrastructure for embodied AI"],
   };
 
   return (
-    <div ref={containerRef} className="h-[175svh] md:h-[250vh]">
+    <div ref={containerRef} className="h-[250svh] md:h-[350vh]">
       <div className="sticky top-0 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
@@ -162,25 +170,25 @@ function ScrollIntroSection() {
 
 const pillars = [
   {
-    stat: "10",
-    suffix: "M+",
-    title: "Built for Physical Intelligence",
-    description:
-      "Our collection protocols, behavioral taxonomy, and quality systems are designed specifically for robotics, humanoids, and embodied AI, not adapted from language workflows or generic image labeling.",
-  },
-  {
     stat: "99",
     suffix: ".7%",
-    title: "Human Nuance, Structured for Machines",
+    title: "Quality",
     description:
-      "Our teams are trained to capture the spatial, contextual, and behavioral signals that determine whether a robot succeeds or fails in the real world.",
+      "Our teams are trained to capture spatial dynamics, contextual cues, and task-level execution signals that provide the richest signal for machine learning. Our tight feedback loop from top to bottom guarantees pristine, pure datasets dialed in to your needs.",
   },
   {
-    stat: "500",
-    suffix: "+",
-    title: "Scenario Depth Over Dataset Scale",
+    stat: "10",
+    suffix: "M+",
+    title: "Quantity",
     description:
-      "We focus on the situations that matter most: diverse environments, rare interactions, and failure-prone edge cases where physical AI systems actually break.",
+      "A scalable workforce capable of producing thousands of hours of training data on the timelines modern AI development demands.",
+  },
+  {
+    stat: ">30",
+    suffix: "",
+    title: "Diversity",
+    description:
+      "Our global workforce spans >30 countries, capturing cultural, linguistic, and environmental diversity at scale.",
   },
 ];
 
@@ -208,18 +216,16 @@ export function Capabilities() {
               <div className="absolute left-0 top-0 z-20 max-w-[220px] p-4 sm:max-w-[260px] sm:p-6 md:max-w-[280px] md:p-8">
                 <div className="mb-4 border-b border-white/20" />
                 <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">
-                  Behavioural Signals
+                  Behavioral Signal Capture
                 </h3>
                 <div className="mb-4 border-b border-white/20" />
                 <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                  Gaze, hesitation, recovery, the full texture of human behaviour captured and structured for embodied AI training.
+                  Attention, Intention, Action & Reaction — the operational patterns of human behavior encoded for embodied system training.
                 </p>
               </div>
 
               <div className="absolute bottom-0 left-0 z-20 p-4 sm:p-6 md:p-8">
-                <p className="text-xs font-light text-white/30">
-                  Embodied inference / Structured for VLA
-                </p>
+                <img src="/images/oceanveo-logo-white.png" alt="Oceanveo" className="h-5 w-auto opacity-40" />
               </div>
             </div>
           </FadeIn>
@@ -242,10 +248,10 @@ export function Capabilities() {
             <FadeIn>
               <div className="flex flex-col justify-start">
                 <h2 className="mb-5 text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-white sm:mb-6">
-                  We translate human perception into structured intelligence.
+                  We translate human perception into structured intelligence
                 </h2>
                 <p className="text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
-                  Oceanveo deploys human annotators across diverse real-world environments, capturing actions, interactions, and edge cases that no synthetic dataset can replicate. Every drawer opened. Every object grasped. Every hesitation, adjustment, and recovery.
+                  Oceanveo deploys human data collectors around the globe — capturing purpose-built scenarios that deliver the diversity and quality generic datasets don't offer.
                 </p>
               </div>
             </FadeIn>
@@ -269,13 +275,13 @@ export function Capabilities() {
                   </h3>
                   <div className="mb-4 border-b border-white/20" />
                   <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                    Precise hand and finger movements captured at scale, the dexterous actions robots must learn to replicate.
+                    Precise hand and finger movements captured at scale — the complete suite of dexterous actions robots are learning to replicate.
                   </p>
                 </div>
 
                 <div className="absolute bottom-0 left-0 z-20 p-4 sm:p-6 md:p-8">
                   <p className="text-xs font-light text-white/30">
-                    Dexterous manipulation / VLA-ready labels
+                    Dexterous object manipulation & motion
                   </p>
                 </div>
               </div>
@@ -297,7 +303,7 @@ export function Capabilities() {
               How It Works
             </p>
             <p className="mx-auto mb-12 max-w-3xl text-center text-base font-medium leading-relaxed text-[#ffffffdb] sm:text-lg md:mb-16 md:text-xl">
-              We do not just label data. We engineer it, designing scenarios, defining behavioral taxonomies, and structuring the signals AI systems need to learn how humans actually move, see, and solve problems in physical space.
+              We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and enriching the signals models need to learn how humans actually move, see, and solve problems in physical space.
             </p>
           </FadeIn>
 
@@ -343,7 +349,7 @@ export function Capabilities() {
 
           <FadeIn delay={0.2}>
             <h2 className="mx-auto mt-12 max-w-4xl text-center font-display text-[clamp(1.75rem,6vw,2.5rem)] font-medium tracking-tight text-[#8bdaef] md:mt-16">
-              The result is training data that makes robots more capable, more reliable, and more ready for the world they will operate in.
+              The result is training data that makes robots more capable, more reliable, and ready for our world.
             </h2>
           </FadeIn>
         </div>
@@ -359,11 +365,9 @@ export function Capabilities() {
         <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeIn>
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-[#8bdaef]">
-              Our Difference
+              Our Commitment to the Big Three:
             </p>
             <h2 className="mb-12 max-w-4xl text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-white md:mb-16">
-              Most data annotation is built for language.
-              <br />
               We are built for the physical world.
             </h2>
           </FadeIn>
