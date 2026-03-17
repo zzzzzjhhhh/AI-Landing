@@ -86,7 +86,7 @@ const INTRO_PARAGRAPHS = [
 
 function ScrollIntroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [titlePhase, setTitlePhase] = useState<"first" | "second" | "third">("first");
+  const [titlePhase, setTitlePhase] = useState<"first" | "second">("first");
   const [paragraphIndex, setParagraphIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -96,23 +96,20 @@ function ScrollIntroSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (value) => {
-      if (value < 0.17) {
+      if (value < 0.2) {
         setTitlePhase("first");
         setParagraphIndex(0);
-      } else if (value < 0.33) {
+      } else if (value < 0.4) {
         setTitlePhase("second");
         setParagraphIndex(0);
-      } else if (value < 0.5) {
-        setTitlePhase("third");
-        setParagraphIndex(0);
-      } else if (value < 0.67) {
-        setTitlePhase("third");
+      } else if (value < 0.6) {
+        setTitlePhase("second");
         setParagraphIndex(1);
-      } else if (value < 0.83) {
-        setTitlePhase("third");
+      } else if (value < 0.8) {
+        setTitlePhase("second");
         setParagraphIndex(2);
       } else {
-        setTitlePhase("third");
+        setTitlePhase("second");
         setParagraphIndex(3);
       }
     });
@@ -120,12 +117,11 @@ function ScrollIntroSection() {
 
   const lines = {
     first: ["Physical intelligence is acquired by observing human behavior"],
-    second: ["Physical intelligence is acquired", "by observing human behavior."],
-    third: ["Real-world intelligence infrastructure for embodied AI"],
+    second: ["Real-world intelligence infrastructure for embodied AI"],
   };
 
   return (
-    <div ref={containerRef} className="h-[250svh] md:h-[350vh]">
+    <div ref={containerRef} className="h-[210svh] md:h-[300vh]">
       <div className="sticky top-0 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
