@@ -690,6 +690,38 @@ export default function DataEngine() {
       {/* INFRASTRUCTURE STACK SECTION */}
       <InfrastructureStack />
 
+      {/* HOW IT WORKS VIDEO */}
+      <section className="bg-navy-950 py-20 md:py-24 lg:py-32">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
+          <div className="mb-12 text-center">
+            <p className="my-5 text-[clamp(2rem,6vw,3rem)] font-display font-medium tracking-tight text-[#8bdaef]">
+              How it works
+            </p>
+          </div>
+          <div
+            className="w-full overflow-hidden rounded-2xl border border-white/[0.08]"
+            style={{ maxHeight: "60vh" }}
+          >
+            <DeferredVideo
+              src="/videos/data-engine-optimized/apple_video.mp4"
+              poster="/images/data-engine/apple_video.jpg"
+              alt="Demonstration of the data-engine capture workflow"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              className="h-[36vh] w-full sm:h-[42vh] md:h-[60vh]"
+              videoClassName="object-cover"
+              imageClassName="object-cover"
+              imageSizes="(max-width: 1280px) 100vw, 1280px"
+              rootMargin="240px"
+              style={{ maxHeight: "60vh" }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* VIDEO SHOWCASE */}
       <section className="relative py-20 md:py-28 lg:py-36">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
