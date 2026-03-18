@@ -438,7 +438,7 @@ function InfrastructureStack() {
                         "/images/icon-delivery.png",
                       ][i]}
                       alt=""
-                      className="w-[72px] h-[72px] md:w-[90px] md:h-[90px] object-contain opacity-[0.18]"
+                      className="w-[88px] h-[88px] md:w-[110px] md:h-[110px] object-contain opacity-[0.18]"
                     />
                   </div>
                   {/* Content */}
