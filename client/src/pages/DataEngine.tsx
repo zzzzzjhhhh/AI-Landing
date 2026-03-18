@@ -146,10 +146,6 @@ const phase3Columns = [
   { videoIndices: [9, 1, 4], speed: 21 },
   { videoIndices: [7, 10, 2], speed: 15 },
   { videoIndices: [5, 8, 11], speed: 18 },
-  { videoIndices: [0, 4, 9], speed: 20 },
-  { videoIndices: [2, 6, 11], speed: 16 },
-  { videoIndices: [1, 5, 10], speed: 19 },
-  { videoIndices: [3, 7, 8], speed: 17 },
 ];
 
 function ScrollVideoColumn({
