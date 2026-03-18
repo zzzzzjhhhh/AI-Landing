@@ -690,9 +690,6 @@ export default function DataEngine() {
       {/* INFRASTRUCTURE STACK SECTION */}
       <InfrastructureStack />
 
-      {/* SECTION 1 — THE PIPELINE (scroll-driven sticky) */}
-      <ProcessSteps />
-
       {/* VIDEO SHOWCASE */}
       <section className="relative py-20 md:py-28 lg:py-36">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
