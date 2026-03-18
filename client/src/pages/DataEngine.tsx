@@ -29,6 +29,10 @@ const engineVideos = [
   { video: "/videos/hero-marquee/06.mp4", poster: "" },
   { video: "/videos/hero-marquee/07.mp4", poster: "" },
   { video: "/videos/hero-marquee/08.mp4", poster: "" },
+  { video: "/videos/hero-marquee/09.mp4", poster: "" },
+  { video: "/videos/hero-marquee/10.mp4", poster: "" },
+  { video: "/videos/hero-marquee/11.mp4", poster: "" },
+  { video: "/videos/hero-marquee/12.mp4", poster: "" },
 ];
 
 type ViewportVideoProps = Omit<ComponentPropsWithoutRef<"video">, "src"> & {
@@ -114,38 +118,38 @@ function FadeInSection({
   );
 }
 
-// 8 unique videos — cycled across columns
+// 12 videos — cycled across columns in original structure
 const phase1Columns = [
   { videoIndices: [0, 1, 2, 3], speed: 18 },
   { videoIndices: [4, 5, 6, 7], speed: 20 },
-  { videoIndices: [0, 2, 4, 6], speed: 16 },
-  { videoIndices: [1, 3, 5, 7], speed: 19 },
+  { videoIndices: [8, 9, 10, 11], speed: 16 },
+  { videoIndices: [0, 3, 6, 9], speed: 19 },
 ];
 
 const phase2Columns = [
   { videoIndices: [0, 1, 2, 3], speed: 18 },
   { videoIndices: [4, 5, 6, 7], speed: 20 },
-  { videoIndices: [0, 2, 4, 6], speed: 16 },
-  { videoIndices: [1, 3, 5, 7], speed: 19 },
-  { videoIndices: [0, 3, 6, 1], speed: 17 },
-  { videoIndices: [4, 7, 2, 5], speed: 21 },
-  { videoIndices: [0, 4, 1, 5], speed: 15 },
-  { videoIndices: [2, 6, 3, 7], speed: 18 },
+  { videoIndices: [8, 9, 10, 11], speed: 16 },
+  { videoIndices: [0, 3, 6, 9], speed: 19 },
+  { videoIndices: [1, 4, 7, 10], speed: 17 },
+  { videoIndices: [2, 5, 8, 11], speed: 21 },
+  { videoIndices: [0, 4, 8, 1], speed: 15 },
+  { videoIndices: [5, 9, 2, 6], speed: 18 },
 ];
 
 const phase3Columns = [
   { videoIndices: [0, 1, 2], speed: 18 },
   { videoIndices: [3, 4, 5], speed: 20 },
-  { videoIndices: [6, 7, 0], speed: 16 },
-  { videoIndices: [1, 2, 3], speed: 19 },
-  { videoIndices: [4, 5, 6], speed: 17 },
-  { videoIndices: [7, 0, 1], speed: 21 },
-  { videoIndices: [2, 3, 4], speed: 15 },
-  { videoIndices: [5, 6, 7], speed: 18 },
-  { videoIndices: [0, 2, 4], speed: 20 },
-  { videoIndices: [1, 3, 5], speed: 16 },
-  { videoIndices: [6, 0, 3], speed: 19 },
-  { videoIndices: [7, 4, 1], speed: 17 },
+  { videoIndices: [6, 7, 8], speed: 16 },
+  { videoIndices: [9, 10, 11], speed: 19 },
+  { videoIndices: [0, 3, 6], speed: 17 },
+  { videoIndices: [9, 1, 4], speed: 21 },
+  { videoIndices: [7, 10, 2], speed: 15 },
+  { videoIndices: [5, 8, 11], speed: 18 },
+  { videoIndices: [0, 4, 9], speed: 20 },
+  { videoIndices: [2, 6, 11], speed: 16 },
+  { videoIndices: [1, 5, 10], speed: 19 },
+  { videoIndices: [3, 7, 8], speed: 17 },
 ];
 
 function ScrollVideoColumn({
