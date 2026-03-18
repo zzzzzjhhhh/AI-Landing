@@ -429,27 +429,17 @@ function InfrastructureStack() {
                   />
                   {/* Watermark — top right */}
                   <div className="absolute top-3 right-5 select-none pointer-events-none">
-                    {i === 0 ? (
-                      <img
-                        src="/images/icon-discovery.png"
-                        alt=""
-                        className="w-16 h-16 md:w-20 md:h-20 object-contain opacity-40"
-                      />
-                    ) : (
-                      <span
-                        className="text-[72px] font-extralight leading-none tracking-tighter transition-all duration-500 md:text-[90px]"
-                        style={{
-                          background:
-                            "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundClip: "text",
-                          opacity: 0.18,
-                        }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    )}
+                    <img
+                      src={[
+                        "/images/icon-discovery.png",
+                        "/images/icon-scenario.png",
+                        "/images/icon-training.png",
+                        "/images/icon-qa.png",
+                        "/images/icon-delivery.png",
+                      ][i]}
+                      alt=""
+                      className="w-16 h-16 md:w-20 md:h-20 object-contain opacity-40"
+                    />
                   </div>
                   {/* Content */}
                   <h3 className="text-white text-base font-display font-medium mb-3 leading-snug relative z-10 group-hover:text-[#8bdaef] transition-colors duration-500">
