@@ -110,16 +110,16 @@ function FadeInSection({
 
 // 35 unique videos — distributed with no repeats (phase3 uses all 35, last slot wraps to 0)
 const phase1Columns = [
-  { videoIndices: [0,  1,  2,  3],  speed: 18 },
-  { videoIndices: [4,  5,  6,  7],  speed: 20 },
-  { videoIndices: [8,  9, 10, 11],  speed: 16 },
+  { videoIndices: [0, 1, 2, 3], speed: 18 },
+  { videoIndices: [4, 5, 6, 7], speed: 20 },
+  { videoIndices: [8, 9, 10, 11], speed: 16 },
   { videoIndices: [12, 13, 14, 15], speed: 19 },
 ];
 
 const phase2Columns = [
-  { videoIndices: [0,  1,  2,  3],  speed: 18 },
-  { videoIndices: [4,  5,  6,  7],  speed: 20 },
-  { videoIndices: [8,  9, 10, 11],  speed: 16 },
+  { videoIndices: [0, 1, 2, 3], speed: 18 },
+  { videoIndices: [4, 5, 6, 7], speed: 20 },
+  { videoIndices: [8, 9, 10, 11], speed: 16 },
   { videoIndices: [12, 13, 14, 15], speed: 19 },
   { videoIndices: [16, 17, 18, 19], speed: 17 },
   { videoIndices: [20, 21, 22, 23], speed: 21 },
@@ -128,10 +128,10 @@ const phase2Columns = [
 ];
 
 const phase3Columns = [
-  { videoIndices: [0,  1,  2],  speed: 18 },
-  { videoIndices: [3,  4,  5],  speed: 20 },
-  { videoIndices: [6,  7,  8],  speed: 16 },
-  { videoIndices: [9, 10, 11],  speed: 19 },
+  { videoIndices: [0, 1, 2], speed: 18 },
+  { videoIndices: [3, 4, 5], speed: 20 },
+  { videoIndices: [6, 7, 8], speed: 16 },
+  { videoIndices: [9, 10, 11], speed: 19 },
   { videoIndices: [12, 13, 14], speed: 17 },
   { videoIndices: [15, 16, 17], speed: 21 },
   { videoIndices: [18, 19, 20], speed: 15 },
@@ -139,7 +139,7 @@ const phase3Columns = [
   { videoIndices: [24, 25, 26], speed: 20 },
   { videoIndices: [27, 28, 29], speed: 16 },
   { videoIndices: [30, 31, 32], speed: 19 },
-  { videoIndices: [33, 34, 0],  speed: 17 }, // 35 videos total; last slot reuses 0
+  { videoIndices: [33, 34, 0], speed: 17 }, // 35 videos total; last slot reuses 0
 ];
 
 function ScrollVideoColumn({
@@ -160,7 +160,10 @@ function ScrollVideoColumn({
   const loopCopies = animate ? [0, 1] : [0];
 
   return (
-    <div className="flex-shrink-0 overflow-hidden h-full" style={{ width: colWidth }}>
+    <div
+      className="flex-shrink-0 overflow-hidden h-full"
+      style={{ width: colWidth }}
+    >
       <div
         className="marquee-track-vertical flex flex-col"
         style={{
@@ -170,7 +173,11 @@ function ScrollVideoColumn({
         }}
       >
         {loopCopies.map((setIdx) => (
-          <div key={setIdx} className="flex flex-col flex-shrink-0" style={{ gap }}>
+          <div
+            key={setIdx}
+            className="flex flex-col flex-shrink-0"
+            style={{ gap }}
+          >
             {videoIndices.map((videoIndex, tileIndex) => (
               <div
                 key={`${setIdx}-${tileIndex}`}
@@ -254,18 +261,26 @@ function HeroSection() {
     };
   }, []);
 
-  const activeColumns = scrollPhase === 0 ? phase1Columns : scrollPhase === 1 ? phase2Columns : phase3Columns;
+  const activeColumns =
+    scrollPhase === 0
+      ? phase1Columns
+      : scrollPhase === 1
+        ? phase2Columns
+        : phase3Columns;
   const colWidth = scrollPhase === 0 ? 160 : scrollPhase === 1 ? 108 : 72;
   const colGap = scrollPhase === 0 ? 32 : scrollPhase === 1 ? 20 : 10;
   const videoGap = scrollPhase === 0 ? 120 : scrollPhase === 1 ? 64 : 28;
   const titleOpacity = scrollPhase === 0 ? 1 : 0;
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-[220svh] md:h-[300vh]"
-    >
-      <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)" }}>
+    <section ref={sectionRef} className="relative h-[220svh] md:h-[300vh]">
+      <div
+        className="sticky top-0 h-[100svh] overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 40%, #0d1b2a 0%, #09111d 40%, #060d15 100%)",
+        }}
+      >
         <div
           className="absolute inset-0 z-0 flex flex-row items-center justify-center px-3 transition-all duration-700 ease-out md:px-6"
           style={{ gap: colGap }}
@@ -302,7 +317,9 @@ function HeroSection() {
           <motion.h1
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8 }}
+            transition={
+              prefersReducedMotion ? { duration: 0 } : { duration: 0.8 }
+            }
             className="mx-auto max-w-4xl bg-gradient-to-r from-white via-[#8bdaef] to-white bg-clip-text px-6 text-center text-[clamp(3.5rem,18vw,8rem)] font-display font-medium tracking-tight text-transparent md:px-24"
             data-testid="text-engine-heading"
           >
@@ -313,7 +330,6 @@ function HeroSection() {
     </section>
   );
 }
-
 
 const processSteps = [
   {
@@ -340,24 +356,29 @@ const processSteps = [
 
 const infrastructureItems = [
   {
-    name: "World Engine",
-    description: "Real-world data collection across homes, workshops, industrial settings, and other physical environments where embodied AI must operate.",
+    name: "Discovery",
+    description:
+      "Our team of experts partner directly with your project leadership and/or engineers to understand the scope, motivation, and goal of the model(s) you're training. Together, we will outline a strict and unified ontology that provides rich data & a strong signal.",
   },
   {
     name: "Scenario Engine",
-    description: "Design of task flows, edge cases, object interactions, and environmental conditions tailored to each client's use case.",
+    description:
+      "Design of task flows, edge cases, object interactions, and environmental conditions tailored to each client's use case.",
   },
   {
-    name: "Behavior Engine",
-    description: "Structured annotation of movement, manipulation, intent, recovery, spatial context, and human-environment interaction.",
+    name: "Training & Production",
+    description:
+      "Adhering to the ontology we defined together, we rigourously train and test our data annotation team prior to entrusting them with training data. Only those with the highest quality labels & strongest understanding of the task move into production.",
   },
   {
-    name: "Validation Engine",
-    description: "Multi-pass review systems for consistency, spatial accuracy, annotation quality, and edge-case reliability across datasets.",
+    name: "Quality Assurance",
+    description:
+      "To guarantee a pristine dataset, labels go through a second pass of quality-assurance, creating a feedback loop for labelers to learn from - while simulataneously correcting errors found in the first pass. A tight feedback loop between our team and your engineering team is maintained to guarantee alignment, through frequent mid-task review sessions and data samples.",
   },
   {
-    name: "Training Intelligence",
-    description: "Model-ready outputs delivered to specification, with the structure and documentation needed for robotics training and evaluation.",
+    name: "Delivery",
+    description:
+      "Processed data is sent directly back to your organization in a format of your choice, ready for immediate consumption. Suggestions to further enrich your dataset are often provided, we work together with our partners to help push their technology forward faster.",
   },
 ];
 
@@ -366,7 +387,6 @@ function InfrastructureStack() {
     <section className="bg-navy-950 py-20 md:py-24 lg:py-32">
       <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 items-start gap-10 md:gap-16 lg:grid-cols-[5fr_7fr] lg:gap-24">
-
           {/* LEFT — sticky heading */}
           <div className="lg:sticky lg:top-28">
             <FadeInSection>
@@ -374,10 +394,13 @@ function InfrastructureStack() {
                 Infrastructure Stack
               </p>
               <h2 className="mb-6 text-[clamp(2rem,6vw,2.75rem)] font-display font-medium leading-tight tracking-tight text-white">
-                Five engines.<br />One system.
+                Five layers.
+                <br />
+                One system.
               </h2>
               <p className="text-white/40 text-sm leading-relaxed max-w-xs">
-                Each layer of the stack handles a distinct phase of the data pipeline — from collection to delivery.
+                Each layer of the stack handles a distinct phase of the data
+                pipeline — from collection to delivery.
               </p>
             </FadeInSection>
           </div>
@@ -393,13 +416,23 @@ function InfrastructureStack() {
                   {/* Gradient hover overlay */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{background: "linear-gradient(135deg, rgba(139,218,239,0.13) 0%, rgba(79,163,188,0.07) 50%, rgba(255,255,255,0.03) 100%)"}}
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(139,218,239,0.13) 0%, rgba(79,163,188,0.07) 50%, rgba(255,255,255,0.03) 100%)",
+                    }}
                   />
                   {/* Watermark number — top right, same gradient + opacity as home cards */}
                   <div className="absolute top-3 right-5 select-none pointer-events-none">
                     <span
                       className="text-[72px] font-extralight leading-none tracking-tighter transition-all duration-500 md:text-[90px]"
-                      style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.18}}
+                      style={{
+                        background:
+                          "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        opacity: 0.18,
+                      }}
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
@@ -415,83 +448,6 @@ function InfrastructureStack() {
               </FadeInSection>
             ))}
           </div>
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProcessSteps() {
-  const leftSteps = processSteps.slice(0, 2);  // 01 Capture, 02 Structure
-  const rightSteps = processSteps.slice(2, 4); // 03 Validate, 04 Deliver
-
-  return (
-    <section id="how-it-works" className="bg-navy-950 py-20 md:py-24 lg:py-32">
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
-        <div className="mb-12 text-center">
-          <p className="my-5 text-[clamp(2rem,6vw,3rem)] font-display font-medium tracking-tight text-[#8bdaef]">How it works</p>
-        </div>
-
-        {/* Video — full width at top */}
-        <div className="mb-12 w-full overflow-hidden rounded-2xl border border-white/[0.08] md:mb-16" style={{ maxHeight: "60vh" }}>
-          <DeferredVideo
-            src="/videos/data-engine-optimized/apple_video.mp4"
-            poster="/images/data-engine/apple_video.jpg"
-            alt="Demonstration of the data-engine capture workflow"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className="h-[36vh] w-full sm:h-[42vh] md:h-[60vh]"
-            videoClassName="object-cover"
-            imageClassName="object-cover"
-            imageSizes="(max-width: 1280px) 100vw, 1280px"
-            rootMargin="240px"
-            style={{maxHeight: "60vh"}}
-          />
-        </div>
-
-        {/* Steps below: left col = 01+02, right col = 03+04 */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-16 md:gap-y-0">
-          {/* Left column */}
-          <div className="flex flex-col gap-10">
-            {leftSteps.map((step, i) => (
-              <FadeInSection key={step.step} delay={i * 0.08}>
-                <div data-testid={`process-step-${step.step}`}>
-                  <span
-                    className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
-                    style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
-                  >
-                    {step.step}
-                  </span>
-                  <div className="w-full h-px bg-white/20 mb-3" />
-                  <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed font-light md:pr-12">{step.body}</p>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
-
-          {/* Right column */}
-          <div className="flex flex-col gap-10">
-            {rightSteps.map((step, i) => (
-              <FadeInSection key={step.step} delay={i * 0.08}>
-                <div data-testid={`process-step-${step.step}`}>
-                  <span
-                    className="text-[32px] font-extralight leading-none tracking-tighter block mb-3"
-                    style={{background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", opacity: 0.4}}
-                  >
-                    {step.step}
-                  </span>
-                  <div className="w-full h-px bg-white/20 mb-3" />
-                  <h3 className="text-white text-lg font-display font-medium tracking-tight mb-2">{step.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed font-light md:pr-12">{step.body}</p>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -501,26 +457,29 @@ function ProcessSteps() {
 const capabilities = [
   {
     label: "Object recognition & spatial mapping",
-    description: "3D object identification, size, position, surface properties, and physical relationships within a scene.",
+    description:
+      "3D object identification, size, position, surface properties, and physical relationships within a scene.",
     image: "/images/food.jpg",
   },
   {
     label: "Manipulation & grasping",
-    description: "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
+    description:
+      "How humans pick up, move, and place objects; hand positioning, grip type, force signals.",
     image: "/images/mouse_hand.jpg",
   },
   {
     label: "Environment diversity",
-    description: "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
+    description:
+      "Kitchens, workshops, warehouses, public spaces, and custom environments on request.",
     image: "/images/warehouse.jpg",
   },
   {
     label: "Edge cases & failure modes",
-    description: "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
+    description:
+      "Cluttered scenes, poor lighting, ambiguous objects, interruptions and recovery actions.",
     image: "/images/hospital.jpg",
   },
 ];
-
 
 function StatementSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -551,7 +510,9 @@ function StatementSection() {
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="mx-auto max-w-2xl text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg"
               >
-                Synthetic data and simulation are useful, but they cannot fully capture the variability, unpredictability, and physical nuance of real-world environments. Oceanveo is built to close that gap.
+                Synthetic data and simulation are useful, but they cannot fully
+                capture the variability, unpredictability, and physical nuance
+                of real-world environments. Oceanveo is built to close that gap.
               </motion.p>
             ) : (
               <motion.h2
@@ -561,7 +522,14 @@ function StatementSection() {
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="mx-auto max-w-4xl text-[clamp(2rem,7vw,3.5rem)] text-center font-display font-medium leading-tight tracking-tight"
-                style={{ background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", paddingBottom: "0.12em" }}
+                style={{
+                  background:
+                    "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  paddingBottom: "0.12em",
+                }}
               >
                 Oceanveo data sets are built to close that gap.
               </motion.h2>
@@ -584,7 +552,8 @@ function CapabilitiesSection() {
   useEffect(() => {
     const measure = () => {
       if (trackRef.current) {
-        const w = (trackRef.current.offsetWidth - GAP * (VISIBLE - 1)) / VISIBLE;
+        const w =
+          (trackRef.current.offsetWidth - GAP * (VISIBLE - 1)) / VISIBLE;
         setCardWidth(w);
       }
     };
@@ -618,7 +587,15 @@ function CapabilitiesSection() {
             data-testid="button-carousel-prev"
             className="absolute left-[-56px] top-[40%] -translate-y-1/2 z-10 w-10 h-10 rounded-full border border-white/[0.12] bg-white/[0.04] hover:bg-white/[0.10] flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M10 12L6 8l4-4"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
 
           {/* Track */}
@@ -631,11 +608,17 @@ function CapabilitiesSection() {
                 <div
                   key={cap.label}
                   className="flex-shrink-0"
-                  style={{ width: cardWidth > 0 ? `${cardWidth}px` : "33.333%" }}
+                  style={{
+                    width: cardWidth > 0 ? `${cardWidth}px` : "33.333%",
+                  }}
                   data-testid={`card-capability-${i}`}
                 >
                   <div className="w-full aspect-square rounded-2xl border border-white/[0.08] mb-5 overflow-hidden">
-                    <img src={cap.image} alt={cap.label} className="w-full h-full object-cover" />
+                    <img
+                      src={cap.image}
+                      alt={cap.label}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-[#8bdaef] text-base md:text-lg font-display font-medium mb-2">
                     {cap.label}
@@ -655,7 +638,15 @@ function CapabilitiesSection() {
             data-testid="button-carousel-next"
             className="absolute right-[-56px] top-[40%] -translate-y-1/2 z-10 w-10 h-10 rounded-full border border-white/[0.12] bg-white/[0.04] hover:bg-white/[0.10] flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M6 4l4 4-4 4"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
         </div>
 
@@ -670,7 +661,6 @@ function CapabilitiesSection() {
             />
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -682,13 +672,16 @@ export default function DataEngine() {
       <Navbar />
       <HeroSection />
 
-
       {/* INTRO TEXT SECTION */}
       <section className="bg-navy-950 py-16 text-center md:py-24">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <p className="mx-auto max-w-3xl text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
-              Oceanveo's Data Engine is the system behind how we collect, structure, validate, and deliver robotics training data. It is designed for physical environments, real human interaction, and the edge cases that determine whether AI systems hold up outside controlled conditions.
+              Oceanveo's Data Engine is the system behind how we collect,
+              structure, validate, and deliver robotics training data. It is
+              designed for physical environments, real human interaction, and
+              the edge cases that determine whether AI systems hold up outside
+              controlled conditions.
             </p>
           </FadeInSection>
         </div>
@@ -708,12 +701,17 @@ export default function DataEngine() {
               For AI & Robotics Teams
             </h2>
             <p className="mb-12 max-w-3xl text-base font-light leading-relaxed text-white/60 md:mb-16 md:text-lg">
-              The gap between a system that performs in testing and one that performs in the real world is usually not the model alone — it is the training data behind it.
+              The gap between a model that gets the job done and one that
+              crushes expectations is not limited to model architecture - 
+              high quality, curated training data is the key to success.
             </p>
           </FadeInSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FadeInSection>
-              <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-1">
+              <div
+                className="relative aspect-square rounded-2xl overflow-hidden"
+                data-testid="video-pov-1"
+              >
                 <DeferredVideo
                   src="/videos/data-engine-optimized/human_hands_cup.mp4"
                   poster="/images/data-engine/human_hands_cup.jpg"
@@ -731,19 +729,27 @@ export default function DataEngine() {
                 />
                 <div className="absolute left-0 top-0 z-10 max-w-[220px] p-4 sm:max-w-[260px] sm:p-6 md:max-w-[280px] md:p-8">
                   <div className="border-b border-white/20 mb-4" />
-                  <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">Human</h3>
+                  <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">
+                    Human
+                  </h3>
                   <div className="border-b border-white/20 mb-4" />
                   <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                    Real human actions captured in natural environments — the raw foundation every model learns from.
+                    Real human actions captured in natural environments — the
+                    raw foundation every model learns from.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 z-10 p-4 sm:p-6 md:p-8">
-                  <p className="text-white/30 text-xs font-light">First-person capture · Controlled environment</p>
+                  <p className="text-white/30 text-xs font-light">
+                    First-person capture · Controlled environment
+                  </p>
                 </div>
               </div>
             </FadeInSection>
             <FadeInSection delay={0.15}>
-              <div className="relative aspect-square rounded-2xl overflow-hidden" data-testid="video-pov-2">
+              <div
+                className="relative aspect-square rounded-2xl overflow-hidden"
+                data-testid="video-pov-2"
+              >
                 <DeferredVideo
                   src="/videos/data-engine-optimized/robot_hands_cup.mp4"
                   poster="/images/data-engine/robot_hands_cup.jpg"
@@ -761,14 +767,19 @@ export default function DataEngine() {
                 />
                 <div className="absolute left-0 top-0 z-10 max-w-[220px] p-4 sm:max-w-[260px] sm:p-6 md:max-w-[280px] md:p-8">
                   <div className="border-b border-white/20 mb-4" />
-                  <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">AI Intelligence</h3>
+                  <h3 className="mb-4 text-lg font-display font-medium text-white sm:text-xl">
+                    AI Intelligence
+                  </h3>
                   <div className="border-b border-white/20 mb-4" />
                   <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                    Structured perception and spatial reasoning — trained on the richness of real-world experience.
+                    Structured perception and spatial reasoning — trained on the
+                    richness of real-world experience.
                   </p>
                 </div>
                 <div className="absolute bottom-0 left-0 z-10 p-4 sm:p-6 md:p-8">
-                  <p className="text-white/30 text-xs font-light">Robotic replication · Aligned behavior</p>
+                  <p className="text-white/30 text-xs font-light">
+                    Robotic replication · Aligned behavior
+                  </p>
                 </div>
               </div>
             </FadeInSection>
@@ -794,22 +805,24 @@ export default function DataEngine() {
         <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
           <FadeInSection>
             <div className="text-center">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-6 leading-tight">
-                  More to see. More to show.
-                </h2>
-                <p className="text-white text-base md:text-lg max-w-[600px] mx-auto font-light mb-10">
-                  We're releasing extended video examples, annotation previews, and dataset documentation to qualified partners. Leave your contact details and we'll be in touch.
-                </p>
-                <Link href="/book">
-                  <Button
-                    size="lg"
-                    className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300"
-                    data-testid="button-early-access"
-                  >
-                    Join the Early Access List
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white font-medium tracking-tight mb-6 leading-tight">
+                More to see. More to show.
+              </h2>
+              <p className="text-white text-base md:text-lg max-w-[600px] mx-auto font-light mb-10">
+                We're releasing extended video examples, annotation previews,
+                and dataset documentation to qualified partners. Leave your
+                contact details and we'll be in touch.
+              </p>
+              <Link href="/book">
+                <Button
+                  size="lg"
+                  className="rounded-xl px-8 h-14 text-base font-medium bg-white text-navy-900 hover:bg-sky-100 hover:scale-105 transition-all duration-300"
+                  data-testid="button-early-access"
+                >
+                  Join the Early Access List
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </FadeInSection>
         </div>
