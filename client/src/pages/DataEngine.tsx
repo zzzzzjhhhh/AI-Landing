@@ -162,7 +162,7 @@ function ScrollVideoColumn({
 }: {
   videoIndices: number[];
   speed: number;
-  colWidth: number;
+  colWidth: number | undefined;
   gap: number;
   animate: boolean;
   allowPriorityLoad: boolean;
@@ -171,8 +171,8 @@ function ScrollVideoColumn({
 
   return (
     <div
-      className="flex-shrink-0 overflow-hidden h-full"
-      style={{ width: colWidth }}
+      className="overflow-hidden h-full"
+      style={{ width: colWidth ?? "100%" }}
     >
       <div
         className="marquee-track-vertical flex flex-col"
@@ -292,25 +292,31 @@ function HeroSection() {
         }}
       >
         <div
-          className="absolute inset-0 z-0 flex flex-row items-center justify-center px-3 transition-all duration-700 ease-out md:px-6"
-          style={{ gap: colGap }}
+          className="absolute inset-0 z-0 flex flex-row items-center justify-center transition-all duration-700 ease-out"
+          style={{ gap: colGap, padding: scrollPhase === 2 ? 0 : undefined, paddingLeft: scrollPhase !== 2 ? 12 : 0, paddingRight: scrollPhase !== 2 ? 12 : 0 }}
         >
           {activeColumns.map((column, index) => {
             const visibilityClass =
-              index < 2
+              scrollPhase === 2
                 ? "block"
-                : index < 4
-                  ? "hidden sm:block"
-                  : index < 6
-                    ? "hidden lg:block"
-                    : "hidden xl:block";
+                : index < 2
+                  ? "block"
+                  : index < 4
+                    ? "hidden sm:block"
+                    : index < 6
+                      ? "hidden lg:block"
+                      : "hidden xl:block";
 
             return (
-              <div key={`${scrollPhase}-${index}`} className={visibilityClass}>
+              <div
+                key={`${scrollPhase}-${index}`}
+                className={visibilityClass}
+                style={scrollPhase === 2 ? { flex: 1, minWidth: 0 } : undefined}
+              >
                 <ScrollVideoColumn
                   videoIndices={column.videoIndices}
                   speed={column.speed}
-                  colWidth={colWidth}
+                  colWidth={scrollPhase === 2 ? undefined : colWidth}
                   gap={videoGap}
                   animate={!prefersReducedMotion}
                   allowPriorityLoad={index === 0}
