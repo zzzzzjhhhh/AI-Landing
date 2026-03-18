@@ -427,21 +427,29 @@ function InfrastructureStack() {
                         "linear-gradient(135deg, rgba(139,218,239,0.13) 0%, rgba(79,163,188,0.07) 50%, rgba(255,255,255,0.03) 100%)",
                     }}
                   />
-                  {/* Watermark number — top right, same gradient + opacity as home cards */}
+                  {/* Watermark — top right */}
                   <div className="absolute top-3 right-5 select-none pointer-events-none">
-                    <span
-                      className="text-[72px] font-extralight leading-none tracking-tighter transition-all duration-500 md:text-[90px]"
-                      style={{
-                        background:
-                          "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                        opacity: 0.18,
-                      }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                    {i === 0 ? (
+                      <img
+                        src="/images/icon-discovery.png"
+                        alt=""
+                        className="w-16 h-16 md:w-20 md:h-20 object-contain opacity-40"
+                      />
+                    ) : (
+                      <span
+                        className="text-[72px] font-extralight leading-none tracking-tighter transition-all duration-500 md:text-[90px]"
+                        style={{
+                          background:
+                            "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                          opacity: 0.18,
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    )}
                   </div>
                   {/* Content */}
                   <h3 className="text-white text-base font-display font-medium mb-3 leading-snug relative z-10 group-hover:text-[#8bdaef] transition-colors duration-500">
