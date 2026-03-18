@@ -512,7 +512,8 @@ function StatementSection() {
               >
                 Synthetic data and simulation are useful, but they cannot fully
                 capture the variability, unpredictability, and physical nuance
-                of real-world environments. Oceanveo is built to close that gap.
+                of real-world environments. Recreating rigid scenarios isn't
+                sustainable for generalizing and to scale.
               </motion.p>
             ) : (
               <motion.h2
@@ -531,7 +532,7 @@ function StatementSection() {
                   paddingBottom: "0.12em",
                 }}
               >
-                Oceanveo data sets are built to close that gap.
+                Treat your team to an ocean of real human data.
               </motion.h2>
             )}
           </AnimatePresence>
@@ -726,8 +727,8 @@ export default function DataEngine() {
             </h2>
             <p className="mb-12 max-w-3xl text-base font-light leading-relaxed text-white/60 md:mb-16 md:text-lg">
               The gap between a model that gets the job done and one that
-              crushes expectations is not limited to model architecture - 
-              high quality, curated training data is the key to success.
+              crushes expectations is not limited to model architecture - high
+              quality, curated training data is the key to success.
             </p>
           </FadeInSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
