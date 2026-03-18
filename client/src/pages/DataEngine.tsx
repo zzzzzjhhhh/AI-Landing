@@ -20,10 +20,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const engineVideos = Array.from({ length: 35 }, (_, i) => ({
-  video: `/videos/data-engine-optimized/engine/${i + 1}.mp4`,
-  poster: `/images/data-engine/engine/${i + 1}.jpg`,
-}));
+const engineVideos = [
+  { video: "/videos/hero-marquee/01.mp4", poster: "" },
+  { video: "/videos/hero-marquee/02.mp4", poster: "" },
+  { video: "/videos/hero-marquee/03.mp4", poster: "" },
+  { video: "/videos/hero-marquee/04.mp4", poster: "" },
+  { video: "/videos/hero-marquee/05.mp4", poster: "" },
+  { video: "/videos/hero-marquee/06.mp4", poster: "" },
+  { video: "/videos/hero-marquee/07.mp4", poster: "" },
+  { video: "/videos/hero-marquee/08.mp4", poster: "" },
+];
 
 type ViewportVideoProps = Omit<ComponentPropsWithoutRef<"video">, "src"> & {
   src: string;
@@ -108,38 +114,38 @@ function FadeInSection({
   );
 }
 
-// 35 unique videos — distributed with no repeats (phase3 uses all 35, last slot wraps to 0)
+// 8 unique videos — cycled across columns
 const phase1Columns = [
   { videoIndices: [0, 1, 2, 3], speed: 18 },
   { videoIndices: [4, 5, 6, 7], speed: 20 },
-  { videoIndices: [8, 9, 10, 11], speed: 16 },
-  { videoIndices: [12, 13, 14, 15], speed: 19 },
+  { videoIndices: [0, 2, 4, 6], speed: 16 },
+  { videoIndices: [1, 3, 5, 7], speed: 19 },
 ];
 
 const phase2Columns = [
   { videoIndices: [0, 1, 2, 3], speed: 18 },
   { videoIndices: [4, 5, 6, 7], speed: 20 },
-  { videoIndices: [8, 9, 10, 11], speed: 16 },
-  { videoIndices: [12, 13, 14, 15], speed: 19 },
-  { videoIndices: [16, 17, 18, 19], speed: 17 },
-  { videoIndices: [20, 21, 22, 23], speed: 21 },
-  { videoIndices: [24, 25, 26, 27], speed: 15 },
-  { videoIndices: [28, 29, 30, 31], speed: 18 },
+  { videoIndices: [0, 2, 4, 6], speed: 16 },
+  { videoIndices: [1, 3, 5, 7], speed: 19 },
+  { videoIndices: [0, 3, 6, 1], speed: 17 },
+  { videoIndices: [4, 7, 2, 5], speed: 21 },
+  { videoIndices: [0, 4, 1, 5], speed: 15 },
+  { videoIndices: [2, 6, 3, 7], speed: 18 },
 ];
 
 const phase3Columns = [
   { videoIndices: [0, 1, 2], speed: 18 },
   { videoIndices: [3, 4, 5], speed: 20 },
-  { videoIndices: [6, 7, 8], speed: 16 },
-  { videoIndices: [9, 10, 11], speed: 19 },
-  { videoIndices: [12, 13, 14], speed: 17 },
-  { videoIndices: [15, 16, 17], speed: 21 },
-  { videoIndices: [18, 19, 20], speed: 15 },
-  { videoIndices: [21, 22, 23], speed: 18 },
-  { videoIndices: [24, 25, 26], speed: 20 },
-  { videoIndices: [27, 28, 29], speed: 16 },
-  { videoIndices: [30, 31, 32], speed: 19 },
-  { videoIndices: [33, 34, 0], speed: 17 }, // 35 videos total; last slot reuses 0
+  { videoIndices: [6, 7, 0], speed: 16 },
+  { videoIndices: [1, 2, 3], speed: 19 },
+  { videoIndices: [4, 5, 6], speed: 17 },
+  { videoIndices: [7, 0, 1], speed: 21 },
+  { videoIndices: [2, 3, 4], speed: 15 },
+  { videoIndices: [5, 6, 7], speed: 18 },
+  { videoIndices: [0, 2, 4], speed: 20 },
+  { videoIndices: [1, 3, 5], speed: 16 },
+  { videoIndices: [6, 0, 3], speed: 19 },
+  { videoIndices: [7, 4, 1], speed: 17 },
 ];
 
 function ScrollVideoColumn({
