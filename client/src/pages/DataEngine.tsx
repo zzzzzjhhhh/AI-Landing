@@ -693,11 +693,6 @@ export default function DataEngine() {
       {/* HOW IT WORKS VIDEO */}
       <section className="bg-navy-950 py-20 md:py-24 lg:py-32">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-6 md:px-12 lg:px-16">
-          <div className="mb-12 text-center">
-            <p className="my-5 text-[clamp(2rem,6vw,3rem)] font-display font-medium tracking-tight text-[#8bdaef]">
-              How it works
-            </p>
-          </div>
           <div
             className="w-full overflow-hidden rounded-2xl border border-white/[0.08]"
             style={{ maxHeight: "60vh" }}
