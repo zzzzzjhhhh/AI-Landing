@@ -1,6 +1,8 @@
 import type { CreateContactRequest } from "@shared/schema";
 import { Resend } from "resend";
 
+const DEFAULT_FROM_ADDRESS = "noreply@oceanveo.ai";
+const FROM_NAME = "Oceanveo Contact Form";
 const NOTIFICATION_RECIPIENTS = [
   "sherelle.li@oceanveo.ai",
   "jessie.jia@oceanveo.ai",
@@ -18,10 +20,12 @@ export async function sendContactNotification(contact: CreateContactRequest) {
   }
 
   const resend = new Resend(apiKey);
+  const fromAddress = process.env.RESEND_FROM_EMAIL || DEFAULT_FROM_ADDRESS;
+  const from = `${FROM_NAME} <${fromAddress}>`;
 
   try {
     await resend.emails.send({
-      from: "Oceanveo Contact Form <onboarding@resend.dev>",
+      from,
       to: NOTIFICATION_RECIPIENTS,
       subject: `New Contact Form Submission from ${contact.firstName} ${contact.lastName}`,
       html: `
@@ -55,6 +59,6 @@ export async function sendContactNotification(contact: CreateContactRequest) {
     });
     console.log("Contact notification emails sent successfully");
   } catch (error: any) {
-    console.error("Failed to send contact notification:", error.message);
+    console.error("Failed to send contact notification:", error);
   }
 }
