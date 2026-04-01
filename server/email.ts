@@ -6,6 +6,8 @@ const NOTIFICATION_RECIPIENTS = [
   "jessie.jia@oceanveo.ai",
   "andrew.marvel@oceanveo.ai",
   "roger@oceanveo.ai",
+  "admin@oceanveo.ai",
+  "zack.zheng@oceanveo.ai"
 ];
 
 export async function sendContactNotification(contact: CreateContactRequest) {
