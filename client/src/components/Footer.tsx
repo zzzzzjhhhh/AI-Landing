@@ -19,7 +19,7 @@ export function Footer() {
                 />
               </Link>
               <p className="mb-2 text-sm leading-relaxed text-white">
-                Turning human experience into machine intelligence.
+                Turning perception into vision.
               </p>
               <p className="text-sm leading-relaxed text-white">
                 Sunnyvale, CA | Data for Physical Intelligence.

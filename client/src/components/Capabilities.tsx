@@ -31,7 +31,10 @@ function FadeIn({
 const SCROLL_PARAGRAPHS: React.ReactNode[] = [
   "The next frontier of AI will emerge beyond data centers, in warehouses, homes, hospitals, and factories — where automation reshapes productivity and everyday life.",
   "That makes training data the decade's defining bottleneck. Unlike language models, robots and humanoids must learn from the full complexity of lived human experience.",
-  <>To overcome this hurdle, the world needs <span className="font-semibold text-white">an ocean</span> of data.</>,
+  <>
+    To overcome this hurdle, the world needs{" "}
+    <span className="font-semibold text-white">an ocean</span> of data.
+  </>,
 ];
 
 function ScrollTextSection() {
@@ -81,12 +84,11 @@ function ScrollTextSection() {
 const INTRO_PARAGRAPHS = [
   "Oceanveo transforms human perception, motion, and decision-making into structured training data for robotics, humanoids, and autonomous systems.",
   "Engineered for autonomy.",
-  "Engineered for autonomy.",
 ];
 
 function ScrollIntroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [titlePhase, setTitlePhase] = useState<"first" | "second" | "third">("first");
+  const [titlePhase, setTitlePhase] = useState<"first" | "second">("first");
   const [paragraphIndex, setParagraphIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
@@ -96,23 +98,20 @@ function ScrollIntroSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (value) => {
-      if (value < 0.17) {
+      if (value < 0.2) {
         setTitlePhase("first");
         setParagraphIndex(0);
-      } else if (value < 0.33) {
+      } else if (value < 0.4) {
         setTitlePhase("second");
         setParagraphIndex(0);
-      } else if (value < 0.5) {
-        setTitlePhase("third");
-        setParagraphIndex(0);
-      } else if (value < 0.67) {
-        setTitlePhase("third");
+      } else if (value < 0.6) {
+        setTitlePhase("second");
         setParagraphIndex(1);
-      } else if (value < 0.83) {
-        setTitlePhase("third");
+      } else if (value < 0.8) {
+        setTitlePhase("second");
         setParagraphIndex(2);
       } else {
-        setTitlePhase("third");
+        setTitlePhase("second");
         setParagraphIndex(3);
       }
     });
@@ -120,12 +119,11 @@ function ScrollIntroSection() {
 
   const lines = {
     first: ["Physical intelligence is acquired by observing human behavior"],
-    second: ["Physical intelligence is acquired", "by observing human behavior."],
-    third: ["Real-world intelligence infrastructure for embodied AI"],
+    second: ["Real-world intelligence infrastructure for embodied AI"],
   };
 
   return (
-    <div ref={containerRef} className="h-[250svh] md:h-[350vh]">
+    <div ref={containerRef} className="h-[210svh] md:h-[300vh]">
       <div className="sticky top-0 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
@@ -220,12 +218,18 @@ export function Capabilities() {
                 </h3>
                 <div className="mb-4 border-b border-white/20" />
                 <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                  Attention, Intention, Action & Reaction — the operational patterns of human behavior encoded for embodied system training.
+                  Attention, Intention, Action & Reaction — the operational
+                  patterns of human behavior encoded for embodied system
+                  training.
                 </p>
               </div>
 
               <div className="absolute bottom-0 left-0 z-20 p-4 sm:p-6 md:p-8">
-                <img src="/images/oceanveo-logo-white.png" alt="Oceanveo" className="h-5 w-auto opacity-40" />
+                <img
+                  src="/images/oceanveo-logo-white.png"
+                  alt="Oceanveo"
+                  className="h-5 w-auto opacity-40"
+                />
               </div>
             </div>
           </FadeIn>
@@ -251,7 +255,9 @@ export function Capabilities() {
                   We translate human perception into structured intelligence
                 </h2>
                 <p className="text-base font-normal leading-relaxed text-[#ffffffdb] sm:text-lg">
-                  Oceanveo deploys human data collectors around the globe — capturing purpose-built scenarios that deliver the diversity and quality generic datasets don't offer.
+                  Oceanveo deploys human data collectors around the globe —
+                  capturing purpose-built scenarios that deliver the diversity
+                  and quality generic datasets don't offer.
                 </p>
               </div>
             </FadeIn>
@@ -275,7 +281,9 @@ export function Capabilities() {
                   </h3>
                   <div className="mb-4 border-b border-white/20" />
                   <p className="text-xs font-light leading-relaxed text-white/50 sm:text-sm">
-                    Precise hand and finger movements captured at scale — the complete suite of dexterous actions robots are learning to replicate.
+                    Precise hand and finger movements captured at scale — the
+                    complete suite of dexterous actions robots are learning to
+                    replicate.
                   </p>
                 </div>
 
@@ -303,7 +311,10 @@ export function Capabilities() {
               How It Works
             </p>
             <p className="mx-auto mb-12 max-w-3xl text-center text-base font-medium leading-relaxed text-[#ffffffdb] sm:text-lg md:mb-16 md:text-xl">
-              We don't just label data. We engineer it — designing scenarios, defining behavioral taxonomies, and enriching the signals models need to learn how humans actually move, see, and solve problems in physical space.
+              We don't just label data. We engineer it — designing scenarios,
+              defining behavioral taxonomies, and enriching the signals models
+              need to learn how humans actually move, see, and solve problems in
+              physical space.
             </p>
           </FadeIn>
 
@@ -311,7 +322,11 @@ export function Capabilities() {
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               <div className="flex flex-col gap-3">
                 <div className="aspect-square overflow-hidden rounded-2xl">
-                  <img src="/images/finger_1.png" alt="Finger precision" className="h-full w-full object-cover" />
+                  <img
+                    src="/images/finger_1.png"
+                    alt="Finger precision"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <p className="mt-2 text-left text-[11px] font-light text-white/50 sm:text-xs">
                   Index approach / contact initiation
@@ -320,7 +335,11 @@ export function Capabilities() {
 
               <div className="flex flex-col gap-3">
                 <div className="aspect-square overflow-hidden rounded-2xl">
-                  <img src="/images/finger_2.png" alt="Finger contact" className="h-full w-full object-cover" />
+                  <img
+                    src="/images/finger_2.png"
+                    alt="Finger contact"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <p className="mt-2 text-left text-[11px] font-light text-white/50 sm:text-xs">
                   Fingertip pressure / surface contact
@@ -329,7 +348,11 @@ export function Capabilities() {
 
               <div className="flex flex-col gap-3">
                 <div className="aspect-square overflow-hidden rounded-2xl">
-                  <img src="/images/hands_3.png" alt="Hand motion" className="h-full w-full object-cover" />
+                  <img
+                    src="/images/hands_3.png"
+                    alt="Hand motion"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <p className="mt-2 text-left text-[11px] font-light text-white/50 sm:text-xs">
                   Dual-hand coordination / reach phase
@@ -338,7 +361,11 @@ export function Capabilities() {
 
               <div className="flex flex-col gap-3">
                 <div className="aspect-square overflow-hidden rounded-2xl">
-                  <img src="/images/grip_4.png" alt="Grip study" className="h-full w-full object-cover" />
+                  <img
+                    src="/images/grip_4.png"
+                    alt="Grip study"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <p className="mt-2 text-left text-[11px] font-light text-white/50 sm:text-xs">
                   Multi-finger grip / object stabilisation
@@ -349,7 +376,8 @@ export function Capabilities() {
 
           <FadeIn delay={0.2}>
             <h2 className="mx-auto mt-12 max-w-4xl text-center font-display text-[clamp(1.75rem,6vw,2.5rem)] font-medium tracking-tight text-[#8bdaef] md:mt-16">
-              The result is training data that makes robots more capable, more reliable, and ready for our world.
+              The result is training data that makes robots more capable, more
+              reliable, and ready for our world.
             </h2>
           </FadeIn>
         </div>
@@ -391,7 +419,8 @@ export function Capabilities() {
                     <span
                       className="select-none text-[92px] font-extralight leading-none tracking-tighter sm:text-[110px] md:text-[130px]"
                       style={{
-                        background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
+                        background:
+                          "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
@@ -403,7 +432,8 @@ export function Capabilities() {
                     <span
                       className="ml-1 mt-4 select-none text-[32px] font-extralight leading-none sm:text-[36px] md:text-[40px]"
                       style={{
-                        background: "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
+                        background:
+                          "linear-gradient(to right, #ffffff, #8bdaef, #4fa3bc)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
