@@ -42,9 +42,7 @@ export async function POST(request: Request) {
     const input = api.contact.submit.input.parse(await request.json());
     const contact = await storage.createContactRequest(input);
 
-    try {
-      await track("Contact Submitted");
-    } catch (error) {
+    void track("Contact Submitted").catch((error) => {
       writeLog("error", {
         level: "error",
         msg: "contact_submit_tracking_failed",
@@ -53,7 +51,7 @@ export async function POST(request: Request) {
         ms: Date.now() - start,
         error: error instanceof Error ? error.message : String(error),
       });
-    }
+    });
 
     void sendContactNotification(input).catch((error) => {
       writeLog("error", {
