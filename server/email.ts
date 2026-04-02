@@ -3,14 +3,21 @@ import { Resend } from "resend";
 
 const DEFAULT_FROM_ADDRESS = "noreply@oceanveo.ai";
 const FROM_NAME = "Oceanveo Contact Form";
+const ZACK_NOTIFICATION_RECIPIENT = "zack.zheng@oceanveo.ai";
 const NOTIFICATION_RECIPIENTS = [
   "sherelle.li@oceanveo.ai",
   "jessie.jia@oceanveo.ai",
   "andrew.marvel@oceanveo.ai",
   "roger@oceanveo.ai",
   "admin@oceanveo.ai",
-  "zack.zheng@oceanveo.ai"
+  ZACK_NOTIFICATION_RECIPIENT,
 ];
+
+function getNotificationRecipients() {
+  return process.env.VERCEL_ENV === "production"
+    ? NOTIFICATION_RECIPIENTS
+    : [ZACK_NOTIFICATION_RECIPIENT];
+}
 
 export async function sendContactNotification(contact: CreateContactRequest) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -22,11 +29,12 @@ export async function sendContactNotification(contact: CreateContactRequest) {
   const resend = new Resend(apiKey);
   const fromAddress = process.env.RESEND_FROM_EMAIL || DEFAULT_FROM_ADDRESS;
   const from = `${FROM_NAME} <${fromAddress}>`;
+  const recipients = getNotificationRecipients();
 
   try {
     await resend.emails.send({
       from,
-      to: NOTIFICATION_RECIPIENTS,
+      to: recipients,
       subject: `New Contact Form Submission from ${contact.firstName} ${contact.lastName}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #0a1628; color: #ffffff; border-radius: 12px;">
