@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const input = api.contact.submit.input.parse(await request.json());
     const contact = await storage.createContactRequest(input);
 
-    void track("Contact Submitted", undefined, { request });
+    await track("Contact Submitted");
 
     void sendContactNotification(input).catch((error) => {
       writeLog("error", {
