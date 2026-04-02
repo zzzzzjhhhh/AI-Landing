@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
 import type { ReactNode } from "react";
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="en" className={titilliumWeb.variable}>
       <body>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
