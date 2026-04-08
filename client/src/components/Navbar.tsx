@@ -1,5 +1,6 @@
 "use client";
 
+import { UserButton, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -48,6 +49,7 @@ export function Logo() {
 export function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isLoaded, isSignedIn } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +62,7 @@ export function Navbar() {
 
   const navProgress = mobileMenuOpen ? 1 : scrollProgress;
   const headerPadding = 18 - navProgress * 6;
+  const videoPortalHref = "/portal/videos";
 
   return (
     <header
@@ -88,6 +91,34 @@ export function Navbar() {
           <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide" data-testid="link-data-engine">
             Data Engine
           </Link>
+          <Link
+            href={videoPortalHref}
+            prefetch={false}
+            className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide"
+          >
+            Video Data
+          </Link>
+          {isLoaded && !isSignedIn ? (
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-xl border-white/20 px-6 text-white transition-all hover:border-white/40 hover:bg-white/10 hover:text-white"
+            >
+              <Link href="/sign-in">Sign In</Link>
+            </Button>
+          ) : null}
+          {isLoaded && isSignedIn ? (
+            <div className="flex items-center gap-4">
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox:
+                      "h-10 w-10 ring-1 ring-white/15 ring-offset-0",
+                  },
+                }}
+              />
+            </div>
+          ) : null}
           <Button
             asChild
             variant="outline"
@@ -119,6 +150,37 @@ export function Navbar() {
           >
             Data Engine
           </Link>
+          <Link
+            href={videoPortalHref}
+            prefetch={false}
+            className="rounded-xl border border-white/10 px-4 py-3 text-center text-base font-medium text-white/70 transition-colors hover:text-white"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Video Data
+          </Link>
+          {isLoaded && !isSignedIn ? (
+            <Button
+              asChild
+              variant="outline"
+              className="h-12 w-full rounded-xl border-white/20 text-white hover:border-white/40 hover:bg-white/10"
+            >
+              <Link href="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+                Sign In
+              </Link>
+            </Button>
+          ) : null}
+          {isLoaded && isSignedIn ? (
+            <div className="flex items-center justify-center">
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox:
+                      "h-11 w-11 ring-1 ring-white/15 ring-offset-0",
+                  },
+                }}
+              />
+            </div>
+          ) : null}
           <Button
             asChild
             variant="outline"

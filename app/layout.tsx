@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
@@ -42,7 +43,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={titilliumWeb.variable}>
       <body>
-        <Providers>{children}</Providers>
+        <ClerkProvider signInUrl="/sign-in" signUpUrl="/sign-up">
+          <Providers>{children}</Providers>
+        </ClerkProvider>
         <Analytics />
       </body>
     </html>
