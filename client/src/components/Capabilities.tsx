@@ -56,13 +56,13 @@ function ScrollTextSection() {
 
   return (
     <div ref={containerRef} className="h-[120svh] md:h-[140vh]">
-      <div className="sticky top-0 flex flex-col items-center justify-center px-5 py-20 text-center sm:px-6 md:py-28">
+      <div className="sticky top-0 flex min-h-[100svh] flex-col items-center justify-center px-5 py-20 text-center sm:px-6 md:py-28">
         <h2 className="mb-8 text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-[#8bdaef] md:mb-10">
           Real-world intelligence starts with
           <br />
           real-world data.
         </h2>
-        <div className="mx-auto flex min-h-[160px] max-w-2xl items-start justify-center md:min-h-[120px]">
+        <div className="mx-auto flex max-w-2xl justify-center">
           <AnimatePresence mode="wait">
             <motion.p
               key={activeIndex}
@@ -124,8 +124,8 @@ function ScrollIntroSection() {
 
   return (
     <div ref={containerRef} className="h-[210svh] md:h-[300vh]">
-      <div className="sticky top-0 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
+      <div className="sticky top-0 flex min-h-[100svh] items-center justify-center py-20 md:py-28">
+        <div className="mx-auto w-full max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
           <AnimatePresence mode="wait">
             <motion.h2
               key={titlePhase}
@@ -133,7 +133,9 @@ function ScrollIntroSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
-              className="mb-8 text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-gradient md:mb-10"
+              className={`text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-gradient ${
+                paragraphIndex > 0 ? "mb-8 md:mb-10" : ""
+              }`}
             >
               {lines[titlePhase].map((line, index) => (
                 <span key={index}>
@@ -144,9 +146,9 @@ function ScrollIntroSection() {
             </motion.h2>
           </AnimatePresence>
 
-          <div className="mx-auto min-h-[96px] max-w-2xl">
-            <AnimatePresence mode="wait">
-              {paragraphIndex > 0 && (
+          <AnimatePresence mode="wait">
+            {paragraphIndex > 0 && (
+              <div className="mx-auto max-w-2xl">
                 <motion.p
                   key={paragraphIndex}
                   initial={{ opacity: 0, y: 18 }}
@@ -157,9 +159,9 @@ function ScrollIntroSection() {
                 >
                   {INTRO_PARAGRAPHS[paragraphIndex - 1]}
                 </motion.p>
-              )}
-            </AnimatePresence>
-          </div>
+              </div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
