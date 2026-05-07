@@ -101,13 +101,13 @@ function ScrollIntroSection() {
       if (value < 0.2) {
         setTitlePhase("first");
         setParagraphIndex(0);
-      } else if (value < 0.4) {
+      } else if (value < 0.48) {
         setTitlePhase("second");
         setParagraphIndex(0);
-      } else if (value < 0.6) {
+      } else if (value < 0.66) {
         setTitlePhase("second");
         setParagraphIndex(1);
-      } else if (value < 0.8) {
+      } else if (value < 0.84) {
         setTitlePhase("second");
         setParagraphIndex(2);
       } else {
@@ -121,47 +121,57 @@ function ScrollIntroSection() {
     first: ["Physical intelligence is acquired by observing human behavior"],
     second: ["Real-world intelligence infrastructure for embodied AI"],
   };
+  const activeParagraph =
+    paragraphIndex > 0 ? INTRO_PARAGRAPHS[paragraphIndex - 1] : null;
 
   return (
     <div ref={containerRef} className="h-[210svh] md:h-[300vh]">
       <div className="sticky top-0 flex min-h-[100svh] items-center justify-center py-20 md:py-28">
-        <div className="mx-auto w-full max-w-[1280px] px-5 text-center sm:px-6 md:px-12 lg:px-16">
-          <AnimatePresence mode="wait">
-            <motion.h2
-              key={titlePhase}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.65, ease: "easeOut" }}
-              className={`text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-gradient ${
-                paragraphIndex > 0 ? "mb-8 md:mb-10" : ""
+        <div className="relative mx-auto h-[260px] w-full max-w-[1280px] px-5 text-center sm:px-6 md:h-[280px] md:px-12 lg:px-16">
+          <div className="absolute inset-x-5 top-1/2 -translate-y-1/2 sm:inset-x-6 md:inset-x-12 lg:inset-x-16">
+            <div
+              className={`transition-transform duration-500 ease-out ${
+                activeParagraph ? "-translate-y-8 md:-translate-y-11" : ""
               }`}
             >
-              {lines[titlePhase].map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index < lines[titlePhase].length - 1 && <br />}
-                </span>
-              ))}
-            </motion.h2>
-          </AnimatePresence>
-
-          <AnimatePresence mode="wait">
-            {paragraphIndex > 0 && (
-              <div className="mx-auto max-w-2xl">
-                <motion.p
-                  key={paragraphIndex}
-                  initial={{ opacity: 0, y: 18 }}
+              <AnimatePresence mode="wait">
+                <motion.h2
+                  key={titlePhase}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="text-center text-sm font-light leading-relaxed text-white/60 sm:text-base"
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.65, ease: "easeOut" }}
+                  className="text-[clamp(2rem,7vw,3.5rem)] font-display font-medium leading-tight tracking-tight text-gradient"
                 >
-                  {INTRO_PARAGRAPHS[paragraphIndex - 1]}
-                </motion.p>
-              </div>
-            )}
-          </AnimatePresence>
+                  {lines[titlePhase].map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index < lines[titlePhase].length - 1 && <br />}
+                    </span>
+                  ))}
+                </motion.h2>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div className="absolute inset-x-5 top-1/2 translate-y-16 sm:inset-x-6 md:inset-x-12 md:translate-y-[70px] lg:inset-x-16">
+            <div className="mx-auto max-w-2xl">
+              <AnimatePresence mode="wait" initial={false}>
+                {activeParagraph && (
+                  <motion.p
+                    key={paragraphIndex}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="text-center text-sm font-light leading-relaxed text-white/60 sm:text-base"
+                  >
+                    {activeParagraph}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
     </div>
