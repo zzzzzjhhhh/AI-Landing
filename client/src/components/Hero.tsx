@@ -27,8 +27,12 @@ export function Hero() {
             className="mx-auto mb-6 max-w-4xl text-[clamp(2.75rem,10vw,4.5rem)] font-display font-medium leading-[1.02] tracking-tight text-white sm:mb-8"
             style={{ textShadow: "0 0 40px rgba(139,218,239,0.35), 0 2px 20px rgba(0,0,0,0.6)" }}
           >
-            Turning perception into vision.
+            Give robots vision they can act on.
           </h1>
+
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-7 text-white/80 sm:mb-10 sm:text-lg">
+            We turn raw sensor data into fast, reliable perception for autonomous systems operating in the real world.
+          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
