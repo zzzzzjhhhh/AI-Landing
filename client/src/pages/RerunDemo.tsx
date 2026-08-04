@@ -8,7 +8,7 @@ import { RerunDemoViewer } from "@/components/RerunDemoViewer";
 const episodeFacts = [
   { icon: Camera, label: "Left + right RGB" },
   { icon: Hand, label: "Hand pose" },
-  { icon: Activity, label: "9.63s" },
+  { icon: Activity, label: "5m 05.9s" },
 ];
 
 export default function RerunDemo() {
@@ -21,7 +21,7 @@ export default function RerunDemo() {
           <div className="mb-5 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
             <div>
               <p className="mb-2 text-xs font-semibold uppercase text-cyan-200/70">
-                Episode 8046
+                Episode 20260803_110911
               </p>
               <h1 className="text-3xl font-semibold text-white sm:text-4xl">
                 Stereo PICO replay
