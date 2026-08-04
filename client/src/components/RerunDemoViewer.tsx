@@ -21,6 +21,7 @@ export function RerunDemoViewer() {
 
       viewer = new rerun.WebViewer();
       viewer.on("recording_open", () => {
+        viewer?.override_panel_state("top", "hidden");
         viewer?.override_panel_state("blueprint", "hidden");
         viewer?.override_panel_state("selection", "hidden");
         if (!cancelled) setReady(true);
@@ -38,6 +39,7 @@ export function RerunDemoViewer() {
         { follow_if_http: false },
       );
 
+      viewer.override_panel_state("top", "hidden");
       viewer.override_panel_state("blueprint", "hidden");
       viewer.override_panel_state("selection", "hidden");
 
