@@ -1,5 +1,5 @@
-import RerunDemo from "@/pages/RerunDemo";
+import { redirect } from "next/navigation";
 
 export default function RerunPage() {
-  return <RerunDemo />;
+  redirect("/sample-data");
 }

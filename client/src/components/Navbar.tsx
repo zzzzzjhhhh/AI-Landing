@@ -88,8 +88,8 @@ export function Navbar() {
           <Link href="/data-engine" className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide" data-testid="link-data-engine">
             Data Engine
           </Link>
-          <Link href="/rerun" className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide" data-testid="link-rerun">
-            Rerun
+          <Link href="/sample-data" className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-wide" data-testid="link-rerun">
+            View Sample Data
           </Link>
           <Button
             asChild
@@ -123,11 +123,11 @@ export function Navbar() {
             Data Engine
           </Link>
           <Link
-            href="/rerun"
+            href="/sample-data"
             className="rounded-xl border border-white/10 px-4 py-3 text-center text-base font-medium text-white/70 transition-colors hover:text-white"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Rerun
+            View Sample Data
           </Link>
           <Button
             asChild
