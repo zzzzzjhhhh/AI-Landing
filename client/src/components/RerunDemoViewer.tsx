@@ -28,7 +28,7 @@ export function RerunDemoViewer() {
       });
 
       await viewer.start(
-        new URL("/api/rerun-demo/recording.rrd?v=a29ed080", window.location.origin).toString(),
+        new URL("/api/rerun-demo/recording.rrd?v=06fc8260", window.location.origin).toString(),
         host,
         {
           height: "100%",
@@ -67,7 +67,7 @@ export function RerunDemoViewer() {
         <div className="pointer-events-none absolute inset-0 grid place-items-center bg-[#090b10]">
           <div className="flex items-center gap-3 text-sm text-white/65">
             <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-300" />
-            Loading episode 20260803_110911
+            Loading episode 20260803_133948
           </div>
         </div>
       ) : null}
