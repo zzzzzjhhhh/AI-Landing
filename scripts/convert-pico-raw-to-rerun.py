@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import subprocess
 from datetime import datetime, timezone
@@ -69,6 +70,13 @@ def parse_args() -> argparse.Namespace:
         help="Optional directory containing derived left_camera.mp4 and right_camera.mp4 assets.",
     )
     parser.add_argument("--max-samples", type=int, default=0, help="0 means convert all samples")
+    parser.add_argument("--compact-video", action="store_true", help="Create 960px-wide H.264 video with original frame timestamps, at most 20 fps.")
+    parser.add_argument(
+        "--camera-extrinsics-convention",
+        choices=("recorded", "reflect-z"),
+        default="recorded",
+        help="Explicit camera/head basis correction; use reflect-z only for a verified source episode.",
+    )
     return parser.parse_args()
 
 
@@ -138,6 +146,82 @@ def video_dimensions(video_path: Path) -> tuple[int, int]:
     )
     stream = json.loads(result.stdout)["streams"][0]
     return int(stream["width"]), int(stream["height"])
+
+
+def compact_video(source: Path, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    # Select source frames without moving them onto a constant-rate time grid.
+    subprocess.run([
+        "ffmpeg", "-v", "error", "-nostdin", "-n", "-i", str(source),
+        "-map", "0:v:0", "-an", "-vf",
+        "select='isnan(prev_selected_t)+gt(floor(t*20),floor(prev_selected_t*20))',scale=960:-2",
+        "-fps_mode", "vfr", "-enc_time_base", "1:1000000", "-c:v", "libx264",
+        "-preset", "fast", "-crf", "28", "-pix_fmt", "yuv420p", "-bf", "0",
+        "-movflags", "+faststart", str(target),
+    ], check=True)
+
+
+def read_camera_timestamps(path: Path) -> dict[str, np.ndarray]:
+    with path.open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    if not rows:
+        raise ValueError(f"Empty camera timestamp file: {path}")
+    data = {
+        key: np.asarray([int(row[key]) for row in rows], dtype=np.int64)
+        for key in ("frame_index", "capture_time_ns", "t_unix_ms", "presentation_time_us")
+    }
+    for key in ("frame_index", "capture_time_ns", "t_unix_ms", "presentation_time_us"):
+        if np.any(np.diff(data[key]) <= 0):
+            raise ValueError(f"Camera {key} must be strictly increasing: {path}")
+    if not np.array_equal(data["frame_index"], np.arange(len(rows))):
+        raise ValueError(f"Camera frame indices must be contiguous: {path}")
+    return data
+
+
+def nearest_indices(sorted_values: np.ndarray, queries: np.ndarray) -> np.ndarray:
+    if len(sorted_values) == 0 or np.any(np.diff(sorted_values) < 0):
+        raise ValueError("Expected nonempty sorted timestamps")
+    right = np.clip(np.searchsorted(sorted_values, queries), 0, len(sorted_values) - 1)
+    left = np.maximum(right - 1, 0)
+    return np.where(abs(queries - sorted_values[left]) <= abs(sorted_values[right] - queries), left, right)
+
+
+def align_video_frames(
+    frame_timestamps_ns: np.ndarray,
+    timestamps: dict[str, np.ndarray],
+    pose_times_ms: np.ndarray,
+    start_ms: int,
+) -> dict[str, np.ndarray | dict]:
+    source_pts_ns = timestamps["presentation_time_us"] * 1000
+    source_indices = nearest_indices(source_pts_ns, frame_timestamps_ns)
+    error_ns = abs(source_pts_ns[source_indices] - frame_timestamps_ns)
+    # Timestamp rounding is allowed; CFR re-timing and trimmed videos are not.
+    if len(error_ns) == 0 or np.max(error_ns) > 1_000_000:
+        raise ValueError("Video timestamps do not match raw frames; regenerate using --compact-video")
+    source_times_ms = timestamps["t_unix_ms"][source_indices]
+    pose_indices = nearest_indices(pose_times_ms, source_times_ms)
+    pose_error_ms = abs(pose_times_ms[pose_indices] - source_times_ms)
+    # Never retain the last valid pose indefinitely across missing tracking data.
+    valid_pose = (source_times_ms >= pose_times_ms[0]) & (source_times_ms <= pose_times_ms[-1]) & (pose_error_ms <= 50)
+    return {
+        "source_indices": source_indices,
+        "source_times_ms": source_times_ms,
+        "timeline_ns": (source_times_ms - start_ms) * 1_000_000,
+        "pose_indices": pose_indices,
+        "valid_pose": valid_pose,
+        "report": {
+            "mode": "camera_timestamp_csv_nearest_pose_per_video_frame",
+            "first_frame_offset_ms": int(source_times_ms[0] - start_ms),
+            "frame_count": int(len(source_times_ms)),
+            "source_pts_error_max_ms": float(np.max(error_ns) / 1e6),
+            "pose_error_median_ms": float(np.median(pose_error_ms[valid_pose])) if np.any(valid_pose) else None,
+            "pose_error_p95_ms": float(np.percentile(pose_error_ms[valid_pose], 95)) if np.any(valid_pose) else None,
+            "pose_error_max_ms": int(np.max(pose_error_ms[valid_pose])) if np.any(valid_pose) else None,
+            "frames_without_pose": int(np.count_nonzero(~valid_pose)),
+            "max_pose_distance_ms": 50,
+            "clock_limit": "Camera Unix time is anchored at first acquisition; sensor-to-tracker latency is not measured.",
+        },
+    }
 
 
 def scale_camera_characteristics(camera_characteristics: dict, video_path: Path) -> dict:
@@ -224,6 +308,19 @@ def rotate_vectors(vectors: np.ndarray, quaternion: np.ndarray) -> np.ndarray:
     quaternion = quaternion / np.linalg.norm(quaternion)
     xyz = quaternion[:3]
     return vectors + 2.0 * np.cross(xyz, np.cross(xyz, vectors) + quaternion[3] * vectors)
+
+
+def convert_camera_extrinsics(extrinsics: dict, convention: str) -> dict:
+    position = np.array(extrinsics["position"], dtype=np.float64, copy=True)
+    rotation = np.array(extrinsics["rotation_xyzw"], dtype=np.float64, copy=True)
+    if convention == "reflect-z":
+        # Change the relative-pose basis with S=diag(1,1,-1): t'=St, R'=SRS.
+        # Source SDK conventions are not recorded, so this is never inferred.
+        position[2] *= -1
+        rotation[:2] *= -1
+    elif convention != "recorded":
+        raise ValueError(f"Unknown camera extrinsics convention: {convention}")
+    return {**extrinsics, "position": position.tolist(), "rotation_xyzw": rotation.tolist()}
 
 
 def camera_world_pose(head_pose: np.ndarray, camera_extrinsics: dict) -> tuple[np.ndarray, np.ndarray]:
@@ -313,8 +410,6 @@ def log_hand(
     mask: int,
     joint_names: list[str],
     color: tuple[int, int, int],
-    head_pose: np.ndarray,
-    camera_characteristics_by_side: dict[str, dict],
 ) -> None:
     joints_xyz = joints_xyz_xyzw[:, :3]
     valid = valid_indices(mask, len(joint_names))
@@ -337,43 +432,60 @@ def log_hand(
             colors=color,
         ),
     )
-    for camera_side, camera_characteristics in camera_characteristics_by_side.items():
-        projected = project_hand_to_video(joints_xyz, mask, head_pose, camera_characteristics)
-        projected_points = np.asarray(list(projected.values()), dtype=np.float32).reshape((-1, 2))
-        rr.log(
-            f"camera/{camera_side}/hand_pose/{side}/joints",
-            rr.Points2D(
-                projected_points,
-                radii=rr.Radius.ui_points(3.0),
-                colors=color,
-                draw_order=20.0,
-            ),
-        )
-        rr.log(
-            f"camera/{camera_side}/hand_pose/{side}/bones",
-            rr.LineStrips2D(
-                projected_bone_strips(projected, joint_names),
-                radii=rr.Radius.ui_points(1.7),
-                colors=color,
-                draw_order=19.0,
-            ),
-        )
     valid_count = count_valid(mask, len(joint_names))
     rr.log(f"stats/hands/{side}/valid_joints", rr.Scalars(valid_count))
     rr.log(f"stats/hands/{side}/active", rr.Scalars(1.0 if valid_count > 0 else 0.0))
 
 
-def log_camera_pose_rows(rows: Iterable[dict], start_ms: int) -> None:
+def log_frame_overlays(
+    camera_side: str,
+    alignment: dict,
+    pose_samples: np.ndarray,
+    joint_names: list[str],
+    characteristics: dict,
+    camera_pose_rows: list[dict],
+) -> None:
+    camera_frames = {int(row["frame_index"]): row for row in camera_pose_rows if row.get("side") == camera_side}
+    for index, unix_ms in enumerate(alignment["source_times_ms"]):
+        rr.set_time("tracking_time", duration=np.timedelta64(int(alignment["timeline_ns"][index]), "ns"))
+        rr.set_time("capture_time", timestamp=np.datetime64(int(unix_ms), "ms"))
+        sample = pose_samples[alignment["pose_indices"][index]]
+        camera_frame = camera_frames.get(int(alignment["source_indices"][index]))
+        head = sample["head_pose_xyz_xyzw"]
+        if camera_frame is not None:
+            head = np.asarray([*camera_frame["head"]["position"], *camera_frame["head"]["rotation_xyzw"]])
+        for side, color in (("left", (45, 212, 191)), ("right", (244, 114, 182))):
+            entity = f"camera/{camera_side}/hand_pose/{side}"
+            if not alignment["valid_pose"][index]:
+                rr.log(entity, rr.Clear(recursive=True))
+                continue
+            projected = project_hand_to_video(
+                sample[f"{side}_joints_xyz_xyzw"][:, :3],
+                int(sample[f"{side}_joint_valid_mask"]), head, characteristics,
+            )
+            rr.log(f"{entity}/joints", rr.Points2D(
+                np.asarray(list(projected.values()), dtype=np.float32).reshape((-1, 2)),
+                radii=rr.Radius.ui_points(3.0), colors=color, draw_order=20.0,
+            ))
+            rr.log(f"{entity}/bones", rr.LineStrips2D(
+                projected_bone_strips(projected, joint_names),
+                radii=rr.Radius.ui_points(1.7), colors=color, draw_order=19.0,
+            ))
+
+
+def log_camera_pose_rows(rows: Iterable[dict], start_ms: int, extrinsics_convention: str = "recorded") -> None:
     for row in rows:
         side = row.get("side")
         if side not in {"left", "right"}:
             continue
         rr.set_time("tracking_time", duration=(row["t_unix_ms"] - start_ms) / 1000.0)
+        rr.set_time("capture_time", timestamp=np.datetime64(int(row["t_unix_ms"]), "ms"))
         head_pose = np.asarray(
             [*row["head"]["position"], *row["head"]["rotation_xyzw"]],
             dtype=np.float64,
         )
-        camera_position, camera_rotation = camera_world_pose(head_pose, row["camera_extrinsics"])
+        extrinsics = convert_camera_extrinsics(row["camera_extrinsics"], extrinsics_convention)
+        camera_position, camera_rotation = camera_world_pose(head_pose, extrinsics)
         rr.log(
             f"world/cameras/{side}",
             rr.Transform3D(
@@ -415,6 +527,8 @@ def main() -> None:
     raw_clip = args.raw_clip.resolve()
     video_root = args.video_root.resolve() if args.video_root else raw_clip
     output = args.output.resolve()
+    if args.compact_video and args.video_root:
+        raise ValueError("Use either --compact-video or --video-root")
     output.parent.mkdir(parents=True, exist_ok=True)
 
     schema = read_json(raw_clip / "pose_schema.json")
@@ -429,10 +543,21 @@ def main() -> None:
     camera_sides = [side for side in ("left", "right") if (video_root / f"{side}_camera.mp4").is_file()]
     if not camera_sides:
         raise FileNotFoundError(f"No camera video found in {raw_clip}")
+    camera_timestamps = {side: read_camera_timestamps(raw_clip / f"{side}_camera_timestamps.csv") for side in camera_sides}
+    if args.compact_video:
+        video_root = output.parent / f"{output.stem}_video"
+        for side in camera_sides:
+            compact_video(raw_clip / f"{side}_camera.mp4", video_root / f"{side}_camera.mp4")
     camera_characteristics_by_side = {}
     for side in camera_sides:
         characteristics = load_camera_characteristics(raw_clip, camera_pose_rows, side)
         if characteristics:
+            characteristics = {
+                **characteristics,
+                "recorded_extrinsics": characteristics["extrinsics"],
+                "extrinsics_convention": args.camera_extrinsics_convention,
+                "extrinsics": convert_camera_extrinsics(characteristics["extrinsics"], args.camera_extrinsics_convention),
+            }
             camera_characteristics_by_side[side] = scale_camera_characteristics(
                 characteristics,
                 video_root / f"{side}_camera.mp4",
@@ -440,27 +565,34 @@ def main() -> None:
 
     start_ms = int(pose_samples[0]["t_unix_ms"])
     end_ms = int(pose_samples[-1]["t_unix_ms"])
+    video_assets = {side: rr.AssetVideo(path=video_root / f"{side}_camera.mp4") for side in camera_sides}
+    video_timestamps = {side: asset.read_frame_timestamps_nanos() for side, asset in video_assets.items()}
+    alignments = {side: align_video_frames(video_timestamps[side], camera_timestamps[side], pose_samples["t_unix_ms"], start_ms) for side in camera_sides}
 
     recording_id = args.recording_id or default_recording_id(raw_clip)
-    application_id = "pico_raw_stereo" if len(camera_sides) > 1 else "pico_raw_local"
+    application_id = "pico_raw_frame_synced_v1"
     rr.init(application_id, recording_id=recording_id, spawn=False)
     rr.save(output)
     rr.send_blueprint(default_blueprint(camera_sides, set(camera_characteristics_by_side)))
     rr.log("world", rr.ViewCoordinates.RIGHT_HAND_Y_UP, static=True)
+    rr.log("recording/camera_calibration", rr.TextDocument(json.dumps(camera_characteristics_by_side, indent=2)), static=True)
 
     video_paths: dict[str, Path] = {}
     video_frame_counts: dict[str, int] = {}
     for camera_side in camera_sides:
         video_path = video_root / f"{camera_side}_camera.mp4"
         video_paths[camera_side] = video_path
-        video_asset = rr.AssetVideo(path=video_path)
+        video_asset = video_assets[camera_side]
         entity_path = f"camera/{camera_side}/video"
         rr.log(entity_path, video_asset, static=True)
-        frame_timestamps_ns = video_asset.read_frame_timestamps_nanos()
+        frame_timestamps_ns = video_timestamps[camera_side]
         video_frame_counts[camera_side] = int(len(frame_timestamps_ns))
         rr.send_columns(
             entity_path,
-            indexes=[rr.TimeColumn("tracking_time", duration=frame_timestamps_ns * 1e-9)],
+            indexes=[
+                rr.TimeColumn("tracking_time", duration=alignments[camera_side]["timeline_ns"].astype("timedelta64[ns]")),
+                rr.TimeColumn("capture_time", timestamp=alignments[camera_side]["source_times_ms"].astype("datetime64[ms]")),
+            ],
             columns=rr.VideoFrameReference.columns_nanos(frame_timestamps_ns),
         )
 
@@ -483,8 +615,6 @@ def main() -> None:
             int(sample["left_joint_valid_mask"]),
             joint_names,
             (45, 212, 191),
-            head,
-            camera_characteristics_by_side,
         )
         log_hand(
             "right",
@@ -492,11 +622,11 @@ def main() -> None:
             int(sample["right_joint_valid_mask"]),
             joint_names,
             (244, 114, 182),
-            head,
-            camera_characteristics_by_side,
         )
 
-    log_camera_pose_rows(camera_pose_rows, start_ms)
+    for side, characteristics in camera_characteristics_by_side.items():
+        log_frame_overlays(side, alignments[side], pose_samples, joint_names, characteristics, camera_pose_rows)
+    log_camera_pose_rows(camera_pose_rows, start_ms, args.camera_extrinsics_convention)
 
     summary = {
         "source": "local_pico_raw_sidecar",
@@ -514,9 +644,12 @@ def main() -> None:
         "application_id": application_id,
         "recording_id": recording_id,
         "camera_overlay": bool(camera_characteristics_by_side),
+        "camera_extrinsics_convention": args.camera_extrinsics_convention,
         "camera_characteristics": camera_characteristics_by_side,
+        "synchronization": {side: alignment["report"] for side, alignment in alignments.items()},
         "clip_summary": clip_summary or manifest,
         "logged_channels": [
+            "/recording/camera_calibration",
             *[f"/camera/{side}/video" for side in camera_sides],
             *(
                 [

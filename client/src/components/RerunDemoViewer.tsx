@@ -28,7 +28,7 @@ export function RerunDemoViewer() {
       });
 
       await viewer.start(
-        new URL("/api/rerun-demo/recording.rrd?v=06fc8260", window.location.origin).toString(),
+        new URL("/api/rerun-demo/recording.rrd?v=6eae335f", window.location.origin).toString(),
         host,
         {
           height: "100%",
