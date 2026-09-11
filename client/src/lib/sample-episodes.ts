@@ -1,6 +1,8 @@
 import clothingEpisode from "../../../public/rerun/episodes/20260911_170529/manifest.json";
+import clothingDepth from "../../../public/rerun/episodes/20260911_170529/foundation-stereo-depth.json";
 import clothingHands from "../../../public/rerun/episodes/20260911_170529/right-hand-pressure.json";
 import waterEpisode from "../../../public/rerun/episodes/20260911_165650/manifest.json";
+import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundation-stereo-depth.json";
 import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
 import fiveCamera from "../../../public/rerun/episodes/20260910_150529/manifest.json";
 import fiveCameraHands from "../../../public/rerun/episodes/20260910_150529/right-hand-pressure.json";
@@ -46,7 +48,8 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     hands: clothingHands,
     flexionTitle: "Right-hand flexion from recorded pose.",
     flexionNote: "Original pose and episode calibration with existing display smoothing. Pressure follows reviewed fabric contacts and recorded finger bends; relative estimates, not measured forces.",
-    depthNote: "Depth and Gaussian Splat are placeholders.",
+    depthNote: "FoundationStereo estimate from 1,419 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved. Gaussian Splat remains a placeholder.",
+    depthVideoUrl: `${clothingDepth.video.path}?v=${clothingDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
     synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${clothingEpisode.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,
   },
@@ -60,7 +63,8 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     hands: waterHands,
     flexionTitle: "Right-hand flexion from recorded pose.",
     flexionNote: "Original pose and episode calibration, with existing display smoothing. Pressure uses reviewed video contacts and recorded finger bends; relative estimates, not measured forces.",
-    depthNote: "Depth and Gaussian Splat are placeholders.",
+    depthNote: "FoundationStereo estimate from 526 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved. Gaussian Splat remains a placeholder.",
+    depthVideoUrl: `${waterDepth.video.path}?v=${waterDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
     synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${waterEpisode.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,
   },

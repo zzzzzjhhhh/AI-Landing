@@ -701,9 +701,247 @@
     "pose_sha256": "6d375774feba0a2f4b54748a91e731ee120d8c0beffb39ae47f31e784a0bcba4",
     "task_source": "reviewed_video_annotation",
     "placeholders": [
-      "depth",
       "gaussian_splat"
     ],
+    "depth": {
+      "episode_id": "20260911_170529",
+      "duration_us": 110005303,
+      "capture_start_ns": 1789117536835329000,
+      "width": 960,
+      "height": 720,
+      "frame_count": 1419,
+      "source_sha256": {
+        "sync_manifest.json": "8fcc00d0c8e34adae6ce7dff511537265901f20daf2fa2002f0ec2717fbdc002",
+        "stereo_pairs.csv": "340c7e3e8c065ec42430f7eeba2b0db86bd65d9167da38800f62c9b0c65007d1",
+        "left_camera.mp4": "137ae3976c2bc28dd9a814e34b48d52b18d6df25f153da2de5403c249faa62bb",
+        "left_camera_characteristics.json": "3787742c9172badc9fdd61aea7f3e87ec80cec490df84851cf7bee652439a1c4",
+        "left_camera_timestamps.csv": "c7884d0524bb0013a8c8b6c3c7a69b0ef45635714d0ad4d4672f9b75f8592421",
+        "right_camera.mp4": "147db3b93691ef6307776c27f1f6ab52d4618dfd6dc1e68cb4e870c2523f8eb8",
+        "right_camera_characteristics.json": "283ece784857aa17e5cb151b9fc4004925b7e1d37375a27e412fd282a09901f6",
+        "right_camera_timestamps.csv": "226889eda27969b486a22a55b0ad96e592ec3ce993fcca701cd4bbdcbdc7f911"
+      },
+      "geometry": {
+        "source": "original_camera_characteristics",
+        "baseline_m": 0.06388337669476,
+        "K_left": [
+          [
+            610.519125,
+            0.0,
+            479.5
+          ],
+          [
+            0.0,
+            610.54939275,
+            359.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K_right": [
+          [
+            610.519125,
+            0.0,
+            479.5
+          ],
+          [
+            0.0,
+            610.54939275,
+            359.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "R": [
+          [
+            1.0000000000000002,
+            -1.5733542203497392e-19,
+            -2.360626998782929e-20
+          ],
+          [
+            -1.5733542203497392e-19,
+            0.9999999999999999,
+            6.999256406374994e-20
+          ],
+          [
+            -2.360626998782929e-20,
+            6.999256406374994e-20,
+            0.9999999999999999
+          ]
+        ],
+        "T_m": [
+          -0.06388337669475969,
+          -1.8041496768276344e-10,
+          6.438478829583779e-09
+        ],
+        "R1": [
+          [
+            0.999999999999995,
+            2.7999174423177937e-09,
+            -9.99208070621059e-08
+          ],
+          [
+            -2.7999174423177937e-09,
+            1.0,
+            1.3988500527183094e-16
+          ],
+          [
+            9.99208070621059e-08,
+            1.3988500527183094e-16,
+            0.999999999999995
+          ]
+        ],
+        "R2": [
+          [
+            0.999999999999995,
+            2.7999174423177937e-09,
+            -9.99208070621059e-08
+          ],
+          [
+            -2.7999174423177937e-09,
+            1.0,
+            1.3988500527183094e-16
+          ],
+          [
+            9.99208070621059e-08,
+            1.3988500527183094e-16,
+            0.999999999999995
+          ]
+        ],
+        "P1": [
+          [
+            610.5494429446223,
+            0.0,
+            479.5000915527344,
+            0.0
+          ],
+          [
+            0.0,
+            610.5494429446223,
+            359.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "P2": [
+          [
+            610.5494429446223,
+            0.0,
+            479.5000915527344,
+            -39.003960054407194
+          ],
+          [
+            0.0,
+            610.5494429446223,
+            359.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "Q": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            -479.5000915527344
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -359.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            610.5494429446223
+          ],
+          [
+            0.0,
+            0.0,
+            15.653524465027603,
+            -0.0
+          ]
+        ],
+        "depth_formula": "depth_m = P1[0,0] * baseline_m / disparity_px",
+        "distortion": "Coefficients unavailable; zero assumed. Source pairs are near-rectified in image checks.",
+        "scale_note": "Estimated depth using recorded optical intrinsics; no metric ground-truth validation."
+      },
+      "timeline_policy": "One inference per recorded stereo pair. Hold until next pair; no interpolated depth or retimed frames.",
+      "version": 1,
+      "source": "foundation_stereo",
+      "model": {
+        "model": "NVlabs/FoundationStereo",
+        "model_variant": "vits",
+        "source_commit": "6e8806816b533e4d13ddbb95ffa907b797060a62",
+        "checkpoint_sha256": "7471dd62544650feb6cef9d04547120247c4ff817f1e43d75286ca4f00dd716a",
+        "checkpoint_source": "https://huggingface.co/shriarul5273/FoundationStereo_models/tree/164d8d262e98d2d1f8c57af1ddab9e8e3127bf39/pretrained_models/11-33-40",
+        "source_checkpoint_sha256": "8d7850b9dc68d1366722a02a39745704b1db41471211be6abd93ef463727e6be",
+        "config_sha256": "d34a3ddce507409de8955971185e5881c913a1c9e701476c6ac0d298ac4ea4da",
+        "input_manifest_sha256": "d78d6f1cdebf6227a8394a26c816904fd11254367198df98b85a8b6680db0274",
+        "valid_iters": 32,
+        "mixed_precision": true,
+        "gpu": "NVIDIA GeForce RTX 3090",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "input_width": 960,
+        "input_height": 720,
+        "state_dict_load": "strict, all parameters supplied by checkpoint",
+        "depth_type": "stereo model estimate, not measured ground truth",
+        "invalid_policy": "Nonfinite/nonpositive disparity, outside right image, or depth outside 0.1\u201320 m => zero.",
+        "color_scale_m": [
+          0.2,
+          3.0
+        ],
+        "color_map": "TURBO, red near / blue far; black invalid",
+        "depth_png_unit_m": 0.001
+      },
+      "video_rendering": {
+        "source": "inference_color_png",
+        "overlays": false,
+        "full_frame": true
+      },
+      "quality": {
+        "valid_fraction_min_median": [
+          0.8073553240740741,
+          0.928822337962963
+        ],
+        "inference_seconds_total": 1479.9939102280096,
+        "maximum_pair_gap_ms": 360.019,
+        "limitations": "No depth ground truth; glass, reflections, occlusions and dark surfaces can be unreliable."
+      },
+      "video": {
+        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth.mp4",
+        "sha256": "cbe1adc731bd22a60d117ecc4cd9291af1b830f2eca29acae11026ddc16e80d2",
+        "bytes": 22760376
+      },
+      "timestamps": {
+        "sha256": "efedcd1b201e9fb309124257d46b073aa1e48efd7f4e84ed2d2b4dcb84745b64",
+        "bytes": 48309,
+        "storage": "offline; excluded from web repository"
+      },
+      "depth_archive": {
+        "sha256": "49a918c41e6e5a59b1790e13e63538b80def8ebaeb58d8f9ec75dc9ada9a7b92",
+        "bytes": 309693321,
+        "storage": "offline; excluded from web repository"
+      }
+    },
     "imu": {
       "version": 1,
       "episode_id": "20260911_170529",
@@ -797,11 +1035,11 @@
     },
     "data": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard.rrd",
-      "sha256": "a527a3ec22cbc8554ef626f5ad31cf5802bb1dd6a0411ab4ec2dadfa28584cce"
+      "sha256": "18a570f441405b0927b0500b476ff6b9341c60ed4f29cc6eb8f0cc2739d2ba89"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard.rbl",
-      "sha256": "6519d6887a2860d0aeac1d24dab97d540045892f0d5ad96dba9aee6f1f4de0a8"
+      "sha256": "84bcb0ae7573ad995b3f69df77cbca9b05e6b6e37d7f58740642bf035800f161"
     }
   },
   "data_parts": [
