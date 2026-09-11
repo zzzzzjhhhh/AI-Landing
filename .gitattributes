@@ -1,1 +1,5 @@
 .next/dev/cache/turbopack/0c06f068/00000093.sst filter=lfs diff=lfs merge=lfs -text
+
+# Preserve generated dataset and vendor bytes for their SHA-256 checks.
+public/rerun/** -text whitespace=cr-at-eol
+scripts/glove-pressure/vendor/** -text whitespace=cr-at-eol

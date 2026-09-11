@@ -1,0 +1,12 @@
+{
+  "sourcePackage": "WebHandThreeDCloudMap_nginx_2026052501_english",
+  "sourceBundle": "index-DH2fsitE-en.js",
+  "sourceBundleSha256": "2d67db13909c2d37cada8a2fcb43c7d0aa6126df9b57e0ab68a00a374552a2c2",
+  "purpose": "Offline generation of native Rerun right-hand pressure geometry",
+  "files": {
+    "DataHandler.wasm": "75555b4e5de36b419e6454035d8e704c987037d79cc65d2274b3d2a076c5de57",
+    "DataHandler.data": "79a169af8019ae439035356f888c345e15fb8d43704892a42fe8d11a04f8dc36",
+    "Hand_R2.glb": "d13edee05f77336dfde267de5d000d653ec80192319559cbc8a639f63f6a3aa8",
+    "ColorMapDefault.csv": "ac2cc4d6df29500343aad90713e70990621281cd00c048a816ab0fd6716cd0e1"
+  }
+}

@@ -1,0 +1,22 @@
+# Python 3.11; isolated environment, CUDA GPU required for infer.py.
+torch==2.4.1
+torchvision==0.19.1
+xformers==0.0.28.post1
+numpy==1.26.4
+opencv-contrib-python==4.11.0.86
+omegaconf==2.3.1
+timm==1.0.29
+scipy
+scikit-image
+scikit-learn
+joblib
+ruamel.yaml
+trimesh
+pyyaml
+imageio
+open3d==0.19.0
+transformations
+einops
+huggingface-hub
+safetensors
+av

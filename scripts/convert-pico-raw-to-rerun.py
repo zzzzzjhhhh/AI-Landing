@@ -393,14 +393,42 @@ def project_hand_to_video(
     return projected
 
 
-def projected_bone_strips(projected: dict[int, list[float]], joint_names: list[str]) -> list[list[list[float]]]:
+def clip_line_to_video(start: list[float], end: list[float], width: int, height: int) -> list[list[float]] | None:
+    start_xy = np.asarray(start, dtype=np.float64)
+    end_xy = np.asarray(end, dtype=np.float64)
+    if not np.isfinite([start_xy, end_xy]).all():
+        return None
+    delta = end_xy - start_xy
+    maximum = np.array([width - 1, height - 1], dtype=np.float64)
+    enter, leave = 0.0, 1.0
+    # Intersect the segment's parameter interval with each image-axis slab.
+    for axis in range(2):
+        if delta[axis] == 0:
+            if not 0 <= start_xy[axis] <= maximum[axis]:
+                return None
+            continue
+        first = -start_xy[axis] / delta[axis]
+        last = (maximum[axis] - start_xy[axis]) / delta[axis]
+        enter = max(enter, min(first, last))
+        leave = min(leave, max(first, last))
+        if enter > leave:
+            return None
+    # Remove only floating-point roundoff after geometric intersection.
+    return np.clip([start_xy + enter * delta, start_xy + leave * delta], 0, maximum).tolist()
+
+
+def projected_bone_strips(
+    projected: dict[int, list[float]], joint_names: list[str], width: int, height: int,
+) -> list[list[list[float]]]:
     name_to_index = {name: index for index, name in enumerate(joint_names)}
     strips: list[list[list[float]]] = []
     for start_name, end_name in HAND_BONES:
         start_index = name_to_index[start_name]
         end_index = name_to_index[end_name]
         if start_index in projected and end_index in projected:
-            strips.append([projected[start_index], projected[end_index]])
+            clipped = clip_line_to_video(projected[start_index], projected[end_index], width, height)
+            if clipped is not None:
+                strips.append(clipped)
     return strips
 
 
@@ -446,6 +474,7 @@ def log_frame_overlays(
     camera_pose_rows: list[dict],
 ) -> None:
     camera_frames = {int(row["frame_index"]): row for row in camera_pose_rows if row.get("side") == camera_side}
+    width, height = int(characteristics["width"]), int(characteristics["height"])
     for index, unix_ms in enumerate(alignment["source_times_ms"]):
         rr.set_time("tracking_time", duration=np.timedelta64(int(alignment["timeline_ns"][index]), "ns"))
         rr.set_time("capture_time", timestamp=np.datetime64(int(unix_ms), "ms"))
@@ -463,12 +492,13 @@ def log_frame_overlays(
                 sample[f"{side}_joints_xyz_xyzw"][:, :3],
                 int(sample[f"{side}_joint_valid_mask"]), head, characteristics,
             )
+            visible_points = [point for point in projected.values() if 0 <= point[0] <= width - 1 and 0 <= point[1] <= height - 1]
             rr.log(f"{entity}/joints", rr.Points2D(
-                np.asarray(list(projected.values()), dtype=np.float32).reshape((-1, 2)),
+                np.asarray(visible_points, dtype=np.float32).reshape((-1, 2)),
                 radii=rr.Radius.ui_points(3.0), colors=color, draw_order=20.0,
             ))
             rr.log(f"{entity}/bones", rr.LineStrips2D(
-                projected_bone_strips(projected, joint_names),
+                projected_bone_strips(projected, joint_names, width, height),
                 radii=rr.Radius.ui_points(1.7), colors=color, draw_order=19.0,
             ))
 
@@ -495,14 +525,15 @@ def log_camera_pose_rows(rows: Iterable[dict], start_ms: int, extrinsics_convent
         )
 
 
-def default_blueprint(camera_sides: list[str], overlay_sides: set[str]) -> rrb.Blueprint:
+def default_blueprint(camera_dimensions: dict[str, tuple[int, int]], overlay_sides: set[str]) -> rrb.Blueprint:
     camera_views = [
         rrb.Spatial2DView(
             origin=f"camera/{side}" if side in overlay_sides else f"camera/{side}/video",
             contents="$origin/**",
             name=f"{side.title()} camera",
+            visual_bounds=rrb.VisualBounds2D(x_range=[0, width], y_range=[0, height]),
         )
-        for side in camera_sides
+        for side, (width, height) in camera_dimensions.items()
     ]
     if len(camera_views) == 1:
         primary_view = camera_views[0]
@@ -573,7 +604,8 @@ def main() -> None:
     application_id = "pico_raw_frame_synced_v1"
     rr.init(application_id, recording_id=recording_id, spawn=False)
     rr.save(output)
-    rr.send_blueprint(default_blueprint(camera_sides, set(camera_characteristics_by_side)))
+    camera_dimensions = {side: video_dimensions(video_root / f"{side}_camera.mp4") for side in camera_sides}
+    rr.send_blueprint(default_blueprint(camera_dimensions, set(camera_characteristics_by_side)))
     rr.log("world", rr.ViewCoordinates.RIGHT_HAND_Y_UP, static=True)
     rr.log("recording/camera_calibration", rr.TextDocument(json.dumps(camera_characteristics_by_side, indent=2)), static=True)
 

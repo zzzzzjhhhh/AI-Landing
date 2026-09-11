@@ -1,0 +1,79 @@
+{
+  "method": "SIFT ratio 0.65; shared multiframe fundamental matrix with USAC_MAGSAC 0.75 px used only to reject false feature matches. No image geometry fitted or modified from this diagnostic.",
+  "width": 960,
+  "height": 720,
+  "pairs": [
+    {
+      "pair_index": 0,
+      "candidate_matches": 308,
+      "common_geometry_inliers": 259,
+      "median_abs_vertical_error_px": 0.262298583984375,
+      "p95_abs_vertical_error_px": 0.9268798828125,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 25,
+      "candidate_matches": 276,
+      "common_geometry_inliers": 238,
+      "median_abs_vertical_error_px": 0.2625999450683594,
+      "p95_abs_vertical_error_px": 0.8966743350028992,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 50,
+      "candidate_matches": 216,
+      "common_geometry_inliers": 180,
+      "median_abs_vertical_error_px": 0.26092529296875,
+      "p95_abs_vertical_error_px": 0.9246047735214233,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 75,
+      "candidate_matches": 209,
+      "common_geometry_inliers": 174,
+      "median_abs_vertical_error_px": 0.29778289794921875,
+      "p95_abs_vertical_error_px": 0.9391220211982727,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 100,
+      "candidate_matches": 316,
+      "common_geometry_inliers": 281,
+      "median_abs_vertical_error_px": 0.248138427734375,
+      "p95_abs_vertical_error_px": 0.83544921875,
+      "positive_disparity_fraction": 0.99644128113879
+    },
+    {
+      "pair_index": 125,
+      "candidate_matches": 83,
+      "common_geometry_inliers": 62,
+      "median_abs_vertical_error_px": 0.3198699951171875,
+      "p95_abs_vertical_error_px": 0.820141613483429,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 150,
+      "candidate_matches": 105,
+      "common_geometry_inliers": 77,
+      "median_abs_vertical_error_px": 0.2742919921875,
+      "p95_abs_vertical_error_px": 0.833697497844696,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 175,
+      "candidate_matches": 71,
+      "common_geometry_inliers": 51,
+      "median_abs_vertical_error_px": 0.34820556640625,
+      "p95_abs_vertical_error_px": 1.27325439453125,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair_index": 200,
+      "candidate_matches": 77,
+      "common_geometry_inliers": 49,
+      "median_abs_vertical_error_px": 0.217071533203125,
+      "p95_abs_vertical_error_px": 1.0968017578125,
+      "positive_disparity_fraction": 1.0
+    }
+  ]
+}

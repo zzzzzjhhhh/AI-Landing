@@ -1,0 +1,92 @@
+{
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260910_150529_3e3b74283246",
+  "duration_ns": 51602520000,
+  "capture_start_ns": 1789023941839541000,
+  "base_sha256": "5f3211d504c81fd8d149c658f527f8c24769d67e5464802dbc8b22bd7779074c",
+  "camera_dimensions": {
+    "left_camera": [
+      960,
+      720
+    ],
+    "right_camera": [
+      960,
+      720
+    ],
+    "left_side": [
+      960,
+      540
+    ],
+    "right_side": [
+      960,
+      540
+    ],
+    "back": [
+      960,
+      540
+    ]
+  },
+  "source": "mixed",
+  "pressure_source": "simulated",
+  "hand": "right",
+  "fps": 10,
+  "frame_count": 518,
+  "views": [
+    "pressure",
+    "flexion"
+  ],
+  "flexion": {
+    "source": "recorded_pose_with_visual_video_estimates",
+    "reference_camera": "right_camera",
+    "pose_sample_count": 3707,
+    "frame_count": 1401,
+    "valid_frame_count": 1266,
+    "missing_frame_count": 135,
+    "pose_distance_max_ms": 12.353,
+    "overlay_reprojection_max_px": null,
+    "pose_sha256": "0358dfd0a35cde51eb442bb9126854e9dec120a4a6e2f904a8aebd0de3a70038",
+    "schema_sha256": "313c0bdacc1f5630e8c7d46471f7eb720b2a6e02226ac903b068598edb02e51e",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. No 2D reprojection calibration is assumed.",
+    "native_frame_count": 39,
+    "video_estimated_frame_count": 1227,
+    "video_estimate": {
+      "method": "visual_keyframe_estimate",
+      "description": "Coarse visual estimates from inspected right-camera video frames. Local finger hinge angles approximate visible grasp/release shapes; they are not automatic landmark detections, measured joint angles, or a calibrated 3D reconstruction. Linear interpolation only between nearby visible observations. Occluded individual joints are uncertain. Original valid PICO poses take precedence.",
+      "source_sha256": "e47a56c4ba2dc109a4cf180e4dc450f44a515a24d4b06c4133207e1baad4c8dd",
+      "annotations_sha256": "34f90787dc4ca9b368b149d9bbca508bd5f6ac7ae47638595b2ee2808c4f8114"
+    },
+    "segment_direction_error_max_deg": 5.853177225625917e-06
+  },
+  "data": {
+    "path": "/rerun/episodes/20260910_150529/right-hand-pressure.rrd",
+    "sha256": "c66fc090f1761c5f664259f47ad4fb35b02df2f13e9d6a3fc2519b56c981ac9f"
+  },
+  "blueprint": {
+    "path": "/rerun/episodes/20260910_150529/right-hand-pressure.rbl",
+    "sha256": "14104591d620913eb849c4c78144c9f54ebb409c43b8d468d387455742326abe"
+  },
+  "flexion_csv": {
+    "path": "/rerun/episodes/20260910_150529/right-hand-flexion.csv",
+    "sha256": "c5b4ca26fde4d768b5b626903283cde066a0f3ba5d257ef69af2f70177aa5679"
+  },
+  "dashboard": {
+    "layout_version": 1,
+    "head_height_entity": "replay_dashboard/head_height",
+    "head_height_source": "original_pose_y",
+    "head_height_sample_count": 3707,
+    "pose_sha256": "0358dfd0a35cde51eb442bb9126854e9dec120a4a6e2f904a8aebd0de3a70038",
+    "task_source": "unavailable",
+    "placeholders": [
+      "depth",
+      "gaussian_splat"
+    ],
+    "data": {
+      "path": "/rerun/episodes/20260910_150529/replay-dashboard.rrd",
+      "sha256": "c60842e88e1e28528ddd1f4c8e3e9f52198d88473c7c247e409c1cb67c179bbb"
+    },
+    "blueprint": {
+      "path": "/rerun/episodes/20260910_150529/replay-dashboard.rbl",
+      "sha256": "4c4023e8224e6a20eab92b270c37d1ce13cd64d952f331040ded5a2996abd951"
+    }
+  }
+}

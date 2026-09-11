@@ -1,0 +1,699 @@
+{
+  "episode": "20260910_153529",
+  "evaluated_on": "2026-09-11",
+  "image_size": [
+    960,
+    720
+  ],
+  "method": "Compare recorded extrinsics with the previous reflect-z camera-basis correction on identical sequentially decoded VFR frames. The pose sample, exposure head pose, intrinsics and time alignment are unchanged.",
+  "reference": "MediaPipe Hand Landmarker image detections at detection/presence confidence 0.6; evaluation reference only, not ground truth or replacement pose.",
+  "assignment": "Nearest-wrist one-to-one assignment, maximum 200 px, retained only when assignment is identical under both variants.",
+  "limitations": [
+    "All accepted detections are the bare left hand. There are no reliable right-glove detections, so these numbers cannot measure right-hand accuracy.",
+    "No empirical camera transform or clock offset has been applied to production.",
+    "Pose-to-overlay equality is a consistency check and does not establish alignment with the visible hand."
+  ],
+  "decision": "Do not apply reflect-z to this episode: median and P95 reference error increase in the validation set. The default remains recorded. Further corrections require independent evidence.",
+  "source_sha256": {
+    "pose_samples.bin": "567657fb13f453240cfe64986cb3a10e026d46767223384200916c6db1b55c7f",
+    "left_camera_characteristics.json": "3787742c9172badc9fdd61aea7f3e87ec80cec490df84851cf7bee652439a1c4",
+    "right_camera_characteristics.json": "283ece784857aa17e5cb151b9fc4004925b7e1d37375a27e412fd282a09901f6",
+    "camera_pose_tracking.jsonl": "71a3c6a3c0698a15db15a3c598bf543694429f3dfaecdebf61d88dce0a800b3e",
+    "left_camera.mp4": "99769f0d9414e55efdb3e6b71dc2e3e0afdb157f3cc3fa84eec35619e83b36b0",
+    "right_camera.mp4": "5ce656e0b63271116664d2a7077b034551c2c4612583ec7601a0fb7330d2b6f7"
+  },
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "report": {
+    "exploratory": {
+      "left_camera/left": {
+        "matched_hands": 4,
+        "recorded": {
+          "n": 84,
+          "median_px": 43.529276672872726,
+          "p95_px": 95.16290916622894
+        },
+        "reflect-z": {
+          "n": 84,
+          "median_px": 46.08461567294911,
+          "p95_px": 101.08772417230601
+        }
+      },
+      "left_camera/right": {
+        "matched_hands": 0
+      },
+      "left_camera/both": {
+        "matched_hands": 4,
+        "recorded": {
+          "n": 84,
+          "median_px": 43.529276672872726,
+          "p95_px": 95.16290916622894
+        },
+        "reflect-z": {
+          "n": 84,
+          "median_px": 46.08461567294911,
+          "p95_px": 101.08772417230601
+        }
+      },
+      "right_camera/left": {
+        "matched_hands": 5,
+        "recorded": {
+          "n": 105,
+          "median_px": 32.149835870465374,
+          "p95_px": 84.02482203967203
+        },
+        "reflect-z": {
+          "n": 105,
+          "median_px": 34.75243876817931,
+          "p95_px": 80.80091570919554
+        }
+      },
+      "right_camera/right": {
+        "matched_hands": 0
+      },
+      "right_camera/both": {
+        "matched_hands": 5,
+        "recorded": {
+          "n": 105,
+          "median_px": 32.149835870465374,
+          "p95_px": 84.02482203967203
+        },
+        "reflect-z": {
+          "n": 105,
+          "median_px": 34.75243876817931,
+          "p95_px": 80.80091570919554
+        }
+      },
+      "both/left": {
+        "matched_hands": 9,
+        "recorded": {
+          "n": 189,
+          "median_px": 38.256257378540816,
+          "p95_px": 91.93891604589382
+        },
+        "reflect-z": {
+          "n": 189,
+          "median_px": 38.35050130536902,
+          "p95_px": 97.68873980513872
+        }
+      },
+      "both/right": {
+        "matched_hands": 0
+      },
+      "both/both": {
+        "matched_hands": 9,
+        "recorded": {
+          "n": 189,
+          "median_px": 38.256257378540816,
+          "p95_px": 91.93891604589382
+        },
+        "reflect-z": {
+          "n": 189,
+          "median_px": 38.35050130536902,
+          "p95_px": 97.68873980513872
+        }
+      }
+    },
+    "held_out": {
+      "left_camera/left": {
+        "matched_hands": 11,
+        "recorded": {
+          "n": 231,
+          "median_px": 30.195189600931865,
+          "p95_px": 79.09586758335436
+        },
+        "reflect-z": {
+          "n": 231,
+          "median_px": 36.67773444717273,
+          "p95_px": 91.7223427249151
+        }
+      },
+      "left_camera/right": {
+        "matched_hands": 0
+      },
+      "left_camera/both": {
+        "matched_hands": 11,
+        "recorded": {
+          "n": 231,
+          "median_px": 30.195189600931865,
+          "p95_px": 79.09586758335436
+        },
+        "reflect-z": {
+          "n": 231,
+          "median_px": 36.67773444717273,
+          "p95_px": 91.7223427249151
+        }
+      },
+      "right_camera/left": {
+        "matched_hands": 10,
+        "recorded": {
+          "n": 210,
+          "median_px": 28.90773333520564,
+          "p95_px": 59.03483498635204
+        },
+        "reflect-z": {
+          "n": 210,
+          "median_px": 37.40316059643776,
+          "p95_px": 82.70867923829609
+        }
+      },
+      "right_camera/right": {
+        "matched_hands": 0
+      },
+      "right_camera/both": {
+        "matched_hands": 10,
+        "recorded": {
+          "n": 210,
+          "median_px": 28.90773333520564,
+          "p95_px": 59.03483498635204
+        },
+        "reflect-z": {
+          "n": 210,
+          "median_px": 37.40316059643776,
+          "p95_px": 82.70867923829609
+        }
+      },
+      "both/left": {
+        "matched_hands": 21,
+        "recorded": {
+          "n": 441,
+          "median_px": 29.643107163149303,
+          "p95_px": 68.28602787504927
+        },
+        "reflect-z": {
+          "n": 441,
+          "median_px": 36.90281277136813,
+          "p95_px": 86.84417128613369
+        }
+      },
+      "both/right": {
+        "matched_hands": 0
+      },
+      "both/both": {
+        "matched_hands": 21,
+        "recorded": {
+          "n": 441,
+          "median_px": 29.643107163149303,
+          "p95_px": 68.28602787504927
+        },
+        "reflect-z": {
+          "n": 441,
+          "median_px": 36.90281277136813,
+          "p95_px": 86.84417128613369
+        }
+      }
+    }
+  },
+  "frames": [
+    {
+      "camera": "left_camera",
+      "frame_index": 25,
+      "time_s": 0.98005,
+      "set": "exploratory",
+      "pose_sample_index": 70,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 75,
+      "time_s": 2.980147,
+      "set": "exploratory",
+      "pose_sample_index": 212,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 129,
+      "time_s": 5.020245,
+      "set": "exploratory",
+      "pose_sample_index": 358,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 183,
+      "time_s": 7.000342,
+      "set": "exploratory",
+      "pose_sample_index": 500,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 237,
+      "time_s": 9.000439,
+      "set": "exploratory",
+      "pose_sample_index": 644,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 289,
+      "time_s": 11.00054,
+      "set": "exploratory",
+      "pose_sample_index": 788,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 342,
+      "time_s": 13.000638,
+      "set": "exploratory",
+      "pose_sample_index": 931,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 395,
+      "time_s": 15.020735,
+      "set": "exploratory",
+      "pose_sample_index": 1077,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 13,
+      "time_s": 0.520027,
+      "set": "held_out",
+      "pose_sample_index": 37,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 38,
+      "time_s": 1.480073,
+      "set": "held_out",
+      "pose_sample_index": 106,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 63,
+      "time_s": 2.520124,
+      "set": "held_out",
+      "pose_sample_index": 179,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 88,
+      "time_s": 3.480171,
+      "set": "held_out",
+      "pose_sample_index": 248,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 115,
+      "time_s": 4.480221,
+      "set": "held_out",
+      "pose_sample_index": 320,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 142,
+      "time_s": 5.500268,
+      "set": "held_out",
+      "pose_sample_index": 392,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 169,
+      "time_s": 6.480319,
+      "set": "held_out",
+      "pose_sample_index": 463,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 196,
+      "time_s": 7.480365,
+      "set": "held_out",
+      "pose_sample_index": 535,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 223,
+      "time_s": 8.480416,
+      "set": "held_out",
+      "pose_sample_index": 607,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 250,
+      "time_s": 9.480462,
+      "set": "held_out",
+      "pose_sample_index": 679,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 277,
+      "time_s": 10.520513,
+      "set": "held_out",
+      "pose_sample_index": 754,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 302,
+      "time_s": 11.480564,
+      "set": "held_out",
+      "pose_sample_index": 823,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 329,
+      "time_s": 12.50061,
+      "set": "held_out",
+      "pose_sample_index": 895,
+      "matched_hands": []
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 355,
+      "time_s": 13.480661,
+      "set": "held_out",
+      "pose_sample_index": 966,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 381,
+      "time_s": 14.480707,
+      "set": "held_out",
+      "pose_sample_index": 1038,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "left_camera",
+      "frame_index": 408,
+      "time_s": 15.480758,
+      "set": "held_out",
+      "pose_sample_index": 1110,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 26,
+      "time_s": 1.00005,
+      "set": "exploratory",
+      "pose_sample_index": 71,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 78,
+      "time_s": 2.980147,
+      "set": "exploratory",
+      "pose_sample_index": 212,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 132,
+      "time_s": 5.000245,
+      "set": "exploratory",
+      "pose_sample_index": 356,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 185,
+      "time_s": 6.980342,
+      "set": "exploratory",
+      "pose_sample_index": 499,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 239,
+      "time_s": 8.980439,
+      "set": "exploratory",
+      "pose_sample_index": 643,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 291,
+      "time_s": 11.00054,
+      "set": "exploratory",
+      "pose_sample_index": 788,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 345,
+      "time_s": 13.000638,
+      "set": "exploratory",
+      "pose_sample_index": 931,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 399,
+      "time_s": 15.000735,
+      "set": "exploratory",
+      "pose_sample_index": 1075,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 13,
+      "time_s": 0.520027,
+      "set": "held_out",
+      "pose_sample_index": 37,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 39,
+      "time_s": 1.480073,
+      "set": "held_out",
+      "pose_sample_index": 106,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 65,
+      "time_s": 2.48012,
+      "set": "held_out",
+      "pose_sample_index": 176,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 92,
+      "time_s": 3.500171,
+      "set": "held_out",
+      "pose_sample_index": 249,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 118,
+      "time_s": 4.500221,
+      "set": "held_out",
+      "pose_sample_index": 321,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 145,
+      "time_s": 5.480268,
+      "set": "held_out",
+      "pose_sample_index": 391,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 172,
+      "time_s": 6.480319,
+      "set": "held_out",
+      "pose_sample_index": 463,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 199,
+      "time_s": 7.500369,
+      "set": "held_out",
+      "pose_sample_index": 536,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 225,
+      "time_s": 8.500416,
+      "set": "held_out",
+      "pose_sample_index": 608,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 252,
+      "time_s": 9.480462,
+      "set": "held_out",
+      "pose_sample_index": 679,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 278,
+      "time_s": 10.500513,
+      "set": "held_out",
+      "pose_sample_index": 752,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 305,
+      "time_s": 11.480564,
+      "set": "held_out",
+      "pose_sample_index": 823,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 331,
+      "time_s": 12.50061,
+      "set": "held_out",
+      "pose_sample_index": 895,
+      "matched_hands": []
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 358,
+      "time_s": 13.500661,
+      "set": "held_out",
+      "pose_sample_index": 967,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 386,
+      "time_s": 14.520712,
+      "set": "held_out",
+      "pose_sample_index": 1041,
+      "matched_hands": [
+        "left"
+      ]
+    },
+    {
+      "camera": "right_camera",
+      "frame_index": 413,
+      "time_s": 15.500758,
+      "set": "held_out",
+      "pose_sample_index": 1111,
+      "matched_hands": [
+        "left"
+      ]
+    }
+  ],
+  "user_constraint": "Preserve original pose; calibration changes only. No video-derived joint replacements or per-frame pose corrections.",
+  "additional_checks": {
+    "clock_offsets_ms": [
+      -150,
+      -100,
+      -50,
+      -20,
+      0,
+      20,
+      50,
+      100,
+      150
+    ],
+    "clock_validation_median_px": [
+      42.56,
+      40.88,
+      34.85,
+      31.16,
+      29.64,
+      30.21,
+      32.75,
+      38.14,
+      40.95
+    ],
+    "intrinsics_candidate": {
+      "method": "One fixed focal scale per axis and principal-point shift shared by the two cameras, fitted only on exploratory reference detections using soft-L1 residuals.",
+      "focal_scale_xy": [
+        1.3137698015636816,
+        1.2889605769675834
+      ],
+      "principal_shift_video_px": [
+        27.406609075047342,
+        -4.198260368701653
+      ],
+      "validation_before": {
+        "median_px": 29.643107163149303,
+        "p95_px": 68.28602787504927
+      },
+      "validation_after": {
+        "median_px": 25.973510426232195,
+        "p95_px": 73.08773530677489
+      },
+      "decision": "Rejected: median improves but tail error grows, with no reliable right-hand validation."
+    }
+  },
+  "status": "Historical sparse audit; superseded by the expanded fixed per-camera intrinsics evaluation.",
+  "superseded_by": "20260910_153529-intrinsics.json"
+}

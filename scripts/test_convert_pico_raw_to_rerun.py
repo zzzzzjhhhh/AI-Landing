@@ -62,9 +62,65 @@ class FrameSynchronizationTests(unittest.TestCase):
         samples["head_pose_xyz_xyzw"][:, 6] = 1
         with patch.object(converter.rr, "set_time") as set_time, patch.object(converter.rr, "log"), patch.object(converter, "project_hand_to_video", return_value={}):
             joint_names = list(dict.fromkeys(name for bone in converter.HAND_BONES for name in bone))
-            converter.log_frame_overlays("left", aligned, samples, joint_names, {}, [])
+            converter.log_frame_overlays("left", aligned, samples, joint_names, {"width": 960, "height": 720}, [])
         tracking = [call.kwargs["duration"] for call in set_time.call_args_list if call.args[0] == "tracking_time"]
         self.assertEqual(tracking, [np.timedelta64(9, "ms"), np.timedelta64(159, "ms")])
+
+
+class VideoBoundsTests(unittest.TestCase):
+    def test_clips_crossing_bones_without_clamping_their_direction(self):
+        cases = [
+            ([2, 2], [8, 6], [[2, 2], [8, 6]]),
+            ([-5, 0], [5, 10], [[0, 5], [2, 7]]),
+            ([-5, 3], [15, 3], [[0, 3], [9, 3]]),
+            ([3, -5], [3, 15], [[3, 0], [3, 7]]),
+            ([15, 3], [-5, 3], [[9, 3], [0, 3]]),
+            ([0, 0], [0, 7], [[0, 0], [0, 7]]),
+            ([4, 3], [4, 3], [[4, 3], [4, 3]]),
+        ]
+        for start, end, expected in cases:
+            with self.subTest(start=start, end=end):
+                np.testing.assert_allclose(converter.clip_line_to_video(start, end, 10, 8), expected)
+
+    def test_rejects_fully_outside_and_nonfinite_bones(self):
+        for start, end in [([-5, 0], [-1, 7]), ([0, 9], [9, 9]), ([12, 4], [12, 4]), ([np.nan, 0], [3, 3]), ([0, 0], [np.inf, 3])]:
+            with self.subTest(start=start, end=end):
+                self.assertIsNone(converter.clip_line_to_video(start, end, 10, 8))
+
+    def test_frame_logging_filters_points_but_retains_visible_bone_sections(self):
+        samples = np.zeros(1, dtype=converter.pose_dtype())
+        joint_names = list(dict.fromkeys(name for bone in converter.HAND_BONES for name in bone))
+        first, second = (joint_names.index(name) for name in converter.HAND_BONES[0])
+        projected = {first: [100, 100], second: [1100, 600]}
+        original = copy.deepcopy(projected)
+        alignment = {"source_times_ms": [1000], "timeline_ns": [0], "pose_indices": [0], "source_indices": [0], "valid_pose": [True]}
+        with patch.object(converter.rr, "set_time"), patch.object(converter.rr, "log"), patch.object(converter, "project_hand_to_video", return_value=projected), patch.object(converter.rr, "Points2D") as points, patch.object(converter.rr, "LineStrips2D") as bones:
+            converter.log_frame_overlays("left", alignment, samples, joint_names, {"width": 960, "height": 720}, [])
+        for call in points.call_args_list:
+            np.testing.assert_array_equal(call.args[0], [[100, 100]])
+        for call in bones.call_args_list:
+            np.testing.assert_allclose(call.args[0], [[[100, 100], [959, 529.5]]])
+        self.assertEqual(projected, original)
+
+    def test_empty_visible_overlay_clears_previous_points_and_bones(self):
+        samples = np.zeros(1, dtype=converter.pose_dtype())
+        joint_names = list(dict.fromkeys(name for bone in converter.HAND_BONES for name in bone))
+        alignment = {"source_times_ms": [1000], "timeline_ns": [0], "pose_indices": [0], "source_indices": [0], "valid_pose": [True]}
+        with patch.object(converter.rr, "set_time"), patch.object(converter.rr, "log"), patch.object(converter, "project_hand_to_video", return_value={0: [-10, -20]}), patch.object(converter.rr, "Points2D") as points, patch.object(converter.rr, "LineStrips2D") as bones:
+            converter.log_frame_overlays("right", alignment, samples, joint_names, {"width": 960, "height": 720}, [])
+        for call in points.call_args_list:
+            self.assertEqual(call.args[0].shape, (0, 2))
+        for call in bones.call_args_list:
+            self.assertEqual(call.args[0], [])
+
+    def test_camera_views_use_video_dimensions_not_overlay_bounds(self):
+        dimensions = {"left": (960, 720), "right": (1280, 960)}
+        with patch.object(converter.rrb, "Spatial2DView") as view, patch.object(converter.rrb, "VisualBounds2D") as bounds, patch.object(converter.rrb, "Horizontal"), patch.object(converter.rrb, "Vertical"), patch.object(converter.rrb, "Blueprint"):
+            converter.default_blueprint(dimensions, {"left", "right"})
+        self.assertEqual(bounds.call_count, 2)
+        self.assertEqual(bounds.call_args_list[0].kwargs, {"x_range": [0, 960], "y_range": [0, 720]})
+        self.assertEqual(bounds.call_args_list[1].kwargs, {"x_range": [0, 1280], "y_range": [0, 960]})
+        self.assertTrue(all("visual_bounds" in call.kwargs for call in view.call_args_list))
 
 
 class CameraExtrinsicsTests(unittest.TestCase):

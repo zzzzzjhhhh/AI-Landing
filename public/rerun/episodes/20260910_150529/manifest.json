@@ -1,0 +1,71 @@
+{
+  "episode_id": "20260910_150529",
+  "title": "Five-camera task replay",
+  "duration_seconds": 51.60252,
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260910_150529_3e3b74283246",
+  "source": "task_clip",
+  "timeline": "tracking_time",
+  "duration_us": 51602520,
+  "sync_manifest_sha256": "517407e3f4f2a05dd74f1666a6ca8af0f99bf6e1e3905c47995609d5a2a7b5f5",
+  "external_alignment_estimate_seconds": 0.1,
+  "pose_sample_count": 3707,
+  "pose_sha256": "0358dfd0a35cde51eb442bb9126854e9dec120a4a6e2f904a8aebd0de3a70038",
+  "cameras": [
+    {
+      "name": "left_camera",
+      "label": "PICO left",
+      "width": 960,
+      "height": 720,
+      "source_sha256": "8cd80cd846f7435a039194a5a01599bd9750221936342531249af1204d0f69a6",
+      "frame_count": 1403,
+      "first_frame_us": 0,
+      "last_frame_us": 51582516
+    },
+    {
+      "name": "right_camera",
+      "label": "PICO right",
+      "width": 960,
+      "height": 720,
+      "source_sha256": "e47a56c4ba2dc109a4cf180e4dc450f44a515a24d4b06c4133207e1baad4c8dd",
+      "frame_count": 1401,
+      "first_frame_us": 0,
+      "last_frame_us": 51542516
+    },
+    {
+      "name": "left_side",
+      "label": "Left side",
+      "width": 960,
+      "height": 540,
+      "source_sha256": "74966d3eb59fd853f58851b62d500358b6969586dc2afef8f7297a729ad7faca",
+      "frame_count": 1403,
+      "first_frame_us": 0,
+      "last_frame_us": 51582516
+    },
+    {
+      "name": "right_side",
+      "label": "Right side",
+      "width": 960,
+      "height": 540,
+      "source_sha256": "c3b7cdfbee6707ead4f03fe42f37cc0f7a8ef6d96105f419392466063cd69083",
+      "frame_count": 1403,
+      "first_frame_us": 0,
+      "last_frame_us": 51582516
+    },
+    {
+      "name": "back",
+      "label": "Back",
+      "width": 960,
+      "height": 540,
+      "source_sha256": "d9eb3369eed71599bf5f670ff5e83e5767ec073e560df9d3b9d08cdee415d90d",
+      "frame_count": 1403,
+      "first_frame_us": 0,
+      "last_frame_us": 51582516
+    }
+  ],
+  "recording": {
+    "path": "/rerun/episodes/20260910_150529/recording.rrd",
+    "sha256": "5f3211d504c81fd8d149c658f527f8c24769d67e5464802dbc8b22bd7779074c",
+    "bytes": 39679551
+  }
+}

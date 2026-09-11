@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "episode_id": "20260910_153529",
+  "duration_s": 16.720818,
+  "method": "video_contact_envelope_with_recorded_finger_bend_modulation",
+  "label": "ESTIMATED pressure / relative 0-100",
+  "description": "An explicitly heuristic simulation from visually reviewed right-camera contact phases and original right-hand joint bends. The right hand steadies a glass cup by its handle, lifts and carries it, places it in the microwave, then releases. Contact strengths and pad locations are assumptions, not recovered forces or measured pressure.",
+  "source_files": {
+    "sync_manifest.json": "0d3b4f1a94f7599e4099b2bf8b27d4a81742616a7561aaefbfcc0c56f629c377",
+    "right_camera.mp4": "5ce656e0b63271116664d2a7077b034551c2c4612583ec7601a0fb7330d2b6f7",
+    "right_camera_timestamps.csv": "283a939d54edb12bee9d1fa3f76d7c64cb1ab6e1faa1275005896728f69fdf0f",
+    "pose_samples.bin": "567657fb13f453240cfe64986cb3a10e026d46767223384200916c6db1b55c7f",
+    "pose_schema.json": "324408028ff7f726cc39438aa975639982f07443cc79aad18542a86ed6812021"
+  },
+  "video_observations": [
+    {
+      "time_s": 0,
+      "observation": "Gloved right hand approaches/closes around the cup handle on the table."
+    },
+    {
+      "time_s": 2.32,
+      "observation": "Left hand starts pouring from a kettle while the right hand steadies the cup handle."
+    },
+    {
+      "time_s": 6.54,
+      "observation": "Pouring ends; the cup remains near the table in the right grip."
+    },
+    {
+      "time_s": 7.76,
+      "observation": "The filled cup is visibly lifted and moved away from the table."
+    },
+    {
+      "time_s": 9.72,
+      "observation": "Right hand carries the cup by its handle. Left hand briefly supports/touches the cup."
+    },
+    {
+      "time_s": 12.761,
+      "observation": "Left hand opens the microwave; right hand keeps carrying the cup."
+    },
+    {
+      "time_s": 14.521,
+      "observation": "Right hand lowers the cup onto the microwave turntable; fingers are partly occluded."
+    },
+    {
+      "time_s": 15.301,
+      "observation": "Cup is resting inside; gloved right hand begins withdrawing from the handle."
+    },
+    {
+      "time_s": 15.621,
+      "observation": "Right hand withdraws and opens; exact contact end is approximate."
+    },
+    {
+      "time_s": 16.501,
+      "observation": "Open right hand is away from the cup and visibly unloaded."
+    }
+  ],
+  "assumptions": [
+    "Relative intensity rises during lift/carry and falls when the table/turntable supports the cup. No object mass, friction, force, contact area or kPa is estimated.",
+    "Thumb/index/middle dominate handle contact; ring/little and palm receive small assumed loads. Occluded pad contacts cannot be resolved from video.",
+    "Original distal joint bends modulate contact amplitudes by 0.65 + 0.35 * normalized curl; finger bending without annotated contact produces zero pressure.",
+    "Missing/degenerate raw pose uses only the interpolated visual contact envelope and an explicit neutral curl prior of 0.55. It is labeled VIDEO ONLY and never written into pose/flexion.",
+    "Keyframe strengths use smoothstep interpolation. Contact timing is visually annotated and approximate (~0.2 s at release), not sensor timing.",
+    "The open-hand atlas is intentionally fixed to compare regions; the separate flexion panel shows the recorded pose."
+  ],
+  "contacts": {
+    "palm": {
+      "weight": 0.06,
+      "center_u": 0.7,
+      "center_v": 0.36,
+      "width_u": 0.28,
+      "width_v": 0.3
+    },
+    "thumb": {
+      "weight": 0.9,
+      "center_u": 0.5,
+      "center_v": 0.28,
+      "width_u": 0.55,
+      "width_v": 0.26
+    },
+    "index": {
+      "weight": 1,
+      "center_u": 0.5,
+      "center_v": 0.42,
+      "width_u": 0.55,
+      "width_v": 0.34
+    },
+    "middle": {
+      "weight": 0.85,
+      "center_u": 0.5,
+      "center_v": 0.42,
+      "width_u": 0.55,
+      "width_v": 0.34
+    },
+    "ring": {
+      "weight": 0.22,
+      "center_u": 0.5,
+      "center_v": 0.35,
+      "width_u": 0.48,
+      "width_v": 0.28
+    },
+    "little": {
+      "weight": 0.06,
+      "center_u": 0.5,
+      "center_v": 0.3,
+      "width_u": 0.48,
+      "width_v": 0.28
+    }
+  },
+  "keyframes": [
+    {
+      "time_s": 0,
+      "strength": 0.18,
+      "phase": "Grasping handle"
+    },
+    {
+      "time_s": 0.6,
+      "strength": 0.32,
+      "phase": "Holding cup"
+    },
+    {
+      "time_s": 2.1,
+      "strength": 0.34,
+      "phase": "Steadying cup"
+    },
+    {
+      "time_s": 4.5,
+      "strength": 0.39,
+      "phase": "Steadying cup"
+    },
+    {
+      "time_s": 6.3,
+      "strength": 0.44,
+      "phase": "Holding filled cup"
+    },
+    {
+      "time_s": 7.2,
+      "strength": 0.46,
+      "phase": "Preparing to lift"
+    },
+    {
+      "time_s": 7.8,
+      "strength": 0.9,
+      "phase": "Lifting cup"
+    },
+    {
+      "time_s": 8.5,
+      "strength": 0.8,
+      "phase": "Carrying cup"
+    },
+    {
+      "time_s": 10,
+      "strength": 0.82,
+      "phase": "Holding cup"
+    },
+    {
+      "time_s": 12.5,
+      "strength": 0.86,
+      "phase": "Moving into microwave"
+    },
+    {
+      "time_s": 14.3,
+      "strength": 0.75,
+      "phase": "Placing cup"
+    },
+    {
+      "time_s": 14.8,
+      "strength": 0.42,
+      "phase": "Unloading grip"
+    },
+    {
+      "time_s": 15.3,
+      "strength": 0.2,
+      "phase": "Releasing handle"
+    },
+    {
+      "time_s": 15.65,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 16.720818,
+      "strength": 0,
+      "phase": "No contact"
+    }
+  ]
+}

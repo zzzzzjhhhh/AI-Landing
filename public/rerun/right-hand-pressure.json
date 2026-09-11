@@ -1,0 +1,72 @@
+{
+  "application_id": "pico_raw_frame_synced_v1",
+  "recording_id": "pico_dd2ce463_20260803_133948_bounds_v2",
+  "duration_ns": 90531000000,
+  "capture_start_ns": 1785735589444000000,
+  "base_sha256": "94fc1ccc35372fa3c492d847431c05b422e0bdcf9a1224d9c30354a269995841",
+  "camera_dimensions": {
+    "left": [
+      960,
+      720
+    ],
+    "right": [
+      960,
+      720
+    ]
+  },
+  "source": "mixed",
+  "pressure_source": "simulated",
+  "hand": "right",
+  "fps": 10,
+  "frame_count": 907,
+  "views": [
+    "pressure",
+    "flexion"
+  ],
+  "flexion": {
+    "source": "recorded_pose_keypoints",
+    "reference_camera": "right",
+    "pose_sample_count": 6950,
+    "frame_count": 1722,
+    "valid_frame_count": 1691,
+    "missing_frame_count": 31,
+    "pose_distance_max_ms": 17,
+    "overlay_reprojection_max_px": 0.0,
+    "pose_sha256": "cadccc0cc0d9ba2311f3e71cfdcb60c3306ce02af269557c2c68763373bca9b0",
+    "schema_sha256": "b363dcbf4065249f272319e2646df34d3d7574dd5557cb1b2879e29cdacb8028",
+    "alignment": "Same nearest raw sample and frame timestamps as the right-camera keypoint overlay; maximum distance 50 ms.",
+    "segment_direction_error_max_deg": 8.494940521530481e-06
+  },
+  "data": {
+    "path": "/rerun/right-hand-pressure.rrd",
+    "sha256": "2bdfc45bdeb1dff4ff74835a9e7e4b846430f3d8c6c01f6e495d0a2851c7bd28"
+  },
+  "blueprint": {
+    "path": "/rerun/right-hand-pressure.rbl",
+    "sha256": "2be59f8eeb309a79457d6205384ef85241172558de9517ea11bdfe89fa3aab32"
+  },
+  "flexion_csv": {
+    "path": "/rerun/right-hand-flexion.csv",
+    "sha256": "056f67279b4e7094bfc7b8b6dc4a2bbcc9cd50c55fd347e68fc9793baf8bb7f7"
+  },
+  "dashboard": {
+    "layout_version": 1,
+    "head_height_entity": "world/head_height",
+    "head_height_source": "base_recording_head_height",
+    "head_height_sample_count": null,
+    "pose_sha256": "cadccc0cc0d9ba2311f3e71cfdcb60c3306ce02af269557c2c68763373bca9b0",
+    "task_source": "unavailable",
+    "placeholders": [
+      "depth",
+      "gaussian_splat"
+    ],
+    "data": {
+      "path": "/rerun/replay-dashboard.rrd",
+      "sha256": "fd64924a26f921c2bfa1b652a4bc29fa5f5f8b417c652c80af47e9ec4c7b5b73"
+    },
+    "blueprint": {
+      "path": "/rerun/replay-dashboard.rbl",
+      "sha256": "4ea9230c7f54b609c39ff853191efcb60a2ba341a8299aa521b896617acd9edb"
+    }
+  }
+}

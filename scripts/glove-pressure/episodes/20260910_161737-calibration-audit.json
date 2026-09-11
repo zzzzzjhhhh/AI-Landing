@@ -1,0 +1,230 @@
+{
+  "episode_id": "20260910_161737",
+  "applied": true,
+  "reason": "Apply only the independently passing right-camera fit. Left candidate raises validation P95 and is rejected; its original intrinsics are retained.",
+  "candidate_parameters": {
+    "left_camera": [
+      1.027401736450993,
+      1.1328222305469404,
+      10.349582618828027,
+      2.307203869926958
+    ],
+    "right_camera": [
+      1.0477985899094162,
+      1.0833472944878826,
+      -6.072892592040271,
+      7.499861593646175
+    ]
+  },
+  "reports": {
+    "validation": {
+      "left_camera/left": {
+        "matched_hands": 33,
+        "before": {
+          "median_px": 32.662538082653754,
+          "p95_px": 85.14538670683572
+        },
+        "after": {
+          "median_px": 32.589315114041,
+          "p95_px": 90.0211710188513
+        }
+      },
+      "left_camera/right": {
+        "matched_hands": 3,
+        "before": {
+          "median_px": 31.56941460250184,
+          "p95_px": 60.938267811534494
+        },
+        "after": {
+          "median_px": 30.69776182946068,
+          "p95_px": 58.33969881832575
+        }
+      },
+      "left_camera/both": {
+        "matched_hands": 36,
+        "before": {
+          "median_px": 32.554100221492604,
+          "p95_px": 83.64011907989473
+        },
+        "after": {
+          "median_px": 32.45571176875646,
+          "p95_px": 88.73749750829833
+        }
+      },
+      "right_camera/left": {
+        "matched_hands": 32,
+        "before": {
+          "median_px": 37.43938501295162,
+          "p95_px": 80.00594653572591
+        },
+        "after": {
+          "median_px": 31.934941610066115,
+          "p95_px": 78.91688054335796
+        }
+      },
+      "right_camera/right": {
+        "matched_hands": 2,
+        "before": {
+          "median_px": 49.42368458128761,
+          "p95_px": 179.94835590187716
+        },
+        "after": {
+          "median_px": 34.52516797613955,
+          "p95_px": 160.81139458988773
+        }
+      },
+      "right_camera/both": {
+        "matched_hands": 34,
+        "before": {
+          "median_px": 37.502625318986546,
+          "p95_px": 90.9605376689115
+        },
+        "after": {
+          "median_px": 31.934941610066115,
+          "p95_px": 89.1070364929252
+        }
+      },
+      "both/left": {
+        "matched_hands": 65,
+        "before": {
+          "median_px": 35.31457729098046,
+          "p95_px": 82.70714296960857
+        },
+        "after": {
+          "median_px": 32.04709587749952,
+          "p95_px": 84.60785413190179
+        }
+      },
+      "both/right": {
+        "matched_hands": 5,
+        "before": {
+          "median_px": 32.30073314224995,
+          "p95_px": 168.54340996287635
+        },
+        "after": {
+          "median_px": 30.69776182946068,
+          "p95_px": 149.72134728207922
+        }
+      },
+      "both/both": {
+        "matched_hands": 70,
+        "before": {
+          "median_px": 35.26333007783163,
+          "p95_px": 86.58607166679931
+        },
+        "after": {
+          "median_px": 32.04685551547395,
+          "p95_px": 88.98099183490258
+        }
+      }
+    },
+    "confirmation": {
+      "left_camera/left": {
+        "matched_hands": 58,
+        "before": {
+          "median_px": 32.86093479180316,
+          "p95_px": 86.9270983465085
+        },
+        "after": {
+          "median_px": 32.95897288732094,
+          "p95_px": 85.70612948178895
+        }
+      },
+      "left_camera/right": {
+        "matched_hands": 7,
+        "before": {
+          "median_px": 44.50838508706449,
+          "p95_px": 110.00076051207452
+        },
+        "after": {
+          "median_px": 35.389864271583484,
+          "p95_px": 99.19051839223847
+        }
+      },
+      "left_camera/both": {
+        "matched_hands": 65,
+        "before": {
+          "median_px": 33.72165911317968,
+          "p95_px": 96.51029064201252
+        },
+        "after": {
+          "median_px": 33.0196098812519,
+          "p95_px": 93.1449137212576
+        }
+      },
+      "right_camera/left": {
+        "matched_hands": 64,
+        "before": {
+          "median_px": 34.747865966108414,
+          "p95_px": 82.37138604610571
+        },
+        "after": {
+          "median_px": 29.64409195928526,
+          "p95_px": 78.970139883371
+        }
+      },
+      "right_camera/right": {
+        "matched_hands": 1,
+        "before": {
+          "median_px": 40.142706888263056,
+          "p95_px": 67.21177312748816
+        },
+        "after": {
+          "median_px": 48.25828325472774,
+          "p95_px": 71.85242189965841
+        }
+      },
+      "right_camera/both": {
+        "matched_hands": 65,
+        "before": {
+          "median_px": 34.79193434257211,
+          "p95_px": 82.09296835209969
+        },
+        "after": {
+          "median_px": 29.817786904385873,
+          "p95_px": 78.92781661579953
+        }
+      },
+      "both/left": {
+        "matched_hands": 122,
+        "before": {
+          "median_px": 33.904027734564565,
+          "p95_px": 84.07120843044302
+        },
+        "after": {
+          "median_px": 31.31697941336425,
+          "p95_px": 82.19520334657511
+        }
+      },
+      "both/right": {
+        "matched_hands": 8,
+        "before": {
+          "median_px": 42.03209215348005,
+          "p95_px": 109.8515627631759
+        },
+        "after": {
+          "median_px": 37.36868441350669,
+          "p95_px": 97.99190510053053
+        }
+      },
+      "both/both": {
+        "matched_hands": 130,
+        "before": {
+          "median_px": 34.331693483557885,
+          "p95_px": 89.78328133396222
+        },
+        "after": {
+          "median_px": 31.546207373390352,
+          "p95_px": 85.52448320709378
+        }
+      }
+    }
+  },
+  "reference": "MediaPipe detections, primarily bare left hand; not ground truth.",
+  "refined_cameras": [
+    "right_camera"
+  ],
+  "unchanged_cameras": [
+    "left_camera"
+  ]
+}

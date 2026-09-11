@@ -1,5 +1,5 @@
 const RERUN_BLOB_URL =
-  "https://gokkyjese0fmbgo6.private.blob.vercel-storage.com/rerun/examples/pico-dd2ce463-20260803-133948-spatial-6eae335f.rrd";
+  "https://gokkyjese0fmbgo6.private.blob.vercel-storage.com/rerun/examples/pico-dd2ce463-20260803-133948-bounds-94fc1ccc.rrd";
 
 const REQUEST_HEADERS = ["if-modified-since", "if-none-match", "range"] as const;
 const RESPONSE_HEADERS = [
@@ -34,7 +34,7 @@ async function proxyRecording(request: Request, method: "GET" | "HEAD") {
 
   const responseHeaders = new Headers({
     "Cache-Control": "public, max-age=3600, must-revalidate",
-    "Content-Disposition": 'inline; filename="pico-dd2ce463-20260803-133948-spatial.rrd"',
+    "Content-Disposition": 'inline; filename="pico-dd2ce463-20260803-133948-bounds.rrd"',
     "X-Content-Type-Options": "nosniff",
   });
 

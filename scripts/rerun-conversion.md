@@ -31,6 +31,16 @@ when the frame sidecar is absent. Missing, out-of-range, or more than 50 ms
 distant pose samples clear the overlay. Full-rate 3D pose/scalar channels are
 retained independently. Video and overlay hold together between video frames.
 
+Both camera views use fixed visual bounds from the encoded video's dimensions,
+so out-of-frame tracking cannot change their zoom. The 2D overlay omits joints
+outside the image and intersects bone segments with its pixel rectangle; it
+does not clamp off-screen joints onto the edge. Empty visible geometry is logged
+to replace the previous frame. The raw projections and full 3D tracking remain
+unchanged. This display clipping is not a calibration or tracking correction.
+
+The optional glove-pressure blueprint must use the same camera dimensions when
+replacing the base layout. Regenerate its assets against the new base RRD too.
+
 `summary.json` reports the first-frame offsets, source PTS matching error,
 nearest-pose timestamp distances, and missing-pose counts separately per camera.
 These are timestamp checks, not pixel reprojection errors or tracking accuracy.

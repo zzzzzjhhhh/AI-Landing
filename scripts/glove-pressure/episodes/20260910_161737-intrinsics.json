@@ -1,0 +1,2283 @@
+{
+  "version": 1,
+  "episode_id": "20260910_161737",
+  "method": "estimated_fixed_per_camera_intrinsics",
+  "description": "Fixed focal lengths and principal points fitted per camera from original 3D pose and independent image references. Estimated calibration, not a calibration-board measurement. Original pose, timestamps and extrinsics are unchanged.",
+  "source_sha256": {
+    "sync_manifest.json": "64d2fbaa72a23baa3bf94fbdec1bda2b27ce41d0744c0fa3bc09505815e2c03f",
+    "pose_samples.bin": "8cc1e347b416aaec7dbb79994c93b563d1543fc36eeb584cfe38b04872a83ca6",
+    "pose_schema.json": "53908f1125c0c7ee7ef49c98b7431012d3684c89d5469ef48e816682f06a5dea",
+    "camera_pose_tracking.jsonl": "f3f4063b2e6f8bc0777abd7cb0bc5171210f0bb2852423dc2f766fd266aa7357",
+    "left_camera_characteristics.json": "3787742c9172badc9fdd61aea7f3e87ec80cec490df84851cf7bee652439a1c4",
+    "right_camera_characteristics.json": "283ece784857aa17e5cb151b9fc4004925b7e1d37375a27e412fd282a09901f6",
+    "left_camera_timestamps.csv": "20a3b569646ea1ae6246913ab8ade5716ac275cd17ef13c1fdb41cb81cb34079",
+    "right_camera_timestamps.csv": "66b016253a7c1b6914291d8bf584b1106e8877ae4b5f02494413654315c06f11",
+    "left_camera.mp4": "1cde5d0859632f80bfed649f14de302fb2744e8b950f161b8d3e20a341e06b18",
+    "right_camera.mp4": "12fae5a26eb65ed3ae38e109b4c3378a3538a9179dd2e7e8eba0aa57aa9802f4"
+  },
+  "cameras": {
+    "left_camera": {
+      "width": 960,
+      "height": 720,
+      "focal_length": [
+        610.519125,
+        610.54939275
+      ],
+      "principal_point": [
+        479.625,
+        359.625
+      ],
+      "fov": [
+        76.35,
+        61.05
+      ]
+    },
+    "right_camera": {
+      "width": 960,
+      "height": 720,
+      "focal_length": [
+        639.7010782877306,
+        661.4370327869321
+      ],
+      "principal_point": [
+        473.55210740795974,
+        352.1251384063538
+      ]
+    }
+  },
+  "refined_cameras": [
+    "right_camera"
+  ],
+  "unchanged_cameras": [
+    "left_camera"
+  ],
+  "evaluation": {
+    "reference": "MediaPipe image detections, evaluation only, not ground truth; same assignment under both variants",
+    "audit_sha256": "e7c24e9007f841527bfcf9f105e2fb34862cb75c1905e1ffa336b3d1491d5606",
+    "confirmation_sha256": "2dfa7cb110ed2f456796b6723f33200388cf60b8fd0e7bb70c8f7f7b83d7fe2f",
+    "training_matched_hands": 66,
+    "training_frames": [
+      [
+        "left_camera",
+        15
+      ],
+      [
+        "left_camera",
+        46
+      ],
+      [
+        "left_camera",
+        79
+      ],
+      [
+        "left_camera",
+        111
+      ],
+      [
+        "left_camera",
+        143
+      ],
+      [
+        "left_camera",
+        174
+      ],
+      [
+        "left_camera",
+        205
+      ],
+      [
+        "left_camera",
+        237
+      ],
+      [
+        "left_camera",
+        270
+      ],
+      [
+        "left_camera",
+        303
+      ],
+      [
+        "left_camera",
+        336
+      ],
+      [
+        "left_camera",
+        370
+      ],
+      [
+        "left_camera",
+        402
+      ],
+      [
+        "left_camera",
+        434
+      ],
+      [
+        "left_camera",
+        466
+      ],
+      [
+        "left_camera",
+        499
+      ],
+      [
+        "left_camera",
+        531
+      ],
+      [
+        "left_camera",
+        563
+      ],
+      [
+        "left_camera",
+        597
+      ],
+      [
+        "left_camera",
+        629
+      ],
+      [
+        "left_camera",
+        660
+      ],
+      [
+        "left_camera",
+        691
+      ],
+      [
+        "left_camera",
+        722
+      ],
+      [
+        "left_camera",
+        756
+      ],
+      [
+        "left_camera",
+        788
+      ],
+      [
+        "left_camera",
+        820
+      ],
+      [
+        "left_camera",
+        852
+      ],
+      [
+        "left_camera",
+        884
+      ],
+      [
+        "left_camera",
+        914
+      ],
+      [
+        "left_camera",
+        947
+      ],
+      [
+        "left_camera",
+        980
+      ],
+      [
+        "left_camera",
+        1013
+      ],
+      [
+        "left_camera",
+        1044
+      ],
+      [
+        "left_camera",
+        1076
+      ],
+      [
+        "left_camera",
+        1108
+      ],
+      [
+        "left_camera",
+        1140
+      ],
+      [
+        "left_camera",
+        1172
+      ],
+      [
+        "left_camera",
+        1204
+      ],
+      [
+        "left_camera",
+        1236
+      ],
+      [
+        "left_camera",
+        1269
+      ],
+      [
+        "left_camera",
+        1302
+      ],
+      [
+        "left_camera",
+        1334
+      ],
+      [
+        "left_camera",
+        1368
+      ],
+      [
+        "left_camera",
+        1400
+      ],
+      [
+        "left_camera",
+        1433
+      ],
+      [
+        "left_camera",
+        1465
+      ],
+      [
+        "left_camera",
+        1497
+      ],
+      [
+        "left_camera",
+        1530
+      ],
+      [
+        "left_camera",
+        1561
+      ],
+      [
+        "left_camera",
+        1593
+      ],
+      [
+        "left_camera",
+        1625
+      ],
+      [
+        "left_camera",
+        1659
+      ],
+      [
+        "left_camera",
+        1690
+      ],
+      [
+        "left_camera",
+        1722
+      ],
+      [
+        "left_camera",
+        1755
+      ],
+      [
+        "left_camera",
+        1788
+      ],
+      [
+        "left_camera",
+        1821
+      ],
+      [
+        "right_camera",
+        17
+      ],
+      [
+        "right_camera",
+        49
+      ],
+      [
+        "right_camera",
+        82
+      ],
+      [
+        "right_camera",
+        114
+      ],
+      [
+        "right_camera",
+        146
+      ],
+      [
+        "right_camera",
+        177
+      ],
+      [
+        "right_camera",
+        210
+      ],
+      [
+        "right_camera",
+        243
+      ],
+      [
+        "right_camera",
+        276
+      ],
+      [
+        "right_camera",
+        310
+      ],
+      [
+        "right_camera",
+        343
+      ],
+      [
+        "right_camera",
+        374
+      ],
+      [
+        "right_camera",
+        407
+      ],
+      [
+        "right_camera",
+        440
+      ],
+      [
+        "right_camera",
+        473
+      ],
+      [
+        "right_camera",
+        505
+      ],
+      [
+        "right_camera",
+        537
+      ],
+      [
+        "right_camera",
+        569
+      ],
+      [
+        "right_camera",
+        601
+      ],
+      [
+        "right_camera",
+        633
+      ],
+      [
+        "right_camera",
+        664
+      ],
+      [
+        "right_camera",
+        695
+      ],
+      [
+        "right_camera",
+        728
+      ],
+      [
+        "right_camera",
+        760
+      ],
+      [
+        "right_camera",
+        792
+      ],
+      [
+        "right_camera",
+        825
+      ],
+      [
+        "right_camera",
+        858
+      ],
+      [
+        "right_camera",
+        889
+      ],
+      [
+        "right_camera",
+        922
+      ],
+      [
+        "right_camera",
+        954
+      ],
+      [
+        "right_camera",
+        986
+      ],
+      [
+        "right_camera",
+        1018
+      ],
+      [
+        "right_camera",
+        1050
+      ],
+      [
+        "right_camera",
+        1084
+      ],
+      [
+        "right_camera",
+        1116
+      ],
+      [
+        "right_camera",
+        1149
+      ],
+      [
+        "right_camera",
+        1180
+      ],
+      [
+        "right_camera",
+        1212
+      ],
+      [
+        "right_camera",
+        1244
+      ],
+      [
+        "right_camera",
+        1275
+      ],
+      [
+        "right_camera",
+        1309
+      ],
+      [
+        "right_camera",
+        1341
+      ],
+      [
+        "right_camera",
+        1372
+      ],
+      [
+        "right_camera",
+        1405
+      ],
+      [
+        "right_camera",
+        1438
+      ],
+      [
+        "right_camera",
+        1470
+      ],
+      [
+        "right_camera",
+        1503
+      ],
+      [
+        "right_camera",
+        1535
+      ],
+      [
+        "right_camera",
+        1567
+      ],
+      [
+        "right_camera",
+        1599
+      ],
+      [
+        "right_camera",
+        1632
+      ],
+      [
+        "right_camera",
+        1666
+      ],
+      [
+        "right_camera",
+        1697
+      ],
+      [
+        "right_camera",
+        1730
+      ],
+      [
+        "right_camera",
+        1762
+      ],
+      [
+        "right_camera",
+        1794
+      ],
+      [
+        "right_camera",
+        1825
+      ]
+    ],
+    "validation_frames": [
+      [
+        "left_camera",
+        31
+      ],
+      [
+        "left_camera",
+        63
+      ],
+      [
+        "left_camera",
+        95
+      ],
+      [
+        "left_camera",
+        127
+      ],
+      [
+        "left_camera",
+        159
+      ],
+      [
+        "left_camera",
+        189
+      ],
+      [
+        "left_camera",
+        221
+      ],
+      [
+        "left_camera",
+        254
+      ],
+      [
+        "left_camera",
+        287
+      ],
+      [
+        "left_camera",
+        320
+      ],
+      [
+        "left_camera",
+        353
+      ],
+      [
+        "left_camera",
+        386
+      ],
+      [
+        "left_camera",
+        418
+      ],
+      [
+        "left_camera",
+        450
+      ],
+      [
+        "left_camera",
+        483
+      ],
+      [
+        "left_camera",
+        516
+      ],
+      [
+        "left_camera",
+        547
+      ],
+      [
+        "left_camera",
+        580
+      ],
+      [
+        "left_camera",
+        613
+      ],
+      [
+        "left_camera",
+        645
+      ],
+      [
+        "left_camera",
+        675
+      ],
+      [
+        "left_camera",
+        707
+      ],
+      [
+        "left_camera",
+        739
+      ],
+      [
+        "left_camera",
+        772
+      ],
+      [
+        "left_camera",
+        804
+      ],
+      [
+        "left_camera",
+        836
+      ],
+      [
+        "left_camera",
+        867
+      ],
+      [
+        "left_camera",
+        899
+      ],
+      [
+        "left_camera",
+        931
+      ],
+      [
+        "left_camera",
+        964
+      ],
+      [
+        "left_camera",
+        997
+      ],
+      [
+        "left_camera",
+        1029
+      ],
+      [
+        "left_camera",
+        1059
+      ],
+      [
+        "left_camera",
+        1092
+      ],
+      [
+        "left_camera",
+        1124
+      ],
+      [
+        "left_camera",
+        1156
+      ],
+      [
+        "left_camera",
+        1187
+      ],
+      [
+        "left_camera",
+        1220
+      ],
+      [
+        "left_camera",
+        1253
+      ],
+      [
+        "left_camera",
+        1286
+      ],
+      [
+        "left_camera",
+        1318
+      ],
+      [
+        "left_camera",
+        1351
+      ],
+      [
+        "left_camera",
+        1384
+      ],
+      [
+        "left_camera",
+        1417
+      ],
+      [
+        "left_camera",
+        1449
+      ],
+      [
+        "left_camera",
+        1481
+      ],
+      [
+        "left_camera",
+        1513
+      ],
+      [
+        "left_camera",
+        1546
+      ],
+      [
+        "left_camera",
+        1577
+      ],
+      [
+        "left_camera",
+        1609
+      ],
+      [
+        "left_camera",
+        1642
+      ],
+      [
+        "left_camera",
+        1675
+      ],
+      [
+        "left_camera",
+        1706
+      ],
+      [
+        "left_camera",
+        1739
+      ],
+      [
+        "left_camera",
+        1772
+      ],
+      [
+        "left_camera",
+        1805
+      ],
+      [
+        "right_camera",
+        33
+      ],
+      [
+        "right_camera",
+        65
+      ],
+      [
+        "right_camera",
+        98
+      ],
+      [
+        "right_camera",
+        131
+      ],
+      [
+        "right_camera",
+        162
+      ],
+      [
+        "right_camera",
+        193
+      ],
+      [
+        "right_camera",
+        226
+      ],
+      [
+        "right_camera",
+        259
+      ],
+      [
+        "right_camera",
+        292
+      ],
+      [
+        "right_camera",
+        326
+      ],
+      [
+        "right_camera",
+        359
+      ],
+      [
+        "right_camera",
+        391
+      ],
+      [
+        "right_camera",
+        423
+      ],
+      [
+        "right_camera",
+        456
+      ],
+      [
+        "right_camera",
+        489
+      ],
+      [
+        "right_camera",
+        521
+      ],
+      [
+        "right_camera",
+        552
+      ],
+      [
+        "right_camera",
+        585
+      ],
+      [
+        "right_camera",
+        617
+      ],
+      [
+        "right_camera",
+        649
+      ],
+      [
+        "right_camera",
+        678
+      ],
+      [
+        "right_camera",
+        711
+      ],
+      [
+        "right_camera",
+        744
+      ],
+      [
+        "right_camera",
+        777
+      ],
+      [
+        "right_camera",
+        808
+      ],
+      [
+        "right_camera",
+        840
+      ],
+      [
+        "right_camera",
+        873
+      ],
+      [
+        "right_camera",
+        906
+      ],
+      [
+        "right_camera",
+        938
+      ],
+      [
+        "right_camera",
+        970
+      ],
+      [
+        "right_camera",
+        1001
+      ],
+      [
+        "right_camera",
+        1034
+      ],
+      [
+        "right_camera",
+        1067
+      ],
+      [
+        "right_camera",
+        1100
+      ],
+      [
+        "right_camera",
+        1133
+      ],
+      [
+        "right_camera",
+        1165
+      ],
+      [
+        "right_camera",
+        1195
+      ],
+      [
+        "right_camera",
+        1228
+      ],
+      [
+        "right_camera",
+        1260
+      ],
+      [
+        "right_camera",
+        1291
+      ],
+      [
+        "right_camera",
+        1324
+      ],
+      [
+        "right_camera",
+        1356
+      ],
+      [
+        "right_camera",
+        1389
+      ],
+      [
+        "right_camera",
+        1421
+      ],
+      [
+        "right_camera",
+        1454
+      ],
+      [
+        "right_camera",
+        1486
+      ],
+      [
+        "right_camera",
+        1519
+      ],
+      [
+        "right_camera",
+        1551
+      ],
+      [
+        "right_camera",
+        1582
+      ],
+      [
+        "right_camera",
+        1616
+      ],
+      [
+        "right_camera",
+        1648
+      ],
+      [
+        "right_camera",
+        1682
+      ],
+      [
+        "right_camera",
+        1713
+      ],
+      [
+        "right_camera",
+        1746
+      ],
+      [
+        "right_camera",
+        1777
+      ],
+      [
+        "right_camera",
+        1810
+      ]
+    ],
+    "confirmation_frames": [
+      [
+        "left_camera",
+        8
+      ],
+      [
+        "left_camera",
+        23
+      ],
+      [
+        "left_camera",
+        39
+      ],
+      [
+        "left_camera",
+        55
+      ],
+      [
+        "left_camera",
+        70
+      ],
+      [
+        "left_camera",
+        87
+      ],
+      [
+        "left_camera",
+        103
+      ],
+      [
+        "left_camera",
+        119
+      ],
+      [
+        "left_camera",
+        135
+      ],
+      [
+        "left_camera",
+        151
+      ],
+      [
+        "left_camera",
+        167
+      ],
+      [
+        "left_camera",
+        181
+      ],
+      [
+        "left_camera",
+        197
+      ],
+      [
+        "left_camera",
+        213
+      ],
+      [
+        "left_camera",
+        229
+      ],
+      [
+        "left_camera",
+        246
+      ],
+      [
+        "left_camera",
+        262
+      ],
+      [
+        "left_camera",
+        278
+      ],
+      [
+        "left_camera",
+        295
+      ],
+      [
+        "left_camera",
+        312
+      ],
+      [
+        "left_camera",
+        328
+      ],
+      [
+        "left_camera",
+        344
+      ],
+      [
+        "left_camera",
+        361
+      ],
+      [
+        "left_camera",
+        377
+      ],
+      [
+        "left_camera",
+        394
+      ],
+      [
+        "left_camera",
+        410
+      ],
+      [
+        "left_camera",
+        426
+      ],
+      [
+        "left_camera",
+        442
+      ],
+      [
+        "left_camera",
+        457
+      ],
+      [
+        "left_camera",
+        474
+      ],
+      [
+        "left_camera",
+        491
+      ],
+      [
+        "left_camera",
+        507
+      ],
+      [
+        "left_camera",
+        523
+      ],
+      [
+        "left_camera",
+        539
+      ],
+      [
+        "left_camera",
+        556
+      ],
+      [
+        "left_camera",
+        571
+      ],
+      [
+        "left_camera",
+        588
+      ],
+      [
+        "left_camera",
+        604
+      ],
+      [
+        "left_camera",
+        621
+      ],
+      [
+        "left_camera",
+        637
+      ],
+      [
+        "left_camera",
+        652
+      ],
+      [
+        "left_camera",
+        667
+      ],
+      [
+        "left_camera",
+        682
+      ],
+      [
+        "left_camera",
+        698
+      ],
+      [
+        "left_camera",
+        715
+      ],
+      [
+        "left_camera",
+        731
+      ],
+      [
+        "left_camera",
+        747
+      ],
+      [
+        "left_camera",
+        764
+      ],
+      [
+        "left_camera",
+        779
+      ],
+      [
+        "left_camera",
+        796
+      ],
+      [
+        "left_camera",
+        813
+      ],
+      [
+        "left_camera",
+        828
+      ],
+      [
+        "left_camera",
+        843
+      ],
+      [
+        "left_camera",
+        859
+      ],
+      [
+        "left_camera",
+        876
+      ],
+      [
+        "left_camera",
+        892
+      ],
+      [
+        "left_camera",
+        907
+      ],
+      [
+        "left_camera",
+        922
+      ],
+      [
+        "left_camera",
+        939
+      ],
+      [
+        "left_camera",
+        956
+      ],
+      [
+        "left_camera",
+        972
+      ],
+      [
+        "left_camera",
+        988
+      ],
+      [
+        "left_camera",
+        1004
+      ],
+      [
+        "left_camera",
+        1021
+      ],
+      [
+        "left_camera",
+        1037
+      ],
+      [
+        "left_camera",
+        1052
+      ],
+      [
+        "left_camera",
+        1067
+      ],
+      [
+        "left_camera",
+        1083
+      ],
+      [
+        "left_camera",
+        1100
+      ],
+      [
+        "left_camera",
+        1116
+      ],
+      [
+        "left_camera",
+        1132
+      ],
+      [
+        "left_camera",
+        1148
+      ],
+      [
+        "left_camera",
+        1164
+      ],
+      [
+        "left_camera",
+        1179
+      ],
+      [
+        "left_camera",
+        1196
+      ],
+      [
+        "left_camera",
+        1212
+      ],
+      [
+        "left_camera",
+        1228
+      ],
+      [
+        "left_camera",
+        1244
+      ],
+      [
+        "left_camera",
+        1261
+      ],
+      [
+        "left_camera",
+        1278
+      ],
+      [
+        "left_camera",
+        1294
+      ],
+      [
+        "left_camera",
+        1310
+      ],
+      [
+        "left_camera",
+        1326
+      ],
+      [
+        "left_camera",
+        1343
+      ],
+      [
+        "left_camera",
+        1360
+      ],
+      [
+        "left_camera",
+        1377
+      ],
+      [
+        "left_camera",
+        1392
+      ],
+      [
+        "left_camera",
+        1408
+      ],
+      [
+        "left_camera",
+        1425
+      ],
+      [
+        "left_camera",
+        1441
+      ],
+      [
+        "left_camera",
+        1457
+      ],
+      [
+        "left_camera",
+        1473
+      ],
+      [
+        "left_camera",
+        1488
+      ],
+      [
+        "left_camera",
+        1505
+      ],
+      [
+        "left_camera",
+        1522
+      ],
+      [
+        "left_camera",
+        1538
+      ],
+      [
+        "left_camera",
+        1553
+      ],
+      [
+        "left_camera",
+        1569
+      ],
+      [
+        "left_camera",
+        1585
+      ],
+      [
+        "left_camera",
+        1601
+      ],
+      [
+        "left_camera",
+        1617
+      ],
+      [
+        "left_camera",
+        1634
+      ],
+      [
+        "left_camera",
+        1651
+      ],
+      [
+        "left_camera",
+        1667
+      ],
+      [
+        "left_camera",
+        1683
+      ],
+      [
+        "left_camera",
+        1698
+      ],
+      [
+        "left_camera",
+        1715
+      ],
+      [
+        "left_camera",
+        1730
+      ],
+      [
+        "left_camera",
+        1747
+      ],
+      [
+        "left_camera",
+        1763
+      ],
+      [
+        "left_camera",
+        1780
+      ],
+      [
+        "left_camera",
+        1796
+      ],
+      [
+        "left_camera",
+        1813
+      ],
+      [
+        "right_camera",
+        8
+      ],
+      [
+        "right_camera",
+        24
+      ],
+      [
+        "right_camera",
+        42
+      ],
+      [
+        "right_camera",
+        57
+      ],
+      [
+        "right_camera",
+        73
+      ],
+      [
+        "right_camera",
+        89
+      ],
+      [
+        "right_camera",
+        106
+      ],
+      [
+        "right_camera",
+        123
+      ],
+      [
+        "right_camera",
+        138
+      ],
+      [
+        "right_camera",
+        154
+      ],
+      [
+        "right_camera",
+        170
+      ],
+      [
+        "right_camera",
+        185
+      ],
+      [
+        "right_camera",
+        201
+      ],
+      [
+        "right_camera",
+        218
+      ],
+      [
+        "right_camera",
+        234
+      ],
+      [
+        "right_camera",
+        250
+      ],
+      [
+        "right_camera",
+        268
+      ],
+      [
+        "right_camera",
+        284
+      ],
+      [
+        "right_camera",
+        301
+      ],
+      [
+        "right_camera",
+        317
+      ],
+      [
+        "right_camera",
+        335
+      ],
+      [
+        "right_camera",
+        351
+      ],
+      [
+        "right_camera",
+        366
+      ],
+      [
+        "right_camera",
+        383
+      ],
+      [
+        "right_camera",
+        399
+      ],
+      [
+        "right_camera",
+        415
+      ],
+      [
+        "right_camera",
+        431
+      ],
+      [
+        "right_camera",
+        448
+      ],
+      [
+        "right_camera",
+        465
+      ],
+      [
+        "right_camera",
+        481
+      ],
+      [
+        "right_camera",
+        498
+      ],
+      [
+        "right_camera",
+        514
+      ],
+      [
+        "right_camera",
+        528
+      ],
+      [
+        "right_camera",
+        545
+      ],
+      [
+        "right_camera",
+        560
+      ],
+      [
+        "right_camera",
+        578
+      ],
+      [
+        "right_camera",
+        593
+      ],
+      [
+        "right_camera",
+        608
+      ],
+      [
+        "right_camera",
+        625
+      ],
+      [
+        "right_camera",
+        640
+      ],
+      [
+        "right_camera",
+        656
+      ],
+      [
+        "right_camera",
+        671
+      ],
+      [
+        "right_camera",
+        687
+      ],
+      [
+        "right_camera",
+        703
+      ],
+      [
+        "right_camera",
+        720
+      ],
+      [
+        "right_camera",
+        735
+      ],
+      [
+        "right_camera",
+        752
+      ],
+      [
+        "right_camera",
+        768
+      ],
+      [
+        "right_camera",
+        784
+      ],
+      [
+        "right_camera",
+        800
+      ],
+      [
+        "right_camera",
+        816
+      ],
+      [
+        "right_camera",
+        832
+      ],
+      [
+        "right_camera",
+        850
+      ],
+      [
+        "right_camera",
+        866
+      ],
+      [
+        "right_camera",
+        881
+      ],
+      [
+        "right_camera",
+        898
+      ],
+      [
+        "right_camera",
+        913
+      ],
+      [
+        "right_camera",
+        929
+      ],
+      [
+        "right_camera",
+        946
+      ],
+      [
+        "right_camera",
+        962
+      ],
+      [
+        "right_camera",
+        977
+      ],
+      [
+        "right_camera",
+        994
+      ],
+      [
+        "right_camera",
+        1010
+      ],
+      [
+        "right_camera",
+        1025
+      ],
+      [
+        "right_camera",
+        1041
+      ],
+      [
+        "right_camera",
+        1059
+      ],
+      [
+        "right_camera",
+        1075
+      ],
+      [
+        "right_camera",
+        1092
+      ],
+      [
+        "right_camera",
+        1108
+      ],
+      [
+        "right_camera",
+        1125
+      ],
+      [
+        "right_camera",
+        1141
+      ],
+      [
+        "right_camera",
+        1156
+      ],
+      [
+        "right_camera",
+        1172
+      ],
+      [
+        "right_camera",
+        1187
+      ],
+      [
+        "right_camera",
+        1203
+      ],
+      [
+        "right_camera",
+        1221
+      ],
+      [
+        "right_camera",
+        1236
+      ],
+      [
+        "right_camera",
+        1252
+      ],
+      [
+        "right_camera",
+        1267
+      ],
+      [
+        "right_camera",
+        1283
+      ],
+      [
+        "right_camera",
+        1300
+      ],
+      [
+        "right_camera",
+        1316
+      ],
+      [
+        "right_camera",
+        1332
+      ],
+      [
+        "right_camera",
+        1348
+      ],
+      [
+        "right_camera",
+        1364
+      ],
+      [
+        "right_camera",
+        1382
+      ],
+      [
+        "right_camera",
+        1398
+      ],
+      [
+        "right_camera",
+        1414
+      ],
+      [
+        "right_camera",
+        1430
+      ],
+      [
+        "right_camera",
+        1446
+      ],
+      [
+        "right_camera",
+        1462
+      ],
+      [
+        "right_camera",
+        1478
+      ],
+      [
+        "right_camera",
+        1494
+      ],
+      [
+        "right_camera",
+        1510
+      ],
+      [
+        "right_camera",
+        1526
+      ],
+      [
+        "right_camera",
+        1543
+      ],
+      [
+        "right_camera",
+        1558
+      ],
+      [
+        "right_camera",
+        1575
+      ],
+      [
+        "right_camera",
+        1591
+      ],
+      [
+        "right_camera",
+        1607
+      ],
+      [
+        "right_camera",
+        1624
+      ],
+      [
+        "right_camera",
+        1640
+      ],
+      [
+        "right_camera",
+        1657
+      ],
+      [
+        "right_camera",
+        1674
+      ],
+      [
+        "right_camera",
+        1689
+      ],
+      [
+        "right_camera",
+        1705
+      ],
+      [
+        "right_camera",
+        1722
+      ],
+      [
+        "right_camera",
+        1738
+      ],
+      [
+        "right_camera",
+        1754
+      ],
+      [
+        "right_camera",
+        1770
+      ],
+      [
+        "right_camera",
+        1786
+      ],
+      [
+        "right_camera",
+        1802
+      ],
+      [
+        "right_camera",
+        1817
+      ]
+    ],
+    "reports": {
+      "validation": {
+        "left_camera/left": {
+          "matched_hands": 33,
+          "before": {
+            "median_px": 32.662538082653754,
+            "p95_px": 85.14538670683572
+          },
+          "after": {
+            "median_px": 32.662538082653754,
+            "p95_px": 85.14538670683572
+          }
+        },
+        "left_camera/right": {
+          "matched_hands": 3,
+          "before": {
+            "median_px": 31.56941460250184,
+            "p95_px": 60.938267811534494
+          },
+          "after": {
+            "median_px": 31.56941460250184,
+            "p95_px": 60.938267811534494
+          }
+        },
+        "left_camera/both": {
+          "matched_hands": 36,
+          "before": {
+            "median_px": 32.554100221492604,
+            "p95_px": 83.64011907989473
+          },
+          "after": {
+            "median_px": 32.554100221492604,
+            "p95_px": 83.64011907989473
+          }
+        },
+        "right_camera/left": {
+          "matched_hands": 32,
+          "before": {
+            "median_px": 37.43938501295162,
+            "p95_px": 80.00594653572591
+          },
+          "after": {
+            "median_px": 31.934941610066115,
+            "p95_px": 78.91688054335796
+          }
+        },
+        "right_camera/right": {
+          "matched_hands": 2,
+          "before": {
+            "median_px": 49.42368458128761,
+            "p95_px": 179.94835590187716
+          },
+          "after": {
+            "median_px": 34.52516797613955,
+            "p95_px": 160.81139458988773
+          }
+        },
+        "right_camera/both": {
+          "matched_hands": 34,
+          "before": {
+            "median_px": 37.502625318986546,
+            "p95_px": 90.9605376689115
+          },
+          "after": {
+            "median_px": 31.934941610066115,
+            "p95_px": 89.1070364929252
+          }
+        },
+        "both/left": {
+          "matched_hands": 65,
+          "before": {
+            "median_px": 35.31457729098046,
+            "p95_px": 82.70714296960857
+          },
+          "after": {
+            "median_px": 32.1337700482868,
+            "p95_px": 81.83447046415053
+          }
+        },
+        "both/right": {
+          "matched_hands": 5,
+          "before": {
+            "median_px": 32.30073314224995,
+            "p95_px": 168.54340996287635
+          },
+          "after": {
+            "median_px": 31.56941460250184,
+            "p95_px": 149.72134728207922
+          }
+        },
+        "both/both": {
+          "matched_hands": 70,
+          "before": {
+            "median_px": 35.26333007783163,
+            "p95_px": 86.58607166679931
+          },
+          "after": {
+            "median_px": 32.127048388686546,
+            "p95_px": 85.15828771512999
+          }
+        }
+      },
+      "confirmation": {
+        "left_camera/left": {
+          "matched_hands": 58,
+          "before": {
+            "median_px": 32.86093479180316,
+            "p95_px": 86.9270983465085
+          },
+          "after": {
+            "median_px": 32.86093479180316,
+            "p95_px": 86.9270983465085
+          }
+        },
+        "left_camera/right": {
+          "matched_hands": 7,
+          "before": {
+            "median_px": 44.50838508706449,
+            "p95_px": 110.00076051207452
+          },
+          "after": {
+            "median_px": 44.50838508706449,
+            "p95_px": 110.00076051207452
+          }
+        },
+        "left_camera/both": {
+          "matched_hands": 65,
+          "before": {
+            "median_px": 33.72165911317968,
+            "p95_px": 96.51029064201252
+          },
+          "after": {
+            "median_px": 33.72165911317968,
+            "p95_px": 96.51029064201252
+          }
+        },
+        "right_camera/left": {
+          "matched_hands": 64,
+          "before": {
+            "median_px": 34.747865966108414,
+            "p95_px": 82.37138604610571
+          },
+          "after": {
+            "median_px": 29.64409195928526,
+            "p95_px": 78.970139883371
+          }
+        },
+        "right_camera/right": {
+          "matched_hands": 1,
+          "before": {
+            "median_px": 40.142706888263056,
+            "p95_px": 67.21177312748816
+          },
+          "after": {
+            "median_px": 48.25828325472774,
+            "p95_px": 71.85242189965841
+          }
+        },
+        "right_camera/both": {
+          "matched_hands": 65,
+          "before": {
+            "median_px": 34.79193434257211,
+            "p95_px": 82.09296835209969
+          },
+          "after": {
+            "median_px": 29.817786904385873,
+            "p95_px": 78.92781661579953
+          }
+        },
+        "both/left": {
+          "matched_hands": 122,
+          "before": {
+            "median_px": 33.904027734564565,
+            "p95_px": 84.07120843044302
+          },
+          "after": {
+            "median_px": 30.869763886688954,
+            "p95_px": 82.49017860040848
+          }
+        },
+        "both/right": {
+          "matched_hands": 8,
+          "before": {
+            "median_px": 42.03209215348005,
+            "p95_px": 109.8515627631759
+          },
+          "after": {
+            "median_px": 44.71067783657041,
+            "p95_px": 109.8515627631759
+          }
+        },
+        "both/both": {
+          "matched_hands": 130,
+          "before": {
+            "median_px": 34.331693483557885,
+            "p95_px": 89.78328133396222
+          },
+          "after": {
+            "median_px": 31.684491668286377,
+            "p95_px": 87.26045512471354
+          }
+        }
+      }
+    },
+    "candidate_reports": {
+      "validation": {
+        "left_camera/left": {
+          "matched_hands": 33,
+          "before": {
+            "median_px": 32.662538082653754,
+            "p95_px": 85.14538670683572
+          },
+          "after": {
+            "median_px": 32.589315114041,
+            "p95_px": 90.0211710188513
+          }
+        },
+        "left_camera/right": {
+          "matched_hands": 3,
+          "before": {
+            "median_px": 31.56941460250184,
+            "p95_px": 60.938267811534494
+          },
+          "after": {
+            "median_px": 30.69776182946068,
+            "p95_px": 58.33969881832575
+          }
+        },
+        "left_camera/both": {
+          "matched_hands": 36,
+          "before": {
+            "median_px": 32.554100221492604,
+            "p95_px": 83.64011907989473
+          },
+          "after": {
+            "median_px": 32.45571176875646,
+            "p95_px": 88.73749750829833
+          }
+        },
+        "right_camera/left": {
+          "matched_hands": 32,
+          "before": {
+            "median_px": 37.43938501295162,
+            "p95_px": 80.00594653572591
+          },
+          "after": {
+            "median_px": 31.934941610066115,
+            "p95_px": 78.91688054335796
+          }
+        },
+        "right_camera/right": {
+          "matched_hands": 2,
+          "before": {
+            "median_px": 49.42368458128761,
+            "p95_px": 179.94835590187716
+          },
+          "after": {
+            "median_px": 34.52516797613955,
+            "p95_px": 160.81139458988773
+          }
+        },
+        "right_camera/both": {
+          "matched_hands": 34,
+          "before": {
+            "median_px": 37.502625318986546,
+            "p95_px": 90.9605376689115
+          },
+          "after": {
+            "median_px": 31.934941610066115,
+            "p95_px": 89.1070364929252
+          }
+        },
+        "both/left": {
+          "matched_hands": 65,
+          "before": {
+            "median_px": 35.31457729098046,
+            "p95_px": 82.70714296960857
+          },
+          "after": {
+            "median_px": 32.04709587749952,
+            "p95_px": 84.60785413190179
+          }
+        },
+        "both/right": {
+          "matched_hands": 5,
+          "before": {
+            "median_px": 32.30073314224995,
+            "p95_px": 168.54340996287635
+          },
+          "after": {
+            "median_px": 30.69776182946068,
+            "p95_px": 149.72134728207922
+          }
+        },
+        "both/both": {
+          "matched_hands": 70,
+          "before": {
+            "median_px": 35.26333007783163,
+            "p95_px": 86.58607166679931
+          },
+          "after": {
+            "median_px": 32.04685551547395,
+            "p95_px": 88.98099183490258
+          }
+        }
+      },
+      "confirmation": {
+        "left_camera/left": {
+          "matched_hands": 58,
+          "before": {
+            "median_px": 32.86093479180316,
+            "p95_px": 86.9270983465085
+          },
+          "after": {
+            "median_px": 32.95897288732094,
+            "p95_px": 85.70612948178895
+          }
+        },
+        "left_camera/right": {
+          "matched_hands": 7,
+          "before": {
+            "median_px": 44.50838508706449,
+            "p95_px": 110.00076051207452
+          },
+          "after": {
+            "median_px": 35.389864271583484,
+            "p95_px": 99.19051839223847
+          }
+        },
+        "left_camera/both": {
+          "matched_hands": 65,
+          "before": {
+            "median_px": 33.72165911317968,
+            "p95_px": 96.51029064201252
+          },
+          "after": {
+            "median_px": 33.0196098812519,
+            "p95_px": 93.1449137212576
+          }
+        },
+        "right_camera/left": {
+          "matched_hands": 64,
+          "before": {
+            "median_px": 34.747865966108414,
+            "p95_px": 82.37138604610571
+          },
+          "after": {
+            "median_px": 29.64409195928526,
+            "p95_px": 78.970139883371
+          }
+        },
+        "right_camera/right": {
+          "matched_hands": 1,
+          "before": {
+            "median_px": 40.142706888263056,
+            "p95_px": 67.21177312748816
+          },
+          "after": {
+            "median_px": 48.25828325472774,
+            "p95_px": 71.85242189965841
+          }
+        },
+        "right_camera/both": {
+          "matched_hands": 65,
+          "before": {
+            "median_px": 34.79193434257211,
+            "p95_px": 82.09296835209969
+          },
+          "after": {
+            "median_px": 29.817786904385873,
+            "p95_px": 78.92781661579953
+          }
+        },
+        "both/left": {
+          "matched_hands": 122,
+          "before": {
+            "median_px": 33.904027734564565,
+            "p95_px": 84.07120843044302
+          },
+          "after": {
+            "median_px": 31.31697941336425,
+            "p95_px": 82.19520334657511
+          }
+        },
+        "both/right": {
+          "matched_hands": 8,
+          "before": {
+            "median_px": 42.03209215348005,
+            "p95_px": 109.8515627631759
+          },
+          "after": {
+            "median_px": 37.36868441350669,
+            "p95_px": 97.99190510053053
+          }
+        },
+        "both/both": {
+          "matched_hands": 130,
+          "before": {
+            "median_px": 34.331693483557885,
+            "p95_px": 89.78328133396222
+          },
+          "after": {
+            "median_px": 31.546207373390352,
+            "p95_px": 85.52448320709378
+          }
+        }
+      }
+    },
+    "limits": "References are predominantly the bare left hand; right-glove references are limited to open-hand frames near the end. Occluded finger accuracy is not established."
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "episode_id": "20260910_153529",
+  "duration_us": 16720818,
+  "capture_start_ns": 1789025759418458000,
+  "width": 960,
+  "height": 720,
+  "frame_count": 214,
+  "source_sha256": {
+    "sync_manifest.json": "0d3b4f1a94f7599e4099b2bf8b27d4a81742616a7561aaefbfcc0c56f629c377",
+    "stereo_pairs.csv": "09595ee15f10ac144c926b2c69b07a2a486455aaf2016260d03cd6581f7c31b7",
+    "left_camera.mp4": "99769f0d9414e55efdb3e6b71dc2e3e0afdb157f3cc3fa84eec35619e83b36b0",
+    "left_camera_characteristics.json": "3787742c9172badc9fdd61aea7f3e87ec80cec490df84851cf7bee652439a1c4",
+    "left_camera_timestamps.csv": "a888d40933cc1dcde1d8d2df671d0904d3efc65c766784ccde3f2650b79350a8",
+    "right_camera.mp4": "5ce656e0b63271116664d2a7077b034551c2c4612583ec7601a0fb7330d2b6f7",
+    "right_camera_characteristics.json": "283ece784857aa17e5cb151b9fc4004925b7e1d37375a27e412fd282a09901f6",
+    "right_camera_timestamps.csv": "283a939d54edb12bee9d1fa3f76d7c64cb1ab6e1faa1275005896728f69fdf0f"
+  },
+  "geometry": {
+    "source": "original_camera_characteristics",
+    "baseline_m": 0.06388337669476,
+    "K_left": [
+      [
+        610.519125,
+        0.0,
+        479.5
+      ],
+      [
+        0.0,
+        610.54939275,
+        359.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "K_right": [
+      [
+        610.519125,
+        0.0,
+        479.5
+      ],
+      [
+        0.0,
+        610.54939275,
+        359.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "R": [
+      [
+        1.0000000000000002,
+        -1.5733542203497392e-19,
+        -2.360626998782929e-20
+      ],
+      [
+        -1.5733542203497392e-19,
+        0.9999999999999999,
+        6.999256406374994e-20
+      ],
+      [
+        -2.360626998782929e-20,
+        6.999256406374994e-20,
+        0.9999999999999999
+      ]
+    ],
+    "T_m": [
+      -0.06388337669475969,
+      -1.8041496767946164e-10,
+      6.4384788295862735e-09
+    ],
+    "R1": [
+      [
+        0.999999999999995,
+        2.7999174422655077e-09,
+        -9.992080706210734e-08
+      ],
+      [
+        -2.7999174422655077e-09,
+        1.0,
+        1.3988500526922078e-16
+      ],
+      [
+        9.992080706210734e-08,
+        1.3988500526922078e-16,
+        0.999999999999995
+      ]
+    ],
+    "R2": [
+      [
+        0.999999999999995,
+        2.7999174422655077e-09,
+        -9.992080706210734e-08
+      ],
+      [
+        -2.7999174422655077e-09,
+        1.0,
+        1.3988500526922078e-16
+      ],
+      [
+        9.992080706210734e-08,
+        1.3988500526922078e-16,
+        0.999999999999995
+      ]
+    ],
+    "P1": [
+      [
+        610.5494429446223,
+        0.0,
+        479.5000915527344,
+        0.0
+      ],
+      [
+        0.0,
+        610.5494429446223,
+        359.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    ],
+    "P2": [
+      [
+        610.5494429446223,
+        0.0,
+        479.5000915527344,
+        -39.003960054407194
+      ],
+      [
+        0.0,
+        610.5494429446223,
+        359.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    ],
+    "Q": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -479.5000915527344
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        -359.5
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        610.5494429446223
+      ],
+      [
+        0.0,
+        0.0,
+        15.653524465027603,
+        -0.0
+      ]
+    ],
+    "depth_formula": "depth_m = P1[0,0] * baseline_m / disparity_px",
+    "distortion": "Coefficients unavailable; zero assumed. Source pairs are near-rectified in image checks.",
+    "scale_note": "Estimated depth using recorded optical intrinsics; no metric ground-truth validation."
+  },
+  "timeline_policy": "One inference per recorded stereo pair. Hold until next pair; no interpolated depth or retimed frames.",
+  "version": 1,
+  "source": "foundation_stereo",
+  "model": {
+    "model": "NVlabs/FoundationStereo",
+    "model_variant": "vits",
+    "source_commit": "6e8806816b533e4d13ddbb95ffa907b797060a62",
+    "checkpoint_sha256": "7471dd62544650feb6cef9d04547120247c4ff817f1e43d75286ca4f00dd716a",
+    "checkpoint_source": "https://huggingface.co/shriarul5273/FoundationStereo_models/tree/164d8d262e98d2d1f8c57af1ddab9e8e3127bf39/pretrained_models/11-33-40",
+    "source_checkpoint_sha256": "8d7850b9dc68d1366722a02a39745704b1db41471211be6abd93ef463727e6be",
+    "config_sha256": "d34a3ddce507409de8955971185e5881c913a1c9e701476c6ac0d298ac4ea4da",
+    "input_manifest_sha256": "61a01796088d7326727409882cd662c79dd9bcaa22e9c73beb8246fda88185ab",
+    "valid_iters": 32,
+    "mixed_precision": true,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "torch": "2.4.1+cu121",
+    "cuda": "12.1",
+    "input_width": 960,
+    "input_height": 720,
+    "state_dict_load": "strict, all parameters supplied by checkpoint",
+    "depth_type": "stereo model estimate, not measured ground truth",
+    "invalid_policy": "Nonfinite/nonpositive disparity, outside right image, or depth outside 0.1\u201320 m => zero.",
+    "color_scale_m": [
+      0.2,
+      3.0
+    ],
+    "color_map": "TURBO, red near / blue far; black invalid",
+    "depth_png_unit_m": 0.001
+  },
+  "quality": {
+    "valid_fraction_min_median": [
+      0.8298697916666666,
+      0.9133912037037037
+    ],
+    "inference_seconds_total": 127.20961434299534,
+    "maximum_pair_gap_ms": 240.01,
+    "limitations": "No depth ground truth; glass, reflections, occlusions and dark surfaces can be unreliable."
+  },
+  "video": {
+    "path": "/rerun/episodes/20260910_153529/foundation-stereo-depth.mp4",
+    "sha256": "3e95d7aaaed4a753e0924afdf98407c20a579e1a49562b646c8adae138863cd1",
+    "bytes": 2530079
+  },
+  "timestamps": {
+    "path": "/rerun/episodes/20260910_153529/foundation-stereo-depth-timestamps.csv",
+    "sha256": "984f07e94233adce9ad0869593fbbb95623f8e20c29a4925349c3e66482374d9",
+    "bytes": 6509
+  },
+  "depth_archive": {
+    "path": "/rerun/episodes/20260910_153529/foundation-stereo-depth-mm.zip",
+    "sha256": "164f4c29f93a105ffc0c1cd6dd11b6d068cb65a35ca48c62eb9f51d2bb5c6e2d",
+    "bytes": 48155240
+  },
+  "video_rendering": {
+    "source": "archived_16bit_depth_png",
+    "source_sha256": "164f4c29f93a105ffc0c1cd6dd11b6d068cb65a35ca48c62eb9f51d2bb5c6e2d",
+    "depth_quantization_m": 0.001,
+    "overlays": false,
+    "full_frame": true
+  }
+}

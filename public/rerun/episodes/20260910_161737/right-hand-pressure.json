@@ -1,0 +1,660 @@
+{
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260910_161737_23322cf22490",
+  "duration_ns": 67963329000,
+  "capture_start_ns": 1789028292345637000,
+  "base_sha256": "45efaad44f5bc7498ca3410b53622d3e80015054d3697b58f249c4f822ba0cee",
+  "camera_dimensions": {
+    "left_camera": [
+      960,
+      720
+    ],
+    "right_camera": [
+      960,
+      720
+    ],
+    "left_side": [
+      960,
+      540
+    ],
+    "right_side": [
+      960,
+      540
+    ],
+    "back": [
+      960,
+      540
+    ]
+  },
+  "source": "mixed",
+  "pressure_source": "video_pose_estimate",
+  "hand": "right",
+  "fps": null,
+  "frame_count": 1831,
+  "views": [
+    "pressure",
+    "flexion"
+  ],
+  "flexion": {
+    "source": "recorded_pose_keypoints",
+    "reference_camera": "right_camera",
+    "pose_sample_count": 4873,
+    "camera_extrinsics_convention": "recorded",
+    "intrinsics_profile_sha256": "b268b1df0fb877ad4084db30dd80bedc35bef28b4bc1f35ca71b311d098e14bd",
+    "frame_count": 1830,
+    "valid_frame_count": 997,
+    "missing_frame_count": 833,
+    "pose_distance_max_ms": 12.578,
+    "overlay_reprojection_max_px": 0.0,
+    "pose_sha256": "8cc1e347b416aaec7dbb79994c93b563d1543fc36eeb584cfe38b04872a83ca6",
+    "schema_sha256": "53908f1125c0c7ee7ef49c98b7431012d3684c89d5469ef48e816682f06a5dea",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "segment_direction_error_max_deg": 1.0280796110218938e-05
+  },
+  "pressure": {
+    "version": 1,
+    "episode_id": "20260910_161737",
+    "duration_s": 67.963329,
+    "method": "video_contact_envelope_with_recorded_finger_bend_modulation",
+    "label": "ESTIMATED pressure / relative 0-100",
+    "description": "Heuristic right-hand contact simulation for the visible clap and five-garment folding task. Relative strengths, contact pad locations and interpolation are assumptions, not measured forces.",
+    "source_files": {
+      "sync_manifest.json": "64d2fbaa72a23baa3bf94fbdec1bda2b27ce41d0744c0fa3bc09505815e2c03f",
+      "right_camera.mp4": "12fae5a26eb65ed3ae38e109b4c3378a3538a9179dd2e7e8eba0aa57aa9802f4",
+      "right_camera_timestamps.csv": "66b016253a7c1b6914291d8bf584b1106e8877ae4b5f02494413654315c06f11",
+      "pose_samples.bin": "8cc1e347b416aaec7dbb79994c93b563d1543fc36eeb584cfe38b04872a83ca6",
+      "pose_schema.json": "53908f1125c0c7ee7ef49c98b7431012d3684c89d5469ef48e816682f06a5dea"
+    },
+    "video_observations": [
+      {
+        "time_s": 0.1,
+        "observation": "Hands visibly clap together at the start."
+      },
+      {
+        "time_s": 2,
+        "observation": "Both hands are open and away from the garments."
+      },
+      {
+        "time_s": 6,
+        "observation": "Left hand holds gray fabric while the right hand approaches."
+      },
+      {
+        "time_s": 8,
+        "observation": "Both hands hold and spread the gray garment."
+      },
+      {
+        "time_s": 14,
+        "observation": "Gray garment lies on the table while both hands fold it."
+      },
+      {
+        "time_s": 18,
+        "observation": "Hands press and compact the gray fold."
+      },
+      {
+        "time_s": 22,
+        "observation": "Both hands hold a green top above the table."
+      },
+      {
+        "time_s": 26,
+        "observation": "Right hand presses a fold in the green top."
+      },
+      {
+        "time_s": 30,
+        "observation": "Hands pick up and reposition a tan garment."
+      },
+      {
+        "time_s": 36,
+        "observation": "Both hands spread the tan garment."
+      },
+      {
+        "time_s": 42,
+        "observation": "Right palm presses the folded tan garment."
+      },
+      {
+        "time_s": 46,
+        "observation": "Both hands hold green trousers above the table."
+      },
+      {
+        "time_s": 52,
+        "observation": "Right hand presses the green trouser fold."
+      },
+      {
+        "time_s": 54,
+        "observation": "Hands compact and stack the green trousers."
+      },
+      {
+        "time_s": 58,
+        "observation": "Hands pick up the patterned shorts."
+      },
+      {
+        "time_s": 62,
+        "observation": "Hands align and fold the patterned shorts."
+      },
+      {
+        "time_s": 66,
+        "observation": "Hands place and press the last garment on the stack."
+      },
+      {
+        "time_s": 67.483,
+        "observation": "Both hands are raised, open and clear of the finished stack."
+      }
+    ],
+    "assumptions": [
+      "Contact phases are visually reviewed, with approximate boundaries; most review frames are spaced two seconds apart. Sub-second pressure ramps are illustrative, not sensor timing.",
+      "Finger pads and palm use fixed relative weights for cloth grip and smoothing. Cloth mass, stiffness, friction and contact areas are unknown.",
+      "Original distal finger bends modulate the contact envelope by 0.65 + 0.35 * normalized curl. Open or bent fingers without annotated contact have zero pressure.",
+      "Missing or degenerate right pose uses the same VIDEO ONLY neutral curl prior of 0.55 as 153529; the original pose and flexion are never replaced.",
+      "The short initial pulse represents visible hand-to-hand clap contact, not cloth contact.",
+      "No random pulse, new pose, Newton or kPa measurement is generated."
+    ],
+    "contacts": {
+      "palm": {
+        "weight": 0.65,
+        "center_u": 0.5,
+        "center_v": 0.43,
+        "width_u": 0.42,
+        "width_v": 0.38
+      },
+      "thumb": {
+        "weight": 0.9,
+        "center_u": 0.5,
+        "center_v": 0.28,
+        "width_u": 0.55,
+        "width_v": 0.3
+      },
+      "index": {
+        "weight": 1,
+        "center_u": 0.5,
+        "center_v": 0.36,
+        "width_u": 0.55,
+        "width_v": 0.35
+      },
+      "middle": {
+        "weight": 0.85,
+        "center_u": 0.5,
+        "center_v": 0.36,
+        "width_u": 0.55,
+        "width_v": 0.35
+      },
+      "ring": {
+        "weight": 0.55,
+        "center_u": 0.5,
+        "center_v": 0.36,
+        "width_u": 0.52,
+        "width_v": 0.33
+      },
+      "little": {
+        "weight": 0.3,
+        "center_u": 0.5,
+        "center_v": 0.34,
+        "width_u": 0.5,
+        "width_v": 0.31
+      }
+    },
+    "keyframes": [
+      {
+        "time_s": 0,
+        "strength": 0,
+        "phase": "Preparing to clap"
+      },
+      {
+        "time_s": 0.08,
+        "strength": 0.65,
+        "phase": "Hands clap"
+      },
+      {
+        "time_s": 0.22,
+        "strength": 0.15,
+        "phase": "Hands separate"
+      },
+      {
+        "time_s": 0.45,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 5.9,
+        "strength": 0,
+        "phase": "Reaching for gray garment"
+      },
+      {
+        "time_s": 6.8,
+        "strength": 0.3,
+        "phase": "Grasping gray fabric"
+      },
+      {
+        "time_s": 8,
+        "strength": 0.58,
+        "phase": "Spreading gray garment"
+      },
+      {
+        "time_s": 10,
+        "strength": 0.46,
+        "phase": "Aligning gray edges"
+      },
+      {
+        "time_s": 12,
+        "strength": 0.5,
+        "phase": "Holding gray hem"
+      },
+      {
+        "time_s": 13.2,
+        "strength": 0.38,
+        "phase": "Laying gray garment flat"
+      },
+      {
+        "time_s": 15,
+        "strength": 0.52,
+        "phase": "Folding gray garment"
+      },
+      {
+        "time_s": 17.7,
+        "strength": 0.6,
+        "phase": "Pressing gray fold"
+      },
+      {
+        "time_s": 18.9,
+        "strength": 0.22,
+        "phase": "Finishing gray fold"
+      },
+      {
+        "time_s": 19.4,
+        "strength": 0,
+        "phase": "Releasing gray garment"
+      },
+      {
+        "time_s": 20,
+        "strength": 0.18,
+        "phase": "Picking up green top"
+      },
+      {
+        "time_s": 21,
+        "strength": 0.5,
+        "phase": "Holding green top"
+      },
+      {
+        "time_s": 22.8,
+        "strength": 0.55,
+        "phase": "Aligning green top"
+      },
+      {
+        "time_s": 24.2,
+        "strength": 0.44,
+        "phase": "Folding green top"
+      },
+      {
+        "time_s": 26,
+        "strength": 0.55,
+        "phase": "Pressing green fold"
+      },
+      {
+        "time_s": 27.2,
+        "strength": 0.18,
+        "phase": "Finishing green fold"
+      },
+      {
+        "time_s": 27.7,
+        "strength": 0,
+        "phase": "Releasing green top"
+      },
+      {
+        "time_s": 29.3,
+        "strength": 0.12,
+        "phase": "Taking tan garment"
+      },
+      {
+        "time_s": 30.2,
+        "strength": 0.35,
+        "phase": "Holding tan fabric"
+      },
+      {
+        "time_s": 31.8,
+        "strength": 0.1,
+        "phase": "Adjusting tan grip"
+      },
+      {
+        "time_s": 33.2,
+        "strength": 0.4,
+        "phase": "Aligning tan edges"
+      },
+      {
+        "time_s": 35.5,
+        "strength": 0.53,
+        "phase": "Spreading tan garment"
+      },
+      {
+        "time_s": 37.5,
+        "strength": 0.42,
+        "phase": "Laying tan garment flat"
+      },
+      {
+        "time_s": 39.6,
+        "strength": 0.48,
+        "phase": "Folding tan sides"
+      },
+      {
+        "time_s": 41.8,
+        "strength": 0.62,
+        "phase": "Pressing tan fold"
+      },
+      {
+        "time_s": 43.1,
+        "strength": 0.18,
+        "phase": "Finishing tan fold"
+      },
+      {
+        "time_s": 43.6,
+        "strength": 0,
+        "phase": "Releasing tan garment"
+      },
+      {
+        "time_s": 44.3,
+        "strength": 0.35,
+        "phase": "Picking up green trousers"
+      },
+      {
+        "time_s": 46,
+        "strength": 0.57,
+        "phase": "Holding green trousers"
+      },
+      {
+        "time_s": 48,
+        "strength": 0.53,
+        "phase": "Aligning trouser legs"
+      },
+      {
+        "time_s": 50,
+        "strength": 0.45,
+        "phase": "Folding green trousers"
+      },
+      {
+        "time_s": 52.3,
+        "strength": 0.58,
+        "phase": "Pressing trouser fold"
+      },
+      {
+        "time_s": 54,
+        "strength": 0.57,
+        "phase": "Stacking green trousers"
+      },
+      {
+        "time_s": 55,
+        "strength": 0.18,
+        "phase": "Finishing trouser fold"
+      },
+      {
+        "time_s": 55.5,
+        "strength": 0,
+        "phase": "Releasing green trousers"
+      },
+      {
+        "time_s": 56.5,
+        "strength": 0.28,
+        "phase": "Taking patterned shorts"
+      },
+      {
+        "time_s": 58,
+        "strength": 0.48,
+        "phase": "Holding patterned shorts"
+      },
+      {
+        "time_s": 60,
+        "strength": 0.55,
+        "phase": "Aligning waistband"
+      },
+      {
+        "time_s": 62,
+        "strength": 0.49,
+        "phase": "Folding patterned shorts"
+      },
+      {
+        "time_s": 64,
+        "strength": 0.45,
+        "phase": "Lowering folded shorts"
+      },
+      {
+        "time_s": 65.6,
+        "strength": 0.59,
+        "phase": "Pressing final stack"
+      },
+      {
+        "time_s": 66.3,
+        "strength": 0.3,
+        "phase": "Finishing stack"
+      },
+      {
+        "time_s": 66.8,
+        "strength": 0.24,
+        "phase": "Finishing stack"
+      },
+      {
+        "time_s": 67.25,
+        "strength": 0.12,
+        "phase": "Releasing final garment"
+      },
+      {
+        "time_s": 67.4,
+        "strength": 0,
+        "phase": "Hands off clothes"
+      },
+      {
+        "time_s": 67.963329,
+        "strength": 0,
+        "phase": "No contact"
+      }
+    ],
+    "task": {
+      "main": "Fold and stack five garments on the table.",
+      "objects": "Gray garment \u00b7 green top \u00b7 tan garment \u00b7 green trousers \u00b7 patterned shorts",
+      "stages": [
+        {
+          "time_s": 0,
+          "name": "Prepare",
+          "interaction": "Hands clap, open, then reach for the clothing.",
+          "color": [
+            112,
+            125,
+            143
+          ]
+        },
+        {
+          "time_s": 6.8,
+          "name": "Gray garment",
+          "interaction": "Both hands spread, align and fold the gray garment.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 19.4,
+          "name": "Green top",
+          "interaction": "Both hands pick up, fold and place the green top.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 27.7,
+          "name": "Tan garment",
+          "interaction": "Both hands spread, fold and smooth the tan garment.",
+          "color": [
+            204,
+            158,
+            68
+          ]
+        },
+        {
+          "time_s": 43.6,
+          "name": "Green trousers",
+          "interaction": "Both hands align the trouser legs, fold and stack them.",
+          "color": [
+            131,
+            111,
+            205
+          ]
+        },
+        {
+          "time_s": 55.5,
+          "name": "Patterned shorts",
+          "interaction": "Both hands fold the shorts and place them on the stack.",
+          "color": [
+            206,
+            123,
+            145
+          ]
+        },
+        {
+          "time_s": 67.4,
+          "name": "Finished",
+          "interaction": "Hands leave the completed stack and open in front of the camera.",
+          "color": [
+            80,
+            160,
+            98
+          ]
+        }
+      ]
+    },
+    "profile_sha256": "4b4276327cf56d48f448b0be925e4d414140b04ff75ba7fdb18b48d21bc85387",
+    "units": "relative_0_100",
+    "measured": false,
+    "timeline": "Exact right-camera frame times plus a final endpoint hold",
+    "pose_modulated_frames": 997,
+    "video_only_frames": 833
+  },
+  "data": {
+    "path": "/rerun/episodes/20260910_161737/right-hand-pressure.rrd",
+    "sha256": "455190425f4b83248ad5dd35e222d7d1b08e0be2ad8f8908eddff5cb41dc4e20"
+  },
+  "blueprint": {
+    "path": "/rerun/episodes/20260910_161737/right-hand-pressure.rbl",
+    "sha256": "0902d38588e5e6188d96734fe26af694fe73e6f7624ed6a1c967e9b70ff23a23"
+  },
+  "flexion_csv": {
+    "path": "/rerun/episodes/20260910_161737/right-hand-flexion.csv",
+    "sha256": "86ba3a3885a58eded5e252de4417afaf1640a00f7b7da2c348547afb26028881"
+  },
+  "pressure_csv": {
+    "path": "/rerun/episodes/20260910_161737/right-hand-pressure.csv",
+    "sha256": "01d6b132bcbcc2dc90568492ecf3a840ece57454c8fbb0f9b9eb400f9d7c8cd8"
+  },
+  "pressure_samples": {
+    "path": "/rerun/episodes/20260910_161737/right-hand-pressure-samples.jsonl",
+    "sha256": "5f1960d4130b953d3b647878c684b0a71ebb00c1bca3c6c2d011e7541728aa96"
+  },
+  "dashboard": {
+    "layout_version": 2,
+    "head_height_entity": "replay_dashboard/head_height",
+    "head_height_source": "original_pose_y",
+    "head_height_sample_count": 4873,
+    "pose_sha256": "8cc1e347b416aaec7dbb79994c93b563d1543fc36eeb584cfe38b04872a83ca6",
+    "task_source": "reviewed_video_annotation",
+    "placeholders": [
+      "depth",
+      "gaussian_splat"
+    ],
+    "imu": {
+      "version": 1,
+      "episode_id": "20260910_161737",
+      "source": "head_pose_estimate",
+      "label": "ESTIMATED",
+      "entity": "replay_dashboard/imu",
+      "recording_id": "five_camera_20260910_161737_23322cf22490",
+      "capture_start_ns": 1789028292345637000,
+      "duration_ns": 67963329000,
+      "source_sha256": {
+        "pose_samples.bin": "8cc1e347b416aaec7dbb79994c93b563d1543fc36eeb584cfe38b04872a83ca6",
+        "pose_schema.json": "53908f1125c0c7ee7ef49c98b7431012d3684c89d5469ef48e816682f06a5dea",
+        "sync_manifest.json": "64d2fbaa72a23baa3bf94fbdec1bda2b27ce41d0744c0fa3bc09505815e2c03f"
+      },
+      "sample_count": 4873,
+      "valid_sample_count": 4873,
+      "edge_sample_count": 18,
+      "discontinuity_count": 0,
+      "sample_rate_hz_median": 71.42857142857143,
+      "time_range_ns": [
+        1363000,
+        67959363000
+      ],
+      "frame": "Virtual IMU at the tracked head origin; right-handed +X right, +Y up, +Z back. Gyro uses the right-hand rule.",
+      "basis_conversion": "S=diag(1,1,-1); position'=S position, rotation'=S rotation S; quaternion'=(-qx,-qy,qz,qw).",
+      "accel": {
+        "unit": "m/s^2",
+        "quantity": "specific_force",
+        "formula": "R_head_to_world.T @ (d2p_world/dt2 - gravity_world)",
+        "gravity_world_m_s2": [
+          0.0,
+          -9.80665,
+          0.0
+        ]
+      },
+      "gyro": {
+        "unit": "rad/s",
+        "quantity": "body_angular_velocity",
+        "formula": "d/dt log(R(t_i).T @ R(t)) at t_i"
+      },
+      "filter": {
+        "method": "Local cubic least-squares on actual irregular timestamps and relative rotation vectors",
+        "window_s": 0.24,
+        "max_gap_s": 0.1,
+        "boundary": "One-sided/shifted recorded window, tagged edge_fit; no extrapolation or endpoint fill."
+      },
+      "assumptions": [
+        "Tracking world is gravity-aligned with +Y up.",
+        "Virtual IMU origin equals tracked head origin; physical sensor offset is unknown.",
+        "No added random noise, sensor bias, drift or vibration; high-frequency raw IMU cannot be recovered from fused pose.",
+        "Tracking-state flags are absent from the compact pose schema; numerical validity and jump/gap checks are used."
+      ],
+      "statistics": {
+        "accel_x": {
+          "min": -2.896711950719948,
+          "max": 1.48399319437598
+        },
+        "accel_y": {
+          "min": 3.0579314237276964,
+          "max": 10.395821626194637
+        },
+        "accel_z": {
+          "min": -0.6731174520511531,
+          "max": 11.045376859330139
+        },
+        "gyro_x": {
+          "min": -1.6137933435658678,
+          "max": 1.3446503708811286
+        },
+        "gyro_y": {
+          "min": -1.5498348717623884,
+          "max": 2.105662125378603
+        },
+        "gyro_z": {
+          "min": -1.0997331462637245,
+          "max": 1.4050570134197662
+        }
+      },
+      "references": [
+        "https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0145.rst",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html"
+      ],
+      "csv": {
+        "path": "/rerun/episodes/20260910_161737/head-imu-estimates.csv",
+        "sha256": "7bfdfc33d40bb1723eee7a93b9c9f4d1a436b88195c57e4d25f2f07b0eb060dc"
+      },
+      "metadata": {
+        "path": "/rerun/episodes/20260910_161737/head-imu-estimates.json",
+        "sha256": "d12c7012dd7df7be3768c0850a5baf6f0ac8cb3fab1bb704a05d5d458a917a26"
+      }
+    },
+    "data": {
+      "path": "/rerun/episodes/20260910_161737/replay-dashboard.rrd",
+      "sha256": "a74d49db44f88085b798009b89068b967cf168673e1125b7d9d522afdb275780"
+    },
+    "blueprint": {
+      "path": "/rerun/episodes/20260910_161737/replay-dashboard.rbl",
+      "sha256": "e580868a2d7327fcef5383f4465f8416aa129ddc32c4a7ad6baf52bdc671784c"
+    }
+  }
+}
