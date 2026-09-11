@@ -10,6 +10,22 @@ now uses a synchronized FoundationStereo estimate; Gaussian Splat remains a plac
 See [the depth pipeline](../foundation-stereo/README.md) for generation and validation.
 Camera bounds are preserved.
 
+### Continuous Movement playback
+
+The two visible episodes use `build-recording.py --smooth-movement` for a
+display-only 30 Hz animation. `movement-playback.mjs` converts the native
+retargeted angles to local bone quaternions, lightly smooths within ±60 ms,
+and uses shortest-arc SLERP between poses. Gaps bounded by valid poses up to
+2 seconds are interpolated; unbounded or longer gaps remain unavailable.
+The final valid exposure holds to the clip endpoint. This prevents the mesh
+from disappearing during brief tracking losses without changing video timing.
+
+The original pose, video keypoints, native flexion CSV (including missing rows),
+pressure and IMU samples remain unchanged. Interpolated movement is a display
+estimate; settings and display counts are recorded under `flexion.display_playback`.
+155825 has 1,695 visible movement frames; 153529 has 503. Their native tracking
+still contains 87 and 69 missing video-aligned samples respectively.
+
 `dashboard_layout.py` writes an additive `replay-dashboard.rrd` plus its `.rbl`
 and a `dashboard` entry in the supplementary manifest. It never rewrites video,
 pose, pressure, flexion, or their CSVs. Five-camera head height copies the raw

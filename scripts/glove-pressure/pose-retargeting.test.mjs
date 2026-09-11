@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { Quaternion, Vector3 } from "three";
 import { fingerChains, inferRightHand } from "./pose-retargeting.mjs";
 import { loadRightHandRig } from "./right-hand-rig.mjs";
+import { rotationsFromAngles } from "./movement-playback.mjs";
 
 function straightHand() {
   const joints = { Wrist: [0, 0, 0] };
@@ -49,6 +50,8 @@ test("the skinned right-hand model reproduces source directions and exports repl
     assert.ok(result.meshes.every((mesh) => [...mesh.positions, ...mesh.normals].every(Number.isFinite)));
     const replay = rig.sample(result.angles);
     result.meshes.forEach((mesh, i) => mesh.positions.forEach((value, j) => assert.ok(Math.abs(value - replay[i].positions[j]) < 1e-5)));
+    const quaternionReplay = rig.sampleRotations(rotationsFromAngles(result.angles));
+    result.meshes.forEach((mesh, i) => mesh.positions.forEach((value, j) => assert.ok(Math.abs(value - quaternionReplay[i].positions[j]) < 1e-5)));
     assert.deepEqual(rig.samplePose(straightHand()).meshes, open.meshes);
   } finally { rig.dispose(); }
 });

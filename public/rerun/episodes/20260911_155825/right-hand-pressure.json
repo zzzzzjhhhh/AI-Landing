@@ -49,6 +49,16 @@
     "pose_sha256": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
     "schema_sha256": "6b39f314f28493289be173e3a657b1d16ad0d44eb4714fa44ba5a0c880f28a62",
     "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "display_playback": {
+      "fps": 30,
+      "max_gap_seconds": 2,
+      "smoothing_radius_seconds": 0.06,
+      "method": "Display-only local bone quaternion smoothing and shortest-arc SLERP between recorded poses",
+      "native_csv_unchanged": true,
+      "measured": false,
+      "frame_count": 1695,
+      "valid_frame_count": 1695
+    },
     "segment_direction_error_max_deg": 1.2749559400407728e-05
   },
   "pressure": {
@@ -650,11 +660,11 @@
   },
   "data": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rrd",
-    "sha256": "e578e17faa37161fcf38a23afe30f3778da63fa1f676ec8492572af93212a387"
+    "sha256": "845fcd2682192429ebd209c1cffdc54b4ba3eb2bd9e73b8abc160f59b121e6bf"
   },
   "blueprint": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rbl",
-    "sha256": "65f78c69f495341589f234b4ee31ee35451211ac3b9e641569c7f235e63b7147"
+    "sha256": "f1b05681c3d76acd222c60e50be133a757ae9c5c0a59fd8889a9fdff52d0b2a3"
   },
   "flexion_csv": {
     "path": "/rerun/episodes/20260911_155825/right-hand-flexion.csv",
@@ -772,11 +782,11 @@
     },
     "data": {
       "path": "/rerun/episodes/20260911_155825/replay-dashboard.rrd",
-      "sha256": "aca4bfdd9a1db101f17a5991e439f799bf264cc5a1f5157a79ae1ac395f7487e"
+      "sha256": "12875aa603b73b86e8a37539d80cd3f38c837a96428b34de83a9e3857b5e37e7"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_155825/replay-dashboard.rbl",
-      "sha256": "3f47e1947256808b38e515d2c627ec4f5fd3603959c5bf1602978c3582af7a14"
+      "sha256": "e791740a6e5347ab9faa860f13fa56a5e94a8c7b298486229321c8bbf6f69120"
     }
   }
 }

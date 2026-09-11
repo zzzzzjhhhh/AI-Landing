@@ -144,22 +144,31 @@ def load_pressure_profile(raw: Path, path: Path, duration_ns: int) -> dict:
 
 
 def build(base: Path, raw_pose: Path, output_dir: Path, asset_prefix: str = "/rerun", video_estimates: Path | None = None,
-          pressure_profile: Path | None = None) -> None:
+          pressure_profile: Path | None = None, smooth_movement: bool = False) -> None:
     metadata = base_metadata(base)
+    existing_manifest = output_dir / "right-hand-pressure.json"
+    previous = json.loads(existing_manifest.read_text()) if existing_manifest.exists() else {}
+    keep_imu = previous.get("recording_id") == metadata["recording_id"] and bool(previous.get("dashboard", {}).get("imu"))
     pressure_metadata = load_pressure_profile(raw_pose, pressure_profile, metadata["duration_ns"]) if pressure_profile else None
     with tempfile.TemporaryDirectory(prefix="right-hand-pose-") as temporary:
         source_path = Path(temporary) / "frames.jsonl"
         flexion_metadata = export_source(base, raw_pose, source_path)
         if video_estimates is not None:
             merge_video_estimates(raw_pose, source_path, video_estimates, flexion_metadata)
-        write_recording(metadata, flexion_metadata, source_path, output_dir, asset_prefix, pressure_profile, pressure_metadata)
+        write_recording(metadata, flexion_metadata, source_path, output_dir, asset_prefix, pressure_profile, pressure_metadata, smooth_movement)
     from dashboard_layout import build_dashboard
-    build_dashboard(output_dir, raw_pose)
+    build_dashboard(output_dir, raw_pose, with_head_imu=keep_imu)
 
 
 def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, output_dir: Path, asset_prefix: str,
-                    pressure_profile: Path | None = None, pressure_metadata: dict | None = None) -> None:
+                    pressure_profile: Path | None = None, pressure_metadata: dict | None = None, smooth_movement: bool = False) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
+    if smooth_movement:
+        flexion_metadata["display_playback"] = {
+            "fps": 30, "max_gap_seconds": 2, "smoothing_radius_seconds": 0.06,
+            "method": "Display-only local bone quaternion smoothing and shortest-arc SLERP between recorded poses",
+            "native_csv_unchanged": True, "measured": False,
+        }
     recording = rr.RecordingStream(metadata["application_id"], recording_id=metadata["recording_id"], send_properties=False)
     data_path = output_dir / "right-hand-pressure.rrd"
     blueprint_path = output_dir / "right-hand-pressure.rbl"
@@ -189,7 +198,7 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
         "Palm-normalized segment directions drive the WebHand rig; original model lengths and rest axial twist are retained. "
         "Not measured glove sensor angles. Native pose retargeting does not use WASM angle solving. "
         "Any video fallback is a COARSE VISUAL KEYFRAME ESTIMATE with interpolated hinge angles, not an automatic keypoint or 3D reconstruction result. "
-        "Missing tracking clears the mesh. Left/right camera frames have independent timestamps.\n" + json.dumps(flexion_metadata)
+        "Native CSV preserves missing tracking. Optional display_playback bridges bounded gaps using surrounding poses; longer gaps clear the mesh. Left/right camera frames have independent timestamps.\n" + json.dumps(flexion_metadata)
     ), static=True)
     recording.set_time("tracking_time", duration=np.timedelta64(0, "ns"))
     recording.set_time("capture_time", timestamp=np.datetime64(metadata["capture_start_ns"], "ns"))
@@ -254,15 +263,16 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
                 recording.set_time("capture_time", timestamp=np.datetime64(metadata["capture_start_ns"] + instant, "ns"))
                 if item["valid"]:
                     valid_frames += 1
-                    recording.log(f"{FLEXION_ENTITY}/status", rr.Clear(recursive=True))
-                    for index, mesh in enumerate(item["meshes"]):
+                    if not smooth_movement:
+                        recording.log(f"{FLEXION_ENTITY}/status", rr.Clear(recursive=True))
+                    for index, mesh in enumerate([] if smooth_movement else item["meshes"]):
                         recording.log(f"{FLEXION_ENTITY}/mesh/{index}", rr.Mesh3D.from_fields(
                             vertex_positions=np.asarray(mesh["positions"], dtype=np.float32).reshape(-1, 3),
                             vertex_normals=np.asarray(mesh["normals"], dtype=np.float32).reshape(-1, 3),
                         ))
                     if item["directionErrorDeg"] is not None:
                         max_direction_error = max(max_direction_error, item["directionErrorDeg"])
-                else:
+                elif not smooth_movement:
                     recording.log(f"{FLEXION_ENTITY}/mesh", rr.Clear(recursive=True))
                     recording.log(f"{FLEXION_ENTITY}/status", rr.Points3D(
                         [[-0.45, 0.5, 0.2]], radii=0, colors=[180, 192, 204, 255], labels=["Tracking\nunavailable"], show_labels=True,
@@ -274,6 +284,27 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
                     **item.get("bends", {}), **item.get("angles", {}),
                     "direction_error_deg": item["directionErrorDeg"] if item["valid"] else "",
                 })
+        if smooth_movement:
+            display_count, display_valid = 0, 0
+            for item in node_items("export-movement.mjs", csv_path, metadata["duration_ns"]):
+                instant = item["time_ns"]
+                recording.set_time("tracking_time", duration=np.timedelta64(instant, "ns"))
+                recording.set_time("capture_time", timestamp=np.datetime64(metadata["capture_start_ns"] + instant, "ns"))
+                display_count += 1
+                display_valid += int(item["valid"])
+                if item["valid"]:
+                    recording.log(f"{FLEXION_ENTITY}/status", rr.Clear(recursive=True))
+                    for index, mesh in enumerate(item["meshes"]):
+                        recording.log(f"{FLEXION_ENTITY}/mesh/{index}", rr.Mesh3D.from_fields(
+                            vertex_positions=np.asarray(mesh["positions"], dtype=np.float32).reshape(-1, 3),
+                            vertex_normals=np.asarray(mesh["normals"], dtype=np.float32).reshape(-1, 3),
+                        ))
+                else:
+                    recording.log(f"{FLEXION_ENTITY}/mesh", rr.Clear(recursive=True))
+                    recording.log(f"{FLEXION_ENTITY}/status", rr.Points3D(
+                        [[-0.45, 0.5, 0.2]], radii=0, colors=[180, 192, 204, 255], labels=["Tracking\nunavailable"], show_labels=True,
+                    ))
+            flexion_metadata["display_playback"].update(frame_count=display_count, valid_frame_count=display_valid)
         if max_direction_error > 0.01:
             raise ValueError(f"Retargeted finger directions differ from source: {max_direction_error} degrees")
         flexion_metadata.update({"valid_frame_count": valid_frames, "missing_frame_count": flexion_metadata["frame_count"] - valid_frames,
@@ -313,5 +344,6 @@ if __name__ == "__main__":
     parser.add_argument("--asset-prefix", default="/rerun")
     parser.add_argument("--video-estimates", type=Path, help="Explicit visual-keyframe annotation JSON for missing native tracking")
     parser.add_argument("--pressure-profile", type=Path, help="Source-verified visual contact annotations for relative pressure simulation")
+    parser.add_argument("--smooth-movement", action="store_true", help="Display-only 30 Hz quaternion interpolation across bounded tracking gaps")
     args = parser.parse_args()
-    build(args.base_rrd, args.raw_pose, args.output_dir, args.asset_prefix, args.video_estimates, args.pressure_profile)
+    build(args.base_rrd, args.raw_pose, args.output_dir, args.asset_prefix, args.video_estimates, args.pressure_profile, args.smooth_movement)

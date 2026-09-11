@@ -49,6 +49,16 @@
     "pose_sha256": "567657fb13f453240cfe64986cb3a10e026d46767223384200916c6db1b55c7f",
     "schema_sha256": "324408028ff7f726cc39438aa975639982f07443cc79aad18542a86ed6812021",
     "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "display_playback": {
+      "fps": 30,
+      "max_gap_seconds": 2,
+      "smoothing_radius_seconds": 0.06,
+      "method": "Display-only local bone quaternion smoothing and shortest-arc SLERP between recorded poses",
+      "native_csv_unchanged": true,
+      "measured": false,
+      "frame_count": 503,
+      "valid_frame_count": 503
+    },
     "segment_direction_error_max_deg": 8.748576518413897e-06
   },
   "pressure": {
@@ -245,11 +255,11 @@
   },
   "data": {
     "path": "/rerun/episodes/20260910_153529/right-hand-pressure.rrd",
-    "sha256": "3bbc59fd6162c5793937331f93e5fec20f7e71773439457fb97099056cc2451d"
+    "sha256": "1160e2628adec11813a09d0141c98ffc2829422228f0fffcaad2bf2f902e9c8d"
   },
   "blueprint": {
     "path": "/rerun/episodes/20260910_153529/right-hand-pressure.rbl",
-    "sha256": "364d6f94253e59b6ce621aa3f05d302c086f8b926f740138fd71d78fa6b36893"
+    "sha256": "17252ab2e3319fbe895abd47b510a6cb41863d4cf7f27a249463e444057c651b"
   },
   "flexion_csv": {
     "path": "/rerun/episodes/20260910_153529/right-hand-flexion.csv",
@@ -607,11 +617,11 @@
     },
     "data": {
       "path": "/rerun/episodes/20260910_153529/replay-dashboard.rrd",
-      "sha256": "ea4e1d71c5a67e3ade76621e71a406576063874ff130304d666128094488121c"
+      "sha256": "48fe82769fc99505cfbdf6a82ac97701f2df53754265c79c01ca0195a6e8b164"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260910_153529/replay-dashboard.rbl",
-      "sha256": "69a5bfa314526fa1ed8fedab9de8a00c60c0f8774ede6ffd008defbcb0493dda"
+      "sha256": "fc7d9756b3dcfd77f28001bee878cc8cceb07c84a61fcf3b37eaca5934ade914"
     }
   }
 }

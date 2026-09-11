@@ -71,6 +71,14 @@ export async function loadRightHandRig() {
   }
   return {
     topology: parts.map(({ indices }) => ({ indices })),
+    sampleRotations(rotations) {
+      reset();
+      for (const [name, rotation] of Object.entries(rotations)) {
+        if (!bones.has(name) || rotation.length !== 4 || !rotation.every(Number.isFinite)) throw new Error(`Invalid bone rotation: ${name}`);
+        bones.get(name).quaternion.fromArray(rotation).normalize();
+      }
+      return bake();
+    },
     sample(angles = {}) {
       reset();
       for (const [column, degrees] of Object.entries(angles)) {

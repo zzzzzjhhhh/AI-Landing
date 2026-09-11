@@ -119,10 +119,32 @@ if estimated_pressure:
     assert source_counts["video_contact_and_recorded_pose"] == manifest["pressure"]["pose_modulated_frames"]
     assert source_counts["video_contact_only"] == manifest["pressure"]["video_only_frames"]
     print(f"Verified {len(samples)} estimated-pressure frames, region scalars, 23x20 matrices, source labels and release clearing.")
-assert sorted(mesh_times) == valid_times
 assert sorted(status_times) == csv_times
-assert cleared_times == missing_times | {0}, "Missing tracking must clear the last displayed mesh"
-print(f"Verified {len(rows)} video-aligned flexion frames ({len(valid_rows)} valid / {len(missing_times)} cleared), angle CSV, finite meshes and both clocks.")
+playback = manifest["flexion"].get("display_playback")
+if playback:
+    from bisect import bisect_right
+    display_times = [round(i * 1e9 / playback["fps"]) for i in range(int(np.ceil(manifest["duration_ns"] / 1e9 * playback["fps"]))) ] + [manifest["duration_ns"]]
+    expected_mesh, expected_clear = [], {0}
+    for instant in display_times:
+        index = bisect_right(valid_times, instant) - 1
+        valid = index >= 0 and (
+            instant == valid_times[index] or
+            (index + 1 < len(valid_times) and valid_times[index + 1] - valid_times[index] <= playback["max_gap_seconds"] * 1e9) or
+            (index == len(valid_times) - 1 and rows[-1]["valid"] == "True")
+        )
+        if valid:
+            expected_mesh.append(instant)
+        else:
+            expected_clear.add(instant)
+    assert sorted(mesh_times) == expected_mesh
+    assert cleared_times == expected_clear
+    assert playback["frame_count"] == len(display_times)
+    assert playback["valid_frame_count"] == len(expected_mesh)
+    print(f"Verified display playback: {len(expected_mesh)}/{len(display_times)} visible frames at {playback['fps']} Hz; bounded gaps only.")
+else:
+    assert sorted(mesh_times) == valid_times
+    assert cleared_times == missing_times | {0}, "Missing tracking must clear the last displayed mesh"
+print(f"Verified {len(rows)} native video-aligned flexion rows ({len(valid_rows)} valid / {len(missing_times)} missing), angle CSV, finite meshes and both clocks.")
 if "dashboard" in manifest:
     from dashboard_layout import verify_dashboard
     verify_dashboard(args.output_dir, args.raw_pose)
