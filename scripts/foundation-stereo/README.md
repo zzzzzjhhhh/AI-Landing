@@ -68,7 +68,7 @@ python scripts/glove-pressure/dashboard_layout.py \
 
 ## Outputs
 
-- `foundation-stereo-depth.mp4`: browser-compatible H.264, original variable timestamps, fixed TURBO color scale from 0.2 m (near/red) to 3.0 m (far/blue), black invalid pixels. Full-size depth imagery with no baked-in text, timestamp, legend or footer. The Rerun panel title retains its ESTIMATED label.
+- `foundation-stereo-depth.mp4`: browser-compatible H.264, original variable timestamps, fixed TURBO color scale from 0.2 m (near/red) to 3.0 m (far/blue), black invalid pixels. Full-size depth imagery with no baked-in text, timestamp, legend or footer. The Rerun panel title is `Depth`; estimated-data provenance remains in the metadata.
 - `foundation-stereo-depth-timestamps.csv`: original stereo pair indices, timestamps and display durations.
 - `foundation-stereo-depth-mm.zip`: 16-bit depth PNGs in millimeters; zero is invalid. No footer is painted into these depth arrays.
 - `foundation-stereo-depth.json`: source hashes, geometry assumptions, model provenance, timing policy and output hashes.

@@ -1,10 +1,59 @@
 # Five-camera sample episodes
 
-The sample-data page currently displays only `20260910_153529`, with five video
-views, recorded hand keypoints, right-hand flexion, estimated pressure, depth
-and IMU. All four episode entries and their data packages remain preserved;
-161737, 150529 and the original stereo episode are hidden from the page only.
+The sample-data page offers `20260911_155825` (default) and `20260910_153529`,
+with the same five-camera hand/sensor dashboard. All five episode entries and
+their data packages remain preserved; 161737, 150529 and the original stereo
+episode are hidden from the page only.
 Source files are read only.
+
+Visible dashboard titles are `Movement`, `Pressure`, `Depth`, `Task timeline`,
+`IMU accel` and `IMU gyro`. Main task/Objects omit the repeated `Video annotation.`
+footer, and pressure omits source badges. These are display-only changes;
+the simulation/annotation provenance remains in metadata and numeric exports.
+
+## 20260911 155825: tabletop object transfer
+
+The 56.442730 s clip retains 1,519 frames in left PICO and each external view,
+and 1,511 independent right-PICO exposures. Every video PTS and display duration
+is preserved. The original camera calibration is used for both PICO overlays;
+no refinement from a different episode is applied. External synchronization is
+estimated at 0.15 s, and no external keypoint calibration is available.
+
+All 4,046 original head/hand poses are preserved. Of the right-video exposures,
+1,424 have usable right-hand flexion and 87 clear missing tracking. Pressure is
+a video-contact and finger-bend estimate, with 1,511 video-aligned samples plus
+one endpoint hold. Its 13 task stages describe transferring objects from the
+tray to the table, including a tape roll, stapler, pens and small cases.
+
+The original hardware IMU stream is empty (`enterprise_binding_timeout`). The
+existing pose estimator supplies all six channels at 4,046 source timestamps.
+Depth and Gaussian Splat are placeholders. IMU titles are simply `IMU accel`
+and `IMU gyro`, with hidden XYZ legends; units and estimated-data provenance
+remain in the CSV/metadata. The same display simplification applies to 153529.
+
+### Reproducible annotation review
+
+`extract-annotation-frames.py` selects the first exposure at/after each target
+time (or the final frame when no later exposure exists), decodes sequentially,
+checks preview timing, and writes JPEGs, paginated timestamped contact sheets
+and a review manifest with frame indices and hashes. It performs no automatic
+action recognition. The 155825 review used 76 right-camera frames at 0.75 s
+targets and 34 explicitly selected transition frames; all 110 review tiles
+were viewed before writing the approximate contact/action annotations.
+
+```sh
+python scripts/extract-annotation-frames.py \
+  --source /path/to/20260911_155825/task_clip \
+  --output /path/to/review --step 0.75
+# Optional: --video-root /path/to/verified-previews
+# Detail review: replace --step with --times 6.3 6.5 11.4 11.7 ...
+```
+
+`glove-pressure/episodes/20260911_155825-frame-review.json` preserves both
+selection manifests. The neighboring pressure profile records the reviewed
+observations, contact assumptions and task stages. Rebuild with the same base,
+hand and dashboard commands below, using this episode's paths/profile, and
+finish the dashboard with `--head-imu`. Source data is never overwritten.
 
 ## 161737: clothing folding
 
@@ -155,7 +204,7 @@ python scripts/glove-pressure/verify-recording.py --output-dir /path/to/package
 Copy the base RRD/manifest and the supplementary RRD, blueprint, manifest,
 flexion CSV, pressure CSV, pressure-sample JSONL, and `replay-dashboard.rrd` / `.rbl` together into
 `public/rerun/episodes/20260910_153529/`. The pressure panel shows contact phase,
-relative peak, evidence label and a fixed color scale. This heuristic simulation
+relative peak and a fixed color scale; evidence labels remain in metadata/CSV. This heuristic simulation
 has no force/kPa calibration; the full assumptions and source hashes are stored
 in its manifest. See `glove-pressure/README.md`. Other episodes retain their data.
 

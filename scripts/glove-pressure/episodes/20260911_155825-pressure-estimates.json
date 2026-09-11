@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "episode_id": "20260911_155825",
+  "duration_s": 56.44273,
+  "method": "video_contact_envelope_with_recorded_finger_bend_modulation",
+  "label": "ESTIMATED pressure / relative 0-100",
+  "description": "Reviewed right-hand transfers of small objects from a tray to the table. Contact timing, pad locations and relative strengths are heuristic estimates, not measured forces.",
+  "source_files": {
+    "sync_manifest.json": "50ef0f0051465a7a56fe070c1d8929b1cab255c4a2d82ffc7ff339a7cfcf5c2e",
+    "right_camera.mp4": "bd371e45871dfbfc127c3e42c0fc3d6d5c5d8fa198a808abf2cdd82c1ebf495a",
+    "right_camera_timestamps.csv": "567da92f5de9c3c3d5cf73059dcc6d41d1630df1b9aee8c13a5654fb0c00cd09",
+    "pose_samples.bin": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
+    "pose_schema.json": "6b39f314f28493289be173e3a657b1d16ad0d44eb4714fa44ba5a0c880f28a62"
+  },
+  "video_observations": [
+    {
+      "time_s": 0.0,
+      "frame_index": 0,
+      "image_sha256": "b00fec048ffa32ecb8670ff33c002651a8860f8f1deb0d2f67fb612bb41f36c0",
+      "observation": "Both hands held open; no object contact."
+    },
+    {
+      "time_s": 4.500217,
+      "frame_index": 121,
+      "image_sha256": "9f39ee31d892bdaeafa23605059b30d1f2139999e79e6df9762d5da81c686972",
+      "observation": "Right hand carries the red tool out of the tray."
+    },
+    {
+      "time_s": 6.300305,
+      "frame_index": 169,
+      "image_sha256": "c82837a37f99a03edc31b13f39f86efab22d73fbb568131098f5ac9dbb350ba9",
+      "observation": "Right hand is open after placing the red tool."
+    },
+    {
+      "time_s": 9.780472,
+      "frame_index": 262,
+      "image_sha256": "dd0ee0338670216f40377e59a9906b50901e4c897a2bee24c95a7c057e58631e",
+      "observation": "Right hand lifts the tape roll from the tray."
+    },
+    {
+      "time_s": 11.720565,
+      "frame_index": 315,
+      "image_sha256": "f778bebc757d1775f9b3570bfc5e9ff775efb46f4507967441086226c4db929c",
+      "observation": "Tape roll rests on the table; right hand opens."
+    },
+    {
+      "time_s": 15.000726,
+      "frame_index": 403,
+      "image_sha256": "419eec74c07157ddca2e9ff3364384b2e03782b001ece4c2d7ab21f74865f303",
+      "observation": "Right hand moves a beige rectangular item to the table."
+    },
+    {
+      "time_s": 20.280981,
+      "frame_index": 544,
+      "image_sha256": "586084cf259d6a7cbb6296613250b997ae40b3effba90c2eb459584b9af95cd2",
+      "observation": "Right hand lifts a green-and-white boxed item."
+    },
+    {
+      "time_s": 24.781198,
+      "frame_index": 666,
+      "image_sha256": "d29ae2f65432382c3070df542f163e7a2bd3d2825442940a571b8c68202e613b",
+      "observation": "Right hand carries the clear case out of the tray."
+    },
+    {
+      "time_s": 29.281416,
+      "frame_index": 787,
+      "image_sha256": "88daa30c2326cac6c6e52f8f5e80a6ac6e84b0fea639b3bd19194a3849db63f0",
+      "observation": "Right hand transfers a small green tube."
+    },
+    {
+      "time_s": 33.761633,
+      "frame_index": 905,
+      "image_sha256": "f7357043ecf228fc41f2627ad627ac2c2fa7da3c0d5d1e7f8dd18ec6b986a086",
+      "observation": "Right hand holds a pen above the tray."
+    },
+    {
+      "time_s": 38.321851,
+      "frame_index": 1025,
+      "image_sha256": "293c8878f500713f8cad99276cf40b0fac86f306f4cddb8c26bc44db1d31ce53",
+      "observation": "Right hand lifts a blue stapler; left hand assists in handling it."
+    },
+    {
+      "time_s": 43.502101,
+      "frame_index": 1166,
+      "image_sha256": "8f8335c54916dcb1a6c6adddc1af1665790e86d64fbbb24b1c7d25dbaf03c89e",
+      "observation": "Right hand transfers a small pink item."
+    },
+    {
+      "time_s": 47.262286,
+      "frame_index": 1266,
+      "image_sha256": "d0602a2ebcba9c19fb8044d16b39bd0899e76b89e62af94a9be6af82add2cd19",
+      "observation": "Right hand transfers a small white case."
+    },
+    {
+      "time_s": 52.50254,
+      "frame_index": 1405,
+      "image_sha256": "429b4f595408d048a1bd83fd1db0acb740d0c153c4bfb39dfaccc881fff8714e",
+      "observation": "Both hands handle the remaining pens."
+    },
+    {
+      "time_s": 55.402679,
+      "frame_index": 1485,
+      "image_sha256": "2ab0718a040fb9839d8befb02581ab353899b47dba35ea694506908f4071fb1e",
+      "observation": "Hands open and rise after placing the last pens."
+    }
+  ],
+  "review": {
+    "script": "scripts/extract-annotation-frames.py",
+    "uniform_step_s": 0.75,
+    "uniform_frame_count": 76,
+    "detail_frame_count": 34,
+    "uniform_manifest_sha256": "7d6c363a643a29c29255aa5a6e37b44437f5fe6d793654fb93c1d335fd5a654b",
+    "detail_manifest_sha256": "e773f33c8309fbf1b76a12eb24a32ae8b89a958d5c053523285d377f677ccfd3",
+    "automatic_action_detection": false
+  },
+  "assumptions": [
+    "Uniform 0.75 s visual review plus explicitly selected transition frames. Boundaries remain approximate; no frame-accurate contact ground truth exists.",
+    "Relative pressure is an illustrative smoothstep envelope; no object mass, friction, contact area, force or kPa is measured.",
+    "Fixed finger and palm pad weights approximate small-object grip; contact location does not track individual objects.",
+    "Original distal joint bends modulate amplitude by 0.65 + 0.35 * normalized curl. No annotated contact gives zero pressure.",
+    "Missing or degenerate right-hand pose uses a VIDEO ONLY neutral curl prior of 0.55; pose/flexion remains unavailable.",
+    "Object names are visual descriptions; some small-item identities and occluded contacts are uncertain."
+  ],
+  "contacts": {
+    "palm": {
+      "weight": 0.18,
+      "center_u": 0.7,
+      "center_v": 0.36,
+      "width_u": 0.28,
+      "width_v": 0.3
+    },
+    "thumb": {
+      "weight": 0.9,
+      "center_u": 0.5,
+      "center_v": 0.28,
+      "width_u": 0.55,
+      "width_v": 0.26
+    },
+    "index": {
+      "weight": 1,
+      "center_u": 0.5,
+      "center_v": 0.42,
+      "width_u": 0.55,
+      "width_v": 0.34
+    },
+    "middle": {
+      "weight": 0.85,
+      "center_u": 0.5,
+      "center_v": 0.42,
+      "width_u": 0.55,
+      "width_v": 0.34
+    },
+    "ring": {
+      "weight": 0.4,
+      "center_u": 0.5,
+      "center_v": 0.35,
+      "width_u": 0.48,
+      "width_v": 0.28
+    },
+    "little": {
+      "weight": 0.2,
+      "center_u": 0.5,
+      "center_v": 0.3,
+      "width_u": 0.48,
+      "width_v": 0.28
+    }
+  },
+  "keyframes": [
+    {
+      "time_s": 0,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 1.6,
+      "strength": 0,
+      "phase": "Reach for red tool"
+    },
+    {
+      "time_s": 2.28,
+      "strength": 0.46399999999999997,
+      "phase": "Grasp red tool"
+    },
+    {
+      "time_s": 4.5,
+      "strength": 0.58,
+      "phase": "Move red tool"
+    },
+    {
+      "time_s": 6.02,
+      "strength": 0.29,
+      "phase": "Place red tool"
+    },
+    {
+      "time_s": 6.3,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 7.2,
+      "strength": 0,
+      "phase": "Reach for tape roll"
+    },
+    {
+      "time_s": 8.28,
+      "strength": 0.496,
+      "phase": "Grasp tape roll"
+    },
+    {
+      "time_s": 9.78,
+      "strength": 0.62,
+      "phase": "Move tape roll"
+    },
+    {
+      "time_s": 11.28,
+      "strength": 0.31,
+      "phase": "Place tape roll"
+    },
+    {
+      "time_s": 11.72,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 12.6,
+      "strength": 0,
+      "phase": "Reach for beige rectangular item"
+    },
+    {
+      "time_s": 13.52,
+      "strength": 0.384,
+      "phase": "Grasp beige rectangular item"
+    },
+    {
+      "time_s": 15.0,
+      "strength": 0.48,
+      "phase": "Move beige rectangular item"
+    },
+    {
+      "time_s": 16.5,
+      "strength": 0.24,
+      "phase": "Place beige rectangular item"
+    },
+    {
+      "time_s": 17.14,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 17.9,
+      "strength": 0,
+      "phase": "Reach for boxed item"
+    },
+    {
+      "time_s": 18.78,
+      "strength": 0.46399999999999997,
+      "phase": "Grasp boxed item"
+    },
+    {
+      "time_s": 20.28,
+      "strength": 0.58,
+      "phase": "Move boxed item"
+    },
+    {
+      "time_s": 21.3,
+      "strength": 0.29,
+      "phase": "Place boxed item"
+    },
+    {
+      "time_s": 21.76,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 22.6,
+      "strength": 0,
+      "phase": "Reach for clear case"
+    },
+    {
+      "time_s": 23.28,
+      "strength": 0.41600000000000004,
+      "phase": "Grasp clear case"
+    },
+    {
+      "time_s": 24.78,
+      "strength": 0.52,
+      "phase": "Move clear case"
+    },
+    {
+      "time_s": 25.52,
+      "strength": 0.26,
+      "phase": "Place clear case"
+    },
+    {
+      "time_s": 26.5,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 27.5,
+      "strength": 0,
+      "phase": "Reach for green tube"
+    },
+    {
+      "time_s": 28.5,
+      "strength": 0.336,
+      "phase": "Grasp green tube"
+    },
+    {
+      "time_s": 29.28,
+      "strength": 0.42,
+      "phase": "Move green tube"
+    },
+    {
+      "time_s": 30.78,
+      "strength": 0.21,
+      "phase": "Place green tube"
+    },
+    {
+      "time_s": 31.1,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 32.0,
+      "strength": 0,
+      "phase": "Reach for pen"
+    },
+    {
+      "time_s": 32.82,
+      "strength": 0.32000000000000006,
+      "phase": "Grasp pen"
+    },
+    {
+      "time_s": 33.76,
+      "strength": 0.4,
+      "phase": "Move pen"
+    },
+    {
+      "time_s": 35.26,
+      "strength": 0.2,
+      "phase": "Place pen"
+    },
+    {
+      "time_s": 35.6,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 36.6,
+      "strength": 0,
+      "phase": "Reach for blue stapler"
+    },
+    {
+      "time_s": 37.5,
+      "strength": 0.52,
+      "phase": "Grasp blue stapler"
+    },
+    {
+      "time_s": 38.32,
+      "strength": 0.65,
+      "phase": "Move blue stapler"
+    },
+    {
+      "time_s": 40.5,
+      "strength": 0.325,
+      "phase": "Place blue stapler"
+    },
+    {
+      "time_s": 41.2,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 41.9,
+      "strength": 0,
+      "phase": "Reach for pink item"
+    },
+    {
+      "time_s": 42.76,
+      "strength": 0.336,
+      "phase": "Grasp pink item"
+    },
+    {
+      "time_s": 43.5,
+      "strength": 0.42,
+      "phase": "Move pink item"
+    },
+    {
+      "time_s": 44.32,
+      "strength": 0.21,
+      "phase": "Place pink item"
+    },
+    {
+      "time_s": 44.98,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 45.7,
+      "strength": 0,
+      "phase": "Reach for white case"
+    },
+    {
+      "time_s": 46.54,
+      "strength": 0.384,
+      "phase": "Grasp white case"
+    },
+    {
+      "time_s": 47.26,
+      "strength": 0.48,
+      "phase": "Move white case"
+    },
+    {
+      "time_s": 48.78,
+      "strength": 0.24,
+      "phase": "Place white case"
+    },
+    {
+      "time_s": 49.12,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 50.2,
+      "strength": 0,
+      "phase": "Reach for remaining pens"
+    },
+    {
+      "time_s": 51.04,
+      "strength": 0.36000000000000004,
+      "phase": "Grasp remaining pens"
+    },
+    {
+      "time_s": 52.5,
+      "strength": 0.45,
+      "phase": "Move remaining pens"
+    },
+    {
+      "time_s": 54.78,
+      "strength": 0.225,
+      "phase": "Place remaining pens"
+    },
+    {
+      "time_s": 55.35,
+      "strength": 0,
+      "phase": "No contact"
+    },
+    {
+      "time_s": 56.44273,
+      "strength": 0,
+      "phase": "No contact"
+    }
+  ],
+  "task": {
+    "main": "Transfer the small objects from the tray onto the table.",
+    "objects": "Tray \u00b7 tape roll \u00b7 stapler \u00b7 pens \u00b7 small cases, box and other handheld items",
+    "stages": [
+      {
+        "time_s": 0,
+        "name": "Prepare",
+        "interaction": "Both hands are open above the tray.",
+        "color": [
+          112,
+          125,
+          143
+        ]
+      },
+      {
+        "time_s": 1.6,
+        "name": "Transfer red tool",
+        "interaction": "Right hand takes the red tool from the tray and places it on the table.",
+        "color": [
+          50,
+          173,
+          151
+        ]
+      },
+      {
+        "time_s": 7.2,
+        "name": "Transfer tape roll",
+        "interaction": "Right hand takes the tape roll from the tray and places it on the table.",
+        "color": [
+          83,
+          138,
+          211
+        ]
+      },
+      {
+        "time_s": 12.6,
+        "name": "Transfer beige rectangular item",
+        "interaction": "Right hand takes the beige rectangular item from the tray and places it on the table.",
+        "color": [
+          204,
+          158,
+          68
+        ]
+      },
+      {
+        "time_s": 17.9,
+        "name": "Transfer boxed item",
+        "interaction": "Right hand takes the boxed item from the tray and places it on the table.",
+        "color": [
+          50,
+          173,
+          151
+        ]
+      },
+      {
+        "time_s": 22.6,
+        "name": "Transfer clear case",
+        "interaction": "Right hand takes the clear case from the tray and places it on the table.",
+        "color": [
+          83,
+          138,
+          211
+        ]
+      },
+      {
+        "time_s": 27.5,
+        "name": "Transfer green tube",
+        "interaction": "Right hand takes the green tube from the tray and places it on the table.",
+        "color": [
+          204,
+          158,
+          68
+        ]
+      },
+      {
+        "time_s": 32.0,
+        "name": "Transfer pen",
+        "interaction": "Right hand takes the pen from the tray and places it on the table.",
+        "color": [
+          50,
+          173,
+          151
+        ]
+      },
+      {
+        "time_s": 36.6,
+        "name": "Transfer blue stapler",
+        "interaction": "Right hand takes the blue stapler from the tray and places it on the table.",
+        "color": [
+          83,
+          138,
+          211
+        ]
+      },
+      {
+        "time_s": 41.9,
+        "name": "Transfer pink item",
+        "interaction": "Right hand takes the pink item from the tray and places it on the table.",
+        "color": [
+          204,
+          158,
+          68
+        ]
+      },
+      {
+        "time_s": 45.7,
+        "name": "Transfer white case",
+        "interaction": "Right hand takes the white case from the tray and places it on the table.",
+        "color": [
+          50,
+          173,
+          151
+        ]
+      },
+      {
+        "time_s": 50.2,
+        "name": "Transfer remaining pens",
+        "interaction": "Right hand takes the remaining pens from the tray and places it on the table.",
+        "color": [
+          83,
+          138,
+          211
+        ]
+      },
+      {
+        "time_s": 55.35,
+        "name": "Finished",
+        "interaction": "Objects are on the table; both hands open and lift clear.",
+        "color": [
+          112,
+          125,
+          143
+        ]
+      }
+    ]
+  }
+}

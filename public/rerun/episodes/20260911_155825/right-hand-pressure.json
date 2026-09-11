@@ -1,0 +1,782 @@
+{
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_155825_2b9ad72b4b9a",
+  "duration_ns": 56442730000,
+  "capture_start_ns": 1789113520058648000,
+  "base_sha256": "6ce7182a2dddf46e5951604e4a0253bb60a17dd680eee92c6fd4bf25aa5930b4",
+  "camera_dimensions": {
+    "left_camera": [
+      960,
+      720
+    ],
+    "right_camera": [
+      960,
+      720
+    ],
+    "left_side": [
+      960,
+      540
+    ],
+    "right_side": [
+      960,
+      540
+    ],
+    "back": [
+      960,
+      540
+    ]
+  },
+  "source": "mixed",
+  "pressure_source": "video_pose_estimate",
+  "hand": "right",
+  "fps": null,
+  "frame_count": 1512,
+  "views": [
+    "pressure",
+    "flexion"
+  ],
+  "flexion": {
+    "source": "recorded_pose_keypoints",
+    "reference_camera": "right_camera",
+    "pose_sample_count": 4046,
+    "camera_extrinsics_convention": "recorded",
+    "intrinsics_profile_sha256": null,
+    "frame_count": 1511,
+    "valid_frame_count": 1424,
+    "missing_frame_count": 87,
+    "pose_distance_max_ms": 10.783,
+    "overlay_reprojection_max_px": 0.0,
+    "pose_sha256": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
+    "schema_sha256": "6b39f314f28493289be173e3a657b1d16ad0d44eb4714fa44ba5a0c880f28a62",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "segment_direction_error_max_deg": 1.2749559400407728e-05
+  },
+  "pressure": {
+    "version": 1,
+    "episode_id": "20260911_155825",
+    "duration_s": 56.44273,
+    "method": "video_contact_envelope_with_recorded_finger_bend_modulation",
+    "label": "ESTIMATED pressure / relative 0-100",
+    "description": "Reviewed right-hand transfers of small objects from a tray to the table. Contact timing, pad locations and relative strengths are heuristic estimates, not measured forces.",
+    "source_files": {
+      "sync_manifest.json": "50ef0f0051465a7a56fe070c1d8929b1cab255c4a2d82ffc7ff339a7cfcf5c2e",
+      "right_camera.mp4": "bd371e45871dfbfc127c3e42c0fc3d6d5c5d8fa198a808abf2cdd82c1ebf495a",
+      "right_camera_timestamps.csv": "567da92f5de9c3c3d5cf73059dcc6d41d1630df1b9aee8c13a5654fb0c00cd09",
+      "pose_samples.bin": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
+      "pose_schema.json": "6b39f314f28493289be173e3a657b1d16ad0d44eb4714fa44ba5a0c880f28a62"
+    },
+    "video_observations": [
+      {
+        "time_s": 0.0,
+        "frame_index": 0,
+        "image_sha256": "b00fec048ffa32ecb8670ff33c002651a8860f8f1deb0d2f67fb612bb41f36c0",
+        "observation": "Both hands held open; no object contact."
+      },
+      {
+        "time_s": 4.500217,
+        "frame_index": 121,
+        "image_sha256": "9f39ee31d892bdaeafa23605059b30d1f2139999e79e6df9762d5da81c686972",
+        "observation": "Right hand carries the red tool out of the tray."
+      },
+      {
+        "time_s": 6.300305,
+        "frame_index": 169,
+        "image_sha256": "c82837a37f99a03edc31b13f39f86efab22d73fbb568131098f5ac9dbb350ba9",
+        "observation": "Right hand is open after placing the red tool."
+      },
+      {
+        "time_s": 9.780472,
+        "frame_index": 262,
+        "image_sha256": "dd0ee0338670216f40377e59a9906b50901e4c897a2bee24c95a7c057e58631e",
+        "observation": "Right hand lifts the tape roll from the tray."
+      },
+      {
+        "time_s": 11.720565,
+        "frame_index": 315,
+        "image_sha256": "f778bebc757d1775f9b3570bfc5e9ff775efb46f4507967441086226c4db929c",
+        "observation": "Tape roll rests on the table; right hand opens."
+      },
+      {
+        "time_s": 15.000726,
+        "frame_index": 403,
+        "image_sha256": "419eec74c07157ddca2e9ff3364384b2e03782b001ece4c2d7ab21f74865f303",
+        "observation": "Right hand moves a beige rectangular item to the table."
+      },
+      {
+        "time_s": 20.280981,
+        "frame_index": 544,
+        "image_sha256": "586084cf259d6a7cbb6296613250b997ae40b3effba90c2eb459584b9af95cd2",
+        "observation": "Right hand lifts a green-and-white boxed item."
+      },
+      {
+        "time_s": 24.781198,
+        "frame_index": 666,
+        "image_sha256": "d29ae2f65432382c3070df542f163e7a2bd3d2825442940a571b8c68202e613b",
+        "observation": "Right hand carries the clear case out of the tray."
+      },
+      {
+        "time_s": 29.281416,
+        "frame_index": 787,
+        "image_sha256": "88daa30c2326cac6c6e52f8f5e80a6ac6e84b0fea639b3bd19194a3849db63f0",
+        "observation": "Right hand transfers a small green tube."
+      },
+      {
+        "time_s": 33.761633,
+        "frame_index": 905,
+        "image_sha256": "f7357043ecf228fc41f2627ad627ac2c2fa7da3c0d5d1e7f8dd18ec6b986a086",
+        "observation": "Right hand holds a pen above the tray."
+      },
+      {
+        "time_s": 38.321851,
+        "frame_index": 1025,
+        "image_sha256": "293c8878f500713f8cad99276cf40b0fac86f306f4cddb8c26bc44db1d31ce53",
+        "observation": "Right hand lifts a blue stapler; left hand assists in handling it."
+      },
+      {
+        "time_s": 43.502101,
+        "frame_index": 1166,
+        "image_sha256": "8f8335c54916dcb1a6c6adddc1af1665790e86d64fbbb24b1c7d25dbaf03c89e",
+        "observation": "Right hand transfers a small pink item."
+      },
+      {
+        "time_s": 47.262286,
+        "frame_index": 1266,
+        "image_sha256": "d0602a2ebcba9c19fb8044d16b39bd0899e76b89e62af94a9be6af82add2cd19",
+        "observation": "Right hand transfers a small white case."
+      },
+      {
+        "time_s": 52.50254,
+        "frame_index": 1405,
+        "image_sha256": "429b4f595408d048a1bd83fd1db0acb740d0c153c4bfb39dfaccc881fff8714e",
+        "observation": "Both hands handle the remaining pens."
+      },
+      {
+        "time_s": 55.402679,
+        "frame_index": 1485,
+        "image_sha256": "2ab0718a040fb9839d8befb02581ab353899b47dba35ea694506908f4071fb1e",
+        "observation": "Hands open and rise after placing the last pens."
+      }
+    ],
+    "review": {
+      "script": "scripts/extract-annotation-frames.py",
+      "uniform_step_s": 0.75,
+      "uniform_frame_count": 76,
+      "detail_frame_count": 34,
+      "uniform_manifest_sha256": "7d6c363a643a29c29255aa5a6e37b44437f5fe6d793654fb93c1d335fd5a654b",
+      "detail_manifest_sha256": "e773f33c8309fbf1b76a12eb24a32ae8b89a958d5c053523285d377f677ccfd3",
+      "automatic_action_detection": false
+    },
+    "assumptions": [
+      "Uniform 0.75 s visual review plus explicitly selected transition frames. Boundaries remain approximate; no frame-accurate contact ground truth exists.",
+      "Relative pressure is an illustrative smoothstep envelope; no object mass, friction, contact area, force or kPa is measured.",
+      "Fixed finger and palm pad weights approximate small-object grip; contact location does not track individual objects.",
+      "Original distal joint bends modulate amplitude by 0.65 + 0.35 * normalized curl. No annotated contact gives zero pressure.",
+      "Missing or degenerate right-hand pose uses a VIDEO ONLY neutral curl prior of 0.55; pose/flexion remains unavailable.",
+      "Object names are visual descriptions; some small-item identities and occluded contacts are uncertain."
+    ],
+    "contacts": {
+      "palm": {
+        "weight": 0.18,
+        "center_u": 0.7,
+        "center_v": 0.36,
+        "width_u": 0.28,
+        "width_v": 0.3
+      },
+      "thumb": {
+        "weight": 0.9,
+        "center_u": 0.5,
+        "center_v": 0.28,
+        "width_u": 0.55,
+        "width_v": 0.26
+      },
+      "index": {
+        "weight": 1,
+        "center_u": 0.5,
+        "center_v": 0.42,
+        "width_u": 0.55,
+        "width_v": 0.34
+      },
+      "middle": {
+        "weight": 0.85,
+        "center_u": 0.5,
+        "center_v": 0.42,
+        "width_u": 0.55,
+        "width_v": 0.34
+      },
+      "ring": {
+        "weight": 0.4,
+        "center_u": 0.5,
+        "center_v": 0.35,
+        "width_u": 0.48,
+        "width_v": 0.28
+      },
+      "little": {
+        "weight": 0.2,
+        "center_u": 0.5,
+        "center_v": 0.3,
+        "width_u": 0.48,
+        "width_v": 0.28
+      }
+    },
+    "keyframes": [
+      {
+        "time_s": 0,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 1.6,
+        "strength": 0,
+        "phase": "Reach for red tool"
+      },
+      {
+        "time_s": 2.28,
+        "strength": 0.46399999999999997,
+        "phase": "Grasp red tool"
+      },
+      {
+        "time_s": 4.5,
+        "strength": 0.58,
+        "phase": "Move red tool"
+      },
+      {
+        "time_s": 6.02,
+        "strength": 0.29,
+        "phase": "Place red tool"
+      },
+      {
+        "time_s": 6.3,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 7.2,
+        "strength": 0,
+        "phase": "Reach for tape roll"
+      },
+      {
+        "time_s": 8.28,
+        "strength": 0.496,
+        "phase": "Grasp tape roll"
+      },
+      {
+        "time_s": 9.78,
+        "strength": 0.62,
+        "phase": "Move tape roll"
+      },
+      {
+        "time_s": 11.28,
+        "strength": 0.31,
+        "phase": "Place tape roll"
+      },
+      {
+        "time_s": 11.72,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 12.6,
+        "strength": 0,
+        "phase": "Reach for beige rectangular item"
+      },
+      {
+        "time_s": 13.52,
+        "strength": 0.384,
+        "phase": "Grasp beige rectangular item"
+      },
+      {
+        "time_s": 15.0,
+        "strength": 0.48,
+        "phase": "Move beige rectangular item"
+      },
+      {
+        "time_s": 16.5,
+        "strength": 0.24,
+        "phase": "Place beige rectangular item"
+      },
+      {
+        "time_s": 17.14,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 17.9,
+        "strength": 0,
+        "phase": "Reach for boxed item"
+      },
+      {
+        "time_s": 18.78,
+        "strength": 0.46399999999999997,
+        "phase": "Grasp boxed item"
+      },
+      {
+        "time_s": 20.28,
+        "strength": 0.58,
+        "phase": "Move boxed item"
+      },
+      {
+        "time_s": 21.3,
+        "strength": 0.29,
+        "phase": "Place boxed item"
+      },
+      {
+        "time_s": 21.76,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 22.6,
+        "strength": 0,
+        "phase": "Reach for clear case"
+      },
+      {
+        "time_s": 23.28,
+        "strength": 0.41600000000000004,
+        "phase": "Grasp clear case"
+      },
+      {
+        "time_s": 24.78,
+        "strength": 0.52,
+        "phase": "Move clear case"
+      },
+      {
+        "time_s": 25.52,
+        "strength": 0.26,
+        "phase": "Place clear case"
+      },
+      {
+        "time_s": 26.5,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 27.5,
+        "strength": 0,
+        "phase": "Reach for green tube"
+      },
+      {
+        "time_s": 28.5,
+        "strength": 0.336,
+        "phase": "Grasp green tube"
+      },
+      {
+        "time_s": 29.28,
+        "strength": 0.42,
+        "phase": "Move green tube"
+      },
+      {
+        "time_s": 30.78,
+        "strength": 0.21,
+        "phase": "Place green tube"
+      },
+      {
+        "time_s": 31.1,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 32.0,
+        "strength": 0,
+        "phase": "Reach for pen"
+      },
+      {
+        "time_s": 32.82,
+        "strength": 0.32000000000000006,
+        "phase": "Grasp pen"
+      },
+      {
+        "time_s": 33.76,
+        "strength": 0.4,
+        "phase": "Move pen"
+      },
+      {
+        "time_s": 35.26,
+        "strength": 0.2,
+        "phase": "Place pen"
+      },
+      {
+        "time_s": 35.6,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 36.6,
+        "strength": 0,
+        "phase": "Reach for blue stapler"
+      },
+      {
+        "time_s": 37.5,
+        "strength": 0.52,
+        "phase": "Grasp blue stapler"
+      },
+      {
+        "time_s": 38.32,
+        "strength": 0.65,
+        "phase": "Move blue stapler"
+      },
+      {
+        "time_s": 40.5,
+        "strength": 0.325,
+        "phase": "Place blue stapler"
+      },
+      {
+        "time_s": 41.2,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 41.9,
+        "strength": 0,
+        "phase": "Reach for pink item"
+      },
+      {
+        "time_s": 42.76,
+        "strength": 0.336,
+        "phase": "Grasp pink item"
+      },
+      {
+        "time_s": 43.5,
+        "strength": 0.42,
+        "phase": "Move pink item"
+      },
+      {
+        "time_s": 44.32,
+        "strength": 0.21,
+        "phase": "Place pink item"
+      },
+      {
+        "time_s": 44.98,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 45.7,
+        "strength": 0,
+        "phase": "Reach for white case"
+      },
+      {
+        "time_s": 46.54,
+        "strength": 0.384,
+        "phase": "Grasp white case"
+      },
+      {
+        "time_s": 47.26,
+        "strength": 0.48,
+        "phase": "Move white case"
+      },
+      {
+        "time_s": 48.78,
+        "strength": 0.24,
+        "phase": "Place white case"
+      },
+      {
+        "time_s": 49.12,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 50.2,
+        "strength": 0,
+        "phase": "Reach for remaining pens"
+      },
+      {
+        "time_s": 51.04,
+        "strength": 0.36000000000000004,
+        "phase": "Grasp remaining pens"
+      },
+      {
+        "time_s": 52.5,
+        "strength": 0.45,
+        "phase": "Move remaining pens"
+      },
+      {
+        "time_s": 54.78,
+        "strength": 0.225,
+        "phase": "Place remaining pens"
+      },
+      {
+        "time_s": 55.35,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 56.44273,
+        "strength": 0,
+        "phase": "No contact"
+      }
+    ],
+    "task": {
+      "main": "Transfer the small objects from the tray onto the table.",
+      "objects": "Tray \u00b7 tape roll \u00b7 stapler \u00b7 pens \u00b7 small cases, box and other handheld items",
+      "stages": [
+        {
+          "time_s": 0,
+          "name": "Prepare",
+          "interaction": "Both hands are open above the tray.",
+          "color": [
+            112,
+            125,
+            143
+          ]
+        },
+        {
+          "time_s": 1.6,
+          "name": "Transfer red tool",
+          "interaction": "Right hand takes the red tool from the tray and places it on the table.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 7.2,
+          "name": "Transfer tape roll",
+          "interaction": "Right hand takes the tape roll from the tray and places it on the table.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 12.6,
+          "name": "Transfer beige rectangular item",
+          "interaction": "Right hand takes the beige rectangular item from the tray and places it on the table.",
+          "color": [
+            204,
+            158,
+            68
+          ]
+        },
+        {
+          "time_s": 17.9,
+          "name": "Transfer boxed item",
+          "interaction": "Right hand takes the boxed item from the tray and places it on the table.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 22.6,
+          "name": "Transfer clear case",
+          "interaction": "Right hand takes the clear case from the tray and places it on the table.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 27.5,
+          "name": "Transfer green tube",
+          "interaction": "Right hand takes the green tube from the tray and places it on the table.",
+          "color": [
+            204,
+            158,
+            68
+          ]
+        },
+        {
+          "time_s": 32.0,
+          "name": "Transfer pen",
+          "interaction": "Right hand takes the pen from the tray and places it on the table.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 36.6,
+          "name": "Transfer blue stapler",
+          "interaction": "Right hand takes the blue stapler from the tray and places it on the table.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 41.9,
+          "name": "Transfer pink item",
+          "interaction": "Right hand takes the pink item from the tray and places it on the table.",
+          "color": [
+            204,
+            158,
+            68
+          ]
+        },
+        {
+          "time_s": 45.7,
+          "name": "Transfer white case",
+          "interaction": "Right hand takes the white case from the tray and places it on the table.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 50.2,
+          "name": "Transfer remaining pens",
+          "interaction": "Right hand takes the remaining pens from the tray and places it on the table.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 55.35,
+          "name": "Finished",
+          "interaction": "Objects are on the table; both hands open and lift clear.",
+          "color": [
+            112,
+            125,
+            143
+          ]
+        }
+      ]
+    },
+    "profile_sha256": "9e0c857f33d89732da17bd3fc0ed8c484054d0e0efbb7a69cd45195fe19895fe",
+    "units": "relative_0_100",
+    "measured": false,
+    "timeline": "Exact right-camera frame times plus a final endpoint hold",
+    "pose_modulated_frames": 1424,
+    "video_only_frames": 87
+  },
+  "data": {
+    "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rrd",
+    "sha256": "e578e17faa37161fcf38a23afe30f3778da63fa1f676ec8492572af93212a387"
+  },
+  "blueprint": {
+    "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rbl",
+    "sha256": "65f78c69f495341589f234b4ee31ee35451211ac3b9e641569c7f235e63b7147"
+  },
+  "flexion_csv": {
+    "path": "/rerun/episodes/20260911_155825/right-hand-flexion.csv",
+    "sha256": "5fecd81148d6c4b05a5434954c3699ad1c59bd08158568d39add150cc03f9bfb"
+  },
+  "pressure_csv": {
+    "path": "/rerun/episodes/20260911_155825/right-hand-pressure.csv",
+    "sha256": "87bcca2e5e493c0abb75681ddb3521e4f8a109cf0d78a00882bddaa825ee1352"
+  },
+  "pressure_samples": {
+    "path": "/rerun/episodes/20260911_155825/right-hand-pressure-samples.jsonl",
+    "sha256": "bfa9b2c00ae82e669c2de301a2674d01eb551b4182c6c525a6ddc2fabb1e9c32"
+  },
+  "dashboard": {
+    "layout_version": 2,
+    "head_height_entity": "replay_dashboard/head_height",
+    "head_height_source": "original_pose_y",
+    "head_height_sample_count": 4046,
+    "pose_sha256": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
+    "task_source": "reviewed_video_annotation",
+    "placeholders": [
+      "depth",
+      "gaussian_splat"
+    ],
+    "imu": {
+      "version": 1,
+      "episode_id": "20260911_155825",
+      "source": "head_pose_estimate",
+      "label": "ESTIMATED",
+      "entity": "replay_dashboard/imu",
+      "recording_id": "five_camera_20260911_155825_2b9ad72b4b9a",
+      "capture_start_ns": 1789113520058648000,
+      "duration_ns": 56442730000,
+      "source_sha256": {
+        "pose_samples.bin": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
+        "pose_schema.json": "6b39f314f28493289be173e3a657b1d16ad0d44eb4714fa44ba5a0c880f28a62",
+        "sync_manifest.json": "50ef0f0051465a7a56fe070c1d8929b1cab255c4a2d82ffc7ff339a7cfcf5c2e"
+      },
+      "sample_count": 4046,
+      "valid_sample_count": 4046,
+      "edge_sample_count": 18,
+      "discontinuity_count": 0,
+      "sample_rate_hz_median": 71.42857142857143,
+      "time_range_ns": [
+        3352000,
+        56436352000
+      ],
+      "frame": "Virtual IMU at the tracked head origin; right-handed +X right, +Y up, +Z back. Gyro uses the right-hand rule.",
+      "basis_conversion": "S=diag(1,1,-1); position'=S position, rotation'=S rotation S; quaternion'=(-qx,-qy,qz,qw).",
+      "accel": {
+        "unit": "m/s^2",
+        "quantity": "specific_force",
+        "formula": "R_head_to_world.T @ (d2p_world/dt2 - gravity_world)",
+        "gravity_world_m_s2": [
+          0.0,
+          -9.80665,
+          0.0
+        ]
+      },
+      "gyro": {
+        "unit": "rad/s",
+        "quantity": "body_angular_velocity",
+        "formula": "d/dt log(R(t_i).T @ R(t)) at t_i"
+      },
+      "filter": {
+        "method": "Local cubic least-squares on actual irregular timestamps and relative rotation vectors",
+        "window_s": 0.24,
+        "max_gap_s": 0.1,
+        "boundary": "One-sided/shifted recorded window, tagged edge_fit; no extrapolation or endpoint fill."
+      },
+      "assumptions": [
+        "Tracking world is gravity-aligned with +Y up.",
+        "Virtual IMU origin equals tracked head origin; physical sensor offset is unknown.",
+        "No added random noise, sensor bias, drift or vibration; high-frequency raw IMU cannot be recovered from fused pose.",
+        "Tracking-state flags are absent from the compact pose schema; numerical validity and jump/gap checks are used."
+      ],
+      "statistics": {
+        "accel_x": {
+          "min": -1.3212536762105445,
+          "max": 1.891417066137405
+        },
+        "accel_y": {
+          "min": 3.9055333231532927,
+          "max": 9.759860830495684
+        },
+        "accel_z": {
+          "min": 0.030935932016398188,
+          "max": 9.75934998077999
+        },
+        "gyro_x": {
+          "min": -0.9401187969718794,
+          "max": 1.1833869666880614
+        },
+        "gyro_y": {
+          "min": -0.866290632362923,
+          "max": 1.1380425926759785
+        },
+        "gyro_z": {
+          "min": -0.6819140509306015,
+          "max": 1.113984326539382
+        }
+      },
+      "references": [
+        "https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0145.rst",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html"
+      ],
+      "csv": {
+        "path": "/rerun/episodes/20260911_155825/head-imu-estimates.csv",
+        "sha256": "f4d2631d1d499dbd0c68f4ee730ab3ba3d2e80735141b0b29972d2ac602c5e2d"
+      },
+      "metadata": {
+        "path": "/rerun/episodes/20260911_155825/head-imu-estimates.json",
+        "sha256": "b58437a2474b1f44731577b3f6f0c0b24c40560f87c7e6c1d99cdbf632eb9b09"
+      }
+    },
+    "data": {
+      "path": "/rerun/episodes/20260911_155825/replay-dashboard.rrd",
+      "sha256": "aca4bfdd9a1db101f17a5991e439f799bf264cc5a1f5157a79ae1ac395f7487e"
+    },
+    "blueprint": {
+      "path": "/rerun/episodes/20260911_155825/replay-dashboard.rbl",
+      "sha256": "3f47e1947256808b38e515d2c627ec4f5fd3603959c5bf1602978c3582af7a14"
+    }
+  }
+}

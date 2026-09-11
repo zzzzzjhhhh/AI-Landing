@@ -7,6 +7,9 @@ import recordedFiveCameraImu from "../../../public/rerun/episodes/20260910_15352
 import foldingEpisode from "../../../public/rerun/episodes/20260910_161737/manifest.json";
 import foldingHands from "../../../public/rerun/episodes/20260910_161737/right-hand-pressure.json";
 import foldingImu from "../../../public/rerun/episodes/20260910_161737/head-imu-estimates.json";
+import objectTransfer from "../../../public/rerun/episodes/20260911_155825/manifest.json";
+import objectTransferHands from "../../../public/rerun/episodes/20260911_155825/right-hand-pressure.json";
+import objectTransferImu from "../../../public/rerun/episodes/20260911_155825/head-imu-estimates.json";
 import { glovePressureRecording, type HandRecording } from "./glove-pressure-recording";
 
 export interface SampleEpisode {
@@ -29,6 +32,21 @@ export interface SampleEpisode {
 }
 
 export const sampleEpisodes: readonly SampleEpisode[] = [
+  {
+    id: objectTransfer.episode_id,
+    label: "20260911 · 155825",
+    title: "Tabletop object transfer",
+    cameraLabel: "5 camera views",
+    durationLabel: `${objectTransfer.duration_seconds.toFixed(1)}s`,
+    recordingUrl: `${objectTransfer.recording.path}?v=${objectTransfer.recording.sha256.slice(0, 12)}`,
+    hands: objectTransferHands,
+    flexionTitle: "Right-hand flexion from recorded pose.",
+    flexionNote: "Original hand pose and episode camera calibration. Missing tracking is unavailable. Pressure follows reviewed object transfers and recorded finger bends: ESTIMATED, relative 0–100, not measured. VIDEO ONLY marks pressure without valid pose.",
+    pressureCsvUrl: `${objectTransferHands.pressure_csv.path}?v=${objectTransferHands.pressure_csv.sha256.slice(0, 12)}`,
+    imuNote: "Pose-derived accel and gyro estimates; the source hardware IMU stream is empty. Head-local axes: X right, Y up, Z back; accel is specific force in m/s² and gyro is in rad/s. Depth and Gaussian Splat are placeholders.",
+    imuCsvUrl: `${objectTransferImu.csv.path}?v=${objectTransferImu.csv.sha256.slice(0, 12)}`,
+    synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${objectTransfer.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,
+  },
   {
     id: foldingEpisode.episode_id,
     label: "20260910 · 161737",

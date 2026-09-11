@@ -32,13 +32,13 @@ def dashboard_blueprint(manifest: dict, head_entity: str, depth: dict | None = N
     video_flexion = "video_estimate" in manifest["flexion"]
     movement = rrb.Spatial3DView(
         origin=FLEXION, contents=["$origin/mesh/**", "$origin/status"],
-        name="Movement · VIDEO ESTIMATE" if video_flexion else "Movement · POSE",
+        name="Movement · VIDEO ESTIMATE" if video_flexion else "Movement",
         background=BACKGROUND, line_grid=False,
         eye_controls=rrb.EyeControls3D(position=[2.6, 1.1, 6.7], look_target=[-0.45, 0.4, 0.2], eye_up=[0, 1, 0]),
     )
     pressure = rrb.Spatial3DView(
         origin=PRESSURE, contents=["$origin/mesh/**", "$origin/pressure", "$origin/status", "$origin/legend"],
-        name="Pressure · ESTIMATED" if estimated else "Pressure · DEMO",
+        name="Pressure" if estimated else "Pressure · DEMO",
         background=BACKGROUND, line_grid=False,
         eye_controls=rrb.EyeControls3D(position=[-0.45, 0, 8.0] if estimated else [-0.45, 0.5, 6.5],
                                      look_target=[-0.45, 0 if estimated else 0.5, 0.2], eye_up=[0, 1, 0]),
@@ -62,10 +62,10 @@ def dashboard_blueprint(manifest: dict, head_entity: str, depth: dict | None = N
             column_shares=[1, 1],
         ),
         rrb.StateTimelineView(origin=f"{ROOT}/task_timeline", contents=[f"{ROOT}/task_timeline/Task"],
-                              name="Task timeline · VIDEO" if estimated else "Task timeline"),
+                              name="Task timeline"),
         row_shares=[0.58, 0.28, 0.14],
     )
-    depth_view = rrb.Spatial2DView(origin=f"{ROOT}/depth", name="Depth · ESTIMATED",
+    depth_view = rrb.Spatial2DView(origin=f"{ROOT}/depth", name="Depth",
         visual_bounds=rrb.VisualBounds2D(x_range=[0, depth["width"]], y_range=[0, depth["height"]])) if depth else placeholder("depth", "Depth")
     tiles = [depth_view, *cameras]
     camera_grid = rrb.Vertical(
@@ -80,20 +80,20 @@ def dashboard_blueprint(manifest: dict, head_entity: str, depth: dict | None = N
                                                   end=rrb.TimeRangeBoundary.absolute(seconds=duration)), zoom_lock=True),
     )
     if imu:
-        def imu_plot(kind, unit):
+        def imu_plot(kind):
             values = [imu["statistics"][f"{kind}_{axis}"] for axis in "xyz"]
             low = min(0, min(value["min"] for value in values))
             high = max(0, max(value["max"] for value in values))
             pad = max((high - low) * 0.08, 0.2)
             return rrb.TimeSeriesView(
-                origin=f'{imu["entity"]}/{kind}', name=f"IMU {kind} · EST · {unit}",
-                plot_legend=rrb.PlotLegend(corner="LeftTop", visible=True),
+                origin=f'{imu["entity"]}/{kind}', name=f"IMU {kind}",
+                plot_legend=rrb.PlotLegend(visible=False),
                 background=rrb.archetypes.PlotBackground(color=BACKGROUND, show_grid=True),
                 axis_x=rrb.TimeAxis(view_range=rr.TimeRange(start=rrb.TimeRangeBoundary.absolute(seconds=0),
                     end=rrb.TimeRangeBoundary.absolute(seconds=duration)), zoom_lock=True),
                 axis_y=rrb.ScalarAxis(range=[low - pad, high + pad], zoom_lock=True),
             )
-        head = rrb.Vertical(imu_plot("accel", "m/s²"), imu_plot("gyro", "rad/s"), row_shares=[1, 1])
+        head = rrb.Vertical(imu_plot("accel"), imu_plot("gyro"), row_shares=[1, 1])
     right = rrb.Vertical(
         camera_grid,
         rrb.Horizontal(placeholder("gaussian", "Gaussian Splat"), head, column_shares=[1, 1.8]),
@@ -275,11 +275,11 @@ def build_dashboard(output: Path, raw: Path | None = None, with_head_imu: bool =
                 ], columns=rr.Scalars.columns(scalars=imu_values[:, i]))
             recording.log(f'{imu["entity"]}/provenance', rr.TextDocument(json.dumps(imu)), static=True)
         static_text = {
-            "main": "Fill a cup and place it in the microwave.\n\nVideo annotation." if annotated else "Recorded task clip.\n\nTask annotations unavailable.",
-            "objects": "Glass cup · kettle · microwave\nVideo annotation." if annotated else "Object annotations unavailable.",
+            "main": "Fill a cup and place it in the microwave." if annotated else "Recorded task clip.\n\nTask annotations unavailable.",
+            "objects": "Glass cup · kettle · microwave" if annotated else "Object annotations unavailable.",
         }
         if task:
-            static_text = {"main": task["main"] + "\n\nVideo annotation.", "objects": task["objects"] + "\nVideo annotation."}
+            static_text = {"main": task["main"], "objects": task["objects"]}
         for name, value in static_text.items():
             recording.log(f"{ROOT}/task/{name}", rr.TextDocument(value), static=True)
         if annotated:

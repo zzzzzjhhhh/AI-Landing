@@ -42,7 +42,7 @@ def pressure_blueprint(camera_dimensions: dict[str, tuple[int, int]], video_esti
                 rrb.Spatial3DView(
                     origin=ENTITY,
                     contents=["$origin/mesh/**", "$origin/pressure", "$origin/status", "$origin/legend"],
-                    name="Right pressure · ESTIMATED" if estimated_pressure else "Right hand pressure · DEMO",
+                    name="Right pressure" if estimated_pressure else "Right hand pressure · DEMO",
                     background=[9, 11, 16],
                     line_grid=False,
                     eye_controls=rrb.archetypes.EyeControls3D(
@@ -223,10 +223,9 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
                 ))
                 if pressure_metadata:
                     estimate = item["estimate"]
-                    evidence = "VIDEO + POSE" if estimate["source"] == "video_contact_and_recorded_pose" else "VIDEO ONLY"
                     recording.log(f"{ENTITY}/status", rr.Points3D(
                         [[-0.45, -2.65, 0.9]], radii=0, colors=[180, 213, 222, 255],
-                        labels=[f"{estimate['phase']} · {estimate['peak']:.0f}/100\n{evidence}"], show_labels=True,
+                        labels=[f"{estimate['phase']} · {estimate['peak']:.0f}/100"], show_labels=True,
                     ))
                     for region, level in estimate["levels"].items():
                         recording.log(f"{ENTITY}/relative/{region}", rr.Scalars(level))

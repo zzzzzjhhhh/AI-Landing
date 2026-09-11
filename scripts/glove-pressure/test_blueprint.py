@@ -24,10 +24,10 @@ class PressureBlueprintTests(unittest.TestCase):
         self.assertTrue(all("visual_bounds" in call.kwargs for call in view.call_args_list))
         self.assertEqual(horizontal.call_args_list[0].kwargs["column_shares"], [1, 1])
 
-    def test_estimated_pressure_is_labeled_and_includes_evidence_and_scale(self):
+    def test_pressure_view_preserves_status_and_scale_with_minimal_title(self):
         with patch.object(pressure.rrb, "Spatial3DView") as view, patch.object(pressure.rrb, "Horizontal"), patch.object(pressure.rrb, "Vertical"), patch.object(pressure.rrb, "Blueprint"):
             pressure.pressure_blueprint({"left": (960, 720), "right": (960, 720)}, estimated_pressure=True)
-        self.assertEqual(view.call_args_list[0].kwargs["name"], "Right pressure · ESTIMATED")
+        self.assertEqual(view.call_args_list[0].kwargs["name"], "Right pressure")
         self.assertIn("$origin/status", view.call_args_list[0].kwargs["contents"])
         self.assertIn("$origin/legend", view.call_args_list[0].kwargs["contents"])
         self.assertEqual(view.call_args_list[1].kwargs["name"], "Right hand flexion · POSE")

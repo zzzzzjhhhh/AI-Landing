@@ -1,0 +1,1150 @@
+{
+  "uniform": {
+    "source": "/Users/zzj/Downloads/5camEp/20260911_155825/task_clip",
+    "video_root": "/Users/zzj/Downloads/5camEp/20260911_155825/task_clip",
+    "duration_s": 56.44273,
+    "selection": "first actual exposure at or after each requested time; final exposure if no later frame exists",
+    "requested_times_s": [
+      0.0,
+      0.75,
+      1.5,
+      2.25,
+      3.0,
+      3.75,
+      4.5,
+      5.25,
+      6.0,
+      6.75,
+      7.5,
+      8.25,
+      9.0,
+      9.75,
+      10.5,
+      11.25,
+      12.0,
+      12.75,
+      13.5,
+      14.25,
+      15.0,
+      15.75,
+      16.5,
+      17.25,
+      18.0,
+      18.75,
+      19.5,
+      20.25,
+      21.0,
+      21.75,
+      22.5,
+      23.25,
+      24.0,
+      24.75,
+      25.5,
+      26.25,
+      27.0,
+      27.75,
+      28.5,
+      29.25,
+      30.0,
+      30.75,
+      31.5,
+      32.25,
+      33.0,
+      33.75,
+      34.5,
+      35.25,
+      36.0,
+      36.75,
+      37.5,
+      38.25,
+      39.0,
+      39.75,
+      40.5,
+      41.25,
+      42.0,
+      42.75,
+      43.5,
+      44.25,
+      45.0,
+      45.75,
+      46.5,
+      47.25,
+      48.0,
+      48.75,
+      49.5,
+      50.25,
+      51.0,
+      51.75,
+      52.5,
+      53.25,
+      54.0,
+      54.75,
+      55.5,
+      56.25
+    ],
+    "automatic_action_detection": false,
+    "cameras": {
+      "right_camera": {
+        "video_sha256": "bd371e45871dfbfc127c3e42c0fc3d6d5c5d8fa198a808abf2cdd82c1ebf495a",
+        "timestamps_sha256": "567da92f5de9c3c3d5cf73059dcc6d41d1630df1b9aee8c13a5654fb0c00cd09",
+        "frames": [
+          {
+            "frame_index": 0,
+            "time_us": 0,
+            "requested_times_s": [
+              0.0
+            ],
+            "image": "right_camera-00000-0.000000.jpg",
+            "sha256": "b00fec048ffa32ecb8670ff33c002651a8860f8f1deb0d2f67fb612bb41f36c0"
+          },
+          {
+            "frame_index": 21,
+            "time_us": 780041,
+            "requested_times_s": [
+              0.75
+            ],
+            "image": "right_camera-00021-0.780041.jpg",
+            "sha256": "7e3545afbea8502f4edd40e58968bcb47be680ca3860f69710337ac5de899c70"
+          },
+          {
+            "frame_index": 41,
+            "time_us": 1500074,
+            "requested_times_s": [
+              1.5
+            ],
+            "image": "right_camera-00041-1.500074.jpg",
+            "sha256": "baa869815d9bde69a96ac2af2abe18265181af8b666d44060389f2255ecc90c4"
+          },
+          {
+            "frame_index": 61,
+            "time_us": 2280111,
+            "requested_times_s": [
+              2.25
+            ],
+            "image": "right_camera-00061-2.280111.jpg",
+            "sha256": "8b6ba7708c5de7b703711be20e3eab73c67d7313c875d23d3b5aaef8e6a93d2a"
+          },
+          {
+            "frame_index": 80,
+            "time_us": 3000148,
+            "requested_times_s": [
+              3.0
+            ],
+            "image": "right_camera-00080-3.000148.jpg",
+            "sha256": "36881f1258ddb820fad51a52f3634e1aea87a1f37a3abbc367ed68739437dd1f"
+          },
+          {
+            "frame_index": 101,
+            "time_us": 3760185,
+            "requested_times_s": [
+              3.75
+            ],
+            "image": "right_camera-00101-3.760185.jpg",
+            "sha256": "bb30b430df8d04747f7b62dd62e9942aab6c7f11e79c4456be26952725c4c6a6"
+          },
+          {
+            "frame_index": 121,
+            "time_us": 4500217,
+            "requested_times_s": [
+              4.5
+            ],
+            "image": "right_camera-00121-4.500217.jpg",
+            "sha256": "9f39ee31d892bdaeafa23605059b30d1f2139999e79e6df9762d5da81c686972"
+          },
+          {
+            "frame_index": 141,
+            "time_us": 5260254,
+            "requested_times_s": [
+              5.25
+            ],
+            "image": "right_camera-00141-5.260254.jpg",
+            "sha256": "28172c1ea0602a70b13c70b885aeef5f050e1ef676fee3e8f37e13c16b2e3f58"
+          },
+          {
+            "frame_index": 161,
+            "time_us": 6020291,
+            "requested_times_s": [
+              6.0
+            ],
+            "image": "right_camera-00161-6.020291.jpg",
+            "sha256": "8389337c64a0a610411bdec893b3d0f37598436e86988979ed784d84f323b2f1"
+          },
+          {
+            "frame_index": 181,
+            "time_us": 6780329,
+            "requested_times_s": [
+              6.75
+            ],
+            "image": "right_camera-00181-6.780329.jpg",
+            "sha256": "0f92ff51f28230d6817b20d12744706dbc20c0beaf73b28696d0f6e5c4cf4ebf"
+          },
+          {
+            "frame_index": 202,
+            "time_us": 7500361,
+            "requested_times_s": [
+              7.5
+            ],
+            "image": "right_camera-00202-7.500361.jpg",
+            "sha256": "d2522e719d5a3a2ab9ee57770d5c6f951cd43604d83d7efefade77ca8809db92"
+          },
+          {
+            "frame_index": 222,
+            "time_us": 8280402,
+            "requested_times_s": [
+              8.25
+            ],
+            "image": "right_camera-00222-8.280402.jpg",
+            "sha256": "26f15322468e1642038f77b6b95b4f902f36aa20d2756b80c7a27d5899efb527"
+          },
+          {
+            "frame_index": 241,
+            "time_us": 9000435,
+            "requested_times_s": [
+              9.0
+            ],
+            "image": "right_camera-00241-9.000435.jpg",
+            "sha256": "2a963fbf460519937f37fe8544984710f94620b6c3e6cb61ed00061e544a3874"
+          },
+          {
+            "frame_index": 262,
+            "time_us": 9780472,
+            "requested_times_s": [
+              9.75
+            ],
+            "image": "right_camera-00262-9.780472.jpg",
+            "sha256": "dd0ee0338670216f40377e59a9906b50901e4c897a2bee24c95a7c057e58631e"
+          },
+          {
+            "frame_index": 282,
+            "time_us": 10500509,
+            "requested_times_s": [
+              10.5
+            ],
+            "image": "right_camera-00282-10.500509.jpg",
+            "sha256": "0e121652518dc10c77f453493323f8140dbdf9f7a0cefb4fd2d626da2e34857c"
+          },
+          {
+            "frame_index": 303,
+            "time_us": 11280546,
+            "requested_times_s": [
+              11.25
+            ],
+            "image": "right_camera-00303-11.280546.jpg",
+            "sha256": "55554f3d327c3417aef97243b3d346d648f8b5df8c3164e76cba25036754fc4c"
+          },
+          {
+            "frame_index": 322,
+            "time_us": 12000579,
+            "requested_times_s": [
+              12.0
+            ],
+            "image": "right_camera-00322-12.000579.jpg",
+            "sha256": "5c3ae2afb25c33f55698ea209c5737425185a7f20386c9dfec1b81c0b2e56b78"
+          },
+          {
+            "frame_index": 343,
+            "time_us": 12780620,
+            "requested_times_s": [
+              12.75
+            ],
+            "image": "right_camera-00343-12.780620.jpg",
+            "sha256": "c3495ca61cb856e8a6c259e2f2d62522c7556a477ab450e3ca7dd8f5e9b0ac75"
+          },
+          {
+            "frame_index": 364,
+            "time_us": 13520652,
+            "requested_times_s": [
+              13.5
+            ],
+            "image": "right_camera-00364-13.520652.jpg",
+            "sha256": "b7ca0f98c3cdba480d59cc5107832d7db2fd7d2d59578710778f7aba2eadb0aa"
+          },
+          {
+            "frame_index": 384,
+            "time_us": 14280690,
+            "requested_times_s": [
+              14.25
+            ],
+            "image": "right_camera-00384-14.280690.jpg",
+            "sha256": "05719307c3e289a011f98c7a165e6b9d7a5bddcad5e242c6a1e1316d7ec85cfd"
+          },
+          {
+            "frame_index": 403,
+            "time_us": 15000726,
+            "requested_times_s": [
+              15.0
+            ],
+            "image": "right_camera-00403-15.000726.jpg",
+            "sha256": "419eec74c07157ddca2e9ff3364384b2e03782b001ece4c2d7ab21f74865f303"
+          },
+          {
+            "frame_index": 423,
+            "time_us": 15780763,
+            "requested_times_s": [
+              15.75
+            ],
+            "image": "right_camera-00423-15.780763.jpg",
+            "sha256": "01c845b6089154f679d8b32b4fd9fb6db4cc6ecbc3ce69752638b3b0ed9dd205"
+          },
+          {
+            "frame_index": 443,
+            "time_us": 16500796,
+            "requested_times_s": [
+              16.5
+            ],
+            "image": "right_camera-00443-16.500796.jpg",
+            "sha256": "126ef60334246a88ff3ca7328e13af20569cc9cea7e260141ada0259b989ab7f"
+          },
+          {
+            "frame_index": 464,
+            "time_us": 17260833,
+            "requested_times_s": [
+              17.25
+            ],
+            "image": "right_camera-00464-17.260833.jpg",
+            "sha256": "7c6f761e343146f6cd3ad2e09f1aa1a45e6901e5ba6fe895daf03294874ee866"
+          },
+          {
+            "frame_index": 482,
+            "time_us": 18000870,
+            "requested_times_s": [
+              18.0
+            ],
+            "image": "right_camera-00482-18.000870.jpg",
+            "sha256": "825ff1da3be08c14edd8ab0b220d014b43d8a00c50a43bbda75f691632d77f71"
+          },
+          {
+            "frame_index": 504,
+            "time_us": 18780907,
+            "requested_times_s": [
+              18.75
+            ],
+            "image": "right_camera-00504-18.780907.jpg",
+            "sha256": "5188b9c6a172ebd43231914fb143d8a49df48fbc13795428b819da002c131769"
+          },
+          {
+            "frame_index": 524,
+            "time_us": 19500944,
+            "requested_times_s": [
+              19.5
+            ],
+            "image": "right_camera-00524-19.500944.jpg",
+            "sha256": "9bc446ae67ae72b949ae8815ca8351e534678eac10830443f8ca151fcc9aedda"
+          },
+          {
+            "frame_index": 544,
+            "time_us": 20280981,
+            "requested_times_s": [
+              20.25
+            ],
+            "image": "right_camera-00544-20.280981.jpg",
+            "sha256": "586084cf259d6a7cbb6296613250b997ae40b3effba90c2eb459584b9af95cd2"
+          },
+          {
+            "frame_index": 564,
+            "time_us": 21001013,
+            "requested_times_s": [
+              21.0
+            ],
+            "image": "right_camera-00564-21.001013.jpg",
+            "sha256": "f83752e66526d608cefd301beff7fd66caa6c7f0e349e61a9ff106c7ef8d3ea6"
+          },
+          {
+            "frame_index": 585,
+            "time_us": 21761050,
+            "requested_times_s": [
+              21.75
+            ],
+            "image": "right_camera-00585-21.761050.jpg",
+            "sha256": "d889423abd4d67e1679c40c0d1272e1ac42180702759d24c0b89d6010db267ab"
+          },
+          {
+            "frame_index": 605,
+            "time_us": 22501087,
+            "requested_times_s": [
+              22.5
+            ],
+            "image": "right_camera-00605-22.501087.jpg",
+            "sha256": "8c6455b1343fbfef5292134aef9b087da3c708422035415ae76f90e52074f646"
+          },
+          {
+            "frame_index": 626,
+            "time_us": 23281124,
+            "requested_times_s": [
+              23.25
+            ],
+            "image": "right_camera-00626-23.281124.jpg",
+            "sha256": "9bbbcbe24ec8840ebfecc2ca8c121a4f5ff544a2e81431af00f704833a4490ad"
+          },
+          {
+            "frame_index": 646,
+            "time_us": 24021161,
+            "requested_times_s": [
+              24.0
+            ],
+            "image": "right_camera-00646-24.021161.jpg",
+            "sha256": "3778e2c3f8014f6fdea963cf82c0c8a83a229c1e64a00214e387fda3a9fbe24a"
+          },
+          {
+            "frame_index": 666,
+            "time_us": 24781198,
+            "requested_times_s": [
+              24.75
+            ],
+            "image": "right_camera-00666-24.781198.jpg",
+            "sha256": "d29ae2f65432382c3070df542f163e7a2bd3d2825442940a571b8c68202e613b"
+          },
+          {
+            "frame_index": 686,
+            "time_us": 25521231,
+            "requested_times_s": [
+              25.5
+            ],
+            "image": "right_camera-00686-25.521231.jpg",
+            "sha256": "92375988e8d987b2bf69f4c5bb24696ef1afe5d82925c032ba9fa22dbeb1eb20"
+          },
+          {
+            "frame_index": 706,
+            "time_us": 26281268,
+            "requested_times_s": [
+              26.25
+            ],
+            "image": "right_camera-00706-26.281268.jpg",
+            "sha256": "3abdeb896d645a43c31765eb7bee1db05c095c0c38ad577335add28959e081ce"
+          },
+          {
+            "frame_index": 725,
+            "time_us": 27001305,
+            "requested_times_s": [
+              27.0
+            ],
+            "image": "right_camera-00725-27.001305.jpg",
+            "sha256": "86859c7347a1b000aa600b975e19aca6c0b6bf9517ea3104af9d90a2fd95e6f9"
+          },
+          {
+            "frame_index": 745,
+            "time_us": 27761342,
+            "requested_times_s": [
+              27.75
+            ],
+            "image": "right_camera-00745-27.761342.jpg",
+            "sha256": "7787325b5a365e9a87288cbd0c7b3a71614f5b6685f29d715b1f91fc6698dcea"
+          },
+          {
+            "frame_index": 764,
+            "time_us": 28501379,
+            "requested_times_s": [
+              28.5
+            ],
+            "image": "right_camera-00764-28.501379.jpg",
+            "sha256": "9eb082596f5a70afa8307cbbe77a8c230c4a8de6a7d12162bc94bf24ad60266a"
+          },
+          {
+            "frame_index": 787,
+            "time_us": 29281416,
+            "requested_times_s": [
+              29.25
+            ],
+            "image": "right_camera-00787-29.281416.jpg",
+            "sha256": "88daa30c2326cac6c6e52f8f5e80a6ac6e84b0fea639b3bd19194a3849db63f0"
+          },
+          {
+            "frame_index": 806,
+            "time_us": 30001448,
+            "requested_times_s": [
+              30.0
+            ],
+            "image": "right_camera-00806-30.001448.jpg",
+            "sha256": "132937f3341c6e456e4798499bb07ae001a4a2316e07693a4583d8119a74697b"
+          },
+          {
+            "frame_index": 826,
+            "time_us": 30781485,
+            "requested_times_s": [
+              30.75
+            ],
+            "image": "right_camera-00826-30.781485.jpg",
+            "sha256": "32bdc88fdd7d79723c507e4ac63a2a711441e8ad58b204048a5956928deac328"
+          },
+          {
+            "frame_index": 845,
+            "time_us": 31501522,
+            "requested_times_s": [
+              31.5
+            ],
+            "image": "right_camera-00845-31.501522.jpg",
+            "sha256": "1852c8d0acab75aee8bf2b94306fd123b4cdd316a6d480f60cea7add96d3b6a3"
+          },
+          {
+            "frame_index": 866,
+            "time_us": 32281559,
+            "requested_times_s": [
+              32.25
+            ],
+            "image": "right_camera-00866-32.281559.jpg",
+            "sha256": "6fafba75d8ffb155d544d8a1e0eb410d7ef730b7cd2745184c40dc877f79cda0"
+          },
+          {
+            "frame_index": 886,
+            "time_us": 33021596,
+            "requested_times_s": [
+              33.0
+            ],
+            "image": "right_camera-00886-33.021596.jpg",
+            "sha256": "54567d2446781e2adceee4f4a37f81ce86da3239c5f49b82bc37f89f8776c54b"
+          },
+          {
+            "frame_index": 905,
+            "time_us": 33761633,
+            "requested_times_s": [
+              33.75
+            ],
+            "image": "right_camera-00905-33.761633.jpg",
+            "sha256": "f7357043ecf228fc41f2627ad627ac2c2fa7da3c0d5d1e7f8dd18ec6b986a086"
+          },
+          {
+            "frame_index": 923,
+            "time_us": 34501666,
+            "requested_times_s": [
+              34.5
+            ],
+            "image": "right_camera-00923-34.501666.jpg",
+            "sha256": "bb6fdd9712c00dd8d0f805ca74a5b8b1dece189d9060b5ba6a075b548f9e92c6"
+          },
+          {
+            "frame_index": 944,
+            "time_us": 35261703,
+            "requested_times_s": [
+              35.25
+            ],
+            "image": "right_camera-00944-35.261703.jpg",
+            "sha256": "ddd564a646d3afc37aeee8cb3cc78a5e44b2fca889dc5c1138e65d1206e60bcb"
+          },
+          {
+            "frame_index": 963,
+            "time_us": 36001740,
+            "requested_times_s": [
+              36.0
+            ],
+            "image": "right_camera-00963-36.001740.jpg",
+            "sha256": "c04c70ddb21399dd78f1e1ce018c001fe1c433b1656b96872c0c191cfe769f6f"
+          },
+          {
+            "frame_index": 985,
+            "time_us": 36781777,
+            "requested_times_s": [
+              36.75
+            ],
+            "image": "right_camera-00985-36.781777.jpg",
+            "sha256": "39668b8a2274994abf741990f49ca4f4e94357c3e6e57a657391ccaa5cd3085d"
+          },
+          {
+            "frame_index": 1004,
+            "time_us": 37501814,
+            "requested_times_s": [
+              37.5
+            ],
+            "image": "right_camera-01004-37.501814.jpg",
+            "sha256": "14973710fcd5a8c146648526b4b200864fc60a60ce3f8a33b8b58b342ced8466"
+          },
+          {
+            "frame_index": 1025,
+            "time_us": 38321851,
+            "requested_times_s": [
+              38.25
+            ],
+            "image": "right_camera-01025-38.321851.jpg",
+            "sha256": "293c8878f500713f8cad99276cf40b0fac86f306f4cddb8c26bc44db1d31ce53"
+          },
+          {
+            "frame_index": 1045,
+            "time_us": 39001883,
+            "requested_times_s": [
+              39.0
+            ],
+            "image": "right_camera-01045-39.001883.jpg",
+            "sha256": "3cfdae8e17b3eb21d3a12ef3e9a17dbc01fad3a7cfc0148b716bd120a8ea8583"
+          },
+          {
+            "frame_index": 1065,
+            "time_us": 39761920,
+            "requested_times_s": [
+              39.75
+            ],
+            "image": "right_camera-01065-39.761920.jpg",
+            "sha256": "f0dd7877abdfbe46106773180f8a084298c51730144856875c77ffce0e20381c"
+          },
+          {
+            "frame_index": 1086,
+            "time_us": 40501957,
+            "requested_times_s": [
+              40.5
+            ],
+            "image": "right_camera-01086-40.501957.jpg",
+            "sha256": "0a78632b4e810cdb3876b53589e103495d98449bd65600e45a43cec36038a156"
+          },
+          {
+            "frame_index": 1106,
+            "time_us": 41261994,
+            "requested_times_s": [
+              41.25
+            ],
+            "image": "right_camera-01106-41.261994.jpg",
+            "sha256": "28b57ce8f9c657f867e829e5b86a98f6be1cbb17d1712655facc30c06c9742bc"
+          },
+          {
+            "frame_index": 1125,
+            "time_us": 42002031,
+            "requested_times_s": [
+              42.0
+            ],
+            "image": "right_camera-01125-42.002031.jpg",
+            "sha256": "8e44697e1040681008cee347f288cfd79454d2a9ff5a868881c7d3759cb1bee9"
+          },
+          {
+            "frame_index": 1147,
+            "time_us": 42762068,
+            "requested_times_s": [
+              42.75
+            ],
+            "image": "right_camera-01147-42.762068.jpg",
+            "sha256": "744cb929b22a16bb58600a7a2ff8211a3d8d8773238234969845d1ca1872ce82"
+          },
+          {
+            "frame_index": 1166,
+            "time_us": 43502101,
+            "requested_times_s": [
+              43.5
+            ],
+            "image": "right_camera-01166-43.502101.jpg",
+            "sha256": "8f8335c54916dcb1a6c6adddc1af1665790e86d64fbbb24b1c7d25dbaf03c89e"
+          },
+          {
+            "frame_index": 1186,
+            "time_us": 44322142,
+            "requested_times_s": [
+              44.25
+            ],
+            "image": "right_camera-01186-44.322142.jpg",
+            "sha256": "8cf1cae8d2a8f147ac96e4408d18d142526084e10c5e58e1dfe8b87b5dbdd088"
+          },
+          {
+            "frame_index": 1205,
+            "time_us": 45002175,
+            "requested_times_s": [
+              45.0
+            ],
+            "image": "right_camera-01205-45.002175.jpg",
+            "sha256": "1f6f6b4c719835985f319a02c3ad12a0234eeeeafe7cf9836d1aa0ef70942afc"
+          },
+          {
+            "frame_index": 1225,
+            "time_us": 45782212,
+            "requested_times_s": [
+              45.75
+            ],
+            "image": "right_camera-01225-45.782212.jpg",
+            "sha256": "1dbc4b8313c6cbc5f1c12c940c78d866336321d2dc27cf59d6b72751f1e8d1b9"
+          },
+          {
+            "frame_index": 1246,
+            "time_us": 46542249,
+            "requested_times_s": [
+              46.5
+            ],
+            "image": "right_camera-01246-46.542249.jpg",
+            "sha256": "f9d0fc1e53bf64a1fd7560cdc82fa168c09d8e022ce5ec036fa2fba6230efd9f"
+          },
+          {
+            "frame_index": 1266,
+            "time_us": 47262286,
+            "requested_times_s": [
+              47.25
+            ],
+            "image": "right_camera-01266-47.262286.jpg",
+            "sha256": "d0602a2ebcba9c19fb8044d16b39bd0899e76b89e62af94a9be6af82add2cd19"
+          },
+          {
+            "frame_index": 1285,
+            "time_us": 48002323,
+            "requested_times_s": [
+              48.0
+            ],
+            "image": "right_camera-01285-48.002323.jpg",
+            "sha256": "19fcf2989b503a2184e87ff667f6dc5085c065a33491c8d5bfb72f202702161e"
+          },
+          {
+            "frame_index": 1307,
+            "time_us": 48782360,
+            "requested_times_s": [
+              48.75
+            ],
+            "image": "right_camera-01307-48.782360.jpg",
+            "sha256": "b71123d4346cedadd393dd0ad96748356df076868e2043fee02181aad2c2c8f4"
+          },
+          {
+            "frame_index": 1325,
+            "time_us": 49502392,
+            "requested_times_s": [
+              49.5
+            ],
+            "image": "right_camera-01325-49.502392.jpg",
+            "sha256": "c9cb23e853ea113550cf04616bf50f894734270258817bbb34a8ff1b86362aa0"
+          },
+          {
+            "frame_index": 1347,
+            "time_us": 50322434,
+            "requested_times_s": [
+              50.25
+            ],
+            "image": "right_camera-01347-50.322434.jpg",
+            "sha256": "da56f5e21b7b162378deb78fb5689cf660bd4866a0e5bc18feacd078a1d6001e"
+          },
+          {
+            "frame_index": 1365,
+            "time_us": 51042466,
+            "requested_times_s": [
+              51.0
+            ],
+            "image": "right_camera-01365-51.042466.jpg",
+            "sha256": "1166ed5298ca37ac4997fce32bba2416cad88cd111b6a2b06586cf48dd74114e"
+          },
+          {
+            "frame_index": 1385,
+            "time_us": 51782503,
+            "requested_times_s": [
+              51.75
+            ],
+            "image": "right_camera-01385-51.782503.jpg",
+            "sha256": "33a831392c4db4a97ac4834a74e11d8c97f990547da8f3257bbdaf41e0d6b68f"
+          },
+          {
+            "frame_index": 1405,
+            "time_us": 52502540,
+            "requested_times_s": [
+              52.5
+            ],
+            "image": "right_camera-01405-52.502540.jpg",
+            "sha256": "429b4f595408d048a1bd83fd1db0acb740d0c153c4bfb39dfaccc881fff8714e"
+          },
+          {
+            "frame_index": 1427,
+            "time_us": 53322577,
+            "requested_times_s": [
+              53.25
+            ],
+            "image": "right_camera-01427-53.322577.jpg",
+            "sha256": "5ec2aded91a18589b0945924b6c69e9c2bf73bfeff2fd230dca9abf7214c7707"
+          },
+          {
+            "frame_index": 1447,
+            "time_us": 54002610,
+            "requested_times_s": [
+              54.0
+            ],
+            "image": "right_camera-01447-54.002610.jpg",
+            "sha256": "8bcbbc4d01ca8705dba7bfa7e32ec485bd5c4ab1662d0caea3b40b6a6333f49e"
+          },
+          {
+            "frame_index": 1468,
+            "time_us": 54782651,
+            "requested_times_s": [
+              54.75
+            ],
+            "image": "right_camera-01468-54.782651.jpg",
+            "sha256": "2acfa6384b74f028104f038358fb6eda3afc9d54ce1f5643c6a8b1c80f6f6694"
+          },
+          {
+            "frame_index": 1487,
+            "time_us": 55502684,
+            "requested_times_s": [
+              55.5
+            ],
+            "image": "right_camera-01487-55.502684.jpg",
+            "sha256": "8af60cee73c955904e1671847fd4a5fed9bd9f6f73a26e168650e09e88c7afde"
+          },
+          {
+            "frame_index": 1507,
+            "time_us": 56282721,
+            "requested_times_s": [
+              56.25
+            ],
+            "image": "right_camera-01507-56.282721.jpg",
+            "sha256": "9d15c196889254662c5cac85ab275e1aa03820a3af6487c0690154398701955f"
+          }
+        ],
+        "sheets": [
+          "right_camera-sheet-00.jpg",
+          "right_camera-sheet-01.jpg",
+          "right_camera-sheet-02.jpg",
+          "right_camera-sheet-03.jpg",
+          "right_camera-sheet-04.jpg",
+          "right_camera-sheet-05.jpg",
+          "right_camera-sheet-06.jpg"
+        ]
+      }
+    }
+  },
+  "details": {
+    "source": "/Users/zzj/Downloads/5camEp/20260911_155825/task_clip",
+    "video_root": "/tmp/rerun-20260911-155825/videos",
+    "duration_s": 56.44273,
+    "selection": "first actual exposure at or after each requested time; final exposure if no later frame exists",
+    "requested_times_s": [
+      1.8,
+      6.3,
+      6.5,
+      7.2,
+      11.4,
+      11.7,
+      12.4,
+      16.8,
+      17.1,
+      17.5,
+      21.3,
+      21.5,
+      22.2,
+      26.5,
+      26.8,
+      27.5,
+      31.1,
+      31.4,
+      32.0,
+      35.6,
+      36.0,
+      36.6,
+      40.8,
+      41.0,
+      41.7,
+      44.7,
+      45.0,
+      45.7,
+      49.1,
+      49.4,
+      50.2,
+      54.8,
+      55.1,
+      55.4
+    ],
+    "automatic_action_detection": false,
+    "cameras": {
+      "right_camera": {
+        "video_sha256": "19493ed2f253a9e395a99f657d1673efaadae0f7903d03c76469d368ae80df41",
+        "timestamps_sha256": "567da92f5de9c3c3d5cf73059dcc6d41d1630df1b9aee8c13a5654fb0c00cd09",
+        "frames": [
+          {
+            "frame_index": 49,
+            "time_us": 1820088,
+            "requested_times_s": [
+              1.8
+            ],
+            "image": "right_camera-00049-1.820088.jpg",
+            "sha256": "578ad970cd6deaf726c8e643a386d337ea3337f3670c865d5c7c4eb3205ba05c"
+          },
+          {
+            "frame_index": 169,
+            "time_us": 6300305,
+            "requested_times_s": [
+              6.3
+            ],
+            "image": "right_camera-00169-6.300305.jpg",
+            "sha256": "c82837a37f99a03edc31b13f39f86efab22d73fbb568131098f5ac9dbb350ba9"
+          },
+          {
+            "frame_index": 173,
+            "time_us": 6500315,
+            "requested_times_s": [
+              6.5
+            ],
+            "image": "right_camera-00173-6.500315.jpg",
+            "sha256": "a7abff238b8093e77dfc3451471f999053c53be67355ceef02ef8e872c70f0f3"
+          },
+          {
+            "frame_index": 193,
+            "time_us": 7200347,
+            "requested_times_s": [
+              7.2
+            ],
+            "image": "right_camera-00193-7.200347.jpg",
+            "sha256": "450c31ba5eee4fe2be2168a7a25fa5f9494cd2bad0a2f137cf32e442789ab275"
+          },
+          {
+            "frame_index": 306,
+            "time_us": 11400551,
+            "requested_times_s": [
+              11.4
+            ],
+            "image": "right_camera-00306-11.400551.jpg",
+            "sha256": "7823aa2b63308c311ad089dccea978fbe64f744f5f3cb768c3aa0931fae5edf8"
+          },
+          {
+            "frame_index": 315,
+            "time_us": 11720565,
+            "requested_times_s": [
+              11.7
+            ],
+            "image": "right_camera-00315-11.720565.jpg",
+            "sha256": "f778bebc757d1775f9b3570bfc5e9ff775efb46f4507967441086226c4db929c"
+          },
+          {
+            "frame_index": 333,
+            "time_us": 12420601,
+            "requested_times_s": [
+              12.4
+            ],
+            "image": "right_camera-00333-12.420601.jpg",
+            "sha256": "7a4f98466c263e40df68fa07725d26698c49860f4939fca314770dab808d91eb"
+          },
+          {
+            "frame_index": 452,
+            "time_us": 16820814,
+            "requested_times_s": [
+              16.8
+            ],
+            "image": "right_camera-00452-16.820814.jpg",
+            "sha256": "d46e8f8d7eff4a3d666e9c517834d0a63eff2ad9dfac6a30ba79593c62f468e5"
+          },
+          {
+            "frame_index": 460,
+            "time_us": 17140828,
+            "requested_times_s": [
+              17.1
+            ],
+            "image": "right_camera-00460-17.140828.jpg",
+            "sha256": "9bbcceb30a516e876afa3d4bede884aa46cce8c520f8e0d58a58e77a2a7fd4e4"
+          },
+          {
+            "frame_index": 469,
+            "time_us": 17500847,
+            "requested_times_s": [
+              17.5
+            ],
+            "image": "right_camera-00469-17.500847.jpg",
+            "sha256": "63e33a044193cd65c3ab1d943f6008b8e9178b7a586f8d13fbd09dc9a8cef02e"
+          },
+          {
+            "frame_index": 572,
+            "time_us": 21301027,
+            "requested_times_s": [
+              21.3
+            ],
+            "image": "right_camera-00572-21.301027.jpg",
+            "sha256": "0862dc245d6fab2e401e5d1c9bcf9a9d25ce1efa3d3493778883d954829158da"
+          },
+          {
+            "frame_index": 578,
+            "time_us": 21501037,
+            "requested_times_s": [
+              21.5
+            ],
+            "image": "right_camera-00578-21.501037.jpg",
+            "sha256": "30d01bbaa77ec316721a40c30cdf8e7df12f23085e863fbbb90539a09736395d"
+          },
+          {
+            "frame_index": 598,
+            "time_us": 22221074,
+            "requested_times_s": [
+              22.2
+            ],
+            "image": "right_camera-00598-22.221074.jpg",
+            "sha256": "ef826a9ef1ad3912934cfa46c184b776445d5295f30deca92dacecedf0a600aa"
+          },
+          {
+            "frame_index": 711,
+            "time_us": 26501282,
+            "requested_times_s": [
+              26.5
+            ],
+            "image": "right_camera-00711-26.501282.jpg",
+            "sha256": "2d5f18d2b1117a9a0cc28e713f0e5e6ef0dff874febfe6ea63d6431a918579aa"
+          },
+          {
+            "frame_index": 720,
+            "time_us": 26821296,
+            "requested_times_s": [
+              26.8
+            ],
+            "image": "right_camera-00720-26.821296.jpg",
+            "sha256": "bef155a2f4efe3c4b88afe5c6136377ce68db64d3b1a64375ed1f554f965d4fa"
+          },
+          {
+            "frame_index": 739,
+            "time_us": 27521328,
+            "requested_times_s": [
+              27.5
+            ],
+            "image": "right_camera-00739-27.521328.jpg",
+            "sha256": "8c68392f96af47c4dfe20303e4f81efd77ef2a80d2f50060858e35b0b2b30376"
+          },
+          {
+            "frame_index": 835,
+            "time_us": 31101504,
+            "requested_times_s": [
+              31.1
+            ],
+            "image": "right_camera-00835-31.101504.jpg",
+            "sha256": "8102b1af5c6afec5e371f3683e1992f43a7ed1e16c7ed646678e56d3af1a818a"
+          },
+          {
+            "frame_index": 843,
+            "time_us": 31401518,
+            "requested_times_s": [
+              31.4
+            ],
+            "image": "right_camera-00843-31.401518.jpg",
+            "sha256": "7817331d3a208e2bbfd1527eb76f121e4f4c9414a0c043125f25136773a10095"
+          },
+          {
+            "frame_index": 859,
+            "time_us": 32001546,
+            "requested_times_s": [
+              32.0
+            ],
+            "image": "right_camera-00859-32.001546.jpg",
+            "sha256": "a5bd7ffe2891abdf2716c70e15eef68fd6c967236049e9143d5a9e2b2f84f550"
+          },
+          {
+            "frame_index": 953,
+            "time_us": 35601721,
+            "requested_times_s": [
+              35.6
+            ],
+            "image": "right_camera-00953-35.601721.jpg",
+            "sha256": "74cb07b03e3339ef63753501f12fb71b24eea180c47a824a7151c5b25a1c54b5"
+          },
+          {
+            "frame_index": 963,
+            "time_us": 36001740,
+            "requested_times_s": [
+              36.0
+            ],
+            "image": "right_camera-00963-36.001740.jpg",
+            "sha256": "9123a5204bcefe24353112b90c64b98d93f5051439bc0b30ff79946e99db9783"
+          },
+          {
+            "frame_index": 980,
+            "time_us": 36601768,
+            "requested_times_s": [
+              36.6
+            ],
+            "image": "right_camera-00980-36.601768.jpg",
+            "sha256": "77d0d2d77a2de949ad6edcbf364d88d9532149470577c711dca936a791170bdd"
+          },
+          {
+            "frame_index": 1095,
+            "time_us": 40821971,
+            "requested_times_s": [
+              40.8
+            ],
+            "image": "right_camera-01095-40.821971.jpg",
+            "sha256": "31929cf3c4e3711e941392f93f5877074ff0dab1e7b89cabded77e25c5a857f6"
+          },
+          {
+            "frame_index": 1101,
+            "time_us": 41041985,
+            "requested_times_s": [
+              41.0
+            ],
+            "image": "right_camera-01101-41.041985.jpg",
+            "sha256": "759028b27f4caf12ede0c3d8e2f5e6a223db678ccc54253a6b47c6843d338440"
+          },
+          {
+            "frame_index": 1118,
+            "time_us": 41722017,
+            "requested_times_s": [
+              41.7
+            ],
+            "image": "right_camera-01118-41.722017.jpg",
+            "sha256": "4e89b082300ac09b0bffc288eb8bf53c35cab03e0e1ee55f3752e4a85c29924c"
+          },
+          {
+            "frame_index": 1198,
+            "time_us": 44722161,
+            "requested_times_s": [
+              44.7
+            ],
+            "image": "right_camera-01198-44.722161.jpg",
+            "sha256": "172d7b62f7bc8897840395308e1c6d206e37aae91191fdbcc25d6b40309cea4e"
+          },
+          {
+            "frame_index": 1205,
+            "time_us": 45002175,
+            "requested_times_s": [
+              45.0
+            ],
+            "image": "right_camera-01205-45.002175.jpg",
+            "sha256": "72507aac816ce63247cb90a7a74e193ab8be8f7b91b8d37e4669bbecdf0f6d3c"
+          },
+          {
+            "frame_index": 1224,
+            "time_us": 45742212,
+            "requested_times_s": [
+              45.7
+            ],
+            "image": "right_camera-01224-45.742212.jpg",
+            "sha256": "df06e04a82157854f5841039cc3d21eb6f3fd1f9e0361547a8b2610f5fc901c5"
+          },
+          {
+            "frame_index": 1316,
+            "time_us": 49122374,
+            "requested_times_s": [
+              49.1
+            ],
+            "image": "right_camera-01316-49.122374.jpg",
+            "sha256": "350a19b184ffb47c42cae2912e930a5a58d18b08f01f9e23c5a72dee296b3080"
+          },
+          {
+            "frame_index": 1323,
+            "time_us": 49402388,
+            "requested_times_s": [
+              49.4
+            ],
+            "image": "right_camera-01323-49.402388.jpg",
+            "sha256": "86bbbd229f72c4911aa99de433ebb885e1a4e6737c67083b242098eb50934ff6"
+          },
+          {
+            "frame_index": 1345,
+            "time_us": 50222429,
+            "requested_times_s": [
+              50.2
+            ],
+            "image": "right_camera-01345-50.222429.jpg",
+            "sha256": "f262b4ad2fe0ba73015125bfa1a44a26191eaebb0518cb5d35f44f0b19b0ff42"
+          },
+          {
+            "frame_index": 1469,
+            "time_us": 54822651,
+            "requested_times_s": [
+              54.8
+            ],
+            "image": "right_camera-01469-54.822651.jpg",
+            "sha256": "d079ae30ece93c68bb8a6c789409e7e064406b8d28cffa6397aafe019e4b3a90"
+          },
+          {
+            "frame_index": 1477,
+            "time_us": 55122665,
+            "requested_times_s": [
+              55.1
+            ],
+            "image": "right_camera-01477-55.122665.jpg",
+            "sha256": "c879eb3763dc6de60d5dac02a1a3ba5ff1fc699ce98a88848944f6553bc4b1c1"
+          },
+          {
+            "frame_index": 1485,
+            "time_us": 55402679,
+            "requested_times_s": [
+              55.4
+            ],
+            "image": "right_camera-01485-55.402679.jpg",
+            "sha256": "2ab0718a040fb9839d8befb02581ab353899b47dba35ea694506908f4071fb1e"
+          }
+        ],
+        "sheets": [
+          "right_camera-sheet-00.jpg",
+          "right_camera-sheet-01.jpg",
+          "right_camera-sheet-02.jpg"
+        ]
+      }
+    }
+  }
+}

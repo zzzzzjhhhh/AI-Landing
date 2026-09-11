@@ -18,10 +18,11 @@ clock (1,199 samples for 153529 / 3,707 for 150529). This is tracking-space heig
 not IMU data. The original stereo episode references its existing
 `world/head_height` series and has a single Depth + two-camera row.
 
-153529 now replaces its visible Head height panel with two stacked **IMU accel ·
-EST · m/s²** and **IMU gyro · EST · rad/s** plots. Red/green/blue are X/Y/Z. The
-original head-height samples remain in the recording. 161737 uses the same stacked
-IMU plots, while the two older episodes retain their Head height panel.
+153529 and 20260911_155825 replace Head height with stacked **IMU accel** and
+**IMU gyro** plots without XYZ legends. Red/green/blue still encode X/Y/Z;
+estimated-data provenance and m/s² / rad/s units remain in the metadata and CSV.
+The original head-height samples remain in the recording. 161737 also has
+stacked IMU plots, while the two older episodes retain Head height.
 
 ### Pose-derived virtual IMU
 
@@ -43,8 +44,8 @@ offset is unavailable. The tracking world is assumed gravity-aligned.
   Gaps >100 ms, position jumps >15 cm or orientation jumps >30° split the fit.
   These thresholds are a guard for tracking resets, not a sensor validity flag.
 - No random noise, sensor bias or drift is added. Fused pose cannot recover
-  high-frequency hardware IMU readings. Both plots and downloads explicitly
-  identify the result as **ESTIMATED**.
+  high-frequency hardware IMU readings. CSVs, metadata and recording provenance
+  identify the result as **ESTIMATED**; the plot titles and legends are minimal.
 
 The conventions for specific force and body angular velocity follow
 [ROS REP 145](https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0145.rst);
@@ -64,17 +65,17 @@ Subsequent dashboard builds preserve enabled IMU generation. The dashboard
 verifier compares all 7,194 scalar values against both the CSV and a fresh
 derivation from the original pose, and checks synchronization with the videos.
 
-153529 task text and task stages reuse the reviewed video-contact annotations;
-the other episodes show that task annotations are unavailable. The main stage
+153529, 161737 and 20260911_155825 task text and stages reuse the reviewed
+video-contact annotations; the two older episodes mark them unavailable. The main stage
 track is visible in the Task timeline, while the Current action document follows
 the finer contact phases. These are video annotations, not new ground truth.
 The web integration fetches hand data and dashboard data, then sends the dashboard
 blueprint last. The prior hand-only blueprint remains a fallback for older assets.
 
-- **Pressure · ESTIMATED** in `20260910_153529` uses reviewed video contact phases
+- **Pressure** in 153529, 161737 and 20260911_155825 uses reviewed video contact phases
   and original finger bends, at the right-camera timestamps. It is relative
   intensity (0–100), not measured force or pressure. See the workflow below.
-- **Pressure · DEMO** in the other episodes remains synthetic at 10 Hz.
+- **Pressure · DEMO** in the two older episodes remains synthetic at 10 Hz.
 - **Flexion · POSE** is inferred from the episode's original right-hand 3D joints.
   It uses the exact nearest pose sample and timeline instant used by each frame
   of the **right camera's** existing keypoint overlay. Between video frames it
@@ -202,13 +203,15 @@ or random noise is used. The open-hand atlas stays fixed so regions remain
 comparable; the separate flexion panel retains the original pose.
 
 Missing/degenerate native tracking uses a declared neutral curl prior of 0.55
-with the video's contact envelope and is visibly labeled **VIDEO ONLY**.
+with the video's contact envelope; its source remains recorded in metadata/CSV.
 It never changes the pose or fills gaps in the flexion panel. Valid raw poses
-are labeled **VIDEO + POSE**. `export-pressure-estimate.mjs` emits all 446 right
+have source `video_contact_and_recorded_pose`. `export-pressure-estimate.mjs` emits all 446 right
 camera frames (377 pose-conditioned, 69 video-only), plus one endpoint hold.
 Release clears every taxel and sends an empty cloud so an old contact cannot
-remain visible. Region scalar tracks, current phase, relative peak, evidence
-label and a color legend are logged alongside the colored pressure cloud.
+remain visible. Region scalar tracks, current phase, relative peak and a color
+legend are logged alongside the cloud. The displayed title is `Pressure`, with
+no ESTIMATED or VIDEO + POSE / VIDEO ONLY badges. Simulation and evidence
+provenance are preserved in the recording metadata and exported samples.
 
 ```sh
 python scripts/glove-pressure/build-recording.py \
