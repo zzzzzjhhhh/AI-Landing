@@ -80,7 +80,7 @@ def package(input_dir: Path, inference: Path, output: Path):
             writer.writerow({'frame_index':i,'pair_index':r['pair_index'],'t_sync_us':r['t_sync_us'],
                 'frame_duration_us':durations[r['t_sync_us']],'left_frame_index':r['left_frame_index'],'right_frame_index':r['right_frame_index']})
     archive = output/'foundation-stereo-depth-mm.zip'
-    with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_STORED) as z:
+    with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
         z.write(csv_path,csv_path.name)
         z.writestr('geometry.json',json.dumps(source['geometry'],indent=2))
         z.writestr('README.txt','Estimated stereo depth. 16-bit PNG, millimeters; zero = invalid.\nOriginal pair timestamps; hold each frame until next sample.\nMetric scale uses recorded intrinsics and baseline, without ground-truth validation.\n')

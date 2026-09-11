@@ -1,0 +1,61 @@
+{
+  "episode_id": "20260911_155825",
+  "input_manifest_sha256": "7e4f8b05fe61ec933877dd7287cde313476714c16c3ee69f4bd74f8045d50058",
+  "method": "SIFT matches on rectified 960x720 pairs; Lowe ratio 0.7; fundamental matrix RANSAC threshold 1 px, confidence 0.999; report inlier vertical residual and positive disparity fraction. This is an image alignment check, not metric depth ground truth.",
+  "checks": [
+    {
+      "pair": 0,
+      "inliers": 66,
+      "median_abs_y_px": 0.668609619140625,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 100,
+      "inliers": 47,
+      "median_abs_y_px": 0.5328369140625,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 200,
+      "inliers": 19,
+      "median_abs_y_px": 0.60321044921875,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 300,
+      "inliers": 39,
+      "median_abs_y_px": 0.663238525390625,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 400,
+      "inliers": 166,
+      "median_abs_y_px": 0.519622802734375,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 500,
+      "inliers": 29,
+      "median_abs_y_px": 0.80426025390625,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 600,
+      "inliers": 18,
+      "median_abs_y_px": 0.88909912109375,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 700,
+      "inliers": 73,
+      "median_abs_y_px": 0.56744384765625,
+      "positive_disparity_fraction": 1.0
+    },
+    {
+      "pair": 737,
+      "inliers": 39,
+      "median_abs_y_px": 0.366973876953125,
+      "positive_disparity_fraction": 1.0
+    }
+  ]
+}

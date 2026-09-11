@@ -27,7 +27,10 @@ tray to the table, including a tape roll, stapler, pens and small cases.
 
 The original hardware IMU stream is empty (`enterprise_binding_timeout`). The
 existing pose estimator supplies all six channels at 4,046 source timestamps.
-Depth and Gaussian Splat are placeholders. IMU titles are simply `IMU accel`
+Depth uses 738 native stereo pairs processed by FoundationStereo ViT-small
+on RTX 3090, with the same checkpoint, 32 iterations and 960 × 720 input as
+153529. Its clean video preserves every pair timestamp over 56.442730 s.
+Gaussian Splat remains a placeholder. IMU titles are simply `IMU accel`
 and `IMU gyro`, with hidden XYZ legends; units and estimated-data provenance
 remain in the CSV/metadata. The same display simplification applies to 153529.
 

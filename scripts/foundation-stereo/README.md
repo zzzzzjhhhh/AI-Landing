@@ -18,6 +18,20 @@ The GPU task directory is `/root/foundation-stereo-work`, with an isolated Pytho
 
 ## Source geometry and timing
 
+`20260911_155825` uses the same ViT-small checkpoint and 32 iterations on the
+replacement RTX 3090 (24 GB), with PyTorch 2.4.1+cu121. The existing runtime was
+reused after verifying all 156 FoundationStereo Python files, all 157 cached
+DINOv2 Python files, and the safetensors digest against the earlier run.
+All 738 recorded pairs are processed over 56.442730 seconds, at 960 × 720.
+The largest native pair interval is 280.014 ms. Nine rectified-pair checks
+found median vertical residuals of 0.37–0.89 px, with positive disparity for
+all accepted matches; see `20260911_155825-epipolar-check.json`.
+The dedicated VM job directory is `/root/foundation-stereo-work/20260911_155825`.
+Its depth archive uses lossless ZIP DEFLATE compression (93,223,779 bytes)
+to fit the repository's single-file upload limit. Every archived PNG and sidecar
+is byte-identical to the uncompressed ZIP entries; video and numeric depth values
+are unchanged. New packages use the same archive compression by default.
+
 `prepare.py` checks frame indices against both source timestamp tables and extracts frames by sequential video decoding. It only uses rows of `stereo_pairs.csv`; independently captured frames are not paired merely by their frame number.
 
 For `20260910_153529`, there are 214 pairs over 16.720818 seconds. Source left/right capture timestamps differ by one nanosecond in these rows. The native pair intervals are variable, up to about 240 ms. Each depth frame holds until the next actual pair; there is no synthesized intermediate depth and no time stretching.
