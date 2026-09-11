@@ -1,5 +1,10 @@
 # FoundationStereo depth for the five-camera replay
 
+> `package.py`, `dashboard_layout.py` and depth ZIP archives have been moved out of this repository.
+> Set `OFFLINE_SCRIPTS` to the external `scripts` directory (see [offline assets](../offline-assets.md)).
+> Run packaging/full dashboard verification in the offline working directory containing the depth archives;
+> publish only the MP4, RRD/RBL and required JSON/CSV metadata. Browser playback does not read the ZIP.
+
 This pipeline processes the **recorded PICO stereo pairs** in `task_clip`, then adds a synchronized, estimated depth video to the existing replay dashboard. The other camera videos, hand pose, flexion, pressure, and head-height data are preserved.
 
 ## Model and runtime
@@ -63,7 +68,7 @@ python scripts/foundation-stereo/infer.py \
   --source-commit 6e8806816b533e4d13ddbb95ffa907b797060a62 \
   --input /path/to/input --output /path/to/inference
 
-python scripts/foundation-stereo/package.py \
+python "$OFFLINE_SCRIPTS/foundation-stereo/package.py" \
   --input /path/to/input --inference /path/to/inference \
   --output /path/to/depth-package
 ```
@@ -73,7 +78,7 @@ Keep the official `cfg.yaml` next to the weights. For a quick inference check, a
 Copy the generated depth package into the episode's existing public directory. Then rebuild **only** its additive dashboard:
 
 ```sh
-python scripts/glove-pressure/dashboard_layout.py \
+python "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --output-dir public/rerun/episodes/20260910_153529 \
   --raw-pose /path/to/20260910_153529/task_clip
 ```
@@ -94,7 +99,7 @@ Packaging validates every encoded frame timestamp and duration after decoding th
 To regenerate the clean video locally from the saved 16-bit depth maps:
 
 ```sh
-python scripts/foundation-stereo/package.py \
+python "$OFFLINE_SCRIPTS/foundation-stereo/package.py" \
   --output public/rerun/episodes/20260910_153529 --from-depth-archive
 ```
 

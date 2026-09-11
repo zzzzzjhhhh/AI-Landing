@@ -2,6 +2,7 @@
 import argparse
 import csv
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from rerun.experimental import RrdReader
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parents[2] / "public/rerun")
 parser.add_argument("--raw-pose", type=Path, help="Optional original task clip for exact head-height sample verification")
+parser.add_argument("--dashboard-script", type=Path, help="External dashboard_layout.py for full dashboard verification")
 args = parser.parse_args()
 manifest = json.loads((args.output_dir / "right-hand-pressure.json").read_text())
 estimated_pressure = manifest["pressure_source"] == "video_pose_estimate"
@@ -146,5 +148,13 @@ else:
     assert cleared_times == missing_times | {0}, "Missing tracking must clear the last displayed mesh"
 print(f"Verified {len(rows)} native video-aligned flexion rows ({len(valid_rows)} valid / {len(missing_times)} missing), angle CSV, finite meshes and both clocks.")
 if "dashboard" in manifest:
-    from dashboard_layout import verify_dashboard
-    verify_dashboard(args.output_dir, args.raw_pose)
+    if args.dashboard_script:
+        spec = importlib.util.spec_from_file_location("offline_dashboard", args.dashboard_script)
+        dashboard = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(dashboard)
+        dashboard.verify_dashboard(args.output_dir, args.raw_pose)
+    else:
+        for name in ("data", "blueprint"):
+            asset = manifest["dashboard"][name]
+            assert hashlib.sha256((args.output_dir / Path(asset["path"]).name).read_bytes()).hexdigest() == asset["sha256"]
+        print("Dashboard asset hashes verified. Full offline dashboard validation requires --dashboard-script.")

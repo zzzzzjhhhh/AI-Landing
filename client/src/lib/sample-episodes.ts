@@ -1,3 +1,7 @@
+import clothingEpisode from "../../../public/rerun/episodes/20260911_170529/manifest.json";
+import clothingHands from "../../../public/rerun/episodes/20260911_170529/right-hand-pressure.json";
+import waterEpisode from "../../../public/rerun/episodes/20260911_165650/manifest.json";
+import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
 import fiveCamera from "../../../public/rerun/episodes/20260910_150529/manifest.json";
 import fiveCameraHands from "../../../public/rerun/episodes/20260910_150529/right-hand-pressure.json";
 import recordedFiveCamera from "../../../public/rerun/episodes/20260910_153529/manifest.json";
@@ -27,12 +31,39 @@ export interface SampleEpisode {
   pressureCsvUrl?: string;
   depthNote?: string;
   depthVideoUrl?: string;
-  depthDataUrl?: string;
   imuNote?: string;
   imuCsvUrl?: string;
 }
 
 export const sampleEpisodes: readonly SampleEpisode[] = [
+  {
+    id: clothingEpisode.episode_id,
+    label: "20260911 · 170529",
+    title: "Fold and stack clothing",
+    cameraLabel: "5 camera views",
+    durationLabel: `${clothingEpisode.duration_seconds.toFixed(1)}s`,
+    recordingUrl: `${clothingEpisode.recording.path}?v=${clothingEpisode.recording.sha256.slice(0, 12)}`,
+    hands: clothingHands,
+    flexionTitle: "Right-hand flexion from recorded pose.",
+    flexionNote: "Original pose and episode calibration with existing display smoothing. Pressure follows reviewed fabric contacts and recorded finger bends; relative estimates, not measured forces.",
+    depthNote: "Depth and Gaussian Splat are placeholders.",
+    imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
+    synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${clothingEpisode.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,
+  },
+  {
+    id: waterEpisode.episode_id,
+    label: "20260911 · 165650",
+    title: "Pour water and place the cup in the microwave",
+    cameraLabel: "5 camera views",
+    durationLabel: `${waterEpisode.duration_seconds.toFixed(1)}s`,
+    recordingUrl: `${waterEpisode.recording.path}?v=${waterEpisode.recording.sha256.slice(0, 12)}`,
+    hands: waterHands,
+    flexionTitle: "Right-hand flexion from recorded pose.",
+    flexionNote: "Original pose and episode calibration, with existing display smoothing. Pressure uses reviewed video contacts and recorded finger bends; relative estimates, not measured forces.",
+    depthNote: "Depth and Gaussian Splat are placeholders.",
+    imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
+    synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${waterEpisode.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,
+  },
   {
     id: objectTransfer.episode_id,
     label: "20260911 · 155825",
@@ -46,7 +77,6 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     pressureCsvUrl: `${objectTransferHands.pressure_csv.path}?v=${objectTransferHands.pressure_csv.sha256.slice(0, 12)}`,
     depthNote: "FoundationStereo estimate from 738 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${objectTransferDepth.video.path}?v=${objectTransferDepth.video.sha256.slice(0, 12)}`,
-    depthDataUrl: `${objectTransferDepth.depth_archive.path}?v=${objectTransferDepth.depth_archive.sha256.slice(0, 12)}`,
     imuNote: "Pose-derived accel and gyro estimates; the source hardware IMU stream is empty. Head-local axes: X right, Y up, Z back; accel is specific force in m/s² and gyro is in rad/s. Gaussian Splat remains a placeholder.",
     imuCsvUrl: `${objectTransferImu.csv.path}?v=${objectTransferImu.csv.sha256.slice(0, 12)}`,
     synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${objectTransfer.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,
@@ -79,7 +109,6 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     pressureCsvUrl: `${recordedFiveCameraHands.pressure_csv.path}?v=${recordedFiveCameraHands.pressure_csv.sha256.slice(0, 12)}`,
     depthNote: "Depth · FoundationStereo estimate from synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Each depth frame holds until the next captured pair. Glass and reflections can be unreliable.",
     depthVideoUrl: `${recordedFiveCameraDepth.video.path}?v=${recordedFiveCameraDepth.video.sha256.slice(0, 12)}`,
-    depthDataUrl: `${recordedFiveCameraDepth.depth_archive.path}?v=${recordedFiveCameraDepth.depth_archive.sha256.slice(0, 12)}`,
     imuNote: "IMU · ESTIMATED from recorded head motion. Accel includes gravity (m/s²); gyro shows angular velocity (rad/s). Head-local axes: X right, Y up, Z back. Smoothed pose estimates, not raw sensor measurements.",
     imuCsvUrl: `${recordedFiveCameraImu.csv.path}?v=${recordedFiveCameraImu.csv.sha256.slice(0, 12)}`,
     synchronizationNote: `Five views share the task-clip timeline. External-camera alignment is estimated at ~${recordedFiveCamera.external_alignment_estimate_seconds} s; these three views have no spatial calibration for keypoint overlays.`,

@@ -1,5 +1,10 @@
 # Five-camera sample episodes
 
+> `package.py`, `dashboard_layout.py` and depth ZIP archives have been moved out of this repository.
+> Set `OFFLINE_SCRIPTS` to the external `scripts` directory (see [offline assets](offline-assets.md)).
+> Run packaging/full dashboard verification in the offline working directory containing the depth archives;
+> publish only the MP4, RRD/RBL and required JSON/CSV metadata. Browser playback does not read the ZIP.
+
 The sample-data page offers `20260911_155825` (default) and `20260910_153529`,
 with the same five-camera hand/sensor dashboard. All five episode entries and
 their data packages remain preserved; 161737, 150529 and the original stereo
@@ -95,7 +100,7 @@ The audit uses `--sample-step 1.2`; the fit uses `--allow-partial` to retain any
 camera that fails either independent set. Finish with:
 
 ```sh
-python scripts/glove-pressure/dashboard_layout.py \
+python "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --output-dir /path/to/161737/package \
   --raw-pose /path/to/20260910_161737/task_clip --head-imu
 ```
@@ -196,6 +201,7 @@ Then build the hand supplement with the pressure contact profile (and **without
 
 ```sh
 python scripts/glove-pressure/build-recording.py \
+  --dashboard-script "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --base-rrd /path/to/package/recording.rrd \
   --raw-pose /path/to/20260910_153529/task_clip \
   --output-dir /path/to/package \
@@ -267,6 +273,7 @@ python scripts/convert-five-camera-clip.py \
   --output /path/to/package \
   --work /path/to/transcoded-videos
 python scripts/glove-pressure/build-recording.py \
+  --dashboard-script "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --base-rrd /path/to/package/recording.rrd \
   --raw-pose /path/to/20260910_150529/task_clip \
   --output-dir /path/to/package \

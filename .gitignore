@@ -13,3 +13,8 @@ skills-lock.json
 .env*.local
 .next/
 AA
+
+# Offline depth archives and relocated preparation scripts
+/public/rerun/**/foundation-stereo-depth-mm.zip
+/scripts/foundation-stereo/package.py
+/scripts/glove-pressure/dashboard_layout.py

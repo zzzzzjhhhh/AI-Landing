@@ -1,0 +1,85 @@
+{
+  "episode_id": "20260911_165650",
+  "title": "Five-camera task replay",
+  "duration_seconds": 42.982047,
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_165650_96d7496e75a6",
+  "source": "task_clip",
+  "timeline": "tracking_time",
+  "duration_us": 42982047,
+  "sync_manifest_sha256": "fb357564708f138554427306856265eddc98871a2a1c8a1b9881ef5a2df2c5f4",
+  "external_alignment_estimate_seconds": 0.15,
+  "pose_sample_count": 3083,
+  "pose_sha256": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
+  "cameras": [
+    {
+      "name": "left_camera",
+      "label": "PICO left",
+      "width": 960,
+      "height": 720,
+      "source_sha256": "a8b32fc488a28fe4862f6da550d0b8879027c8356062e5f2c79c0b68de7746b1",
+      "frame_count": 1149,
+      "first_frame_us": 0,
+      "last_frame_us": 42922047
+    },
+    {
+      "name": "right_camera",
+      "label": "PICO right",
+      "width": 960,
+      "height": 720,
+      "source_sha256": "b607654d8abeb345471161939a480bfee41f4e0de7bf30e3ec726cbdb96d39df",
+      "frame_count": 1142,
+      "first_frame_us": 0,
+      "last_frame_us": 42962047
+    },
+    {
+      "name": "left_side",
+      "label": "Left side",
+      "width": 960,
+      "height": 540,
+      "source_sha256": "dc30f532a17c54c74bba68f8932a42c42fdc8b8d5dce5a5ad3e072969119eb9a",
+      "frame_count": 1149,
+      "first_frame_us": 0,
+      "last_frame_us": 42922047
+    },
+    {
+      "name": "right_side",
+      "label": "Right side",
+      "width": 960,
+      "height": 540,
+      "source_sha256": "130f70927d5d2038c311efadcaba5832b6d7b7ff68b2df6f8593423ea5e7f31d",
+      "frame_count": 1149,
+      "first_frame_us": 0,
+      "last_frame_us": 42922047
+    },
+    {
+      "name": "back",
+      "label": "Back",
+      "width": 960,
+      "height": 540,
+      "source_sha256": "73513af275119fee8585d1606f5b13287090bdd25b87f86a5a49a4b9be2ea54f",
+      "frame_count": 1149,
+      "first_frame_us": 0,
+      "last_frame_us": 42922047
+    }
+  ],
+  "hand_keypoints": {
+    "source": "recorded_pose",
+    "cameras": [
+      "left_camera",
+      "right_camera"
+    ],
+    "hands": [
+      "left",
+      "right"
+    ],
+    "camera_extrinsics_convention": "recorded",
+    "alignment": "Per-camera t_sync_us, nearest pose within 50 ms, per-exposure recorded head pose.",
+    "external_views": "No spatial calibration available; no projected keypoints."
+  },
+  "recording": {
+    "path": "/rerun/episodes/20260911_165650/recording.rrd",
+    "sha256": "86eb95d703cf11a8e67d2ec64b971bfdcb8fff52ead1591783212fde89f908c1",
+    "bytes": 36307381
+  }
+}

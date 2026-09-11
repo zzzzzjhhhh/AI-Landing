@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import importlib.util
 import json
 import subprocess
 import tempfile
@@ -144,7 +145,12 @@ def load_pressure_profile(raw: Path, path: Path, duration_ns: int) -> dict:
 
 
 def build(base: Path, raw_pose: Path, output_dir: Path, asset_prefix: str = "/rerun", video_estimates: Path | None = None,
-          pressure_profile: Path | None = None, smooth_movement: bool = False) -> None:
+          pressure_profile: Path | None = None, smooth_movement: bool = False, dashboard_script: Path | None = None) -> None:
+    if dashboard_script is None or not dashboard_script.is_file():
+        raise ValueError("Dashboard generation is now offline. Supply --dashboard-script with the external dashboard_layout.py path.")
+    spec = importlib.util.spec_from_file_location("offline_dashboard", dashboard_script)
+    dashboard = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(dashboard)
     metadata = base_metadata(base)
     existing_manifest = output_dir / "right-hand-pressure.json"
     previous = json.loads(existing_manifest.read_text()) if existing_manifest.exists() else {}
@@ -156,8 +162,7 @@ def build(base: Path, raw_pose: Path, output_dir: Path, asset_prefix: str = "/re
         if video_estimates is not None:
             merge_video_estimates(raw_pose, source_path, video_estimates, flexion_metadata)
         write_recording(metadata, flexion_metadata, source_path, output_dir, asset_prefix, pressure_profile, pressure_metadata, smooth_movement)
-    from dashboard_layout import build_dashboard
-    build_dashboard(output_dir, raw_pose, with_head_imu=keep_imu)
+    dashboard.build_dashboard(output_dir, raw_pose, with_head_imu=keep_imu)
 
 
 def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, output_dir: Path, asset_prefix: str,
@@ -345,5 +350,6 @@ if __name__ == "__main__":
     parser.add_argument("--video-estimates", type=Path, help="Explicit visual-keyframe annotation JSON for missing native tracking")
     parser.add_argument("--pressure-profile", type=Path, help="Source-verified visual contact annotations for relative pressure simulation")
     parser.add_argument("--smooth-movement", action="store_true", help="Display-only 30 Hz quaternion interpolation across bounded tracking gaps")
+    parser.add_argument("--dashboard-script", type=Path, required=True, help="Path to externally stored dashboard_layout.py")
     args = parser.parse_args()
-    build(args.base_rrd, args.raw_pose, args.output_dir, args.asset_prefix, args.video_estimates, args.pressure_profile, args.smooth_movement)
+    build(args.base_rrd, args.raw_pose, args.output_dir, args.asset_prefix, args.video_estimates, args.pressure_profile, args.smooth_movement, args.dashboard_script)

@@ -227,9 +227,9 @@
     "bytes": 6509
   },
   "depth_archive": {
-    "path": "/rerun/episodes/20260910_153529/foundation-stereo-depth-mm.zip",
     "sha256": "164f4c29f93a105ffc0c1cd6dd11b6d068cb65a35ca48c62eb9f51d2bb5c6e2d",
-    "bytes": 48155240
+    "bytes": 48155240,
+    "storage": "offline; excluded from web repository"
   },
   "video_rendering": {
     "source": "archived_16bit_depth_png",

@@ -1,5 +1,10 @@
 # Right-hand pressure and pose-derived flexion
 
+> `package.py`, `dashboard_layout.py` and depth ZIP archives have been moved out of this repository.
+> Set `OFFLINE_SCRIPTS` to the external `scripts` directory (see [offline assets](../offline-assets.md)).
+> Run packaging/full dashboard verification in the offline working directory containing the depth archives;
+> publish only the MP4, RRD/RBL and required JSON/CSV metadata. Browser playback does not read the ZIP.
+
 `/sample-data` merges a supplementary RRD into the original PICO recording using
 matching application and recording IDs. The reference dashboard places native
 Rerun movement and pressure views side by side at top left, with task details
@@ -68,7 +73,7 @@ The conventions for specific force and body angular velocity follow
 rotation-vector operations use [SciPy Rotation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html).
 
 ```sh
-python scripts/glove-pressure/dashboard_layout.py \
+python "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --output-dir public/rerun/episodes/20260910_153529 \
   --raw-pose /path/to/20260910_153529/task_clip --head-imu
 python -m unittest discover -s scripts/glove-pressure -p 'test_*.py'
@@ -164,6 +169,7 @@ and its original pose/camera sidecars. Source files are read only.
 ```sh
 npm ci
 python scripts/glove-pressure/build-recording.py \
+  --dashboard-script "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --base-rrd /path/to/base.rrd \
   --raw-pose /path/to/original/episode
 node --test scripts/glove-pressure/*.test.mjs
@@ -182,7 +188,7 @@ The web integration preserves video playback if supplementary loading fails.
 The hand builder automatically regenerates the dashboard. To change layout only:
 
 ```sh
-python scripts/glove-pressure/dashboard_layout.py \
+python "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --output-dir public/rerun/episodes/20260910_153529 \
   --raw-pose /path/to/20260910_153529/task_clip
 python scripts/glove-pressure/verify-recording.py \
@@ -231,6 +237,7 @@ provenance are preserved in the recording metadata and exported samples.
 
 ```sh
 python scripts/glove-pressure/build-recording.py \
+  --dashboard-script "$OFFLINE_SCRIPTS/glove-pressure/dashboard_layout.py" \
   --base-rrd public/rerun/episodes/20260910_153529/recording.rrd \
   --raw-pose /path/to/20260910_153529/task_clip \
   --output-dir /tmp/153529-pressure-estimated-package \

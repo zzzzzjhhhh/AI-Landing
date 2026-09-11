@@ -1,0 +1,624 @@
+{
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_165650_96d7496e75a6",
+  "duration_ns": 42982047000,
+  "capture_start_ns": 1789117022496528000,
+  "base_sha256": "86eb95d703cf11a8e67d2ec64b971bfdcb8fff52ead1591783212fde89f908c1",
+  "camera_dimensions": {
+    "left_camera": [
+      960,
+      720
+    ],
+    "right_camera": [
+      960,
+      720
+    ],
+    "left_side": [
+      960,
+      540
+    ],
+    "right_side": [
+      960,
+      540
+    ],
+    "back": [
+      960,
+      540
+    ]
+  },
+  "source": "mixed",
+  "pressure_source": "video_pose_estimate",
+  "hand": "right",
+  "fps": null,
+  "frame_count": 1143,
+  "views": [
+    "pressure",
+    "flexion"
+  ],
+  "flexion": {
+    "source": "recorded_pose_keypoints",
+    "reference_camera": "right_camera",
+    "pose_sample_count": 3083,
+    "camera_extrinsics_convention": "recorded",
+    "intrinsics_profile_sha256": null,
+    "frame_count": 1142,
+    "valid_frame_count": 818,
+    "missing_frame_count": 324,
+    "pose_distance_max_ms": 11.472,
+    "overlay_reprojection_max_px": 0.0,
+    "pose_sha256": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
+    "schema_sha256": "750e753299499f5f60c187303710562745f8693dc08d5748d75bb02e3c1f32e1",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "display_playback": {
+      "fps": 30,
+      "max_gap_seconds": 2,
+      "smoothing_radius_seconds": 0.06,
+      "method": "Display-only local bone quaternion smoothing and shortest-arc SLERP between recorded poses",
+      "native_csv_unchanged": true,
+      "measured": false,
+      "frame_count": 1291,
+      "valid_frame_count": 1291
+    },
+    "segment_direction_error_max_deg": 8.706816964856289e-06
+  },
+  "pressure": {
+    "version": 1,
+    "episode_id": "20260911_165650",
+    "duration_s": 42.982047,
+    "method": "video_contact_envelope_with_recorded_finger_bend_modulation",
+    "label": "ESTIMATED pressure / relative 0-100",
+    "description": "Right hand lifts and tips a glass kettle, supports a filled cup, opens a microwave, helps place the cup inside, and closes the door. Contact strengths are illustrative estimates, not sensor measurements.",
+    "source_files": {
+      "sync_manifest.json": "fb357564708f138554427306856265eddc98871a2a1c8a1b9881ef5a2df2c5f4",
+      "right_camera.mp4": "b607654d8abeb345471161939a480bfee41f4e0de7bf30e3ec726cbdb96d39df",
+      "right_camera_timestamps.csv": "12356ebbf480f90a2a556bbd464f863c75047aa845e43403fedda9b8c8bf095e",
+      "pose_samples.bin": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
+      "pose_schema.json": "750e753299499f5f60c187303710562745f8693dc08d5748d75bb02e3c1f32e1"
+    },
+    "video_observations": [
+      {
+        "time_s": 0.0,
+        "frame_index": 0,
+        "image_sha256": "7b705dfe6ca766e673e8221a3a22a7ec4464518956a8af7f5798cd36f454398e",
+        "observation": "Both hands open; no contact."
+      },
+      {
+        "time_s": 2.300111,
+        "frame_index": 61,
+        "image_sha256": "37470ceb263a71403b109b548b888ba144f942d1886b4c461f904c7824bb889c",
+        "observation": "Right hand reaches for the kettle handle."
+      },
+      {
+        "time_s": 4.540218,
+        "frame_index": 120,
+        "image_sha256": "7ad2126f345239ebdbd2b95c7830cf1fec39ccf826a89bf2737a2e22cb8a83c9",
+        "observation": "Right hand grips and lifts the kettle; left hand holds the cup."
+      },
+      {
+        "time_s": 9.000431,
+        "frame_index": 239,
+        "image_sha256": "62c6152dac5c2585c8c6d978f9b12f0916789b242650d6c1f773f8482ecc9074",
+        "observation": "Right hand tips the kettle toward the cup."
+      },
+      {
+        "time_s": 15.020718,
+        "frame_index": 397,
+        "image_sha256": "df41f7e65152ae18118447c5b5fb38a44f21e6b44e6234d82d320795328b66f7",
+        "observation": "Kettle is strongly tilted while pouring."
+      },
+      {
+        "time_s": 18.760894,
+        "frame_index": 495,
+        "image_sha256": "0d065e36d4ba552e73c35b1ad17e538e978841619f7927bb537b8e1f11629330",
+        "observation": "Kettle is returned upright on the table."
+      },
+      {
+        "time_s": 19.500931,
+        "frame_index": 515,
+        "image_sha256": "d0fea437f8937271a192a0a9300d0055a8981c8176188be9a569d37dde4e10a1",
+        "observation": "Right hand opens and releases the kettle."
+      },
+      {
+        "time_s": 21.761038,
+        "frame_index": 575,
+        "image_sha256": "5b5801044938371cd816139bc058ede9568200b660c25683942c02ee90dc62be",
+        "observation": "Right hand supports the filled cup as both hands carry it."
+      },
+      {
+        "time_s": 26.261251,
+        "frame_index": 695,
+        "image_sha256": "3d9269aec73846d90e6b88df43e00ec176bcd4150ee6f373fc5b50910a22ac6d",
+        "observation": "Cup remains supported in front of the microwave."
+      },
+      {
+        "time_s": 27.001288,
+        "frame_index": 716,
+        "image_sha256": "d36ce114559b14aab77345fdb46339e044e3dd3c869a187b6ed0261b790dca1b",
+        "observation": "Right hand leaves the cup and reaches to open the microwave."
+      },
+      {
+        "time_s": 30.041431,
+        "frame_index": 796,
+        "image_sha256": "71f7e57285455fb061afc0779e6382c973c217ba5a2ff1f96679455320e53aba",
+        "observation": "Right hand pulls the microwave door open."
+      },
+      {
+        "time_s": 31.521501,
+        "frame_index": 837,
+        "image_sha256": "98b6e8e3b0618fe93b78e92b377c34da720c206625af03191688eb5b2c9351d6",
+        "observation": "Right hand releases the open door."
+      },
+      {
+        "time_s": 33.021575,
+        "frame_index": 877,
+        "image_sha256": "040e4a3c4f0c0091d16e633de1863d62881a32cdfd6e64d57ad8c34f22da1390",
+        "observation": "Both hands guide the cup into the microwave."
+      },
+      {
+        "time_s": 36.021718,
+        "frame_index": 956,
+        "image_sha256": "37a4ec5822badedb333ad174ed924f5b0c182c4b034238d0a6fb56bada4cf140",
+        "observation": "Hands finish placing the cup inside."
+      },
+      {
+        "time_s": 36.801755,
+        "frame_index": 977,
+        "image_sha256": "44370b6adab2f1df68520f47599ebd4409832ef6e49bc518af61e282a28bc482",
+        "observation": "Hands withdraw from the cup."
+      },
+      {
+        "time_s": 38.261825,
+        "frame_index": 1016,
+        "image_sha256": "ba2dc23331f07a4ea660a72cd0768b3c88a0012f00893cdf5fad37987cfa6ee0",
+        "observation": "Right hand reaches the open door to close it."
+      },
+      {
+        "time_s": 40.501931,
+        "frame_index": 1076,
+        "image_sha256": "f9cf0e86dda26e36d07513e47e782e3c200c1533940996af74801b8a545711b2",
+        "observation": "Right hand pushes the door closed."
+      },
+      {
+        "time_s": 42.022005,
+        "frame_index": 1116,
+        "image_sha256": "1b4f4de7304eab1868d15ba7fe5315bfac99cd088eeddc466f9a464837999dab",
+        "observation": "Hands withdraw from the closed microwave."
+      },
+      {
+        "time_s": 42.762038,
+        "frame_index": 1135,
+        "image_sha256": "c14600046615c67c801d9ac79888ad5ae8fae26a90564f9a86b4303bcb6a4ffb",
+        "observation": "Both hands open, clear of objects."
+      }
+    ],
+    "review": {
+      "script": "scripts/extract-annotation-frames.py",
+      "uniform_step_s": 0.75,
+      "uniform_frame_count": 58,
+      "uniform_manifest_sha256": "293e4d9d3c9d1b861f5ea19dd8d66163ca12de3f7c94a3039ca1d5d6ac498b1b",
+      "automatic_action_detection": false
+    },
+    "assumptions": [
+      "Uniform 0.75 s visual review. Action and contact boundaries are approximate, not frame-accurate ground truth.",
+      "Relative pressure is an illustrative smoothstep envelope; no object mass, friction, contact area, force or kPa is measured.",
+      "Fixed finger and palm pad weights approximate handle grips, cup support and door contact; contact locations are heuristic.",
+      "Original distal joint bends modulate amplitude by 0.65 + 0.35 * normalized curl. No annotated contact gives zero pressure.",
+      "Missing or degenerate right-hand pose uses a VIDEO ONLY neutral curl prior of 0.55; pose/flexion remains unavailable.",
+      "Occluded contacts and relative grip forces cannot be measured from these images."
+    ],
+    "contacts": {
+      "palm": {
+        "weight": 0.3,
+        "center_u": 0.7,
+        "center_v": 0.36,
+        "width_u": 0.28,
+        "width_v": 0.3
+      },
+      "thumb": {
+        "weight": 0.9,
+        "center_u": 0.5,
+        "center_v": 0.28,
+        "width_u": 0.55,
+        "width_v": 0.26
+      },
+      "index": {
+        "weight": 1,
+        "center_u": 0.5,
+        "center_v": 0.42,
+        "width_u": 0.55,
+        "width_v": 0.34
+      },
+      "middle": {
+        "weight": 0.85,
+        "center_u": 0.5,
+        "center_v": 0.42,
+        "width_u": 0.55,
+        "width_v": 0.34
+      },
+      "ring": {
+        "weight": 0.65,
+        "center_u": 0.5,
+        "center_v": 0.35,
+        "width_u": 0.48,
+        "width_v": 0.28
+      },
+      "little": {
+        "weight": 0.4,
+        "center_u": 0.5,
+        "center_v": 0.3,
+        "width_u": 0.48,
+        "width_v": 0.28
+      }
+    },
+    "keyframes": [
+      {
+        "time_s": 0,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 2.3,
+        "strength": 0,
+        "phase": "Reach for kettle"
+      },
+      {
+        "time_s": 3.02,
+        "strength": 0.5,
+        "phase": "Grasp kettle"
+      },
+      {
+        "time_s": 4.54,
+        "strength": 0.7,
+        "phase": "Lift kettle"
+      },
+      {
+        "time_s": 8.28,
+        "strength": 0.78,
+        "phase": "Pour water"
+      },
+      {
+        "time_s": 15.76,
+        "strength": 0.85,
+        "phase": "Pour water"
+      },
+      {
+        "time_s": 17.3,
+        "strength": 0.7,
+        "phase": "Return kettle"
+      },
+      {
+        "time_s": 18.76,
+        "strength": 0.3,
+        "phase": "Place kettle"
+      },
+      {
+        "time_s": 19.5,
+        "strength": 0,
+        "phase": "Release kettle"
+      },
+      {
+        "time_s": 20.26,
+        "strength": 0,
+        "phase": "Reach for cup"
+      },
+      {
+        "time_s": 21.76,
+        "strength": 0.4,
+        "phase": "Support cup"
+      },
+      {
+        "time_s": 25.54,
+        "strength": 0.4,
+        "phase": "Carry cup"
+      },
+      {
+        "time_s": 26.26,
+        "strength": 0.2,
+        "phase": "Release cup"
+      },
+      {
+        "time_s": 26.6,
+        "strength": 0,
+        "phase": "Reach for door"
+      },
+      {
+        "time_s": 27,
+        "strength": 0.55,
+        "phase": "Open microwave"
+      },
+      {
+        "time_s": 30.76,
+        "strength": 0.5,
+        "phase": "Pull door open"
+      },
+      {
+        "time_s": 31.52,
+        "strength": 0,
+        "phase": "Release door"
+      },
+      {
+        "time_s": 32.26,
+        "strength": 0.35,
+        "phase": "Support cup"
+      },
+      {
+        "time_s": 33.78,
+        "strength": 0.45,
+        "phase": "Place cup inside"
+      },
+      {
+        "time_s": 36.02,
+        "strength": 0.2,
+        "phase": "Set cup down"
+      },
+      {
+        "time_s": 36.8,
+        "strength": 0,
+        "phase": "Release cup"
+      },
+      {
+        "time_s": 37.5,
+        "strength": 0,
+        "phase": "Reach for door"
+      },
+      {
+        "time_s": 38.26,
+        "strength": 0.3,
+        "phase": "Close microwave"
+      },
+      {
+        "time_s": 40.5,
+        "strength": 0.4,
+        "phase": "Push door closed"
+      },
+      {
+        "time_s": 41.26,
+        "strength": 0.2,
+        "phase": "Release door"
+      },
+      {
+        "time_s": 42.02,
+        "strength": 0,
+        "phase": "No contact"
+      },
+      {
+        "time_s": 42.982047,
+        "strength": 0,
+        "phase": "No contact"
+      }
+    ],
+    "task": {
+      "main": "Pour water into a glass cup and place it inside the microwave.",
+      "objects": "Glass kettle \u00b7 glass cup \u00b7 microwave",
+      "stages": [
+        {
+          "time_s": 0,
+          "name": "Prepare",
+          "interaction": "Hands open above the table.",
+          "color": [
+            112,
+            125,
+            143
+          ]
+        },
+        {
+          "time_s": 2.3,
+          "name": "Lift kettle",
+          "interaction": "Right hand grasps the kettle handle; left hand holds the cup.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 8.28,
+          "name": "Pour water",
+          "interaction": "Right hand tilts the kettle to pour water into the cup.",
+          "color": [
+            204,
+            158,
+            68
+          ]
+        },
+        {
+          "time_s": 17.3,
+          "name": "Return kettle",
+          "interaction": "Right hand sets the kettle back on the table and releases it.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 20.26,
+          "name": "Carry cup",
+          "interaction": "Both hands support the filled cup and move toward the microwave.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 26.6,
+          "name": "Open microwave",
+          "interaction": "Left hand holds the cup while the right hand opens the door.",
+          "color": [
+            204,
+            158,
+            68
+          ]
+        },
+        {
+          "time_s": 31.52,
+          "name": "Place cup inside",
+          "interaction": "Both hands guide the cup into the microwave and release it.",
+          "color": [
+            50,
+            173,
+            151
+          ]
+        },
+        {
+          "time_s": 37.5,
+          "name": "Close microwave",
+          "interaction": "Right hand pushes the microwave door closed.",
+          "color": [
+            83,
+            138,
+            211
+          ]
+        },
+        {
+          "time_s": 42.02,
+          "name": "Finished",
+          "interaction": "Both hands withdraw from the closed microwave.",
+          "color": [
+            112,
+            125,
+            143
+          ]
+        }
+      ]
+    },
+    "profile_sha256": "51cb4cc771cbf1f2ed750fbfe0b728b870410bb84c20327aa4882b9924cf0baa",
+    "units": "relative_0_100",
+    "measured": false,
+    "timeline": "Exact right-camera frame times plus a final endpoint hold",
+    "pose_modulated_frames": 818,
+    "video_only_frames": 324
+  },
+  "data": {
+    "path": "/rerun/episodes/20260911_165650/right-hand-pressure.rrd",
+    "sha256": "fcd6d0df6cd9432b0ec6064a3979e14cec64c9613299b525a17751f1aa6fee5c"
+  },
+  "blueprint": {
+    "path": "/rerun/episodes/20260911_165650/right-hand-pressure.rbl",
+    "sha256": "f6ed5f2595ee89d1b5531df392cfa4683b7bcb2f66d22120f477562d7f0bd54e"
+  },
+  "flexion_csv": {
+    "sha256": "29d37a37f8f7788b57db2dc5f6275d801d604c650e8bd6ab4e150f7c8732bd41",
+    "storage": "offline; excluded from web repository"
+  },
+  "pressure_csv": {
+    "sha256": "afe86a4c72c15c83e74327f27a2e1f57cf2eb419231bfc541893f8bc213c313a",
+    "storage": "offline; excluded from web repository"
+  },
+  "pressure_samples": {
+    "sha256": "8166eb615d75d1505923ab240a2f6a8faa210c0243cc4a5a116848aa3fe3f1e9",
+    "storage": "offline; excluded from web repository"
+  },
+  "dashboard": {
+    "layout_version": 2,
+    "head_height_entity": "replay_dashboard/head_height",
+    "head_height_source": "original_pose_y",
+    "head_height_sample_count": 3083,
+    "pose_sha256": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
+    "task_source": "reviewed_video_annotation",
+    "placeholders": [
+      "depth",
+      "gaussian_splat"
+    ],
+    "imu": {
+      "version": 1,
+      "episode_id": "20260911_165650",
+      "source": "head_pose_estimate",
+      "label": "ESTIMATED",
+      "entity": "replay_dashboard/imu",
+      "recording_id": "five_camera_20260911_165650_96d7496e75a6",
+      "capture_start_ns": 1789117022496528000,
+      "duration_ns": 42982047000,
+      "source_sha256": {
+        "pose_samples.bin": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
+        "pose_schema.json": "750e753299499f5f60c187303710562745f8693dc08d5748d75bb02e3c1f32e1",
+        "sync_manifest.json": "fb357564708f138554427306856265eddc98871a2a1c8a1b9881ef5a2df2c5f4"
+      },
+      "sample_count": 3083,
+      "valid_sample_count": 3083,
+      "edge_sample_count": 18,
+      "discontinuity_count": 0,
+      "sample_rate_hz_median": 71.42857142857143,
+      "time_range_ns": [
+        11472000,
+        42971472000
+      ],
+      "frame": "Virtual IMU at the tracked head origin; right-handed +X right, +Y up, +Z back. Gyro uses the right-hand rule.",
+      "basis_conversion": "S=diag(1,1,-1); position'=S position, rotation'=S rotation S; quaternion'=(-qx,-qy,qz,qw).",
+      "accel": {
+        "unit": "m/s^2",
+        "quantity": "specific_force",
+        "formula": "R_head_to_world.T @ (d2p_world/dt2 - gravity_world)",
+        "gravity_world_m_s2": [
+          0.0,
+          -9.80665,
+          0.0
+        ]
+      },
+      "gyro": {
+        "unit": "rad/s",
+        "quantity": "body_angular_velocity",
+        "formula": "d/dt log(R(t_i).T @ R(t)) at t_i"
+      },
+      "filter": {
+        "method": "Local cubic least-squares on actual irregular timestamps and relative rotation vectors",
+        "window_s": 0.24,
+        "max_gap_s": 0.1,
+        "boundary": "One-sided/shifted recorded window, tagged edge_fit; no extrapolation or endpoint fill."
+      },
+      "assumptions": [
+        "Tracking world is gravity-aligned with +Y up.",
+        "Virtual IMU origin equals tracked head origin; physical sensor offset is unknown.",
+        "No added random noise, sensor bias, drift or vibration; high-frequency raw IMU cannot be recovered from fused pose.",
+        "Tracking-state flags are absent from the compact pose schema; numerical validity and jump/gap checks are used."
+      ],
+      "statistics": {
+        "accel_x": {
+          "min": -1.940802006363166,
+          "max": 1.5819797207909703
+        },
+        "accel_y": {
+          "min": 4.982298920473181,
+          "max": 10.424505720379184
+        },
+        "accel_z": {
+          "min": -3.4258929526653996,
+          "max": 9.406649846507555
+        },
+        "gyro_x": {
+          "min": -1.2366547257275562,
+          "max": 0.9701736020117622
+        },
+        "gyro_y": {
+          "min": -0.9849020979603543,
+          "max": 0.48960177194007004
+        },
+        "gyro_z": {
+          "min": -0.4783646412928991,
+          "max": 0.30873468716878044
+        }
+      },
+      "references": [
+        "https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0145.rst",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html"
+      ],
+      "csv": {
+        "sha256": "3d2c2930a42491aa1463fdc0c656b039957db68fecc1295646ef11e4e3015d8a",
+        "storage": "offline; excluded from web repository"
+      },
+      "metadata": {
+        "sha256": "a4ea579154f08a718f2187083e4c62d349a072424e37a181cf708223f093bc3a",
+        "storage": "offline; excluded from web repository"
+      }
+    },
+    "data": {
+      "path": "/rerun/episodes/20260911_165650/replay-dashboard.rrd",
+      "sha256": "a03f226aef25f7958b39dc7e6b9529de226842004d02a3d762adafe8f3dc0d07"
+    },
+    "blueprint": {
+      "path": "/rerun/episodes/20260911_165650/replay-dashboard.rbl",
+      "sha256": "ddd548452e0749dc907cbc019264db74a3ba4aa59d51aabaaf8260a652391e9d"
+    }
+  }
+}
