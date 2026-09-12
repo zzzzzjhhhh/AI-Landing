@@ -7,7 +7,7 @@ import { RerunDemoViewer } from "@/components/RerunDemoViewer";
 import { sampleEpisodes } from "@/lib/sample-episodes";
 
 const visibleEpisodes = sampleEpisodes.filter((episode) =>
-  ["20260911_170529", "20260911_165650", "20260911_155825", "20260910_153529"].includes(episode.id),
+  ["20260911_170529", "20260911_165650", "20260911_155825"].includes(episode.id),
 );
 
 export default function RerunDemo() {
