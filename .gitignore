@@ -18,3 +18,4 @@ AA
 /public/rerun/**/foundation-stereo-depth-mm.zip
 /scripts/foundation-stereo/package.py
 /scripts/glove-pressure/dashboard_layout.py
+__pycache__/
