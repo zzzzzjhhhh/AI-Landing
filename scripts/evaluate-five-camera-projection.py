@@ -7,7 +7,7 @@ import mediapipe as mp
 from PIL import Image, ImageDraw
 from scipy.optimize import linear_sum_assignment
 sys.path.insert(0, str(Path(__file__).parent / 'glove-pressure'))
-from pose_source import read_pose_samples, aligned_camera_calibration, converter
+from pose_source import INTRINSICS_SOURCE_FILES, read_pose_samples, aligned_camera_calibration, converter
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source',type=Path,required=True)
 parser.add_argument('--video-root',type=Path,required=True,help='Verified 960 x 720 VFR PICO previews from convert-five-camera-clip.py')
@@ -15,6 +15,10 @@ parser.add_argument('--model',type=Path,required=True,help='Local MediaPipe Hand
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--sampling', choices=['original', 'dense', 'confirmation'], default='original')
 parser.add_argument('--sample-step', type=float, default=.4, help='Seconds between dense samples in each independent split')
+parser.add_argument('--latency-sweep', action='store_true', help='Also scan constant pose-latency offsets and write latency.json next to measurements.json')
+parser.add_argument('--latency-min', type=int, default=-60_000, help='Sweep start offset in microseconds')
+parser.add_argument('--latency-max', type=int, default=60_000, help='Sweep end offset in microseconds')
+parser.add_argument('--latency-step', type=int, default=5_000, help='Sweep step in microseconds')
 args=parser.parse_args()
 source=args.source
 root=args.output;root.mkdir(parents=True,exist_ok=True)
@@ -52,13 +56,15 @@ with mp.tasks.vision.HandLandmarker.create_from_options(options) as detector:
     frame=decoded[fi]
     rgb=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
     image_path=root/f'{cam}-{fi:03d}.jpg';Image.fromarray(rgb).save(image_path)
-    record={'camera':cam,'set':set_name,'time_s':instant/1e6,'frame_index':fi,'pose_sample_index':si,'image':str(image_path),'hands':{}}
+    record={'camera':cam,'set':set_name,'time_s':instant/1e6,'frame_index':fi,'instant_us':instant,'pose_sample_index':si,'head':head.tolist(),'image':str(image_path),'hands':{}}
     for hand in ['left','right']:
-     mask=int(s[f'{hand}_joint_valid_mask']);projections={}
+     mask=int(s[f'{hand}_joint_valid_mask']);projections={};rays={}
      for convention in ['recorded','reflect-z']:
       c={**calibration,'extrinsics':converter.convert_camera_extrinsics(calibration['extrinsics'],convention)}
       projections[convention]=converter.project_hand_to_video(s[f'{hand}_joints_xyz_xyzw'][:,:3],mask,head,c)
-     record['hands'][hand]={'projections':projections}
+      # Normalized camera-frame rays let the fitter reproject with candidate intrinsics/distortion.
+      rays[convention]=converter.normalized_rays(s[f'{hand}_joints_xyz_xyzw'][:,:3],mask,head,c)
+     record['hands'][hand]={'projections':projections,'rays':rays}
     # Reference detections are used only for the audit, never as replacement pose.
     result=detector.detect(mp.Image(image_format=mp.ImageFormat.SRGB,data=rgb))
     detections=[np.array([[p.x*960,p.y*720] for p in hand]) for hand in result.hand_landmarks]
@@ -96,3 +102,50 @@ for row,r in enumerate(selected):
    for x,y in p.values():draw.ellipse((x-3,y-3,x+3,y+3),fill=color)
   board.paste(im.resize((640,480)),(640*col,510*row+30));ImageDraw.Draw(board).text((640*col+10,510*row+10),f"{r['time_s']:.3f}s | {'Before' if col==0 else 'After: reflect-z'}",fill='white')
 board.save(root/'comparison.jpg')
+
+if args.latency_sweep:
+ # Scan one constant offset per camera: each exposure's hand pose is sampled (interpolated)
+ # at t + offset; the recorded exposure head pose and recorded extrinsics stay unchanged.
+ offsets=list(range(args.latency_min,args.latency_max+1,args.latency_step))
+ sweep={}
+ for cam in ['left_camera','right_camera']:
+  calibration=aligned_camera_calibration(source,cam,960,720)
+  cam_rows=[r for r in records if r['camera']==cam and r['set']=='exploratory']
+  per_offset={}
+  for offset in offsets:
+   errors=[]
+   for record in cam_rows:
+    head=np.asarray(record['head'])
+    left,right,fraction,distance,inside=converter.pose_brackets(samples['t_sync_us'],np.array([record['instant_us']+offset],dtype=np.float64))
+    if not inside[0] or distance[0]>50_000:continue
+    sample=converter.interpolated_pose_sample(samples,int(left[0]),int(right[0]),float(fraction[0]))
+    detections=[np.asarray(d['xy']) for d in record['detections']]
+    wrists=[]
+    for hand in ['left','right']:
+     mask=int(sample[f'{hand}_joint_valid_mask'])
+     projected=converter.project_hand_to_video(sample[f'{hand}_joints_xyz_xyzw'][:,:3],mask,head,calibration)
+     wrists.append(np.asarray(projected.get(0,[9999,9999])))
+    if not len(detections):continue
+    costs=np.array([[np.linalg.norm(xy[0]-wrist) for wrist in wrists] for xy in detections]).reshape(-1,2)
+    rows_i,cols_i=linear_sum_assignment(costs)
+    # linear_sum_assignment rows are detections and columns are the two projected wrists.
+    pairs=[(int(col),int(row)) for row,col in zip(rows_i,cols_i) if costs[row,col]<200]
+    for hand_index,detection_index in pairs:
+     hand=['left','right'][hand_index]
+     mask=int(sample[f'{hand}_joint_valid_mask'])
+     projected=converter.project_hand_to_video(sample[f'{hand}_joints_xyz_xyzw'][:,:3],mask,head,calibration)
+     errors.extend(float(np.linalg.norm(np.asarray(projected[j])-detections[detection_index][i])) for i,j in enumerate(mapping) if j in projected)
+   per_offset[offset]={'median_px':float(np.median(errors)) if errors else None,'p95_px':float(np.percentile(errors,95)) if errors else None,'matched_hands':len(errors)//len(mapping) if errors else 0}
+  valid={offset:stats for offset,stats in per_offset.items() if stats['median_px'] is not None}
+  if not valid:raise ValueError(f'Latency sweep found no matched hands for {cam}')
+  best=min(valid,key=lambda offset:valid[offset]['median_px'])
+  sweep[cam]={'offsets_us':{str(offset):stats for offset,stats in per_offset.items()},'best_offset_us':best,
+              'best':valid[best],'offset_zero':per_offset.get(0) or valid.get(0),
+              'note':'Median MediaPipe-reference distance per constant offset on exploratory frames; recorded head pose and extrinsics unchanged. Detector distances are not ground truth.'}
+  print(f"{cam}: best offset {best} us, median {valid[best]['median_px']:.2f} px (0 us: {per_offset.get(0,{}).get('median_px')})",flush=True)
+ digest={}
+ for name in INTRINSICS_SOURCE_FILES:
+  with (source/name).open('rb') as handle:digest[name]=hashlib.file_digest(handle,'sha256').hexdigest()
+ (root/'latency.json').write_text(json.dumps({'episode':json.loads((source/'sync_manifest.json').read_text())['episode'],
+  'reference':'MediaPipe image detections, evaluation only, not ground truth','source_sha256':digest,'sweep':sweep,
+  'limits':'Offsets only shift when the pose stream is sampled; unrecorded per-frame latency variation remains.'},indent=2)+'\n')
