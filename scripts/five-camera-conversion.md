@@ -121,12 +121,25 @@ annotated contact phases, labeled ESTIMATED / relative 0–100; missing pose use
 VIDEO ONLY pressure while flexion remains unavailable.
 
 Both PICO views show left-hand (teal) and right-hand (pink) points and bones.
-`project_synced_frames` joins each view's own `t_sync_us` with the nearest pose
-(maximum 50 ms), uses that exposure's recorded head pose, recorded camera
-extrinsics and the selected fixed intrinsics, and respects the encoded vertical flip.
-Points behind the camera are removed, bones are clipped to image bounds, and
-empty tracking frames explicitly clear both. The three external videos have no
-spatial calibration, so they have no projected skeletons.
+`project_synced_frames` joins each view's own `t_sync_us` with the pose stream:
+each exposure's hand joints are linearly interpolated between the two bracketing
+original poses, and stay within 50 ms of them (an exact sample hit uses just
+that sample; joints valid in only one sample clear). It uses that exposure's
+recorded head pose, recorded camera extrinsics, the selected fixed intrinsics,
+optional fitted Brown–Conrady distortion and a constant per-camera pose latency
+offset, and respects the encoded vertical flip. Points behind the camera are
+removed, bones are clipped to image bounds, and empty tracking frames explicitly
+clear both.
+
+Short tracking dropouts are additionally bridged for display: when a hand is
+missing from consecutive frames for at most 500 ms between two tracked frames,
+every joint visible at both ends is linearly interpolated in image space and the
+bones are re-clipped from the interpolated positions. Joints missing at either
+end, longer dropouts, and stream edges stay cleared. This is a display-only
+presentation of the recorded tracking — the manifest records the per-camera
+bridged-frame counts, and no recorded pose, mask, or timestamp changes. The
+three external videos have no spatial calibration, so they have no projected
+skeletons.
 
 The flexion builder verifies that its original right-hand samples reproduce the
 RRD keypoints on all 446 right-camera frames. Reprojection equality here checks
@@ -174,26 +187,48 @@ both base/supplement metadata. `/recording/hand_projection` retains original and
 effective calibration. The vertical flip is handled in camera coordinates:
 an image-space y shift changes the native principal point with the opposite sign.
 
+### Profile v2: fitted distortion and pose latency
+
+Profiles now carry `"version": 2` with two optional per-camera additions:
+
+- `distortion`: Brown–Conrady coefficients (k1, k2, p1, p2, k3) in normalized
+  image coordinates. The fitter reprojects stored normalized camera-frame rays
+  (recorded per audit frame alongside the 2D projections), so the radial terms
+  act around the true principal point instead of a screen-space affine guess.
+  Coefficients are resolution-independent and never scale with the video.
+- `pose_latency_us`: one constant offset per camera. The overlay and flexion
+  builder sample (interpolate) the pose stream at `exposure + offset`. Estimate
+  it with `evaluate-five-camera-projection.py --latency-sweep`, which writes
+  `latency.json` with per-offset detector-reference distances and the best
+  offset; pass that file to the fitter via `--latency` to embed it. The offset
+  corrects the display-time sampling only; recorded poses and timestamps do not
+  change. Offsets beyond ±150 ms are rejected, and the 50 ms bracket-distance
+  gate still applies at the shifted query.
+
+Audits regenerated after 2026-09-12 include `rays`; older audits without them
+are rejected by the fitter (regenerate the audit first).
+
 Reproduce with MediaPipe, OpenCV, SciPy and Pillow plus conversion dependencies:
 
 ```sh
 python scripts/evaluate-five-camera-projection.py \
-  --source /path/to/20260910_153529/task_clip \
+  --source /path/to/<episode>/task_clip \
   --video-root /path/to/transcoded-videos --model /path/to/hand_landmarker.task \
-  --sampling dense --output /path/to/audit
+  --sampling dense --latency-sweep --output /path/to/audit
 python scripts/evaluate-five-camera-projection.py \
-  --source /path/to/20260910_153529/task_clip \
+  --source /path/to/<episode>/task_clip \
   --video-root /path/to/transcoded-videos --model /path/to/hand_landmarker.task \
   --sampling confirmation --output /path/to/confirmation
 python scripts/fit-five-camera-intrinsics.py \
-  --source /path/to/20260910_153529/task_clip \
+  --source /path/to/<episode>/task_clip \
   --audit /path/to/audit/measurements.json \
   --confirmation /path/to/confirmation/measurements.json \
+  --latency /path/to/audit/latency.json \
   --output /path/to/intrinsics.json
 python scripts/convert-five-camera-clip.py \
-  --source /path/to/20260910_153529/task_clip \
+  --source /path/to/<episode>/task_clip \
   --output /path/to/package --work /path/to/transcoded-videos \
-  --intrinsics-profile scripts/glove-pressure/episodes/20260910_153529-intrinsics.json
+  --intrinsics-profile /path/to/intrinsics.json
 ```
 
 Then build the hand supplement with the pressure contact profile (and **without

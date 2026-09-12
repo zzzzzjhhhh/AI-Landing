@@ -98,11 +98,15 @@ blueprint last. The prior hand-only blueprint remains a fallback for older asset
   intensity (0–100), not measured force or pressure. See the workflow below.
 - **Pressure · DEMO** in the two older episodes remains synthetic at 10 Hz.
 - **Flexion · POSE** is inferred from the episode's original right-hand 3D joints.
-  It uses the exact nearest pose sample and timeline instant used by each frame
-  of the **right camera's** existing keypoint overlay. Between video frames it
-  holds with the video. No smoothing, interpolation, or synthetic grip cycle is
-  applied. Invalid or degenerate tracking clears the mesh; it never freezes the
-  last valid hand indefinitely.
+  It uses the same bracket-interpolated pose samples, optional fitted distortion
+  and per-camera latency offset, and timeline instant used by each frame of the
+  **right camera's** existing keypoint overlay. Between video frames it holds
+  with the video. No smoothing, interpolation beyond that shared bracketing, or
+  synthetic grip cycle is applied. Invalid or degenerate tracking clears the
+  mesh; it never freezes the last valid hand indefinitely. The right camera's 2D
+  keypoint overlay additionally bridges tracking dropouts of at most 500 ms for
+  display (image-space interpolation between the surrounding tracked frames,
+  labeled in the manifest); the flexion mesh does not bridge and clears instead.
 
 The two camera streams have independent recorded timestamps. One flexion panel
 uses the right camera as its reference; it cannot match both camera sampling
@@ -136,7 +140,8 @@ hinge measurement. Per-segment direction error is checked before publication.
 `public/rerun/right-hand-flexion.csv` includes video timeline/capture timestamps,
 source sample indices/timestamps, validity, source bends and model bone rotations.
 Invalid rows have empty angle fields. The manifest records source hashes, frame
-counts, nearest-pose distances and overlay/direction agreement. These agreement
+counts, bracket-distance (formerly nearest-pose) measurements and overlay/direction
+agreement. These agreement
 metrics validate retargeting and source selection, not the physical accuracy of
 the original PICO tracker.
 
@@ -157,7 +162,11 @@ WASM pressure processing and Three.js 0.183.0 skinning run **offline** during RR
 creation. The page keeps the existing Rerun renderer. It does not load WebHand's
 Vue application, serial monitor, another Three.js renderer or `HandHandler.wasm`.
 No WASM angle-solving algorithm is used for the pose-derived flexion.
-Pressure samples every other processed point at 0.35 height scale. Round Rerun
+Pressure samples every other processed point. The synthetic demo keeps the
+original 0.35 height scale and the full 0–255 colormap span. Estimated episodes
+normalise the display instead: the shared WebHand colormap ends at the
+episode's peak relative level and the height scale is 0.7, so contact changes
+stay visible; the legend and provenance record that peak. Round Rerun
 points differ from the original Three.js point sprites. Units are arbitrary 0–255.
 
 ## Rebuild and verify
@@ -231,7 +240,8 @@ have source `video_contact_and_recorded_pose`. `export-pressure-estimate.mjs` em
 camera frames (377 pose-conditioned, 69 video-only), plus one endpoint hold.
 Release clears every taxel and sends an empty cloud so an old contact cannot
 remain visible. Region scalar tracks, current phase, relative peak and a color
-legend are logged alongside the cloud. The displayed title is `Pressure`, with
+legend ending at the episode's display-normalised peak are logged alongside the
+cloud. The displayed title is `Pressure`, with
 no ESTIMATED or VIDEO + POSE / VIDEO ONLY badges. Simulation and evidence
 provenance are preserved in the recording metadata and exported samples.
 

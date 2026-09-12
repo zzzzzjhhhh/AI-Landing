@@ -25,11 +25,17 @@ can use existing videos only if their timestamps still identify original
 frames; old constant-20-fps derivatives must be regenerated.
 
 The 2D overlay is emitted at exactly the same timeline instant as each video
-frame. It uses the nearest binary hand-pose sample and the corresponding
-`camera_pose_tracking.jsonl` head pose, falling back to the binary head pose
-when the frame sidecar is absent. Missing, out-of-range, or more than 50 ms
-distant pose samples clear the overlay. Full-rate 3D pose/scalar channels are
-retained independently. Video and overlay hold together between video frames.
+frame. Its hand pose is linearly interpolated between the two bracketing binary
+pose samples around each exposure instant (plus an optional constant latency
+offset), and the head pose comes from the corresponding `camera_pose_tracking.jsonl`
+row, falling back to the binary head pose when the frame sidecar is absent. A
+joint is valid only when both bracketing samples report it valid, and an exact
+sample hit still uses just that sample. Missing, out-of-range, or more than
+50 ms distant pose samples clear the overlay; the overlay never extrapolates.
+(The five-camera episode pipeline additionally bridges tracking dropouts of up
+to 500 ms between tracked frames by image-space interpolation; this path does
+not.) Full-rate 3D pose/scalar channels are retained independently. Video and
+overlay hold together between video frames.
 
 Both camera views use fixed visual bounds from the encoded video's dimensions,
 so out-of-frame tracking cannot change their zoom. The 2D overlay omits joints
@@ -101,10 +107,20 @@ the hardware clocks. This episode's first sensor timestamps differ by 1 ns,
 while the recorded Unix timestamps differ by 19 ms.
 
 The converter retains the recorded camera intrinsics and vertical image
-transform. The recording does not retain distortion coefficients. Residual
-error may include tracking/prediction error, calibration, unmeasured latency,
-and reference-detector error. Precise validation still requires synchronized
-calibration targets or manually verified 2D landmarks, not just visual fit.
+transform. The recording does not retain distortion coefficients, so the
+projection is pinhole unless an episode-specific profile supplies
+Brown–Conrady coefficients (`distortion`: k1, k2, p1, p2, k3 in normalized
+image coordinates, fitted externally and stored in an intrinsics profile v2
+for five-camera episodes, or passed by regenerating with a modified
+characteristics sidecar). `--pose-latency-us` shifts when the pose stream is
+sampled relative to each exposure: a positive offset samples the pose stream
+later, compensating a pose timestamp that leads the tracked world state. The
+offset is a constant display-time correction estimated externally (for example
+with `evaluate-five-camera-projection.py --latency-sweep`); it does not modify
+recorded data. Residual error may still include tracking/prediction error,
+calibration, unmeasured per-frame latency variation, and reference-detector
+error. Precise validation still requires synchronized calibration targets or
+manually verified 2D landmarks, not just visual fit.
 
 Rerun supports separate video timestamps and timeline timestamps:
 <https://rerun.io/docs/reference/types/archetypes/video_frame_reference>.
