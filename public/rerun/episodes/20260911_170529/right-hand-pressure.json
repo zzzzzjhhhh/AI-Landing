@@ -3,7 +3,7 @@
   "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
   "duration_ns": 110005303000,
   "capture_start_ns": 1789117536835329000,
-  "base_sha256": "373e684f97e8f8ba2fdd2618a6f30df6205fada2fe0381a7948a6fcb4169927b",
+  "base_sha256": "ba2d8d845437c2a5863cdbc3d9b9c373bb216d91ba421199d7275a21f4eaeb4b",
   "camera_dimensions": {
     "left_camera": [
       960,
@@ -40,15 +40,16 @@
     "reference_camera": "right_camera",
     "pose_sample_count": 7863,
     "camera_extrinsics_convention": "recorded",
-    "intrinsics_profile_sha256": null,
+    "intrinsics_profile_sha256": "a17fe9ba0c3686afbe5b230ac64fad7b56cd71eeef1784ac094ad36a79105192",
+    "pose_latency_us": 15000,
     "frame_count": 2919,
-    "valid_frame_count": 2041,
-    "missing_frame_count": 878,
-    "pose_distance_max_ms": 13.38,
-    "overlay_reprojection_max_px": 0.0,
+    "valid_frame_count": 2021,
+    "missing_frame_count": 898,
+    "pose_distance_max_ms": 12.518,
+    "overlay_reprojection_max_px": 0,
     "pose_sha256": "6d375774feba0a2f4b54748a91e731ee120d8c0beffb39ae47f31e784a0bcba4",
     "schema_sha256": "4466cc418c2248b4dfc7dcfe1c94e5c92189d40b3beba9fbf21c2506e02a8654",
-    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; joints linearly interpolated between bracketing original poses within 50 ms of the latency-corrected exposure query, never extrapolated. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
     "display_playback": {
       "fps": 30,
       "max_gap_seconds": 2,
@@ -57,9 +58,9 @@
       "native_csv_unchanged": true,
       "measured": false,
       "frame_count": 3302,
-      "valid_frame_count": 3241
+      "valid_frame_count": 3237
     },
-    "segment_direction_error_max_deg": 9.583585410390605e-06
+    "segment_direction_error_max_deg": 0.000009430238149809192
   },
   "pressure": {
     "version": 1,
@@ -77,7 +78,7 @@
     },
     "video_observations": [
       {
-        "time_s": 0.0,
+        "time_s": 0,
         "frame_index": 0,
         "image_sha256": "237f22e4e28d80480374a592df9b02106c084f799488cbc58832a6842065cc44",
         "observation": "Both hands open above the clothing pile."
@@ -581,7 +582,7 @@
     ],
     "task": {
       "main": "Fold the garments and arrange them in a stack on the table.",
-      "objects": "Green trousers \u00b7 patterned trousers \u00b7 gray shirt \u00b7 olive trousers \u00b7 tan trousers",
+      "objects": "Green trousers · patterned trousers · gray shirt · olive trousers · tan trousers",
       "stages": [
         {
           "time_s": 0,
@@ -669,28 +670,33 @@
     "units": "relative_0_100",
     "measured": false,
     "timeline": "Exact right-camera frame times plus a final endpoint hold",
-    "pose_modulated_frames": 2041,
-    "video_only_frames": 878
+    "display_normalisation": {
+      "colormap_max": 113,
+      "height_scale": 0.7,
+      "peak_relative_0_100": 44.3
+    },
+    "pose_modulated_frames": 2021,
+    "video_only_frames": 898
   },
   "data": {
     "path": "/rerun/episodes/20260911_170529/right-hand-pressure.rrd",
-    "sha256": "62b99c424fde2d0179f741e162c829b6686bdbcb5c654fb0093e8f31779216a5",
+    "sha256": "9fca60f6dc19538920b340703812411a6d711331b5bff1a415e100401a1171f9",
     "storage": "Reassembled in order from data_parts; complete file stored offline."
   },
   "blueprint": {
     "path": "/rerun/episodes/20260911_170529/right-hand-pressure.rbl",
-    "sha256": "345c34848526f43a08dbd2be8ef7f3f71c87ad0d866513bce4e4d06af32eff99"
+    "sha256": "15a8fab54006d84511efe6f502afd8cf5f015325757a8935059fc11170297795"
   },
   "flexion_csv": {
-    "sha256": "2f54bb12c0e5687a3278a2a7fbf541581bea71b50f1e35c5a6630e26cad3c698",
+    "sha256": "c9694ad4029c45de9887fecd6874e969f0272158e6352a15be1d83b1ff086d21",
     "storage": "offline; excluded from web repository"
   },
   "pressure_csv": {
-    "sha256": "1ce5e8474e98809006a192ebb4d4f91b2ba362a05541d329f6bab3fb1ac8bc27",
+    "sha256": "ec564bc3a25e39363ef1ba6311eb022728cdaa31ab5f85875f4c04d6c15416dd",
     "storage": "offline; excluded from web repository"
   },
   "pressure_samples": {
-    "sha256": "f598a9917716d9e956746777984ee61df5640c91609a42e6b81f7f8a30e31cd5",
+    "sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
     "storage": "offline; excluded from web repository"
   },
   "dashboard": {
@@ -726,35 +732,35 @@
         "K_left": [
           [
             610.519125,
-            0.0,
+            0,
             479.5
           ],
           [
-            0.0,
+            0,
             610.54939275,
             359.5
           ],
           [
-            0.0,
-            0.0,
-            1.0
+            0,
+            0,
+            1
           ]
         ],
         "K_right": [
           [
             610.519125,
-            0.0,
+            0,
             479.5
           ],
           [
-            0.0,
+            0,
             610.54939275,
             359.5
           ],
           [
-            0.0,
-            0.0,
-            1.0
+            0,
+            0,
+            1
           ]
         ],
         "R": [
@@ -777,21 +783,21 @@
         "T_m": [
           -0.06388337669475969,
           -1.8041496768276344e-10,
-          6.438478829583779e-09
+          6.438478829583779e-9
         ],
         "R1": [
           [
             0.999999999999995,
-            2.7999174423177937e-09,
-            -9.99208070621059e-08
+            2.7999174423177937e-9,
+            -9.99208070621059e-8
           ],
           [
-            -2.7999174423177937e-09,
-            1.0,
+            -2.7999174423177937e-9,
+            1,
             1.3988500527183094e-16
           ],
           [
-            9.99208070621059e-08,
+            9.99208070621059e-8,
             1.3988500527183094e-16,
             0.999999999999995
           ]
@@ -799,16 +805,16 @@
         "R2": [
           [
             0.999999999999995,
-            2.7999174423177937e-09,
-            -9.99208070621059e-08
+            2.7999174423177937e-9,
+            -9.99208070621059e-8
           ],
           [
-            -2.7999174423177937e-09,
-            1.0,
+            -2.7999174423177937e-9,
+            1,
             1.3988500527183094e-16
           ],
           [
-            9.99208070621059e-08,
+            9.99208070621059e-8,
             1.3988500527183094e-16,
             0.999999999999995
           ]
@@ -816,67 +822,67 @@
         "P1": [
           [
             610.5494429446223,
-            0.0,
+            0,
             479.5000915527344,
-            0.0
+            0
           ],
           [
-            0.0,
+            0,
             610.5494429446223,
             359.5,
-            0.0
+            0
           ],
           [
-            0.0,
-            0.0,
-            1.0,
-            0.0
+            0,
+            0,
+            1,
+            0
           ]
         ],
         "P2": [
           [
             610.5494429446223,
-            0.0,
+            0,
             479.5000915527344,
             -39.003960054407194
           ],
           [
-            0.0,
+            0,
             610.5494429446223,
             359.5,
-            0.0
+            0
           ],
           [
-            0.0,
-            0.0,
-            1.0,
-            0.0
+            0,
+            0,
+            1,
+            0
           ]
         ],
         "Q": [
           [
-            1.0,
-            0.0,
-            0.0,
+            1,
+            0,
+            0,
             -479.5000915527344
           ],
           [
-            0.0,
-            1.0,
-            0.0,
+            0,
+            1,
+            0,
             -359.5
           ],
           [
-            0.0,
-            0.0,
-            0.0,
+            0,
+            0,
+            0,
             610.5494429446223
           ],
           [
-            0.0,
-            0.0,
+            0,
+            0,
             15.653524465027603,
-            -0.0
+            0
           ]
         ],
         "depth_formula": "depth_m = P1[0,0] * baseline_m / disparity_px",
@@ -904,10 +910,10 @@
         "input_height": 720,
         "state_dict_load": "strict, all parameters supplied by checkpoint",
         "depth_type": "stereo model estimate, not measured ground truth",
-        "invalid_policy": "Nonfinite/nonpositive disparity, outside right image, or depth outside 0.1\u201320 m => zero.",
+        "invalid_policy": "Nonfinite/nonpositive disparity, outside right image, or depth outside 0.1–20 m => zero.",
         "color_scale_m": [
           0.2,
-          3.0
+          3
         ],
         "color_map": "TURBO, red near / blue far; black invalid",
         "depth_png_unit_m": 0.001
@@ -936,14 +942,16 @@
         "bytes": 23741204
       },
       "timestamps": {
-        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth-timestamps.csv",
         "sha256": "efedcd1b201e9fb309124257d46b073aa1e48efd7f4e84ed2d2b4dcb84745b64",
-        "bytes": 48309
+        "bytes": 48309,
+        "storage": "offline; excluded from web repository",
+        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth-timestamps.csv"
       },
       "depth_archive": {
-        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth-mm.zip",
         "sha256": "49a918c41e6e5a59b1790e13e63538b80def8ebaeb58d8f9ec75dc9ada9a7b92",
-        "bytes": 309693321
+        "bytes": 309693321,
+        "storage": "offline; excluded from web repository",
+        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth-mm.zip"
       }
     },
     "imu": {
@@ -976,9 +984,9 @@
         "quantity": "specific_force",
         "formula": "R_head_to_world.T @ (d2p_world/dt2 - gravity_world)",
         "gravity_world_m_s2": [
-          0.0,
+          0,
           -9.80665,
-          0.0
+          0
         ]
       },
       "gyro": {
@@ -1039,28 +1047,28 @@
     },
     "data": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard.rrd",
-      "sha256": "1af17c5b4d3d76f9c2e4d4ee6babd23b862b5de87323a15a5dcf1e692705b822"
+      "sha256": "4ac7ebc2965e4393c8e750f54f1f07e210323d49d690752eab01fa3928f08b32"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard.rbl",
-      "sha256": "e7446a257c0fe95e6d537d7ba6b9d361deca168c5e10977786f120c33caf4612"
+      "sha256": "ced6aa20cab4327e8c16f73e9808742f752a582c2487bfba79e906451dfed9ff"
     }
   },
   "data_parts": [
     {
       "path": "/rerun/episodes/20260911_170529/right-hand-pressure.part-00.bin",
-      "sha256": "64d39bdba78bd70d9c16303467d961f5a51e678e290c88a5a3f30effd21b2451",
+      "sha256": "ee7dd8ff37c7a84dc790977c2076abbd82b9d71d98de26d995e3e0d640082b4d",
       "bytes": 67108864
     },
     {
       "path": "/rerun/episodes/20260911_170529/right-hand-pressure.part-01.bin",
-      "sha256": "3729ac0c93c4ee36cf41274982a7c23e4073a4a0033b6db42e4b5db86349cb46",
+      "sha256": "9b8addc36ed4dff8dc60719e4c269ac34184f664618413929e431ae58e2084a3",
       "bytes": 67108864
     },
     {
       "path": "/rerun/episodes/20260911_170529/right-hand-pressure.part-02.bin",
-      "sha256": "7d8b6f83ee0b5305698589a6e85f5365f17ecd7b2ef43e1048da5d25be9f17e9",
-      "bytes": 17302055
+      "sha256": "32f9e00c6fd61a508c4d3502596b24726cb118d310c960e9179f107180346c6b",
+      "bytes": 17288791
     }
   ]
 }

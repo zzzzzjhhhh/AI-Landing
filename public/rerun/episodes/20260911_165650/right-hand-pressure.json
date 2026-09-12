@@ -549,35 +549,35 @@
         "K_left": [
           [
             610.519125,
-            0.0,
+            0,
             479.5
           ],
           [
-            0.0,
+            0,
             610.54939275,
             359.5
           ],
           [
-            0.0,
-            0.0,
-            1.0
+            0,
+            0,
+            1
           ]
         ],
         "K_right": [
           [
             610.519125,
-            0.0,
+            0,
             479.5
           ],
           [
-            0.0,
+            0,
             610.54939275,
             359.5
           ],
           [
-            0.0,
-            0.0,
-            1.0
+            0,
+            0,
+            1
           ]
         ],
         "R": [
@@ -610,7 +610,7 @@
           ],
           [
             -2.7999174423177937e-09,
-            1.0,
+            1,
             1.3988500527183094e-16
           ],
           [
@@ -627,7 +627,7 @@
           ],
           [
             -2.7999174423177937e-09,
-            1.0,
+            1,
             1.3988500527183094e-16
           ],
           [
@@ -639,67 +639,67 @@
         "P1": [
           [
             610.5494429446223,
-            0.0,
+            0,
             479.5000915527344,
-            0.0
+            0
           ],
           [
-            0.0,
+            0,
             610.5494429446223,
             359.5,
-            0.0
+            0
           ],
           [
-            0.0,
-            0.0,
-            1.0,
-            0.0
+            0,
+            0,
+            1,
+            0
           ]
         ],
         "P2": [
           [
             610.5494429446223,
-            0.0,
+            0,
             479.5000915527344,
             -39.003960054407194
           ],
           [
-            0.0,
+            0,
             610.5494429446223,
             359.5,
-            0.0
+            0
           ],
           [
-            0.0,
-            0.0,
-            1.0,
-            0.0
+            0,
+            0,
+            1,
+            0
           ]
         ],
         "Q": [
           [
-            1.0,
-            0.0,
-            0.0,
+            1,
+            0,
+            0,
             -479.5000915527344
           ],
           [
-            0.0,
-            1.0,
-            0.0,
+            0,
+            1,
+            0,
             -359.5
           ],
           [
-            0.0,
-            0.0,
-            0.0,
+            0,
+            0,
+            0,
             610.5494429446223
           ],
           [
-            0.0,
-            0.0,
+            0,
+            0,
             15.653524465027603,
-            -0.0
+            0
           ]
         ],
         "depth_formula": "depth_m = P1[0,0] * baseline_m / disparity_px",
@@ -730,7 +730,7 @@
         "invalid_policy": "Nonfinite/nonpositive disparity, outside right image, or depth outside 0.1\u201320 m => zero.",
         "color_scale_m": [
           0.2,
-          3.0
+          3
         ],
         "color_map": "TURBO, red near / blue far; black invalid",
         "depth_png_unit_m": 0.001
@@ -759,14 +759,16 @@
         "bytes": 6081947
       },
       "timestamps": {
-        "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth-timestamps.csv",
         "sha256": "0fb9b83b762b9a284e6f74c8789dada222210f16eadb7e618178399cd957ae97",
-        "bytes": 16824
+        "bytes": 16824,
+        "storage": "offline; excluded from web repository",
+        "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth-timestamps.csv"
       },
       "depth_archive": {
-        "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth-mm.zip",
         "sha256": "fbac3fca1bbb44e4eb6081870e91db2b3a8efeec67523f86b705c0cc001b6c62",
-        "bytes": 78116886
+        "bytes": 78116886,
+        "storage": "offline; excluded from web repository",
+        "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth-mm.zip"
       }
     },
     "imu": {
@@ -862,11 +864,11 @@
     },
     "data": {
       "path": "/rerun/episodes/20260911_165650/replay-dashboard.rrd",
-      "sha256": "0008bc88a64abb74738eb132a15330dfa5252f1bcd9b67ded26509717abd0007"
+      "sha256": "f4a5dea1349f2a1ef1a57278dee50aa9c6b5e6831e4ef0cf4ee98bcf1ee9626f"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_165650/replay-dashboard.rbl",
-      "sha256": "70b081ea8a6f4fcdd84c6ade486a663e3928197be845e5d6d15cda437070aa1e"
+      "sha256": "4fd7473e1f7160f1607eec68ae07689100b78abad3010513af5485bc7e8e0220"
     }
   }
 }

@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "episode_id": "20260911_165650",
+  "source": "head_pose_estimate",
+  "label": "ESTIMATED",
+  "entity": "replay_dashboard/imu",
+  "recording_id": "five_camera_20260911_165650_96d7496e75a6",
+  "capture_start_ns": 1789117022496528000,
+  "duration_ns": 42982047000,
+  "source_sha256": {
+    "pose_samples.bin": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
+    "pose_schema.json": "750e753299499f5f60c187303710562745f8693dc08d5748d75bb02e3c1f32e1",
+    "sync_manifest.json": "fb357564708f138554427306856265eddc98871a2a1c8a1b9881ef5a2df2c5f4"
+  },
+  "sample_count": 3083,
+  "valid_sample_count": 3083,
+  "edge_sample_count": 18,
+  "discontinuity_count": 0,
+  "sample_rate_hz_median": 71.42857142857143,
+  "time_range_ns": [
+    11472000,
+    42971472000
+  ],
+  "frame": "Virtual IMU at the tracked head origin; right-handed +X right, +Y up, +Z back. Gyro uses the right-hand rule.",
+  "basis_conversion": "S=diag(1,1,-1); position'=S position, rotation'=S rotation S; quaternion'=(-qx,-qy,qz,qw).",
+  "accel": {
+    "unit": "m/s^2",
+    "quantity": "specific_force",
+    "formula": "R_head_to_world.T @ (d2p_world/dt2 - gravity_world)",
+    "gravity_world_m_s2": [
+      0.0,
+      -9.80665,
+      0.0
+    ]
+  },
+  "gyro": {
+    "unit": "rad/s",
+    "quantity": "body_angular_velocity",
+    "formula": "d/dt log(R(t_i).T @ R(t)) at t_i"
+  },
+  "filter": {
+    "method": "Local cubic least-squares on actual irregular timestamps and relative rotation vectors",
+    "window_s": 0.24,
+    "max_gap_s": 0.1,
+    "boundary": "One-sided/shifted recorded window, tagged edge_fit; no extrapolation or endpoint fill."
+  },
+  "assumptions": [
+    "Tracking world is gravity-aligned with +Y up.",
+    "Virtual IMU origin equals tracked head origin; physical sensor offset is unknown.",
+    "No added random noise, sensor bias, drift or vibration; high-frequency raw IMU cannot be recovered from fused pose.",
+    "Tracking-state flags are absent from the compact pose schema; numerical validity and jump/gap checks are used."
+  ],
+  "statistics": {
+    "accel_x": {
+      "min": -1.940802006363166,
+      "max": 1.5819797207909703
+    },
+    "accel_y": {
+      "min": 4.982298920473181,
+      "max": 10.424505720379184
+    },
+    "accel_z": {
+      "min": -3.4258929526653996,
+      "max": 9.406649846507555
+    },
+    "gyro_x": {
+      "min": -1.2366547257275562,
+      "max": 0.9701736020117622
+    },
+    "gyro_y": {
+      "min": -0.9849020979603543,
+      "max": 0.48960177194007004
+    },
+    "gyro_z": {
+      "min": -0.4783646412928991,
+      "max": 0.30873468716878044
+    }
+  },
+  "references": [
+    "https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0145.rst",
+    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html"
+  ],
+  "csv": {
+    "path": "/rerun/episodes/20260911_165650/head-imu-estimates.csv",
+    "sha256": "3d2c2930a42491aa1463fdc0c656b039957db68fecc1295646ef11e4e3015d8a"
+  }
+}
