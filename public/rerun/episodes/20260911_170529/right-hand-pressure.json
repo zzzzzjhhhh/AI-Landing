@@ -1,6 +1,6 @@
 {
   "application_id": "five_camera_task_clip_v1",
-  "recording_id": "five_camera_20260911_170529_015c3d9ae602",
+  "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
   "duration_ns": 110005303000,
   "capture_start_ns": 1789117536835329000,
   "base_sha256": "373e684f97e8f8ba2fdd2618a6f30df6205fada2fe0381a7948a6fcb4169927b",
@@ -915,7 +915,11 @@
       "video_rendering": {
         "source": "inference_color_png",
         "overlays": false,
-        "full_frame": true
+        "full_frame": true,
+        "intensity_mapping": "depth_linear",
+        "intensity_mapping_detail": "intensity = clip((depth - near) / (far - near), 0, 1) * 255; near=blue, far=red",
+        "colormap": "turbo",
+        "colormap_direction": "near_blue_far_red"
       },
       "quality": {
         "valid_fraction_min_median": [
@@ -928,18 +932,18 @@
       },
       "video": {
         "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth.mp4",
-        "sha256": "cbe1adc731bd22a60d117ecc4cd9291af1b830f2eca29acae11026ddc16e80d2",
-        "bytes": 22760376
+        "sha256": "b28d64c990b300a5d26a121333e8176a8fdcec574a2a26706512e66bf55b0d56",
+        "bytes": 23741204
       },
       "timestamps": {
+        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth-timestamps.csv",
         "sha256": "efedcd1b201e9fb309124257d46b073aa1e48efd7f4e84ed2d2b4dcb84745b64",
-        "bytes": 48309,
-        "storage": "offline; excluded from web repository"
+        "bytes": 48309
       },
       "depth_archive": {
+        "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth-mm.zip",
         "sha256": "49a918c41e6e5a59b1790e13e63538b80def8ebaeb58d8f9ec75dc9ada9a7b92",
-        "bytes": 309693321,
-        "storage": "offline; excluded from web repository"
+        "bytes": 309693321
       }
     },
     "imu": {
@@ -948,7 +952,7 @@
       "source": "head_pose_estimate",
       "label": "ESTIMATED",
       "entity": "replay_dashboard/imu",
-      "recording_id": "five_camera_20260911_170529_015c3d9ae602",
+      "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
       "capture_start_ns": 1789117536835329000,
       "duration_ns": 110005303000,
       "source_sha256": {
@@ -1025,38 +1029,38 @@
         "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html"
       ],
       "csv": {
-        "sha256": "08afb7f0d35785e039688b55ba6115508a96773af21cd820bb870d713b8a4032",
-        "storage": "offline; excluded from web repository"
+        "path": "/rerun/episodes/20260911_170529/head-imu-estimates.csv",
+        "sha256": "08afb7f0d35785e039688b55ba6115508a96773af21cd820bb870d713b8a4032"
       },
       "metadata": {
-        "sha256": "6d92e32a13bdef7c462980ae26459194131c775aa9632751569f93f74cb8b88b",
-        "storage": "offline; excluded from web repository"
+        "path": "/rerun/episodes/20260911_170529/head-imu-estimates.json",
+        "sha256": "7e67f63ab0c0b541850648813f4c371143a496c8c0ba74ce413c9114ff97d62e"
       }
     },
     "data": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard.rrd",
-      "sha256": "18a570f441405b0927b0500b476ff6b9341c60ed4f29cc6eb8f0cc2739d2ba89"
+      "sha256": "1af17c5b4d3d76f9c2e4d4ee6babd23b862b5de87323a15a5dcf1e692705b822"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard.rbl",
-      "sha256": "84bcb0ae7573ad995b3f69df77cbca9b05e6b6e37d7f58740642bf035800f161"
+      "sha256": "e7446a257c0fe95e6d537d7ba6b9d361deca168c5e10977786f120c33caf4612"
     }
   },
   "data_parts": [
     {
       "path": "/rerun/episodes/20260911_170529/right-hand-pressure.part-00.bin",
-      "sha256": "e36b52ea994909aeb09bf38e5df20b6fc9d65a29d35a8048ea669e0bb631a272",
+      "sha256": "64d39bdba78bd70d9c16303467d961f5a51e678e290c88a5a3f30effd21b2451",
       "bytes": 67108864
     },
     {
       "path": "/rerun/episodes/20260911_170529/right-hand-pressure.part-01.bin",
-      "sha256": "a4dfc2fbf2a0fa575c2ad9225411c89d273674832a2eae3f9746b3124bfd7086",
+      "sha256": "3729ac0c93c4ee36cf41274982a7c23e4073a4a0033b6db42e4b5db86349cb46",
       "bytes": 67108864
     },
     {
       "path": "/rerun/episodes/20260911_170529/right-hand-pressure.part-02.bin",
-      "sha256": "9c76fb67e11238fd5b8f2e2439bd43f8d2eebd43a1b1c37ce92713afeb2e5403",
-      "bytes": 17225469
+      "sha256": "7d8b6f83ee0b5305698589a6e85f5365f17ecd7b2ef43e1048da5d25be9f17e9",
+      "bytes": 17302055
     }
   ]
 }
