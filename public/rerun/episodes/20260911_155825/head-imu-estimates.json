@@ -4,7 +4,7 @@
   "source": "head_pose_estimate",
   "label": "ESTIMATED",
   "entity": "replay_dashboard/imu",
-  "recording_id": "five_camera_20260911_155825_2b9ad72b4b9a",
+  "recording_id": "five_camera_20260911_155825_efcc34eaa8b0",
   "capture_start_ns": 1789113520058648000,
   "duration_ns": 56442730000,
   "source_sha256": {

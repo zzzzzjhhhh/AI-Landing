@@ -1,9 +1,9 @@
 {
   "application_id": "five_camera_task_clip_v1",
-  "recording_id": "five_camera_20260911_155825_2b9ad72b4b9a",
+  "recording_id": "five_camera_20260911_155825_339b998cc055",
   "duration_ns": 56442730000,
   "capture_start_ns": 1789113520058648000,
-  "base_sha256": "6ce7182a2dddf46e5951604e4a0253bb60a17dd680eee92c6fd4bf25aa5930b4",
+  "base_sha256": "3a08e2f986786a571a4904f817e233e39879ed68698887bbe80eaf2cb75a3425",
   "camera_dimensions": {
     "left_camera": [
       960,
@@ -40,15 +40,16 @@
     "reference_camera": "right_camera",
     "pose_sample_count": 4046,
     "camera_extrinsics_convention": "recorded",
-    "intrinsics_profile_sha256": null,
+    "intrinsics_profile_sha256": "ea90a15265c8ae4162b08861b6f80a600ba2ff0981b8b4dfd06762f399f82be6",
+    "pose_latency_us": 10000.0,
     "frame_count": 1511,
-    "valid_frame_count": 1424,
-    "missing_frame_count": 87,
-    "pose_distance_max_ms": 10.783,
+    "valid_frame_count": 1421,
+    "missing_frame_count": 90,
+    "pose_distance_max_ms": 10.18,
     "overlay_reprojection_max_px": 0.0,
     "pose_sha256": "d95c674a6561fa8ef96b1f85fa831b9a0ea5b88fc6e81ec61c592c5c6e5c13ab",
     "schema_sha256": "6b39f314f28493289be173e3a657b1d16ad0d44eb4714fa44ba5a0c880f28a62",
-    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; joints linearly interpolated between bracketing original poses within 50 ms of the latency-corrected exposure query, never extrapolated. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
     "display_playback": {
       "fps": 30,
       "max_gap_seconds": 2,
@@ -59,7 +60,7 @@
       "frame_count": 1695,
       "valid_frame_count": 1695
     },
-    "segment_direction_error_max_deg": 1.2749559400407728e-05
+    "segment_direction_error_max_deg": 8.2776426154535e-06
   },
   "pressure": {
     "version": 1,
@@ -655,28 +656,33 @@
     "units": "relative_0_100",
     "measured": false,
     "timeline": "Exact right-camera frame times plus a final endpoint hold",
-    "pose_modulated_frames": 1424,
-    "video_only_frames": 87
+    "display_normalisation": {
+      "colormap_max": 128,
+      "height_scale": 0.7,
+      "peak_relative_0_100": 50.2
+    },
+    "pose_modulated_frames": 1421,
+    "video_only_frames": 90
   },
   "data": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rrd",
-    "sha256": "845fcd2682192429ebd209c1cffdc54b4ba3eb2bd9e73b8abc160f59b121e6bf"
+    "sha256": "48bb229e44ca0007bb832b4ed0b8f35ba8c6eb85f556d589927724491c552027"
   },
   "blueprint": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rbl",
-    "sha256": "f1b05681c3d76acd222c60e50be133a757ae9c5c0a59fd8889a9fdff52d0b2a3"
+    "sha256": "d33061f8ac5b5dba711251ee5d1333ae4ddd310c68da58c8285c2f936f136245"
   },
   "flexion_csv": {
     "path": "/rerun/episodes/20260911_155825/right-hand-flexion.csv",
-    "sha256": "5fecd81148d6c4b05a5434954c3699ad1c59bd08158568d39add150cc03f9bfb"
+    "sha256": "7271a70b76d624176ee5a1a1da38e562a976773b55a69d24afa6451dfc165529"
   },
   "pressure_csv": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.csv",
-    "sha256": "87bcca2e5e493c0abb75681ddb3521e4f8a109cf0d78a00882bddaa825ee1352"
+    "sha256": "0cc3f52821f7182873be74df941628334656d54af66b8d744c4faf7d5f60c137"
   },
   "pressure_samples": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure-samples.jsonl",
-    "sha256": "bfa9b2c00ae82e669c2de301a2674d01eb551b4182c6c525a6ddc2fabb1e9c32"
+    "sha256": "9be2e9b6878a868b3007cfbadcad56d19586a121b31305a029522e4a0dd9e078"
   },
   "dashboard": {
     "layout_version": 2,
@@ -900,7 +906,11 @@
       "video_rendering": {
         "source": "inference_color_png",
         "overlays": false,
-        "full_frame": true
+        "full_frame": true,
+        "intensity_mapping": "depth_linear",
+        "intensity_mapping_detail": "intensity = clip((depth - near) / (far - near), 0, 1) * 255; near=blue, far=red",
+        "colormap": "turbo",
+        "colormap_direction": "near_blue_far_red"
       },
       "quality": {
         "valid_fraction_min_median": [
@@ -913,8 +923,8 @@
       },
       "video": {
         "path": "/rerun/episodes/20260911_155825/foundation-stereo-depth.mp4",
-        "sha256": "7bfde9da5301ceb93e7aff90562110d0e98de992be876bfd8b2cb3a9271766df",
-        "bytes": 6897492
+        "sha256": "335b9b685a3d9dfafb3b521fbb06ac3ecefac4e3499f4a01211d9a3a7044a56e",
+        "bytes": 7512896
       },
       "timestamps": {
         "path": "/rerun/episodes/20260911_155825/foundation-stereo-depth-timestamps.csv",
@@ -924,7 +934,8 @@
       "depth_archive": {
         "sha256": "94cfa7405c5727d340d2b6db00a2e5660eb41c08211a99ce22026e62ed977107",
         "bytes": 93223779,
-        "storage": "offline; excluded from web repository"
+        "storage": "offline; excluded from web repository",
+        "path": "/rerun/episodes/20260911_155825/foundation-stereo-depth-mm.zip"
       }
     },
     "imu": {
@@ -933,7 +944,7 @@
       "source": "head_pose_estimate",
       "label": "ESTIMATED",
       "entity": "replay_dashboard/imu",
-      "recording_id": "five_camera_20260911_155825_2b9ad72b4b9a",
+      "recording_id": "five_camera_20260911_155825_339b998cc055",
       "capture_start_ns": 1789113520058648000,
       "duration_ns": 56442730000,
       "source_sha256": {
@@ -1015,16 +1026,16 @@
       },
       "metadata": {
         "path": "/rerun/episodes/20260911_155825/head-imu-estimates.json",
-        "sha256": "b58437a2474b1f44731577b3f6f0c0b24c40560f87c7e6c1d99cdbf632eb9b09"
+        "sha256": "09bfd051415ce5ce542e6c76637c0aa1d72806e347cf9c5900bb9e05a5c0dc4c"
       }
     },
     "data": {
       "path": "/rerun/episodes/20260911_155825/replay-dashboard.rrd",
-      "sha256": "204a41d3e120d259e96c444270b4bbde58fda64cdb32c34b3f719a5832a05fdb"
+      "sha256": "bd8bc3827df6a072f7fdbe7719fcc1afc9c92e75061ae63800494649ba9a408f"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_155825/replay-dashboard.rbl",
-      "sha256": "81190de51442bb6bb481082da58d7fc8a7559435270911fa598617a4e218ccd5"
+      "sha256": "c6a88c77b5f924c8a1d61b2915756aab4785278033362974763c355a4d00ebb8"
     }
   }
 }
