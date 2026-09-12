@@ -154,7 +154,10 @@ def build(base: Path, raw_pose: Path, output_dir: Path, asset_prefix: str = "/re
     metadata = base_metadata(base)
     existing_manifest = output_dir / "right-hand-pressure.json"
     previous = json.loads(existing_manifest.read_text()) if existing_manifest.exists() else {}
-    keep_imu = previous.get("recording_id") == metadata["recording_id"] and bool(previous.get("dashboard", {}).get("imu"))
+    # The IMU panels are re-derived from this raw pose's head samples, so keep them
+    # whenever the package previously had them, even if the overlay fingerprint
+    # (and therefore the recording id) rotated.
+    keep_imu = bool(previous.get("dashboard", {}).get("imu"))
     pressure_metadata = load_pressure_profile(raw_pose, pressure_profile, metadata["duration_ns"]) if pressure_profile else None
     with tempfile.TemporaryDirectory(prefix="right-hand-pose-") as temporary:
         source_path = Path(temporary) / "frames.jsonl"
