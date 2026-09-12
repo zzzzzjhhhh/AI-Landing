@@ -210,7 +210,11 @@
   "video_rendering": {
     "source": "inference_color_png",
     "overlays": false,
-    "full_frame": true
+    "full_frame": true,
+    "intensity_mapping": "depth_linear",
+    "intensity_mapping_detail": "intensity = clip((depth - near) / (far - near), 0, 1) * 255; near=blue, far=red",
+    "colormap": "turbo",
+    "colormap_direction": "near_blue_far_red"
   },
   "quality": {
     "valid_fraction_min_median": [
@@ -223,8 +227,8 @@
   },
   "video": {
     "path": "/rerun/episodes/20260911_170529/foundation-stereo-depth.mp4",
-    "sha256": "cbe1adc731bd22a60d117ecc4cd9291af1b830f2eca29acae11026ddc16e80d2",
-    "bytes": 22760376
+    "sha256": "b28d64c990b300a5d26a121333e8176a8fdcec574a2a26706512e66bf55b0d56",
+    "bytes": 23741204
   },
   "timestamps": {
     "sha256": "efedcd1b201e9fb309124257d46b073aa1e48efd7f4e84ed2d2b4dcb84745b64",
