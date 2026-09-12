@@ -1,9 +1,9 @@
 {
   "application_id": "five_camera_task_clip_v1",
-  "recording_id": "five_camera_20260911_165650_96d7496e75a6",
+  "recording_id": "five_camera_20260911_165650_c765664092fd",
   "duration_ns": 42982047000,
   "capture_start_ns": 1789117022496528000,
-  "base_sha256": "86eb95d703cf11a8e67d2ec64b971bfdcb8fff52ead1591783212fde89f908c1",
+  "base_sha256": "3d9ab36204814110982bbb052bf43009be846e4976c6e67d78a9e6fdceaa085a",
   "camera_dimensions": {
     "left_camera": [
       960,
@@ -40,15 +40,16 @@
     "reference_camera": "right_camera",
     "pose_sample_count": 3083,
     "camera_extrinsics_convention": "recorded",
-    "intrinsics_profile_sha256": null,
+    "intrinsics_profile_sha256": "c2c01826810c3e06a898c35239f8107d9af5845927edb5cfa92c2ce493f656bb",
+    "pose_latency_us": -25000.0,
     "frame_count": 1142,
-    "valid_frame_count": 818,
-    "missing_frame_count": 324,
-    "pose_distance_max_ms": 11.472,
+    "valid_frame_count": 808,
+    "missing_frame_count": 334,
+    "pose_distance_max_ms": 10.117,
     "overlay_reprojection_max_px": 0.0,
     "pose_sha256": "981fdf11c6cbfae8d4132e4cbbb761c9c5850c9cfec2dc1d098d467e90066b58",
     "schema_sha256": "750e753299499f5f60c187303710562745f8693dc08d5748d75bb02e3c1f32e1",
-    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
+    "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; joints linearly interpolated between bracketing original poses within 50 ms of the latency-corrected exposure query, never extrapolated. The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose.",
     "display_playback": {
       "fps": 30,
       "max_gap_seconds": 2,
@@ -57,9 +58,9 @@
       "native_csv_unchanged": true,
       "measured": false,
       "frame_count": 1291,
-      "valid_frame_count": 1291
+      "valid_frame_count": 1288
     },
-    "segment_direction_error_max_deg": 8.706816964856289e-06
+    "segment_direction_error_max_deg": 8.45192788808014e-06
   },
   "pressure": {
     "version": 1,
@@ -487,28 +488,33 @@
     "units": "relative_0_100",
     "measured": false,
     "timeline": "Exact right-camera frame times plus a final endpoint hold",
-    "pose_modulated_frames": 818,
-    "video_only_frames": 324
+    "display_normalisation": {
+      "colormap_max": 189,
+      "height_scale": 0.7,
+      "peak_relative_0_100": 74.1
+    },
+    "pose_modulated_frames": 808,
+    "video_only_frames": 334
   },
   "data": {
     "path": "/rerun/episodes/20260911_165650/right-hand-pressure.rrd",
-    "sha256": "fcd6d0df6cd9432b0ec6064a3979e14cec64c9613299b525a17751f1aa6fee5c"
+    "sha256": "935d596f74689c547383be156414555888de0e74091a0b6560df2b824c78e5a3"
   },
   "blueprint": {
     "path": "/rerun/episodes/20260911_165650/right-hand-pressure.rbl",
-    "sha256": "f6ed5f2595ee89d1b5531df392cfa4683b7bcb2f66d22120f477562d7f0bd54e"
+    "sha256": "fdfd3bb794a3cc8dfdae87a04ec414bfcd0ece4480548856572c842139955fbe"
   },
   "flexion_csv": {
-    "sha256": "29d37a37f8f7788b57db2dc5f6275d801d604c650e8bd6ab4e150f7c8732bd41",
-    "storage": "offline; excluded from web repository"
+    "path": "/rerun/episodes/20260911_165650/right-hand-flexion.csv",
+    "sha256": "6ee6f1fde58dfead509687be0542973ef9fb6710ea39c868cad30a331fb8161f"
   },
   "pressure_csv": {
-    "sha256": "afe86a4c72c15c83e74327f27a2e1f57cf2eb419231bfc541893f8bc213c313a",
-    "storage": "offline; excluded from web repository"
+    "path": "/rerun/episodes/20260911_165650/right-hand-pressure.csv",
+    "sha256": "7b0c76f2eadc318641327ab6e1385b24e5a1bd6b0e71e4eb21666267ac97553f"
   },
   "pressure_samples": {
-    "sha256": "8166eb615d75d1505923ab240a2f6a8faa210c0243cc4a5a116848aa3fe3f1e9",
-    "storage": "offline; excluded from web repository"
+    "path": "/rerun/episodes/20260911_165650/right-hand-pressure-samples.jsonl",
+    "sha256": "f22c6a8f3b17743f7375fe252d65f7b4a688dc545764e8f13a355c73ecdddd71"
   },
   "dashboard": {
     "layout_version": 2,
@@ -732,7 +738,11 @@
       "video_rendering": {
         "source": "inference_color_png",
         "overlays": false,
-        "full_frame": true
+        "full_frame": true,
+        "intensity_mapping": "depth_linear",
+        "intensity_mapping_detail": "intensity = clip((depth - near) / (far - near), 0, 1) * 255; near=blue, far=red",
+        "colormap": "turbo",
+        "colormap_direction": "near_blue_far_red"
       },
       "quality": {
         "valid_fraction_min_median": [
@@ -745,18 +755,18 @@
       },
       "video": {
         "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth.mp4",
-        "sha256": "47bc6f2640a053ea1418b59a06823373b22a030f42b3f04c9c01cdb65028b711",
-        "bytes": 5722003
+        "sha256": "25822da634d4bc5dd7edad7c39f453a31083ab3a1c6e0cd26bdcec84ae7fd39c",
+        "bytes": 6081947
       },
       "timestamps": {
+        "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth-timestamps.csv",
         "sha256": "0fb9b83b762b9a284e6f74c8789dada222210f16eadb7e618178399cd957ae97",
-        "bytes": 16824,
-        "storage": "offline; excluded from web repository"
+        "bytes": 16824
       },
       "depth_archive": {
+        "path": "/rerun/episodes/20260911_165650/foundation-stereo-depth-mm.zip",
         "sha256": "fbac3fca1bbb44e4eb6081870e91db2b3a8efeec67523f86b705c0cc001b6c62",
-        "bytes": 78116886,
-        "storage": "offline; excluded from web repository"
+        "bytes": 78116886
       }
     },
     "imu": {
@@ -765,7 +775,7 @@
       "source": "head_pose_estimate",
       "label": "ESTIMATED",
       "entity": "replay_dashboard/imu",
-      "recording_id": "five_camera_20260911_165650_96d7496e75a6",
+      "recording_id": "five_camera_20260911_165650_c765664092fd",
       "capture_start_ns": 1789117022496528000,
       "duration_ns": 42982047000,
       "source_sha256": {
@@ -842,21 +852,21 @@
         "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.transform.Rotation.as_rotvec.html"
       ],
       "csv": {
-        "sha256": "3d2c2930a42491aa1463fdc0c656b039957db68fecc1295646ef11e4e3015d8a",
-        "storage": "offline; excluded from web repository"
+        "path": "/rerun/episodes/20260911_165650/head-imu-estimates.csv",
+        "sha256": "3d2c2930a42491aa1463fdc0c656b039957db68fecc1295646ef11e4e3015d8a"
       },
       "metadata": {
-        "sha256": "a4ea579154f08a718f2187083e4c62d349a072424e37a181cf708223f093bc3a",
-        "storage": "offline; excluded from web repository"
+        "path": "/rerun/episodes/20260911_165650/head-imu-estimates.json",
+        "sha256": "059de6d6b1cc4c044cb128f8ce82f8329244c19667ceb908383d6a3a74fcb361"
       }
     },
     "data": {
       "path": "/rerun/episodes/20260911_165650/replay-dashboard.rrd",
-      "sha256": "be127af1fb94f3829e12644bfd5bca154e4dcf5c3d5eba09652fcff64bb9edfd"
+      "sha256": "0008bc88a64abb74738eb132a15330dfa5252f1bcd9b67ded26509717abd0007"
     },
     "blueprint": {
       "path": "/rerun/episodes/20260911_165650/replay-dashboard.rbl",
-      "sha256": "3355a9b2759bcc2ef9e529e7141a19832aa0737bf944c1e3a0db429bdced6417"
+      "sha256": "70b081ea8a6f4fcdd84c6ade486a663e3928197be845e5d6d15cda437070aa1e"
     }
   }
 }
