@@ -183,19 +183,14 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
         "ESTIMATED pressure from visually annotated object-contact phases and original right-finger bends. "
         "Relative intensity 0–100, NOT measured pressure, force or kPa. "
         "Missing native tracking uses VIDEO ONLY contact assumptions, not a reconstructed pose. "
-        "Fixed open-hand contact atlas. Original pose, flexion and videos are unchanged.\n" + json.dumps(pressure_metadata)
+        "Fixed open-hand contact atlas. Original pose, flexion and videos are unchanged. "
+        "Colour and height are display-normalised per episode: the palette ends at this episode's peak level.\n" + json.dumps(pressure_metadata)
     ) if pressure_metadata else (
         "SIMULATED pressure data for visualization demonstration only. "
         "Not measured by the PICO recording and not correlated with its actions. "
         "Right hand only. Original WebHand DataHandler.wasm processing; arbitrary 0–255 units."
     )
     recording.log(f"{ENTITY}/provenance", rr.TextDocument(pressure_description), static=True)
-    if pressure_metadata:
-        recording.log(f"{ENTITY}/legend", rr.Points3D(
-            [[x, 2.9, 0.9] for x in (-1.15, -0.8, -0.45, -0.1, 0.25)], radii=0.065,
-            colors=[[78, 94, 112], [76, 132, 173], [132, 197, 192], [251, 234, 132], [237, 81, 63]],
-            labels=["0", "", "50", "", "100"], show_labels=True,
-        ), static=True)
     recording.log(FLEXION_ENTITY, rr.ViewCoordinates.RIGHT_HAND_Y_UP, static=True)
     recording.log(f"{FLEXION_ENTITY}/provenance", rr.TextDocument(
         "Right-hand flexion INFERRED from the recorded PICO 3D keypoints. "
@@ -210,6 +205,7 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
     recording.log(f"{FLEXION_ENTITY}/mesh", rr.Clear(recursive=True))
     frame_count = 0
     pressure_rows, pressure_samples = [], []
+    display_info, peak_level = None, 0.0
     try:
         pressure_items = node_items("export-pressure-estimate.mjs", source_path, pressure_profile) if pressure_profile else node_items("export-demo.mjs", metadata["duration_ns"] / 1e9, 10)
         for item in pressure_items:
@@ -226,6 +222,8 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
                         triangle_indices=np.asarray(mesh["indices"], dtype=np.uint32).reshape(-1, 3),
                         albedo_factor=[117, 208, 222, 255],
                     ), static=True)
+            elif item["type"] == "display":
+                display_info = item
             elif item["type"] == "frame":
                 time_ns = item.get("time_ns", round(item["time"] * 1e9))
                 recording.set_time("tracking_time", duration=np.timedelta64(time_ns, "ns"))
@@ -237,6 +235,7 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
                 ))
                 if pressure_metadata:
                     estimate = item["estimate"]
+                    peak_level = max(peak_level, estimate["peak"])
                     recording.log(f"{ENTITY}/status", rr.Points3D(
                         [[-0.45, -2.65, 0.9]], radii=0, colors=[180, 213, 222, 255],
                         labels=[f"{estimate['phase']} · {estimate['peak']:.0f}/100"], show_labels=True,
@@ -252,6 +251,15 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
                     })
                     pressure_samples.append({"tracking_time_ns": time_ns, "capture_time_ns": metadata["capture_start_ns"] + time_ns, **estimate})
                 frame_count += 1
+        # Static data is timeless, so the legend can be logged once the display
+        # normalisation and true peak level are known from the frame stream.
+        if pressure_metadata:
+            peak = display_info["peak_level"] if display_info else round(peak_level, 1)
+            recording.log(f"{ENTITY}/legend", rr.Points3D(
+                [[x, 2.9, 0.9] for x in (-1.15, -0.8, -0.45, -0.1, 0.25)], radii=0.065,
+                colors=[[78, 94, 112], [76, 132, 173], [132, 197, 192], [251, 234, 132], [237, 81, 63]],
+                labels=["0", "", f"{peak / 2:.0f}", "", f"{peak:.0f}"], show_labels=True,
+            ), static=True)
         csv_path = output_dir / "right-hand-flexion.csv"
         fields = ["tracking_time_ns", "capture_time_ns", "pose_sample_index", "pose_unix_ms", "pose_distance_ms", "valid", "pose_source"]
         bone_names = [f"{finger}0{joint}" for finger in ("thumb", "index", "middle", "ring", "little") for joint in (1, 2, 3)]
@@ -332,6 +340,8 @@ def write_recording(metadata: dict, flexion_metadata: dict, source_path: Path, o
         samples_path.write_text("".join(json.dumps(sample, separators=(",", ":")) + "\n" for sample in pressure_samples))
         metadata["pressure"] = {**pressure_metadata, "units": "relative_0_100", "measured": False,
             "timeline": "Exact right-camera frame times plus a final endpoint hold",
+            "display_normalisation": {"colormap_max": display_info["max_value"], "height_scale": display_info["height"],
+                                      "peak_relative_0_100": display_info["peak_level"]} if display_info else None,
             "pose_modulated_frames": sum(row["source"] == "video_contact_and_recorded_pose" and not row["endpoint_hold"] for row in pressure_rows),
             "video_only_frames": sum(row["source"] == "video_contact_only" and not row["endpoint_hold"] for row in pressure_rows)}
         assets += [("pressure_csv", pressure_csv), ("pressure_samples", samples_path)]

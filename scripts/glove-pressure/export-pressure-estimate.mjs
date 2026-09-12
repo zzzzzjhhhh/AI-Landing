@@ -16,15 +16,27 @@ if (frames[0]?.time_ns !== 0 || frames.at(-1).time_ns > end || frames.some((fram
 if (frames.at(-1).time_ns < end) frames.push({ ...frames.at(-1), time_ns: end, endpoint_hold: true });
 const processor = await createPressureProcessor();
 const rig = await loadRightHandRig();
+const DISPLAY_HEIGHT = 0.7;
 async function emit(item) {
   if (!process.stdout.write(JSON.stringify(item) + "\n")) await once(process.stdout, "drain");
 }
 try {
   await emit({ type: "model", meshes: rig.sample().map((mesh, index) => ({ ...mesh, ...rig.topology[index] })) });
-  for (const frame of frames) {
+  const estimates = frames.map((frame) => {
     const { data, ...estimate } = inferPressure(frame, profile);
+    return { frame, data, estimate };
+  });
+  // Display-only normalisation: stretch the shared WebHand colormap so this
+  // episode's peak level reaches the palette end. Data, levels and labels
+  // stay relative 0–100; the demo export keeps the full 0–255 span.
+  let peakValue = 0;
+  for (const { data } of estimates) for (const value of data) if (value > peakValue) peakValue = value;
+  const displayMax = peakValue > 0 ? peakValue : 255;
+  await emit({ type: "display", max_value: displayMax, height: DISPLAY_HEIGHT,
+    peak_level: Math.round(peakValue / 255 * 1000) / 10 });
+  for (const { frame, data, estimate } of estimates) {
     await emit({ type: "frame", time: frame.time_ns / 1e9, time_ns: frame.time_ns,
-      ...processor(data, { min: 0, max: 255, height: 0.35, stride: 2 }),
+      ...processor(data, { min: 0, max: displayMax, height: DISPLAY_HEIGHT, stride: 2 }),
       estimate: { ...estimate, matrix: Array.from(data), endpoint_hold: frame.endpoint_hold ?? false } });
   }
 } finally { rig.dispose(); }
