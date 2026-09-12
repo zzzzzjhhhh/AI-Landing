@@ -123,7 +123,7 @@ def build(source: Path, output: Path, work: Path, camera_extrinsics_convention: 
         cameras = list(pool.map(lambda name: transcode(source, work, name, duration_us), CAMERAS))
     projection_sources = [source / f"{name}_characteristics.json" for name in ("left_camera", "right_camera")]
     projection_sources += [source / "camera_pose_tracking.jsonl", source / "pose_samples.bin", source / "pose_schema.json"]
-    fingerprint = hashlib.sha256((json.dumps([camera["source_sha256"] for camera in cameras]) + sha256(source / "sync_manifest.json") + json.dumps([sha256(path) for path in projection_sources]) + "five_camera_overlay_v4:" + camera_extrinsics_convention + (intrinsics_profile["sha256"] if intrinsics_profile else "")).encode()).hexdigest()[:12]
+    fingerprint = hashlib.sha256((json.dumps([camera["source_sha256"] for camera in cameras]) + sha256(source / "sync_manifest.json") + json.dumps([sha256(path) for path in projection_sources]) + "five_camera_overlay_v6:" + camera_extrinsics_convention + (intrinsics_profile["sha256"] if intrinsics_profile else "")).encode()).hexdigest()[:12]
     application_id, recording_id = "five_camera_task_clip_v1", f"five_camera_{episode}_{fingerprint}"
     path = output / "recording.rrd"
     recording = rr.RecordingStream(application_id, recording_id=recording_id)
@@ -141,9 +141,16 @@ def build(source: Path, output: Path, work: Path, camera_extrinsics_convention: 
                             {"frame_count": len(camera["rows"]), "first_frame_us": 0, "last_frame_us": camera["rows"][-1]["t_sync_us"]} for camera in cameras]}
     calibrations = {camera["name"]: aligned_camera_calibration(source, camera["name"], camera["width"], camera["height"], camera_extrinsics_convention, intrinsics_profile)
                     for camera in cameras if camera["name"] in ("left_camera", "right_camera")}
+    # Materialize overlay projections first so the display-only gap-bridging counts can be
+    # recorded in the static source metadata before it is logged.
+    overlay_frames = {camera["name"]: list(project_synced_frames(source, camera["name"], calibrations[camera["name"]], samples, joint_names))
+                      for camera in cameras if camera["name"] in calibrations}
+    bridged_frames = {name: sum(1 for frame in frames if frame.pop("bridged", False)) for name, frames in overlay_frames.items()}
     metadata["hand_keypoints"] = {"source": "recorded_pose", "cameras": list(calibrations), "hands": ["left", "right"],
                                  "camera_extrinsics_convention": camera_extrinsics_convention,
-                                 "alignment": "Per-camera t_sync_us, nearest pose within 50 ms, per-exposure recorded head pose.",
+                                 "alignment": "Per-camera t_sync_us, joints linearly interpolated between bracketing poses within 50 ms of the latency-corrected exposure query, per-exposure recorded head pose.",
+                                 "gap_bridging": {"max_gap_ms": converter.BRIDGE_MAX_GAP_US // 1000, "bridged_frames": bridged_frames,
+                                                  "method": "Short tracking dropouts bridged by image-space linear interpolation between the surrounding tracked frames. Display-only; recorded tracking is unchanged. Longer dropouts, stream edges and joints missing at either end stay cleared."},
                                  "external_views": "No spatial calibration available; no projected keypoints."}
     if intrinsics_profile:
         metadata["hand_keypoints"]["intrinsics_profile"] = intrinsics_profile
@@ -161,7 +168,7 @@ def build(source: Path, output: Path, work: Path, camera_extrinsics_convention: 
                                                     rr.TimeColumn("capture_time", timestamp=(origin_ns + times).astype("datetime64[ns]"))],
                                    columns=rr.VideoFrameReference.columns_nanos(pts))
             if camera["name"] in calibrations:
-                for frame in project_synced_frames(source, camera["name"], calibrations[camera["name"]], samples, joint_names):
+                for frame in overlay_frames[camera["name"]]:
                     recording.set_time("tracking_time", duration=np.timedelta64(frame["time_ns"], "ns"))
                     recording.set_time("capture_time", timestamp=np.datetime64(origin_ns + frame["time_ns"], "ns"))
                     for hand, color in (("left", [45, 212, 191]), ("right", [244, 114, 182])):

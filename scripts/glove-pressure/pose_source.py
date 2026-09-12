@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 
 import numpy as np
-from rerun.experimental import RrdReader
 
 spec = importlib.util.spec_from_file_location("pico_converter", Path(__file__).parents[1] / "convert-pico-raw-to-rerun.py")
 converter = importlib.util.module_from_spec(spec)
@@ -17,8 +16,11 @@ INTRINSICS_SOURCE_FILES = ("sync_manifest.json", "pose_samples.bin", "pose_schem
                            "left_camera_timestamps.csv", "right_camera_timestamps.csv", "left_camera.mp4", "right_camera.mp4")
 
 
+MAX_PROFILE_LATENCY_US = 150_000
+
+
 def validate_intrinsics_profile(raw: Path, profile: dict) -> None:
-    if profile.get("version") != 1 or profile.get("episode_id") != json.loads((raw / "sync_manifest.json").read_text())["episode"]:
+    if profile.get("version") not in (1, 2) or profile.get("episode_id") != json.loads((raw / "sync_manifest.json").read_text())["episode"]:
         raise ValueError("Intrinsics profile belongs to a different episode or version")
     for name in INTRINSICS_SOURCE_FILES:
         with (raw / name).open("rb") as handle:
@@ -32,6 +34,12 @@ def validate_intrinsics_profile(raw: Path, profile: dict) -> None:
         focal, center = np.asarray(camera["focal_length"]), np.asarray(camera["principal_point"])
         if focal.shape != (2,) or center.shape != (2,) or not np.isfinite([size, focal, center]).all() or np.any(size <= 0) or np.any(focal <= 0) or np.any(center < 0) or np.any(center >= size):
             raise ValueError("Invalid fixed intrinsics")
+        if "distortion" in camera:
+            distortion = converter.parse_distortion(camera["distortion"])
+            if distortion is None:
+                raise ValueError("Distortion must be a list of five finite coefficients")
+        if "pose_latency_us" in camera and (not np.isfinite(camera["pose_latency_us"]) or abs(camera["pose_latency_us"]) > MAX_PROFILE_LATENCY_US):
+            raise ValueError(f"pose_latency_us must be finite within ±{MAX_PROFILE_LATENCY_US} µs")
 
 
 def load_intrinsics_profile(raw: Path, path: Path) -> dict:
@@ -66,45 +74,67 @@ def aligned_camera_calibration(raw: Path, camera_name: str, width: int, height: 
     for field in ("focal_length", "principal_point"):
         calibration["intrinsics"][field] = [value * factor for value, factor in zip(calibration["intrinsics"][field], scale)]
     calibration.update(width=width, height=height, calibration_source="recorded_scaled_video")
+    # Distortion lives in normalized image coordinates; the recorded sidecar omits it,
+    # so zeros document the pinhole assumption until an episode profile refines it.
+    calibration["distortion"] = [0.0, 0.0, 0.0, 0.0, 0.0]
+    calibration["pose_latency_us"] = 0.0
     if intrinsics_profile:
         calibration["recorded_intrinsics"] = json.loads((raw / f"{camera_name}_characteristics.json").read_text())["intrinsics"]
         refined = intrinsics_profile["cameras"][camera_name]
         factors = [width / refined["width"], height / refined["height"]]
         calibration["intrinsics"] = {field: [float(value * factor) for value, factor in zip(refined[field], factors)]
                                       for field in ("focal_length", "principal_point")}
+        if "distortion" in refined:
+            calibration["distortion"] = [float(value) for value in refined["distortion"]]
+        calibration["pose_latency_us"] = float(refined.get("pose_latency_us", 0.0))
         calibration["calibration_source"] = "episode_refined_intrinsics"
         calibration["intrinsics_profile_sha256"] = intrinsics_profile["sha256"]
     return calibration
 
 
 def project_synced_frames(raw: Path, camera_name: str, calibration: dict, samples, names):
-    """Project each camera exposure using its own head pose and the shared pose clock."""
+    """Project each camera exposure using its own head pose and the shared pose clock.
+
+    Frames are buffered and short tracking dropouts (<= BRIDGE_MAX_GAP_US) are bridged
+    by image-space linear interpolation between the surrounding tracked frames; this is
+    display-only and identical for the converter, verifier and exporter.
+    """
     with (raw / f"{camera_name}_timestamps.csv").open() as handle:
         rows = list(csv.DictReader(handle))
     side = camera_name.removesuffix("_camera")
     camera_rows = {int(row["frame_index"]): row for row in converter.read_jsonl(raw / "camera_pose_tracking.jsonl") if row["side"] == side}
     times = np.asarray([int(row["t_sync_us"]) for row in rows], dtype=np.int64)
-    indices = converter.nearest_indices(samples["t_sync_us"], times)
+    latency_us = float(calibration.get("pose_latency_us", 0.0))
+    left_indices, right_indices, fractions, distances, in_range = converter.pose_brackets(samples["t_sync_us"], times + latency_us)
     width, height = calibration["width"], calibration["height"]
-    for row, instant, index in zip(rows, times, indices):
+    frames = []
+    for row, instant, left_index, right_index, fraction, distance, inside in zip(rows, times, left_indices, right_indices, fractions, distances, in_range):
         camera_row = camera_rows[int(row["frame_index"])]
         if int(camera_row["t_sync_us"]) != instant:
             raise ValueError("Camera head pose does not match its video exposure")
         head = np.asarray([*camera_row["head"]["position"], *camera_row["head"]["rotation_xyzw"]])
-        sample = samples[index]
-        error = abs(int(sample["t_sync_us"]) - int(instant))
+        sample = converter.interpolated_pose_sample(samples, int(left_index), int(right_index), float(fraction))
         hands = {}
+        # Interpolated joints must stay within 50 ms of recorded samples and never extrapolate.
+        usable = bool(inside and distance <= 50_000)
         for hand in ("left", "right"):
-            mask = int(sample[f"{hand}_joint_valid_mask"]) if error <= 50_000 else 0
+            mask = int(sample[f"{hand}_joint_valid_mask"]) if usable else 0
             projected = converter.project_hand_to_video(sample[f"{hand}_joints_xyz_xyzw"][:, :3], mask, head, calibration)
+            visible = {index: point for index, point in projected.items() if 0 <= point[0] <= width - 1 and 0 <= point[1] <= height - 1}
+            indices = sorted(visible)
             hands[hand] = {
-                "points": np.asarray([point for point in projected.values() if 0 <= point[0] <= width - 1 and 0 <= point[1] <= height - 1], dtype=np.float32).reshape(-1, 2),
+                "points": np.asarray([visible[index] for index in indices], dtype=np.float32).reshape(-1, 2),
+                "indices": indices,
                 "bones": converter.projected_bone_strips(projected, names, width, height),
             }
-        yield {"time_ns": int(instant) * 1000, "pose_sample_index": int(index), "pose_distance_us": error, "hands": hands}
+        frames.append({"time_ns": int(instant) * 1000, "pose_sample_index": int(left_index), "pose_sample_index_next": int(right_index),
+                       "pose_alpha": float(fraction), "pose_distance_us": float(distance), "pose_latency_us": latency_us, "hands": hands})
+    converter.bridge_projection_gaps(frames, width, height, names)
+    yield from frames
 
 
 def export_source(base: Path, raw: Path, target: Path) -> dict:
+    from rerun.experimental import RrdReader
     samples, names = read_pose_samples(raw)
     if "t_sync_us" in samples.dtype.names:
         return export_synced_source(base, raw, target, samples, names)
@@ -144,18 +174,17 @@ def export_source(base: Path, raw: Path, target: Path) -> dict:
             raise ValueError(f"Raw right-hand pose differs from base RRD at {instant}")
     frame_times = np.asarray(sorted(set(frame_times)), dtype=np.int64)
     frame_ms = start_ms + frame_times // 1_000_000
-    indices = converter.nearest_indices(times_ms, frame_ms)
-    distance_ms = abs(times_ms[indices] - frame_ms)
-    available = (frame_ms >= times_ms[0]) & (frame_ms <= times_ms[-1]) & (distance_ms <= 50)
+    left_indices, right_indices, fractions, distance_ms, in_range = converter.pose_brackets(times_ms, frame_ms)
+    available = in_range & (distance_ms <= 50)
     camera_times = converter.read_camera_timestamps(raw / "right_camera_timestamps.csv")
     source_frames = {int(t): int(i) for t, i in zip(camera_times["t_unix_ms"], camera_times["frame_index"])}
     camera_rows = {int(row["frame_index"]): row for row in converter.read_jsonl(raw / "camera_pose_tracking.jsonl") if row.get("side") == "right"}
     valid_count, max_projection_error = 0, 0.0
     with target.open("w") as output:
-        for instant, unix_ms, index, valid, distance in zip(frame_times, frame_ms, indices, available, distance_ms):
-            sample = samples[index]
+        for instant, unix_ms, left_index, right_index, fraction, valid, distance in zip(frame_times, frame_ms, left_indices, right_indices, fractions, available, distance_ms):
+            sample = converter.interpolated_pose_sample(samples, int(left_index), int(right_index), float(fraction))
             mask = int(sample["right_joint_valid_mask"])
-            # Confirm the exact same source sample produces the displayed 2D keypoints.
+            # Confirm the exact same source samples produce the displayed 2D keypoints.
             if valid:
                 row = camera_rows.get(source_frames[int(unix_ms)])
                 head = sample["head_pose_xyz_xyzw"] if row is None else np.asarray([*row["head"]["position"], *row["head"]["rotation_xyzw"]])
@@ -170,7 +199,7 @@ def export_source(base: Path, raw: Path, target: Path) -> dict:
             valid_count += valid
             positions = converter.unity_position_to_rerun(sample["right_joints_xyz_xyzw"][:, :3])
             output.write(json.dumps({
-                "time_ns": int(instant), "pose_sample_index": int(index), "pose_unix_ms": int(times_ms[index]),
+                "time_ns": int(instant), "pose_sample_index": int(left_index), "pose_unix_ms": int(times_ms[left_index]),
                 "pose_distance_ms": int(distance), "valid": valid,
                 "joints": dict(zip(names, positions.tolist())) if valid else None,
             }) + "\n")
@@ -180,12 +209,13 @@ def export_source(base: Path, raw: Path, target: Path) -> dict:
         "pose_distance_max_ms": int(distance_ms[available].max()), "overlay_reprojection_max_px": max_projection_error,
         "pose_sha256": hashlib.sha256((raw / "pose_samples.bin").read_bytes()).hexdigest(),
         "schema_sha256": hashlib.sha256((raw / "pose_schema.json").read_bytes()).hexdigest(),
-        "alignment": "Same nearest raw sample and frame timestamps as the right-camera keypoint overlay; maximum distance 50 ms.",
+        "alignment": "Same bracketed-interpolated raw samples and frame timestamps as the right-camera keypoint overlay; maximum distance 50 ms, never extrapolated.",
     }
 
 
 def export_synced_source(base: Path, raw: Path, target: Path, samples, names) -> dict:
     """Use the task clip's explicit common clock, not its unre-based Unix camera fields."""
+    from rerun.experimental import RrdReader
     pose_times = samples["t_sync_us"]
     if not len(samples) or np.any(np.diff(pose_times) <= 0):
         raise ValueError("Aligned pose timestamps must be strictly increasing")
@@ -217,13 +247,15 @@ def export_synced_source(base: Path, raw: Path, target: Path, samples, names) ->
     with (raw / "right_camera_timestamps.csv").open() as handle:
         source_times = np.asarray([int(row["t_sync_us"]) * 1000 for row in csv.DictReader(handle)], dtype=np.int64)
     np.testing.assert_array_equal(frame_times, source_times)
-    indices = converter.nearest_indices(pose_times, frame_times // 1000)
-    errors = abs(pose_times[indices] - frame_times // 1000)
+    latency_us = float(calibrations["right_camera"].get("pose_latency_us", 0.0)) if calibrations else 0.0
+    left_indices, right_indices, fractions, errors, in_range = converter.pose_brackets(pose_times, frame_times // 1000 + latency_us)
     max_projection_error = None
     if calibrations is not None:
         projected_frames = list(project_synced_frames(raw, "right_camera", calibrations["right_camera"], samples, names))
         np.testing.assert_array_equal([frame["time_ns"] for frame in projected_frames], frame_times)
-        np.testing.assert_array_equal([frame["pose_sample_index"] for frame in projected_frames], indices)
+        np.testing.assert_array_equal([frame["pose_sample_index"] for frame in projected_frames], left_indices)
+        np.testing.assert_array_equal([frame["pose_sample_index_next"] for frame in projected_frames], right_indices)
+        np.testing.assert_allclose([frame["pose_alpha"] for frame in projected_frames], fractions, atol=1e-12, rtol=0)
         if set(overlays) != set(frame_times):
             raise ValueError("Right-camera keypoints must update on every video frame")
         max_projection_error = 0.0
@@ -235,20 +267,23 @@ def export_synced_source(base: Path, raw: Path, target: Path, samples, names) ->
                 max_projection_error = max(max_projection_error, float(abs(expected - observed).max()))
     valid_count = 0
     with target.open("w") as output:
-        for instant, index, error in zip(frame_times, indices, errors):
-            sample = samples[index]
-            valid = bool(error <= 50_000 and int(sample["right_joint_valid_mask"]) == (1 << 26) - 1)
+        for instant, left_index, right_index, fraction, error, inside in zip(frame_times, left_indices, right_indices, fractions, errors, in_range):
+            sample = converter.interpolated_pose_sample(samples, int(left_index), int(right_index), float(fraction))
+            valid = bool(inside and error <= 50_000 and int(sample["right_joint_valid_mask"]) == (1 << 26) - 1)
             valid_count += valid
             positions = converter.unity_position_to_rerun(sample["right_joints_xyz_xyzw"][:, :3])
-            output.write(json.dumps({"time_ns": int(instant), "pose_sample_index": int(index), "pose_unix_ms": int(sample["t_unix_ms"]),
+            output.write(json.dumps({"time_ns": int(instant), "pose_sample_index": int(left_index),
+                                     "pose_sample_index_next": int(right_index), "pose_alpha": float(fraction),
+                                     "pose_unix_ms": int(samples[int(left_index)]["t_unix_ms"]),
                                      "pose_distance_ms": float(error / 1000), "valid": valid,
                                      "joints": dict(zip(names, positions.tolist())) if valid else None}) + "\n")
     return {"source": "recorded_pose_keypoints", "reference_camera": "right_camera", "pose_sample_count": len(samples),
             "camera_extrinsics_convention": calibrations["right_camera"].get("extrinsics_convention", "recorded") if calibrations else None,
             "intrinsics_profile_sha256": calibrations["right_camera"].get("intrinsics_profile_sha256") if calibrations else None,
+            "pose_latency_us": latency_us,
             "frame_count": len(frame_times), "valid_frame_count": valid_count, "missing_frame_count": len(frame_times) - valid_count,
-            "pose_distance_max_ms": float(errors.max() / 1000), "overlay_reprojection_max_px": max_projection_error,
+            "pose_distance_max_ms": float(errors[in_range].max() / 1000) if np.any(in_range) else 0.0, "overlay_reprojection_max_px": max_projection_error,
             "pose_sha256": hashlib.sha256((raw / "pose_samples.bin").read_bytes()).hexdigest(),
             "schema_sha256": hashlib.sha256((raw / "pose_schema.json").read_bytes()).hexdigest(),
-            "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; nearest original pose within 50 ms." +
+            "alignment": "Exact right-camera frame timestamps on the task clip t_sync_us clock; joints linearly interpolated between bracketing original poses within 50 ms of the latency-corrected exposure query, never extrapolated." +
                          (" The same raw samples reproduce the right-camera keypoints using the selected camera calibration and recorded exposure head pose." if calibrations is not None else " No 2D reprojection calibration is assumed.")}

@@ -51,6 +51,68 @@ class TimestampTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "source"):
                 five.validate_intrinsics_profile(root, profile)
 
+    def profile_v2(self, root, distortion, latency):
+        (root / "sync_manifest.json").write_text(json.dumps({"episode": "test-episode"}))
+        for name in five.INTRINSICS_SOURCE_FILES:
+            if name != "sync_manifest.json": (root / name).write_text(name)
+        return {"version": 2, "episode_id": "test-episode", "source_sha256": {
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest() for name in five.INTRINSICS_SOURCE_FILES},
+            "cameras": {camera: {"width": 100, "height": 100, "focal_length": [100, 100], "principal_point": [50, 50],
+                                 "distortion": distortion, "pose_latency_us": latency}
+                        for camera in ("left_camera", "right_camera")}, "sha256": "test-profile-v2"}
+
+    def test_profile_v2_distortion_and_latency_flow_into_projection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            profile = self.profile_v2(root, [0.1, 0, 0, 0, 0], 20_000)
+            five.validate_intrinsics_profile(root, profile)
+            source = {"width": 100, "height": 100, "video_transform": "flip_vertical",
+                      "intrinsics": {"focal_length": [100, 100], "principal_point": [50, 50]},
+                      "extrinsics": {"position": [0, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}}
+            (root / "right_camera_characteristics.json").write_text(json.dumps(source))
+            corrected = five.aligned_camera_calibration(root, "right_camera", 100, 100, intrinsics_profile=profile)
+            self.assertEqual(corrected["distortion"], [0.1, 0, 0, 0, 0])
+            self.assertEqual(corrected["pose_latency_us"], 20_000.0)
+            joints = np.array([[0.1, 0.1, -1.0]])
+            head = np.array([0, 0, 0, 0, 0, 0, 1])
+            actual = five.converter.project_hand_to_video(joints, 1, head, corrected)
+            # Normalized ray (0.1, 0.1): r^2 = 0.02, radial 1 + 0.1 * 0.02 = 1.002.
+            np.testing.assert_allclose(actual[0], [50 + 100 * 0.1 * 1.002, 99 - (50 - 100 * 0.1 * 1.002)], atol=1e-3)
+            for bad in ([5.0, 0, 0, 0, 0], [0.1, 0, 0, 0]):
+                with self.assertRaises(ValueError):
+                    five.validate_intrinsics_profile(root, self.profile_v2(root, bad, 0))
+            with self.assertRaises(ValueError):
+                five.validate_intrinsics_profile(root, self.profile_v2(root, [0.1, 0, 0, 0, 0], 10**9))
+
+    def test_overlay_interpolates_bracketing_poses_and_applies_latency(self):
+        names = list(dict.fromkeys(joint for bone in five.converter.HAND_BONES for joint in bone))
+        wrist = names.index("Wrist")
+        samples = np.zeros(3, dtype=[("t_sync_us", "i8"), ("left_joint_valid_mask", "u4"), ("right_joint_valid_mask", "u4"),
+                                     ("left_joints_xyz_xyzw", "f4", (26, 7)), ("right_joints_xyz_xyzw", "f4", (26, 7))])
+        samples["t_sync_us"] = [0, 20_000, 40_000]
+        samples["right_joint_valid_mask"][:] = 1 << wrist
+        samples["right_joints_xyz_xyzw"][:, wrist, 0] = [0.0, 0.2, 0.4]
+        samples["right_joints_xyz_xyzw"][:, wrist, 2] = -1.0
+        calibration = {"width": 100, "height": 100, "intrinsics": {"focal_length": [100, 100], "principal_point": [50, 50]},
+                       "extrinsics": {"position": [0, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}, "video_transform": "flip_vertical",
+                       "distortion": [0.0] * 5, "pose_latency_us": 0.0}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "right_camera_timestamps.csv").write_text("frame_index,t_sync_us\n0,20000\n1,30000\n")
+            rows = [{"side": "right", "frame_index": index, "t_sync_us": t,
+                     "head": {"position": [0.1, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}} for index, t in enumerate([20_000, 30_000])]
+            (root / "camera_pose_tracking.jsonl").write_text("\n".join(json.dumps(row) for row in rows))
+            frames = list(five.project_synced_frames(root, "right_camera", calibration, samples, names))
+            self.assertEqual(frames[0]["pose_sample_index"], 1)
+            np.testing.assert_allclose(frames[0]["hands"]["right"]["points"], [[60, 49]], atol=1e-5)
+            self.assertEqual(frames[1]["pose_alpha"], 0.5)
+            np.testing.assert_allclose(frames[1]["hands"]["right"]["points"], [[70, 49]], atol=1e-5)
+            shifted, _ = five.project_synced_frames(root, "right_camera", {**calibration, "pose_latency_us": 10_000.0}, samples, names)
+            self.assertEqual(shifted["time_ns"], 20_000_000)
+            np.testing.assert_allclose(shifted["hands"]["right"]["points"], [[70, 49]], atol=1e-5)
+            earlier, _ = five.project_synced_frames(root, "right_camera", {**calibration, "pose_latency_us": -10_000.0}, samples, names)
+            np.testing.assert_allclose(earlier["hands"]["right"]["points"], [[50, 49]], atol=1e-5)
+
     def test_explicit_basis_correction_reaches_aligned_overlay_once(self):
         names = list(dict.fromkeys(joint for bone in five.converter.HAND_BONES for joint in bone))
         wrist = names.index("Wrist")
@@ -125,6 +187,63 @@ class TimestampTests(unittest.TestCase):
         packets[-1]["pts"] = 40000
         with self.assertRaisesRegex(ValueError, "pts differs"):
             five.verify_video(info, rows)
+
+    def test_short_interior_gaps_are_bridged_but_edges_and_long_gaps_stay_cleared(self):
+        names = list(dict.fromkeys(joint for bone in five.converter.HAND_BONES for joint in bone))
+        wrist = names.index("Wrist")
+        metacarpal = names.index("IndexMetacarpal")
+        samples = np.zeros(3, dtype=[("t_sync_us", "i8"), ("left_joint_valid_mask", "u4"), ("right_joint_valid_mask", "u4"),
+                                     ("left_joints_xyz_xyzw", "f4", (26, 7)), ("right_joints_xyz_xyzw", "f4", (26, 7))])
+        samples["t_sync_us"] = [0, 300_000, 600_000]
+        samples["right_joint_valid_mask"][:2] = (1 << wrist) | (1 << metacarpal)
+        samples["right_joint_valid_mask"][2] = 1 << wrist
+        samples["right_joints_xyz_xyzw"][:, wrist, 0] = [0.0, 0.2, 0.5]
+        samples["right_joints_xyz_xyzw"][:, metacarpal, 0] = [0.02, 0.22, 0.0]
+        samples["right_joints_xyz_xyzw"][:, (wrist, metacarpal), 2] = -1.0
+        calibration = {"width": 100, "height": 100, "intrinsics": {"focal_length": [100, 100], "principal_point": [50, 50]},
+                       "extrinsics": {"position": [0, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}, "video_transform": "flip_vertical",
+                       "distortion": [0.0] * 5, "pose_latency_us": 0.0}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "right_camera_timestamps.csv").write_text(
+                "frame_index,t_sync_us\n0,100000\n1,300000\n2,400000\n3,500000\n4,600000\n")
+            rows = [{"side": "right", "frame_index": index, "t_sync_us": t,
+                     "head": {"position": [0.1, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}}
+                    for index, t in enumerate([100_000, 300_000, 400_000, 500_000, 600_000])]
+            (root / "camera_pose_tracking.jsonl").write_text("\n".join(json.dumps(row) for row in rows))
+            frames = list(five.project_synced_frames(root, "right_camera", calibration, samples, names))
+            self.assertEqual([bool(f.get("bridged", False)) for f in frames], [False, False, True, True, False])
+            self.assertEqual(frames[0]["hands"]["right"]["points"].size, 0)
+            np.testing.assert_allclose(frames[1]["hands"]["right"]["points"], [[60, 49], [62, 49]], atol=1e-4)
+            self.assertEqual(len(frames[1]["hands"]["right"]["bones"]), 1)
+            # Bridged joints are limited to those visible at both ends and interpolated in image space.
+            self.assertEqual(frames[2]["hands"]["right"]["indices"], [wrist])
+            np.testing.assert_allclose(frames[2]["hands"]["right"]["points"], [[70, 49]], atol=1e-4)
+            np.testing.assert_allclose(frames[3]["hands"]["right"]["points"], [[80, 49]], atol=1e-4)
+            np.testing.assert_allclose(frames[4]["hands"]["right"]["points"], [[90, 49]], atol=1e-4)
+
+    def test_long_gaps_are_never_bridged(self):
+        names = list(dict.fromkeys(joint for bone in five.converter.HAND_BONES for joint in bone))
+        wrist = names.index("Wrist")
+        samples = np.zeros(3, dtype=[("t_sync_us", "i8"), ("left_joint_valid_mask", "u4"), ("right_joint_valid_mask", "u4"),
+                                     ("left_joints_xyz_xyzw", "f4", (26, 7)), ("right_joints_xyz_xyzw", "f4", (26, 7))])
+        samples["t_sync_us"] = [0, 200_000, 1_400_000]
+        samples["right_joint_valid_mask"][:] = 1 << wrist
+        samples["right_joints_xyz_xyzw"][:, wrist, 0] = [0.0, 0.2, 0.4]
+        samples["right_joints_xyz_xyzw"][:, wrist, 2] = -1.0
+        calibration = {"width": 100, "height": 100, "intrinsics": {"focal_length": [100, 100], "principal_point": [50, 50]},
+                       "extrinsics": {"position": [0, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}, "video_transform": "flip_vertical",
+                       "distortion": [0.0] * 5, "pose_latency_us": 0.0}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "right_camera_timestamps.csv").write_text("frame_index,t_sync_us\n0,100000\n1,800000\n2,1400000\n")
+            rows = [{"side": "right", "frame_index": index, "t_sync_us": t,
+                     "head": {"position": [0.1, 0, 0], "rotation_xyzw": [0, 0, 0, 1]}} for index, t in enumerate([100_000, 800_000, 1_400_000])]
+            (root / "camera_pose_tracking.jsonl").write_text("\n".join(json.dumps(row) for row in rows))
+            frames = list(five.project_synced_frames(root, "right_camera", calibration, samples, names))
+            # The 1.2 s interior gap exceeds the 500 ms bridge; edges are never bridged.
+            self.assertEqual([f["hands"]["right"]["points"].size for f in frames], [0, 0, 2])
+            self.assertFalse(any(f.get("bridged", False) for f in frames))
 
     def test_reused_source_frames_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
