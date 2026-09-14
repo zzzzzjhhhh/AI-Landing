@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "episode_id": "20260911_170529",
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
+  "entity_root": "replay_dashboard/placeholder/gaussian",
+  "representation": "fixed-identity anisotropic dynamic Gaussian splats",
+  "source_cloud": "/home/xuyujie/pipelines/stereo_mano_colored_cloud/runs/20260911_170529_stable_v8/17_colored_dynamic_cloud_v11_anatomy_guard",
+  "source_revision": "V11",
+  "frames": 1419,
+  "source_points_per_frame": 46140,
+  "gaussians_per_frame": 3076,
+  "time_range_us": [
+    0,
+    109965299
+  ],
+  "color_model": "observed-first time-fused RGB, SH degree 0 equivalent",
+  "geometry_model": "per-frame centers, face-area anisotropic scale and surface-normal quaternion",
+  "confidence": {
+    "minimum": 0.2199999988079071,
+    "low_confidence_frames_per_hand": [
+      10,
+      370
+    ]
+  },
+  "tracking_source_counts": {
+    "0:backward_flow": 1,
+    "0:forward_flow": 1,
+    "0:mano_latent_bidirectional_occlusion": 8,
+    "0:mediapipe+stereo_depth": 6,
+    "0:mediapipe_articulation+pico_metric": 1352,
+    "0:pico_metric": 36,
+    "0:right_eye_mediapipe": 15,
+    "1:backward_flow": 3,
+    "1:forward_flow": 9,
+    "1:mano_v11_gray_anatomy_prediction": 358,
+    "1:mediapipe+stereo_depth": 55,
+    "1:mediapipe_articulation+pico_metric": 648,
+    "1:pico_metric": 273,
+    "1:right_eye_mediapipe": 73
+  },
+  "limitations": [
+    "Point-cloud-to-Gaussian conversion; not newly photometrically trained 4DGS.",
+    "Occluded geometry inherits the accepted MANO prior and tracking uncertainty.",
+    "RGBA confidence changes visibility only; accepted RGB identity is preserved."
+  ],
+  "data": {
+    "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd",
+    "sha256": "fbd511f8f29563274ebb03064878ee01fbcf1b57f636f20b03f6db3432ceba30",
+    "bytes": 168811830
+  },
+  "data_parts": [
+    {
+      "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-000",
+      "sha256": "63b42f607baadc22dbc543feaa54cdc35f2fc48d6ad57612723ecb31c0d43b11",
+      "bytes": 62914560
+    },
+    {
+      "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-001",
+      "sha256": "eeeb1b67a0c313b330b2f3e5b47a927551bf9a3f512737c670af998d2bfaad62",
+      "bytes": 62914560
+    },
+    {
+      "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-002",
+      "sha256": "1f2ec75947d3af10e91fc741e8ae4710a6c14ddcd6cb5f2c28df5a8f5344dff0",
+      "bytes": 42982710
+    }
+  ],
+  "blueprint": {
+    "path": "/rerun/episodes/20260911_170529/replay-dashboard-with-gaussians.rbl",
+    "sha256": "5b883dc879610ee1d97b927a8b92057596980e58224cb702fde04b7f13742422",
+    "bytes": 251494
+  }
+}

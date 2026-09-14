@@ -60,3 +60,36 @@ test('waits for base endpoint and render turns before applying supplemental layo
     assert.deepEqual(f.sent.at(-1), ['Episode layout', [1]]);
   } finally { f.restore(); global.requestAnimationFrame = originalRaf; }
 });
+
+test('Gaussian parts use the upgraded blueprint and retain byte order', async () => {
+  const f = fixture();
+  const withGaussian = {
+    ...recording,
+    gaussian_splat: {
+      data: asset('/gaussian-complete'),
+      data_parts: [asset('/gaussian-part0'), asset('/gaussian-part1')],
+      blueprint: asset('/gaussian-layout'),
+    },
+  };
+  try {
+    const work = attachGlovePressure(f.viewer, new AbortController().signal, withGaussian, {
+      onLayoutReady: () => f.callbacks.push('layout'),
+      onHandsReady: () => f.callbacks.push('hands'),
+      onGaussianSplatReady: () => f.callbacks.push('gaussian'),
+    });
+    assert.equal(f.pending.has('/layout'), false);
+    f.pending.get('/gaussian-layout')([1]);
+    f.pending.get('/dashboard')([2]);
+    await tick();
+    f.pending.get('/gaussian-part1')([8, 9]);
+    f.pending.get('/gaussian-part0')([6, 7]);
+    f.pending.get('/part0')([3]);
+    f.pending.get('/part1')([4]);
+    await work;
+    assert.deepEqual(f.sent.find(([name]) => name === 'Dynamic hand Gaussian splats'), [
+      'Dynamic hand Gaussian splats', [6, 7, 8, 9],
+    ]);
+    assert.equal(f.sent.filter(([name, bytes]) => name === 'Episode layout' && bytes[0] === 1).length >= 1, true);
+    assert.deepEqual(new Set(f.callbacks), new Set(['layout', 'hands', 'gaussian']));
+  } finally { f.restore(); }
+});

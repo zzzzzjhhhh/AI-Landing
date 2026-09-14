@@ -10,8 +10,11 @@ matching application and recording IDs. The reference dashboard places native
 Rerun movement and pressure views side by side at top left, with task details
 and a state timeline below. At top right, Depth plus five camera views form a
 3×2 grid; Gaussian Splat and motion plots occupy the bottom right. Depth and
-Gaussian Splat start as explicitly labeled placeholders. The `153529` Depth panel
-now uses a synchronized FoundationStereo estimate; Gaussian Splat remains a placeholder.
+Gaussian Splat start as explicitly labeled placeholders. The three `20260911`
+episodes now replace the Gaussian placeholder with accepted V8/V11 fixed-topology
+dynamic hand splats; older episodes retain the placeholder. The conversion is not
+a newly photometrically trained 4DGS model. The `153529` Depth panel uses a
+synchronized FoundationStereo estimate.
 See [the depth pipeline](../foundation-stereo/README.md) for generation and validation.
 Camera bounds are preserved.
 

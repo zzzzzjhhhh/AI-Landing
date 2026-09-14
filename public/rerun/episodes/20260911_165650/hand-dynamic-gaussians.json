@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "episode_id": "20260911_165650",
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_165650_c765664092fd",
+  "entity_root": "replay_dashboard/placeholder/gaussian",
+  "representation": "fixed-identity anisotropic dynamic Gaussian splats",
+  "source_cloud": "/home/xuyujie/pipelines/stereo_mano_colored_cloud/runs/20260911_165650_dynamic_cloud_v1/16_colored_dynamic_cloud_v8_stable",
+  "source_revision": "V8",
+  "frames": 526,
+  "source_points_per_frame": 46140,
+  "gaussians_per_frame": 3076,
+  "time_range_us": [
+    0,
+    42902047
+  ],
+  "color_model": "observed-first time-fused RGB, SH degree 0 equivalent",
+  "geometry_model": "per-frame centers, face-area anisotropic scale and surface-normal quaternion",
+  "confidence": {
+    "minimum": 0.2199999988079071,
+    "low_confidence_frames_per_hand": [
+      3,
+      105
+    ]
+  },
+  "tracking_source_counts": {
+    "0:backward_flow": 1,
+    "0:forward_flow": 2,
+    "0:mediapipe+stereo_depth": 1,
+    "0:mediapipe_articulation+pico_metric": 487,
+    "0:pico_metric": 16,
+    "0:right_eye_mediapipe": 19,
+    "1:bidirectional_motion": 8,
+    "1:mano_latent_bidirectional_occlusion": 86,
+    "1:mediapipe+stereo_depth": 19,
+    "1:mediapipe_articulation+pico_metric": 231,
+    "1:pico_metric": 140,
+    "1:right_eye_mediapipe": 42
+  },
+  "limitations": [
+    "Point-cloud-to-Gaussian conversion; not newly photometrically trained 4DGS.",
+    "Occluded geometry inherits the accepted MANO prior and tracking uncertainty.",
+    "RGBA confidence changes visibility only; accepted RGB identity is preserved."
+  ],
+  "data": {
+    "path": "/rerun/episodes/20260911_165650/hand-dynamic-gaussians.rrd",
+    "sha256": "83d427dabec107377691205a2ef457a13c296d8e8e76a14a2cb34796402a3ac7",
+    "bytes": 62229439
+  },
+  "data_parts": [],
+  "blueprint": {
+    "path": "/rerun/episodes/20260911_165650/replay-dashboard-with-gaussians.rbl",
+    "sha256": "b3b5f22d39c2fad459b06ca2129646542e82ab9c7a77afffa8b3ee153c3e4ae7",
+    "bytes": 251605
+  }
+}

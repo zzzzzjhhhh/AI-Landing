@@ -1037,5 +1037,28 @@
       "path": "/rerun/episodes/20260911_155825/replay-dashboard.rbl",
       "sha256": "70da1e6598be338db59848ee2e6a1d4bb32cc6e721f1808d15c16e3d62cd38b6"
     }
+  },
+  "gaussian_splat": {
+    "version": 1,
+    "representation": "fixed-identity anisotropic dynamic Gaussian splats",
+    "source_revision": "V8",
+    "frames": 738,
+    "gaussians_per_frame": 3076,
+    "time_range_us": [0, 56402730],
+    "confidence": {"minimum": 0.2199999988079071, "low_confidence_frames_per_hand": [0, 36]},
+    "data": {
+      "path": "/rerun/episodes/20260911_155825/hand-dynamic-gaussians.rrd",
+      "sha256": "cbbd9af6524826ee46bf5f4dcd019ac923d37f8c855eab03987bd464bd4353e7",
+      "bytes": 87490360
+    },
+    "data_parts": [
+      {"path": "/rerun/episodes/20260911_155825/hand-dynamic-gaussians.rrd.part-000", "sha256": "48876f9f0536c4036e3cdfefb652190efa95719de3ce0b673d2476a3e238682f", "bytes": 62914560},
+      {"path": "/rerun/episodes/20260911_155825/hand-dynamic-gaussians.rrd.part-001", "sha256": "30bedffb76a470da5e278936893ab5ed9cb6c3500bceacec1dd08c3fe62889ef", "bytes": 24575800}
+    ],
+    "blueprint": {
+      "path": "/rerun/episodes/20260911_155825/replay-dashboard-with-gaussians.rbl",
+      "sha256": "3071fd4cbfc7838f4df69dd4728c547dd4709b1969c21e5bff26a730848f757f",
+      "bytes": 251519
+    }
   }
 }

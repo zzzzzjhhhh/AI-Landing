@@ -3,15 +3,24 @@ import manifest from "../../../public/rerun/right-hand-pressure.json";
 
 export const glovePressureRecording = manifest;
 type RecordingAsset = { path: string; sha256: string };
+type GaussianSplatRecording = {
+  data: RecordingAsset;
+  data_parts?: RecordingAsset[];
+  blueprint?: RecordingAsset;
+  representation?: string;
+  source_revision?: string;
+};
 export type HandRecording = Pick<typeof manifest, "application_id" | "recording_id" | "data" | "blueprint" | "pressure_source"> & {
   duration_ns?: number;
   data_parts?: RecordingAsset[];
   dashboard?: { data: RecordingAsset; blueprint: RecordingAsset };
+  gaussian_splat?: GaussianSplatRecording;
 };
 
 type LoadingCallbacks = {
   onLayoutReady?: () => void;
   onHandsReady?: () => void;
+  onGaussianSplatReady?: () => void;
 };
 
 /** Load the layout and dashboard independently of the larger hand recording. */
@@ -28,6 +37,7 @@ export async function attachGlovePressure(
     if (!response.ok) throw new Error(`Unable to load the right-hand views (${response.status}).`);
     return response.arrayBuffer();
   };
+  const assets = (data: RecordingAsset, parts?: RecordingAsset[]) => parts?.length ? parts : [data];
   const send = (name: string, bytes: Uint8Array) => {
     if (!active()) return;
     const channel = inputChannel ?? viewer.open_channel(name);
@@ -41,7 +51,7 @@ export async function attachGlovePressure(
   // Start all downloads together, but never gate the layout or IMU on hand data.
   const layout = (async () => {
     const [blueprint, dashboard] = await Promise.all([
-      read(recording.dashboard?.blueprint ?? recording.blueprint),
+      read(recording.gaussian_splat?.blueprint ?? recording.dashboard?.blueprint ?? recording.blueprint),
       recording.dashboard ? read(recording.dashboard.data) : Promise.resolve(null),
     ]);
     // recording_open fires before the base stream's final embedded blueprint
@@ -62,7 +72,7 @@ export async function attachGlovePressure(
     return blueprint;
   })();
   const hands = (async () => {
-    const buffers = await Promise.all((recording.data_parts ?? [recording.data]).map(read));
+    const buffers = await Promise.all(assets(recording.data, recording.data_parts).map(read));
     if (!active()) return;
     const bytes = buffers.length === 1 ? buffers[0] : await new Blob(buffers).arrayBuffer();
     if (!active()) return;
@@ -73,5 +83,19 @@ export async function attachGlovePressure(
     if (blueprint) send("Episode layout", new Uint8Array(blueprint));
     callbacks.onHandsReady?.();
   })();
-  await Promise.all([layout, hands]);
+  const gaussianSplat = (async () => {
+    if (!recording.gaussian_splat) return;
+    const buffers = await Promise.all(assets(
+      recording.gaussian_splat.data,
+      recording.gaussian_splat.data_parts,
+    ).map(read));
+    if (!active()) return;
+    const bytes = buffers.length === 1 ? buffers[0] : await new Blob(buffers).arrayBuffer();
+    if (!active()) return;
+    await layout;
+    if (!active()) return;
+    send("Dynamic hand Gaussian splats", new Uint8Array(bytes));
+    callbacks.onGaussianSplatReady?.();
+  })();
+  await Promise.all([layout, hands, gaussianSplat]);
 }
