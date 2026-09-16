@@ -4,7 +4,10 @@ import { join } from "node:path";
 import { createPressureProcessor } from "./processor.mjs";
 import { loadRightHandRig } from "./right-hand-rig.mjs";
 
-const [samplesPath, outputDir, baselinePath] = process.argv.slice(2);
+const [samplesPath, outputDir, baselinePath, baselineManifestPath] = process.argv.slice(2);
+const baselineManifest = baselineManifestPath ? JSON.parse(readFileSync(baselineManifestPath, "utf8")) : null;
+const findDisplay = (value) => value && typeof value === "object" ? value.display_normalisation || Object.values(value).map(findDisplay).find(Boolean) : null;
+const baselineDisplay = findDisplay(baselineManifest);
 if (!samplesPath || !outputDir) throw new Error("Usage: node render-vision-pressure-pilot.mjs validated-taxels.jsonl output-dir [original-pressure-samples.jsonl]");
 const samples = readFileSync(samplesPath, "utf8").trim().split("\n").map(JSON.parse);
 const baseline = baselinePath ? readFileSync(baselinePath, "utf8").trim().split("\n").map(JSON.parse) : [];
@@ -30,7 +33,7 @@ for (let n = 0; n < triangles.length; n += 3) {
 faces.sort((a, b) => a.z - b.z);
 const skin = faces.map((face) => face.svg).join("");
 function render(item, index, prefix, title, note) {
-  const pressure = processor(Uint8Array.from(item.data), { min: 0, max: displayMax, height: 0.7, stride: 2 });
+  const pressure = processor(Uint8Array.from(item.data), { min: 0, max: item.displayMax ?? displayMax, height: item.displayHeight ?? 0.7, stride: 2 });
   const dots = pressure.positions.map((position, i) => {
     const color = pressure.colors[i];
     return `<circle cx="${px(position[0]).toFixed(1)}" cy="${py(position[1]).toFixed(1)}" r="2.4" fill="rgb(${color[0]},${color[1]},${color[2]})" fill-opacity="${(color[3] / 255).toFixed(2)}"/>`;
@@ -58,7 +61,10 @@ try {
     const count = render(item, index, "pressure-model", patchAudit ? "V3 contact patches" : siteAudit ? "Visual site audit" : "Visual + grip prior", evidence);
     if (baseline.length) {
       const old = baseline.reduce((best, row) => Math.abs(row.tracking_time_ns - item.time_ns) < Math.abs(best.tracking_time_ns - item.time_ns) ? row : best);
-      render({ time_ns: item.time_ns, data: old.matrix, levels: old.levels }, index, "pressure-original", "Previous Pressure", "Old global contact envelope + fixed finger weights");
+      render({ time_ns: item.time_ns, data: old.matrix, levels: old.levels,
+        displayMax: baselineDisplay?.colormap_max, displayHeight: baselineDisplay?.height_scale }, index, "pressure-original",
+        baselineManifest ? "APP current Pressure" : "Previous Pressure",
+        baselineManifest ? `App data + app color scale (max ${baselineDisplay?.colormap_max ?? displayMax}); not measured force` : "Old global contact envelope + fixed finger weights");
     }
     console.log(`${item.sample_id}: ${count} visual pressure points`);
   }
