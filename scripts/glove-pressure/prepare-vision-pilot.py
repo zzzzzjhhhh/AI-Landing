@@ -1,4 +1,4 @@
-"""Extract exact source frames for the 165650 visual-pressure pilot.
+"""Extract exact source frames for a visual-pressure pilot.
 
 Requires ffmpeg and ImageMagick. The original camera pixels are never rescaled;
 the crops are additional context, not replacements for the full frames.
@@ -36,6 +36,9 @@ def nearest_index(rows: list[dict], requested: float) -> int:
 
 
 def prepare(video_root: Path, metadata_root: Path, output: Path, requested_times: tuple[float, ...] = PILOT_TIMES) -> None:
+    episode = video_root.name
+    if metadata_root.name != episode:
+        raise ValueError("Video and metadata episode directories must match")
     output.mkdir(parents=True, exist_ok=True)
     frames = {camera: [] for camera in CAMERAS}
     sources = {}
@@ -81,10 +84,10 @@ def prepare(video_root: Path, metadata_root: Path, output: Path, requested_times
             str(output / left["contact_crop"]), "-geometry", "+0+960", "-composite",
             str(output / right["contact_crop"]), "-geometry", "+1280+960", "-composite",
             str(board))
-        samples.append({"sample_id": f"165650-pressure-{ordinal + 1:02d}",
+        samples.append({"sample_id": f"{episode.rsplit('_', 1)[-1]}-pressure-{ordinal + 1:02d}",
                         "requested_time_s": requested, "left": left, "right": right,
                         "board_image": board.name, "board_sha256": digest(board)})
-    manifest = {"schema_version": "visual-pressure-pilot-input-v1", "episode": "20260911_165650",
+    manifest = {"schema_version": "visual-pressure-pilot-input-v1", "episode": episode,
                 "source": "original synchronized left/right camera pixels", "source_files": sources,
                 "crop_xywh": [600, 180, 600, 590], "samples": samples}
     (output / "input-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
