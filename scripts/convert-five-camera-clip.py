@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent / "glove-pressure"))
 from pose_source import (INTRINSICS_SOURCE_FILES, aligned_camera_calibration, converter, load_intrinsics_profile,
                          project_synced_frames, read_pose_samples, validate_intrinsics_profile)
 
-CAMERAS = {"left_camera": "PICO left", "right_camera": "PICO right", "left_side": "Left side", "right_side": "Right side", "back": "Back"}
+CAMERAS = {"left_camera": "Stereo left", "right_camera": "Stereo right", "left_side": "Left side", "right_side": "Right side", "back": "Back"}
 
 
 def sha256(path: Path) -> str:

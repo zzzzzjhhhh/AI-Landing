@@ -39,10 +39,18 @@ export function movementFrames(frames, durationNs, options = movementOptions) {
   return times.map(time_ns => {
     while (index + 1 < filtered.length && filtered[index + 1].time_ns <= time_ns) index++;
     const a = filtered[index], b = filtered[index + 1];
-    if (!a || time_ns < a.time_ns) return { time_ns, valid: false };
+    if (!a || time_ns < a.time_ns) return { time_ns, valid: false, held: Boolean(options.holdMissing) };
     // Only hold the final valid exposure to the clip boundary, never a missing tail.
-    if (!b) return frames.at(-1)?.valid ? { time_ns, valid: true, rotations: a.rotations } : { time_ns, valid: time_ns === a.time_ns, rotations: a.rotations };
-    if (b.time_ns - a.time_ns > maxGapNs && time_ns !== a.time_ns) return { time_ns, valid: false };
+    if (!b) {
+      const normallyValid = Boolean(frames.at(-1)?.valid || time_ns === a.time_ns);
+      return { time_ns, valid: normallyValid || Boolean(options.holdMissing), rotations: a.rotations,
+        held: !normallyValid && Boolean(options.holdMissing) };
+    }
+    if (b.time_ns - a.time_ns > maxGapNs && time_ns !== a.time_ns) {
+      return options.holdMissing
+        ? { time_ns, valid: true, rotations: a.rotations, held: true }
+        : { time_ns, valid: false };
+    }
     return { time_ns, valid: true, rotations: blendRotations(a.rotations, b.rotations, (time_ns - a.time_ns) / (b.time_ns - a.time_ns)) };
   });
 }

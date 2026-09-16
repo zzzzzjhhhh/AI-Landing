@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "episode_id": "20260911_155825",
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_155825_339b998cc055",
+  "entity_root": "replay_dashboard/placeholder/gaussian",
+  "representation": "fixed-identity anisotropic dynamic Gaussian splats",
+  "source_cloud": "/home/xuyujie/pipelines/stereo_mano_colored_cloud/runs/20260916_accepted_tracking_cloud_batch_v1/155825/06_cloud",
+  "source_revision": "accepted_tracking_20260916",
+  "frames": 738,
+  "source_points_per_frame": 46140,
+  "gaussians_per_frame": 3076,
+  "time_range_us": [
+    0,
+    56402730
+  ],
+  "color_model": "observed-first time-fused RGB, SH degree 0 equivalent",
+  "geometry_model": "per-frame centers, face-area anisotropic scale and surface-normal quaternion",
+  "confidence": {
+    "minimum": 0.75,
+    "low_confidence_frames_per_hand": [
+      0,
+      0
+    ]
+  },
+  "tracking_source_counts": {
+    "0:accepted_final_stereo": 738,
+    "1:accepted_final_stereo": 738
+  },
+  "limitations": [
+    "Point-cloud-to-Gaussian conversion; not newly photometrically trained 4DGS.",
+    "Occluded geometry inherits the accepted MANO prior and tracking uncertainty.",
+    "RGBA confidence changes visibility only; accepted RGB identity is preserved."
+  ],
+  "data": {
+    "path": "/rerun/episodes/20260911_155825/accepted-20260916/hand-dynamic-gaussians.rrd",
+    "sha256": "7da1d52dea36b511aebaa3f971e71922d90196d9c82ec78abda446af8be171ee",
+    "bytes": 87352209
+  },
+  "data_parts": [
+    {
+      "path": "/rerun/episodes/20260911_155825/accepted-20260916/hand-dynamic-gaussians.rrd.part-000",
+      "sha256": "da3ba1e7c6ff8deee58fde8c367455f8330dcaa320f98b88f211d3fd6d993aa2",
+      "bytes": 62914560
+    },
+    {
+      "path": "/rerun/episodes/20260911_155825/accepted-20260916/hand-dynamic-gaussians.rrd.part-001",
+      "sha256": "f1dd8cbe64a70d69a2e1415cadc3cf80083f01ff482427c606d251e5f33fe142",
+      "bytes": 24437649
+    }
+  ],
+  "blueprint": {
+    "path": "/rerun/episodes/20260911_155825/replay-dashboard-with-gaussians.rbl",
+    "sha256": "b128432e887cdb2ca5e9de54b8d2146bb3fdf64f99842d80a5541d400494d05c",
+    "bytes": 251317
+  }
+}

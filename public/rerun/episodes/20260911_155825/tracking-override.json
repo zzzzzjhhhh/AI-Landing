@@ -1,0 +1,39 @@
+{
+  "episode_id": "20260911_155825",
+  "application_id": "five_camera_task_clip_v1",
+  "recording_id": "five_camera_20260911_155825_339b998cc055",
+  "overlay": {
+    "path": "/rerun/episodes/20260911_155825/tracking-override.rrd",
+    "sha256": "30fd6cfd67e32096c740bb75b4deacd7d32707faa8c602fb0b85f7cbd2b23c4b",
+    "bytes": 3317861
+  },
+  "hands": {
+    "left_camera": {
+      "source": "/home/xuyujie/projects/hand-keypoint-tracking/runs/20260916_155825_left_transitions_v10/data/tracking.npz",
+      "source_sha256": "28dd566cea070c53d224b1f395bff13242d701e25a933e9c5a700cc0abe7c687",
+      "version": "left V10",
+      "frame_count": 1519,
+      "first_pts_us": 0,
+      "last_pts_us": 56402730,
+      "present_frames": [
+        1519,
+        1519
+      ]
+    },
+    "right_camera": {
+      "source": "/home/xuyujie/projects/hand-keypoint-tracking/runs/20260916_155825_all_transitions_v10/data/tracking.npz",
+      "source_sha256": "ce20a428c273fad74194d4f8d1dc4d850b5b0def836aa6eb83782e46ecdd786f",
+      "version": "right V10",
+      "frame_count": 1511,
+      "first_pts_us": 0,
+      "last_pts_us": 56402730,
+      "present_frames": [
+        1511,
+        1511
+      ]
+    }
+  },
+  "source": "provisional_final_per_camera_2d",
+  "coordinate_system": "app_960x720_video_pixels",
+  "source_3d_hand_panels_unchanged": true
+}

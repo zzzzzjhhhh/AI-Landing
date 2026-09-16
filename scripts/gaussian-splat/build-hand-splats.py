@@ -70,7 +70,7 @@ def gaussian_dashboard_blueprint(manifest_path: Path, output: Path) -> None:
     dashboard = manifest["dashboard"]
     dimensions = manifest["camera_dimensions"]
     labels = {
-        "left_camera": "PICO left", "right_camera": "PICO right", "left": "PICO left", "right": "PICO right",
+        "left_camera": "Stereo left", "right_camera": "Stereo right", "left": "Stereo left", "right": "Stereo right",
         "left_side": "Left side", "right_side": "Right side", "back": "Back",
     }
     background = [9, 11, 16]

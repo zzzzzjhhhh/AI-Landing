@@ -1091,8 +1091,8 @@
     ],
     "blueprint": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard-with-gaussians.rbl",
-      "sha256": "5b883dc879610ee1d97b927a8b92057596980e58224cb702fde04b7f13742422",
-      "bytes": 251494
+        "sha256": "6e3179e806e4eb34affee1bf0847d5ad24dc27770cd7964f9a0cb735d9d0a76d",
+        "bytes": 251440
     }
   }
 }

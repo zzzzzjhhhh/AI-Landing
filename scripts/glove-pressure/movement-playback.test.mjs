@@ -19,6 +19,19 @@ test('long and unbounded gaps remain unavailable, with no frozen missing tail', 
   assert.equal(result[30].valid, false);
   assert.equal(result.at(-1).valid, false);
 });
+test('optional display hold freezes the last valid pose and resumes when tracking returns', () => {
+  const source = [frame(0, 0, false), frame(.1, 10), frame(3, 30), frame(3.1, 0, false)];
+  const result = movementFrames(source, 3.2e9, { ...options, holdMissing: true });
+  assert.equal(result[0].valid, false);
+  assert.equal(result[0].held, true);
+  assert.equal(result[30].valid, true);
+  assert.equal(result[30].held, true);
+  assert.ok(Math.abs(angle(result[30].rotations.index01) - 10) < 1e-8);
+  assert.equal(result[90].valid, true);
+  assert.equal(result[90].held, false);
+  assert.equal(result.at(-1).valid, true);
+  assert.equal(result.at(-1).held, true);
+});
 test('quaternion interpolation follows shortest arc across Euler wrap', () => {
   const a = rotationsFromAngles(frame(0, 179).angles), b = rotationsFromAngles(frame(0, -179).angles);
   const mid = blendRotations(a, b, .5).index01;

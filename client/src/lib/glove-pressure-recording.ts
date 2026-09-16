@@ -15,6 +15,8 @@ export type HandRecording = Pick<typeof manifest, "application_id" | "recording_
   data_parts?: RecordingAsset[];
   dashboard?: { data: RecordingAsset; blueprint: RecordingAsset };
   gaussian_splat?: GaussianSplatRecording;
+  tracking_override?: RecordingAsset;
+  movement_hold_override?: RecordingAsset;
 };
 
 type LoadingCallbacks = {
@@ -50,9 +52,10 @@ export async function attachGlovePressure(
 
   // Start all downloads together, but never gate the layout or IMU on hand data.
   const layout = (async () => {
-    const [blueprint, dashboard] = await Promise.all([
+    const [blueprint, dashboard, trackingOverride] = await Promise.all([
       read(recording.gaussian_splat?.blueprint ?? recording.dashboard?.blueprint ?? recording.blueprint),
       recording.dashboard ? read(recording.dashboard.data) : Promise.resolve(null),
+      recording.tracking_override ? read(recording.tracking_override) : Promise.resolve(null),
     ]);
     // recording_open fires before the base stream's final embedded blueprint
     // is decoded. Wait for its endpoint and the viewer's next render turn.
@@ -63,6 +66,7 @@ export async function attachGlovePressure(
       if (active()) await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
     }
     if (!active()) return;
+    if (trackingOverride) send("Reviewed stereo hand tracking", new Uint8Array(trackingOverride));
     if (dashboard) send("Episode dashboard", new Uint8Array(dashboard));
     viewer.set_active_timeline(recording.recording_id, "tracking_time");
     viewer.set_current_time(recording.recording_id, "tracking_time", 0);
@@ -72,13 +76,17 @@ export async function attachGlovePressure(
     return blueprint;
   })();
   const hands = (async () => {
-    const buffers = await Promise.all(assets(recording.data, recording.data_parts).map(read));
+    const [buffers, movementHold] = await Promise.all([
+      Promise.all(assets(recording.data, recording.data_parts).map(read)),
+      recording.movement_hold_override ? read(recording.movement_hold_override) : Promise.resolve(null),
+    ]);
     if (!active()) return;
     const bytes = buffers.length === 1 ? buffers[0] : await new Blob(buffers).arrayBuffer();
     if (!active()) return;
     const blueprint = await layout;
     if (!active()) return;
     send("Right hand pressure and movement", new Uint8Array(bytes));
+    if (movementHold) send("Hold last tracked Movement pose", new Uint8Array(movementHold));
     // A newly opened data store may reactivate its default blueprint.
     if (blueprint) send("Episode layout", new Uint8Array(blueprint));
     callbacks.onHandsReady?.();

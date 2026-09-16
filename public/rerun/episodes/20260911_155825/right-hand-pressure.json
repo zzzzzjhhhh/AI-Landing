@@ -180,14 +180,14 @@
     "assumptions": [
       "Uniform 0.75 s visual review plus explicitly selected transition frames. Boundaries remain approximate; no frame-accurate contact ground truth exists.",
       "Relative pressure is an illustrative smoothstep envelope; no object mass, friction, contact area, force or kPa is measured.",
-      "Fixed finger and palm pad weights approximate small-object grip; contact location does not track individual objects.",
+      "Fixed finger pad weights approximate small-object grip; palm pressure is disabled for this episode and contact location does not track individual objects.",
       "Original distal joint bends modulate amplitude by 0.65 + 0.35 * normalized curl. No annotated contact gives zero pressure.",
       "Missing or degenerate right-hand pose uses a VIDEO ONLY neutral curl prior of 0.55; pose/flexion remains unavailable.",
       "Object names are visual descriptions; some small-item identities and occluded contacts are uncertain."
     ],
     "contacts": {
       "palm": {
-        "weight": 0.18,
+        "weight": 0,
         "center_u": 0.7,
         "center_v": 0.36,
         "width_u": 0.28,
@@ -652,7 +652,7 @@
         }
       ]
     },
-    "profile_sha256": "9e0c857f33d89732da17bd3fc0ed8c484054d0e0efbb7a69cd45195fe19895fe",
+    "profile_sha256": "88551ed5793f204bba0ddff9359b34127b9cf2b78a2458b1176ae15bdf4920e1",
     "units": "relative_0_100",
     "measured": false,
     "timeline": "Exact right-camera frame times plus a final endpoint hold",
@@ -666,7 +666,7 @@
   },
   "data": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rrd",
-    "sha256": "48bb229e44ca0007bb832b4ed0b8f35ba8c6eb85f556d589927724491c552027"
+    "sha256": "55fcf382302b88998d1062b4a490b3b26d9a896ef8e9493ef64ffcbd974db3b4"
   },
   "blueprint": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.rbl",
@@ -678,11 +678,11 @@
   },
   "pressure_csv": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure.csv",
-    "sha256": "0cc3f52821f7182873be74df941628334656d54af66b8d744c4faf7d5f60c137"
+    "sha256": "dfd802fbab07d9589740f1a60d4ffca7863b05f342710a35914961a371782d77"
   },
   "pressure_samples": {
     "path": "/rerun/episodes/20260911_155825/right-hand-pressure-samples.jsonl",
-    "sha256": "9be2e9b6878a868b3007cfbadcad56d19586a121b31305a029522e4a0dd9e078"
+    "sha256": "37c91de825717561f65ae6878e17f23fb119170b99a19d433b94cc1636733f02"
   },
   "dashboard": {
     "layout_version": 2,
@@ -1041,24 +1041,41 @@
   "gaussian_splat": {
     "version": 1,
     "representation": "fixed-identity anisotropic dynamic Gaussian splats",
-    "source_revision": "V8",
+    "source_revision": "accepted_tracking_20260916_leftV10_rightV10",
     "frames": 738,
     "gaussians_per_frame": 3076,
-    "time_range_us": [0, 56402730],
-    "confidence": {"minimum": 0.2199999988079071, "low_confidence_frames_per_hand": [0, 36]},
+    "time_range_us": [
+      0,
+      56402730
+    ],
+    "confidence": {
+      "minimum": 0.75,
+      "low_confidence_frames_per_hand": [
+        0,
+        0
+      ]
+    },
     "data": {
-      "path": "/rerun/episodes/20260911_155825/hand-dynamic-gaussians.rrd",
-      "sha256": "cbbd9af6524826ee46bf5f4dcd019ac923d37f8c855eab03987bd464bd4353e7",
-      "bytes": 87490360
+      "path": "/rerun/episodes/20260911_155825/accepted-20260916/hand-dynamic-gaussians.rrd",
+      "sha256": "7da1d52dea36b511aebaa3f971e71922d90196d9c82ec78abda446af8be171ee",
+      "bytes": 87352209
     },
     "data_parts": [
-      {"path": "/rerun/episodes/20260911_155825/hand-dynamic-gaussians.rrd.part-000", "sha256": "48876f9f0536c4036e3cdfefb652190efa95719de3ce0b673d2476a3e238682f", "bytes": 62914560},
-      {"path": "/rerun/episodes/20260911_155825/hand-dynamic-gaussians.rrd.part-001", "sha256": "30bedffb76a470da5e278936893ab5ed9cb6c3500bceacec1dd08c3fe62889ef", "bytes": 24575800}
+      {
+        "path": "/rerun/episodes/20260911_155825/accepted-20260916/hand-dynamic-gaussians.rrd.part-000",
+        "sha256": "da3ba1e7c6ff8deee58fde8c367455f8330dcaa320f98b88f211d3fd6d993aa2",
+        "bytes": 62914560
+      },
+      {
+        "path": "/rerun/episodes/20260911_155825/accepted-20260916/hand-dynamic-gaussians.rrd.part-001",
+        "sha256": "f1dd8cbe64a70d69a2e1415cadc3cf80083f01ff482427c606d251e5f33fe142",
+        "bytes": 24437649
+      }
     ],
     "blueprint": {
       "path": "/rerun/episodes/20260911_155825/replay-dashboard-with-gaussians.rbl",
-      "sha256": "3071fd4cbfc7838f4df69dd4728c547dd4709b1969c21e5bff26a730848f757f",
-      "bytes": 251519
+        "sha256": "b128432e887cdb2ca5e9de54b8d2146bb3fdf64f99842d80a5541d400494d05c",
+        "bytes": 251317
     }
   }
 }

@@ -14,7 +14,7 @@
   "cameras": [
     {
       "name": "left_camera",
-      "label": "PICO left",
+      "label": "Stereo left",
       "width": 960,
       "height": 720,
       "source_sha256": "99769f0d9414e55efdb3e6b71dc2e3e0afdb157f3cc3fa84eec35619e83b36b0",
@@ -24,7 +24,7 @@
     },
     {
       "name": "right_camera",
-      "label": "PICO right",
+      "label": "Stereo right",
       "width": 960,
       "height": 720,
       "source_sha256": "5ce656e0b63271116664d2a7077b034551c2c4612583ec7601a0fb7330d2b6f7",

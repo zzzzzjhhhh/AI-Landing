@@ -27,7 +27,7 @@ FLEXION_ENTITY = "derived/hand_flexion/right"
 
 
 def pressure_blueprint(camera_dimensions: dict[str, tuple[int, int]], video_estimates: bool = False, estimated_pressure: bool = False) -> rrb.Blueprint:
-    labels = {"left_camera": "PICO left", "right_camera": "PICO right", "left_side": "Left side", "right_side": "Right side", "back": "Back"}
+    labels = {"left_camera": "Stereo left", "right_camera": "Stereo right", "left_side": "Left side", "right_side": "Right side", "back": "Back"}
     cameras = [rrb.Spatial2DView(origin=f"camera/{side}", name=labels.get(side, f"{side.title()} camera"),
                                visual_bounds=rrb.VisualBounds2D(x_range=[0, width], y_range=[0, height]))
                for side, (width, height) in camera_dimensions.items()]

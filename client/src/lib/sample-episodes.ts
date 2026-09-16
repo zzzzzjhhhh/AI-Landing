@@ -1,9 +1,13 @@
 import clothingEpisode from "../../../public/rerun/episodes/20260911_170529/manifest.json";
 import clothingDepth from "../../../public/rerun/episodes/20260911_170529/foundation-stereo-depth.json";
 import clothingHands from "../../../public/rerun/episodes/20260911_170529/right-hand-pressure.json";
+import clothingTracking from "../../../public/rerun/episodes/20260911_170529/tracking-override.json";
+import clothingMovementHold from "../../../public/rerun/episodes/20260911_170529/movement-hold.json";
 import waterEpisode from "../../../public/rerun/episodes/20260911_165650/manifest.json";
 import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundation-stereo-depth.json";
 import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
+import waterTracking from "../../../public/rerun/episodes/20260911_165650/tracking-override.json";
+import waterMovementHold from "../../../public/rerun/episodes/20260911_165650/movement-hold.json";
 import fiveCamera from "../../../public/rerun/episodes/20260910_150529/manifest.json";
 import fiveCameraHands from "../../../public/rerun/episodes/20260910_150529/right-hand-pressure.json";
 import recordedFiveCamera from "../../../public/rerun/episodes/20260910_153529/manifest.json";
@@ -15,6 +19,7 @@ import foldingHands from "../../../public/rerun/episodes/20260910_161737/right-h
 import foldingImu from "../../../public/rerun/episodes/20260910_161737/head-imu-estimates.json";
 import objectTransfer from "../../../public/rerun/episodes/20260911_155825/manifest.json";
 import objectTransferHands from "../../../public/rerun/episodes/20260911_155825/right-hand-pressure.json";
+import objectTransferTracking from "../../../public/rerun/episodes/20260911_155825/tracking-override.json";
 import objectTransferImu from "../../../public/rerun/episodes/20260911_155825/head-imu-estimates.json";
 import objectTransferDepth from "../../../public/rerun/episodes/20260911_155825/foundation-stereo-depth.json";
 import { glovePressureRecording, type HandRecording } from "./glove-pressure-recording";
@@ -45,9 +50,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${clothingEpisode.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${clothingEpisode.recording.path}?v=${clothingEpisode.recording.sha256.slice(0, 12)}`,
-    hands: clothingHands,
+    hands: { ...clothingHands, tracking_override: clothingTracking.overlay, movement_hold_override: clothingMovementHold.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Original pose with per-camera fitted intrinsics, distortion and pose-latency correction (estimated). Camera overlays bridge short (≤0.5 s) tracking gaps for display. Existing display smoothing. Pressure follows reviewed fabric contacts and recorded finger bends; relative estimates, not measured forces.",
+    flexionNote: "Stereo left/right keypoints use the provisional ACE raw tracking. The 3D flexion and pressure panels use the original pose and reviewed contact estimates; Movement holds the last pose during tracking gaps.",
     depthNote: "FoundationStereo estimate from 1,419 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${clothingDepth.video.path}?v=${clothingDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
@@ -60,9 +65,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${waterEpisode.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${waterEpisode.recording.path}?v=${waterEpisode.recording.sha256.slice(0, 12)}`,
-    hands: waterHands,
+    hands: { ...waterHands, tracking_override: waterTracking.overlay, movement_hold_override: waterMovementHold.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Original pose with per-camera fitted intrinsics, distortion and pose-latency correction (estimated). Camera overlays bridge short (≤0.5 s) tracking gaps for display. Existing display smoothing. Pressure uses reviewed video contacts and recorded finger bends: ESTIMATED, relative 0–100, not measured.",
+    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. The 3D flexion and pressure panels use the original pose and reviewed contact estimates; Movement stays blank before the first tracked pose.",
     depthNote: "FoundationStereo estimate from 526 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${waterDepth.video.path}?v=${waterDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
@@ -75,9 +80,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${objectTransfer.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${objectTransfer.recording.path}?v=${objectTransfer.recording.sha256.slice(0, 12)}`,
-    hands: objectTransferHands,
+    hands: { ...objectTransferHands, tracking_override: objectTransferTracking.overlay },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Original hand pose with per-camera fitted intrinsics, distortion and pose-latency correction (estimated). Camera overlays bridge short (≤0.5 s) tracking gaps for display. Missing tracking is unavailable. Pressure follows reviewed object transfers and recorded finger bends: ESTIMATED, relative 0–100, not measured. VIDEO ONLY marks pressure without valid pose.",
+    flexionNote: "Stereo left/right keypoints use the provisional left and right V10 tracking. The 3D flexion and pressure panels still use the original pose and reviewed object contacts.",
     pressureCsvUrl: `${objectTransferHands.pressure_csv.path}?v=${objectTransferHands.pressure_csv.sha256.slice(0, 12)}`,
     depthNote: "FoundationStereo estimate from 738 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${objectTransferDepth.video.path}?v=${objectTransferDepth.video.sha256.slice(0, 12)}`,

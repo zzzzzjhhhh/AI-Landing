@@ -1,0 +1,13 @@
+{
+  "episode_id": "20260911_165650",
+  "source": "display_hold_previous_valid_movement_pose",
+  "held_frame_count": 3,
+  "frozen_pose_frames": 0,
+  "leading_blank_frames": 3,
+  "data": {
+    "path": "/rerun/episodes/20260911_165650/movement-hold.rrd",
+    "sha256": "b639ccdf609773a0b48a32c176cbb40494886709bf50bc0afdc760a0b3ed0ed1",
+    "bytes": 5608
+  },
+  "native_pose_unchanged": true
+}
