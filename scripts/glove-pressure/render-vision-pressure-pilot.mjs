@@ -40,7 +40,7 @@ function render(item, index, prefix, title, note) {
     + `<rect width="100%" height="100%" fill="#10151c"/><g>${skin}</g><g>${dots}</g>`
     + `<rect x="10" y="10" width="700" height="93" rx="9" fill="#071018" fill-opacity=".92"/>`
     + `<text x="26" y="40" font-size="23" fill="#ecf6f6" font-family="sans-serif">${escape(title)} · ${Number(item.time_ns / 1e9).toFixed(3)}s</text>`
-    + `<text x="26" y="66" font-size="17" fill="#b7cbd1" font-family="sans-serif">Relative load: ${escape(levels)}</text>`
+    + `<text x="26" y="66" font-size="17" fill="#b7cbd1" font-family="sans-serif">${item.source === "visual_contact_patches" ? "Contact map (not force)" : "Relative load"}: ${escape(levels)}</text>`
     + `<text x="26" y="89" font-size="15" fill="#edae77" font-family="sans-serif">${escape(note)}</text>`
     + `</svg>`;
   writeFileSync(join(outputDir, `${prefix}-${String(index + 1).padStart(2, "0")}.svg`), svg);
@@ -49,11 +49,13 @@ function render(item, index, prefix, title, note) {
 try {
   for (const [index, item] of samples.entries()) {
     const siteAudit = item.source === "visual_site_contact_ordinal";
+    const patchAudit = item.source === "visual_contact_patches";
     const shortSite = (site) => site === "palm_center" ? "P" : `${site[0].toUpperCase()}${site.endsWith("_tip") ? "t" : "m"}`;
-    const evidence = siteAudit ? `Contact sites: ${item.active_sites.map(shortSite).join(", ") || "none"} · ${item.unknown_sites.length} unknown`
+    const evidence = patchAudit ? `${item.state} · ${item.finger_count} fingers · inferred footprints; not measured force`
+      : siteAudit ? `Contact sites: ${item.active_sites.map(shortSite).join(", ") || "none"} · ${item.unknown_sites.length} unknown`
       : item.inferred_regions?.length ? `Inferred grip: ${item.inferred_regions.join(", ")}`
       : item.unknown_regions.length ? `Hidden / unknown: ${item.unknown_regions.join(", ")}` : "No hidden finger assumptions";
-    const count = render(item, index, "pressure-model", siteAudit ? "Visual site audit" : "Visual + grip prior", evidence);
+    const count = render(item, index, "pressure-model", patchAudit ? "V3 contact patches" : siteAudit ? "Visual site audit" : "Visual + grip prior", evidence);
     if (baseline.length) {
       const old = baseline.reduce((best, row) => Math.abs(row.tracking_time_ns - item.time_ns) < Math.abs(best.tracking_time_ns - item.time_ns) ? row : best);
       render({ time_ns: item.time_ns, data: old.matrix, levels: old.levels }, index, "pressure-original", "Previous Pressure", "Old global contact envelope + fixed finger weights");
