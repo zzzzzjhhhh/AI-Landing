@@ -1074,25 +1074,25 @@
   "gaussian_splat": {
     "version": 1,
     "representation": "fixed-identity anisotropic dynamic Gaussian splats",
-    "source_revision": "V11",
+    "source_revision": "accepted_tracking_20260916_flipguard_v4",
     "frames": 1419,
     "gaussians_per_frame": 3076,
     "time_range_us": [0, 109965299],
-    "confidence": {"minimum": 0.2199999988079071, "low_confidence_frames_per_hand": [10, 370]},
+    "confidence": {"minimum": 0.0, "low_confidence_frames_per_hand": [4, 10]},
     "data": {
       "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd",
-      "sha256": "fbd511f8f29563274ebb03064878ee01fbcf1b57f636f20b03f6db3432ceba30",
-      "bytes": 168811830
+      "sha256": "2229c7f53430be255d4d03771a083d2c3cf1963ab7f7dc55cb514def0cf62f49",
+      "bytes": 167233619
     },
     "data_parts": [
-      {"path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-000", "sha256": "63b42f607baadc22dbc543feaa54cdc35f2fc48d6ad57612723ecb31c0d43b11", "bytes": 62914560},
-      {"path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-001", "sha256": "eeeb1b67a0c313b330b2f3e5b47a927551bf9a3f512737c670af998d2bfaad62", "bytes": 62914560},
-      {"path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-002", "sha256": "1f2ec75947d3af10e91fc741e8ae4710a6c14ddcd6cb5f2c28df5a8f5344dff0", "bytes": 42982710}
+      {"path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-000", "sha256": "189f1a2a9c11c74ff2212af2ddd146b91996f7e068b602d822fb22da73c8bc17", "bytes": 62914560},
+      {"path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-001", "sha256": "4a586f4e106bf2dbed3c3a525ba43f60ef10f1770c555a1c20a2c365e104b295", "bytes": 62914560},
+      {"path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-002", "sha256": "f1f6e6f96d1d5a470ce285dd9dbbe708f1440b27b0b4a8d869bdb179c4cb6a79", "bytes": 41404499}
     ],
     "blueprint": {
       "path": "/rerun/episodes/20260911_170529/replay-dashboard-with-gaussians.rbl",
-        "sha256": "6e3179e806e4eb34affee1bf0847d5ad24dc27770cd7964f9a0cb735d9d0a76d",
-        "bytes": 251440
+        "sha256": "e169127c288e2af27ad55957ccb7145a8c8023c9e913d134375ee7f6fe6177d3",
+        "bytes": 251452
     }
   }
 }

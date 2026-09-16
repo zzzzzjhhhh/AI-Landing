@@ -5,8 +5,8 @@
   "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
   "entity_root": "replay_dashboard/placeholder/gaussian",
   "representation": "fixed-identity anisotropic dynamic Gaussian splats",
-  "source_cloud": "/home/xuyujie/pipelines/stereo_mano_colored_cloud/runs/20260911_170529_stable_v8/17_colored_dynamic_cloud_v11_anatomy_guard",
-  "source_revision": "V11",
+  "source_cloud": "/home/xuyujie/pipelines/stereo_mano_colored_cloud/runs/20260916_170529_ace_cloud_flipguard_v4/170529/06_cloud",
+  "source_revision": "accepted_tracking_20260916_flipguard_v4",
   "frames": 1419,
   "source_points_per_frame": 46140,
   "gaussians_per_frame": 3076,
@@ -17,27 +17,17 @@
   "color_model": "observed-first time-fused RGB, SH degree 0 equivalent",
   "geometry_model": "per-frame centers, face-area anisotropic scale and surface-normal quaternion",
   "confidence": {
-    "minimum": 0.2199999988079071,
+    "minimum": 0.0,
     "low_confidence_frames_per_hand": [
-      10,
-      370
+      4,
+      10
     ]
   },
   "tracking_source_counts": {
-    "0:backward_flow": 1,
-    "0:forward_flow": 1,
-    "0:mano_latent_bidirectional_occlusion": 8,
-    "0:mediapipe+stereo_depth": 6,
-    "0:mediapipe_articulation+pico_metric": 1352,
-    "0:pico_metric": 36,
-    "0:right_eye_mediapipe": 15,
-    "1:backward_flow": 3,
-    "1:forward_flow": 9,
-    "1:mano_v11_gray_anatomy_prediction": 358,
-    "1:mediapipe+stereo_depth": 55,
-    "1:mediapipe_articulation+pico_metric": 648,
-    "1:pico_metric": 273,
-    "1:right_eye_mediapipe": 73
+    "0:accepted_final_stereo": 1415,
+    "0:mano_latent_unobserved": 4,
+    "1:accepted_final_stereo": 1409,
+    "1:mano_latent_unobserved": 10
   },
   "limitations": [
     "Point-cloud-to-Gaussian conversion; not newly photometrically trained 4DGS.",
@@ -46,29 +36,29 @@
   ],
   "data": {
     "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd",
-    "sha256": "fbd511f8f29563274ebb03064878ee01fbcf1b57f636f20b03f6db3432ceba30",
-    "bytes": 168811830
+    "sha256": "2229c7f53430be255d4d03771a083d2c3cf1963ab7f7dc55cb514def0cf62f49",
+    "bytes": 167233619
   },
   "data_parts": [
     {
       "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-000",
-      "sha256": "63b42f607baadc22dbc543feaa54cdc35f2fc48d6ad57612723ecb31c0d43b11",
+      "sha256": "189f1a2a9c11c74ff2212af2ddd146b91996f7e068b602d822fb22da73c8bc17",
       "bytes": 62914560
     },
     {
       "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-001",
-      "sha256": "eeeb1b67a0c313b330b2f3e5b47a927551bf9a3f512737c670af998d2bfaad62",
+      "sha256": "4a586f4e106bf2dbed3c3a525ba43f60ef10f1770c555a1c20a2c365e104b295",
       "bytes": 62914560
     },
     {
       "path": "/rerun/episodes/20260911_170529/hand-dynamic-gaussians.rrd.part-002",
-      "sha256": "1f2ec75947d3af10e91fc741e8ae4710a6c14ddcd6cb5f2c28df5a8f5344dff0",
-      "bytes": 42982710
+      "sha256": "f1f6e6f96d1d5a470ce285dd9dbbe708f1440b27b0b4a8d869bdb179c4cb6a79",
+      "bytes": 41404499
     }
   ],
   "blueprint": {
     "path": "/rerun/episodes/20260911_170529/replay-dashboard-with-gaussians.rbl",
-    "sha256": "5b883dc879610ee1d97b927a8b92057596980e58224cb702fde04b7f13742422",
-    "bytes": 251494
+    "sha256": "e169127c288e2af27ad55957ccb7145a8c8023c9e913d134375ee7f6fe6177d3",
+    "bytes": 251452
   }
 }
