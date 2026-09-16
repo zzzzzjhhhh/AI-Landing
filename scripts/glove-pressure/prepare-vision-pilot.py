@@ -52,20 +52,25 @@ def prepare(video_root: Path, metadata_root: Path, output: Path, requested_times
         indices = [nearest_index(rows, t) for t in requested_times]
         if len(set(indices)) != len(indices):
             raise ValueError(f"Repeated source frame selection for {camera}")
-        # Decode once per camera. Output order follows source frame order.
-        expression = "+".join(f"eq(n\\,{i})" for i in indices)
-        temporary = output / f"{camera}__extract_%02d.png"
-        run("ffmpeg", "-hide_banner", "-loglevel", "error", "-i", str(video),
-            "-vf", f"select={expression}", "-fps_mode", "vfr", "-compression_level", "2",
-            "-y", str(temporary))
+        # Keep ffmpeg's select expression small enough for long episodes. Each
+        # chunk still selects exact frame indices from the original video.
+        for chunk_start in range(0, len(indices), 40):
+            chunk = indices[chunk_start:chunk_start + 40]
+            expression = "+".join(f"eq(n\\,{i})" for i in chunk)
+            temporary = output / f"{camera}__extract_%02d.png"
+            run("ffmpeg", "-hide_banner", "-loglevel", "error", "-i", str(video),
+                "-vf", f"select={expression}", "-fps_mode", "vfr", "-compression_level", "2",
+                "-y", str(temporary))
+            for local_ordinal in range(1, len(chunk) + 1):
+                extracted = output / f"{camera}__extract_{local_ordinal:02d}.png"
+                if not extracted.exists():
+                    raise ValueError(f"Missing extracted frame: {extracted}")
+                global_ordinal = chunk_start + local_ordinal
+                extracted.rename(output / f"sample_{global_ordinal:02d}__{camera}__full.png")
         sources[camera] = {"video": str(video), "video_sha256": digest(video),
                            "timestamps": str(timestamps), "timestamps_sha256": digest(timestamps)}
         for ordinal, (requested, index) in enumerate(zip(requested_times, indices), 1):
-            extracted = output / f"{camera}__extract_{ordinal:02d}.png"
-            if not extracted.exists():
-                raise ValueError(f"Missing extracted frame: {extracted}")
             full = output / f"sample_{ordinal:02d}__{camera}__full.png"
-            extracted.rename(full)
             crop = output / f"sample_{ordinal:02d}__{camera}__right_contact_crop.png"
             run("magick", str(full), "-crop", CROP, "+repage", str(crop))
             frames[camera].append({"requested_time_s": requested, "source_frame_index": index,
