@@ -10,6 +10,7 @@ import rerun as rr
 p=argparse.ArgumentParser()
 p.add_argument('--samples',type=Path,required=True)
 p.add_argument('--episode-dir',type=Path,required=True)
+p.add_argument('--smooth',action='store_true')
 a=p.parse_args()
 root=a.episode_dir
 original=json.loads((root/'right-hand-pressure.json').read_text())
@@ -17,12 +18,14 @@ episode=json.loads((root/'manifest.json').read_text())
 assert episode['episode_id']=='20260911_170529'
 assert original['recording_id']==episode['recording_id']
 entity='demo/glove_pressure/right'
-output=root/'visual-pressure-v3.rrd'
+stem='visual-pressure-v3-smooth' if a.smooth else 'visual-pressure-v3'
+output=root/(stem+'.rrd')
+display='Contact-only smoothstep interpolation; 120ms pre-release fade; unknown/released stays empty' if a.smooth else 'source-clock previous-sample hold, no interpolation'
 recording=rr.RecordingStream(original['application_id'],recording_id=original['recording_id'],send_properties=False)
 recording.save(output)
 recording.log(entity+'/legend',rr.Points3D([[-.45,2.9,.9]],radii=0,colors=[180,213,222,255],labels=['V3 contact footprint | color is NOT force'],show_labels=True),static=True)
-recording.log(entity+'/provenance',rr.TextDocument('V3 visual clothing contact, NOT measured force. 221 samples at 0.5s spacing, held until the next sample on the original source clock. Hidden footprint geometry is inferred; unknown is not zero-force evidence. No interpolation. Original data and tracking unchanged.'),static=True)
-process=subprocess.Popen(['node',str(Path(__file__).with_name('export-contact-patches-override.mjs')),str(a.samples),str(root/'right-hand-pressure-samples.jsonl')],stdout=subprocess.PIPE,text=True)
+recording.log(entity+'/provenance',rr.TextDocument('V3 visual clothing contact, NOT measured force. 221 samples at 0.5s spacing. Hidden footprint geometry is inferred; unknown is not zero-force evidence. Original data and tracking unchanged. Display: '+display),static=True)
+process=subprocess.Popen(['node',str(Path(__file__).with_name('export-contact-patches-override.mjs')),str(a.samples),str(root/'right-hand-pressure-samples.jsonl')]+(['--smooth'] if a.smooth else []),stdout=subprocess.PIPE,text=True)
 count=0
 last=-1
 try:
@@ -50,5 +53,7 @@ finally:
 def sha(path):
  with path.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 metadata={'episode_id':episode['episode_id'],'recording_id':original['recording_id'],'source':'visual_contact_patches_v3','measured':False,'sample_count':221,'override_frames':count,'display':'source-clock previous-sample hold, no interpolation','display_max':189,'source_sha256':sha(a.samples),'clock_sha256':sha(root/'right-hand-pressure-samples.jsonl'),'data':{'path':'/rerun/episodes/20260911_170529/visual-pressure-v3.rrd','sha256':sha(output),'bytes':output.stat().st_size},'rollback':'Remove clothingPressureV3 import and pressure_override from clothing episode; original files remain unchanged.'}
-(root/'visual-pressure-v3.json').write_text(json.dumps(metadata,indent=2)+'\n')
+metadata['display']=display
+metadata['data']['path']=f'/rerun/episodes/20260911_170529/{stem}.rrd'
+(root/(stem+'.json')).write_text(json.dumps(metadata,indent=2)+'\n')
 print('\033[32m[COMPLETE] V3 Pressure overlay, 2920 source-clock frames\033[0m')

@@ -1,0 +1,18 @@
+{
+  "episode_id": "20260911_170529",
+  "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
+  "source": "visual_contact_patches_v3",
+  "measured": false,
+  "sample_count": 221,
+  "override_frames": 2920,
+  "display": "Contact-only smoothstep interpolation; 120ms pre-release fade; unknown/released stays empty",
+  "display_max": 189,
+  "source_sha256": "7808dc16ff3dcdacea597c8cfe6bd8ce0a8b9ad820e626c86fde1e2c2be000a7",
+  "clock_sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
+  "data": {
+    "path": "/rerun/episodes/20260911_170529/visual-pressure-v3-smooth.rrd",
+    "sha256": "c3084ed6524fcb89ddc73a21f52ff4fcaf29e85a89db3b18689c4865cb581eaa",
+    "bytes": 4642975
+  },
+  "rollback": "Remove clothingPressureV3 import and pressure_override from clothing episode; original files remain unchanged."
+}
