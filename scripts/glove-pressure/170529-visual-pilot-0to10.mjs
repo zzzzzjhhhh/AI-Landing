@@ -15,15 +15,16 @@ const unknown = () => ({ contact: "unknown", relative_load: null, location: null
 const no = () => ({ contact: "no", relative_load: null, location: null, evidence: "direct", confidence: 0.9 });
 const yes = (load, location, evidence, confidence) => ({ contact: "yes", relative_load: load, location, evidence, confidence });
 const all = (make) => Object.fromEntries(names.map((name) => [name, make()]));
-const flatCloth = () => ({ palm: yes(1, "palm_center", "stereo_support", 0.70),
-  thumb: unknown(), index: yes(1, "middle_pad", "stereo_support", 0.65),
-  middle: yes(1, "middle_pad", "stereo_support", 0.64),
-  ring: yes(1, "middle_pad", "stereo_support", 0.57), little: unknown() });
-const pinchCloth = (stretch) => ({ palm: unknown(),
+const flatCloth = () => ({ palm: unknown(),
+  thumb: unknown(), index: yes(1, "middle_pad", "stereo_support", 0.63),
+  middle: yes(1, "middle_pad", "stereo_support", 0.62),
+  ring: yes(1, "middle_pad", "stereo_support", 0.53), little: unknown() });
+const pinchCloth = ({ stretch = false, wideGrip = false } = {}) => ({ palm: unknown(),
   thumb: yes(stretch ? 2 : 1, "distal_pad", "stereo_support", 0.71),
   index: yes(stretch ? 2 : 1, "distal_pad", "stereo_support", 0.72),
   middle: yes(stretch ? 2 : 1, "middle_pad", "grip_prior", 0.56),
-  ring: unknown(), little: unknown() });
+  ring: wideGrip ? yes(1, "middle_pad", "grip_prior", 0.51) : unknown(),
+  little: unknown() });
 
 function judge(sample) {
   const t = sample.requested_time_s;
@@ -37,15 +38,18 @@ function judge(sample) {
   } else if (t >= 2.5 && t <= 4.5) {
     contact_object = "other"; contact_state = "touching"; regions = flatCloth();
     short_evidence = "The open right glove visibly rests or presses on the green fabric on the table in both eyes.";
-    limitations = "Broad soft-fabric contact only; cloth deformation does not calibrate finger force.";
+    limitations = "Dorsal glove is visible, not the palmar surface. Finger contact is supported by the cloth interaction, but palm-center contact remains unknown and is not rendered.";
   } else if (t >= 5 && t <= 5.5) {
-    contact_object = "other"; contact_state = "supporting"; regions = pinchCloth(false);
+    contact_object = "other"; contact_state = "supporting"; regions = pinchCloth();
     short_evidence = "The gloved thumb and fingertips begin pinching the garment edge while the other hand assists.";
-    limitations = "The opposing pads are partially occluded by fabric; middle-finger load is a low-confidence grip inference.";
+    limitations = "The opposing pads are partially occluded by fabric; middle-finger load is a low-confidence grip inference. Neither palm nor ring/little contact is established yet.";
   } else if (t >= 6 && t <= 10) {
-    contact_object = "other"; contact_state = "supporting"; regions = pinchCloth(t >= 7);
+    contact_object = "other"; contact_state = "supporting";
+    regions = pinchCloth({ stretch: t >= 7, wideGrip: t >= 6 && t <= 8.5 });
     short_evidence = "The right glove keeps a pinch on the garment waistband while both hands lift and stretch it; the cloth co-moves with the hand.";
-    limitations = "Ordinal tension-related estimate only; fabric stretch, load sharing, and individual finger force cannot be measured from video.";
+    limitations = t <= 8.5
+      ? "The broad folded grip supports a weak inferred ring-finger contribution. Little finger and palm-center contact are not established; force is ordinal only."
+      : "The grip narrows near the garment edge, so ring/little and palm-center load are left unknown. Fabric tension is not a force measurement.";
   }
   return { schema_version: "visual-pressure-observation-v1", sample_id: sample.sample_id,
     time_s: sample.right.actual_time_s, contact_object, contact_state, regions,
