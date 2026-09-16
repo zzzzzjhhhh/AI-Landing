@@ -1,0 +1,23 @@
+{
+  "episode_id": "20260911_165650",
+  "recording_id": "five_camera_20260911_165650_c765664092fd",
+  "source": "reviewed_stereo_visual_pressure_with_display_interpolation",
+  "sample_count": 86,
+  "right_camera_frames": 1142,
+  "override_frames": 1143,
+  "active_frames": 949,
+  "measured": false,
+  "force_units": null,
+  "source_files": {
+    "first_review": "b7c154edcefc0d227ecb30ae66c87ebf68bc6d8aaf7d9b12e53d015bcf40be67",
+    "second_review": "e4b54d674c19270b739353ec40eb93201d9753bef2e0cacd1cbb156828d7fbef",
+    "right_camera_timestamps": "12356ebbf480f90a2a556bbd464f863c75047aa845e43403fedda9b8c8bf095e",
+    "original_hand_rrd": "935d596f74689c547383be156414555888de0e74091a0b6560df2b824c78e5a3"
+  },
+  "data": {
+    "path": "/rerun/episodes/20260911_165650/visual-pressure-override.rrd",
+    "sha256": "0de6a940f2e438b57b8ab1f414fe8616daadb3cc9dab9e6b81a3d2074fc21f52",
+    "bytes": 1412678
+  },
+  "rollback": "Remove pressure_override from sample-episodes.ts; original right-hand-pressure.rrd is unchanged."
+}
