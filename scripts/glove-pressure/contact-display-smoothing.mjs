@@ -2,7 +2,7 @@
 export function interpolateContact(a,b,timeNs){
  const span=b.time_ns-a.time_ns;
  const t=span>0?Math.max(0,Math.min(1,(timeNs-a.time_ns)/span)):0;
- if(t===1)return b.data.slice();
+ if(t===1)return b.state==='contact'?b.data.slice():b.data.map(()=>0);
  if(a.state!=='contact')return a.data.map(()=>0);
  if(b.state==='contact'){
   const w=t*t*(3-2*t);

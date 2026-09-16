@@ -69,7 +69,7 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     recordingUrl: `${waterEpisode.recording.path}?v=${waterEpisode.recording.sha256.slice(0, 12)}`,
     hands: { ...waterHands, tracking_override: waterTracking.overlay, movement_hold_override: waterMovementHold.data, pressure_override: waterPressureOverride.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. Flexion uses the original pose. Pressure is an estimated, unmeasured right-glove contact map from 86 reviewed stereo samples, interpolated on the original right-camera timeline. Movement stays blank before the first tracked pose.",
+    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. Flexion uses the original pose. Pressure is an estimated, unmeasured right-glove contact map from 86 reviewed stereo samples, interpolated only during contact on the original right-camera timeline. Movement stays blank before the first tracked pose.",
     depthNote: "FoundationStereo estimate from 526 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${waterDepth.video.path}?v=${waterDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",

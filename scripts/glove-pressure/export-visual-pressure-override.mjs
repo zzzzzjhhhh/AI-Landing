@@ -5,6 +5,7 @@
 import { readFileSync } from "node:fs";
 import { once } from "node:events";
 import { createPressureProcessor, regions } from "./processor.mjs";
+import { interpolateContact } from "./contact-display-smoothing.mjs";
 
 const [firstPath, secondPath, timestampsPath, durationText] = process.argv.slice(2);
 if (!firstPath || !secondPath || !timestampsPath || !durationText) {
@@ -33,11 +34,12 @@ times.push(durationNs); // explicit final hold on the episode endpoint
 const processor = await createPressureProcessor();
 let left = 0;
 for (const [frameIndexNumber, timeNs] of times.entries()) {
-  while (left + 1 < samples.length - 1 && samples[left + 1].time_ns < timeNs) left++;
+  while (left + 1 < samples.length && samples[left + 1].time_ns <= timeNs) left++;
   const a = samples[left], b = samples[Math.min(left + 1, samples.length - 1)];
-  const weight = b.time_ns === a.time_ns ? 0 : Math.max(0, Math.min(1, (timeNs - a.time_ns) / (b.time_ns - a.time_ns)));
-  const data = Uint8Array.from(a.data, (value, i) => Math.round(value + (b.data[i] - value) * weight));
-  const closest = weight < 0.5 ? a : b;
+  const contactState = (sample) => ["supporting", "touching"].includes(sample.contact_state) ? "contact" : sample.contact_state;
+  const data = Uint8Array.from(interpolateContact(
+    { time_ns: a.time_ns, state: contactState(a), data: a.data },
+    { time_ns: b.time_ns, state: contactState(b), data: b.data }, timeNs));
   const rendered = processor(data, { min: 0, max: 189, height: 0.7, stride: 2 });
   const levels = Object.fromEntries(regions.map((region) => {
     let peak = 0;
@@ -48,8 +50,8 @@ for (const [frameIndexNumber, timeNs] of times.entries()) {
   }));
   const item = { frame_index: frameIndexNumber, time_ns: timeNs,
     positions: rendered.positions, colors: rendered.colors,
-    contact_object: closest.contact_object, contact_state: closest.contact_state,
-    source_sample_id: closest.sample_id, interpolated: timeNs !== a.time_ns && timeNs !== b.time_ns,
+    contact_object: a.contact_object, contact_state: a.contact_state,
+    source_sample_id: a.sample_id, interpolated: timeNs !== a.time_ns && timeNs !== b.time_ns,
     peak_relative_0_100: Math.round(Math.max(...data) / 255 * 1000) / 10, levels };
   if (!process.stdout.write(JSON.stringify(item) + "\n")) await once(process.stdout, "drain");
 }

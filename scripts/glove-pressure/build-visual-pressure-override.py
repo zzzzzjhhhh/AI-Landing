@@ -46,7 +46,7 @@ def build(args: argparse.Namespace) -> None:
     recording.log(f"{ENTITY}/provenance", rr.TextDocument(
         "VISUAL CONTACT ESTIMATE, NOT measured force or glove pressure. "
         "86 independently reviewed synchronized stereo samples at 0.5 s spacing; "
-        "intermediate original right-camera frames are linearly interpolated for display. "
+        "intermediate frames interpolate only within contact intervals, with a short pre-release fade. "
         "Unknown or occluded contact remains an unasserted estimate. "
         "The original pose, flexion and pressure RRD remain unchanged on disk."
     ), static=True)
@@ -90,7 +90,7 @@ def build(args: argparse.Namespace) -> None:
         recording.disconnect()
     metadata = {
         "episode_id": episode["episode_id"], "recording_id": original["recording_id"],
-        "source": "reviewed_stereo_visual_pressure_with_display_interpolation",
+        "source": "reviewed_stereo_visual_pressure_contact_gated_display_interpolation",
         "sample_count": 86, "right_camera_frames": 1142, "override_frames": count,
         "active_frames": active, "measured": False, "force_units": None,
         "source_files": {"first_review": digest(args.first), "second_review": digest(args.second),
