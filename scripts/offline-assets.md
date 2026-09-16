@@ -3,6 +3,21 @@
 The web app serves prepared recordings; it never executes the Python generation
 pipeline or reads depth PNG archives at runtime.
 
+## Git tracking boundary
+
+Track app/source code, tests, generation scripts, configuration, manifests,
+provenance, and the published assets the browser actually loads (including
+Rerun recordings and their metadata). Keep the source CSV inputs needed to
+rebuild published assets. Do not track local build caches, downloaded raw
+datasets, or reproducible intermediates under the repository-root `tmp/`.
+For example, `tmp/movement-hold-20260916/*.jsonl` is generated from the
+tracked flexion CSV by `scripts/glove-pressure/export-movement-hold.mjs`; the
+browser consumes the separately tracked `movement-hold.rrd` and JSON metadata.
+
+The previously tracked large media and episode assets are left in place: size
+alone does not establish that an asset is unused. Changes to asset storage or
+Git history require a separate dependency and deployment review.
+
 Removed from the current repository tree:
 
 - `scripts/foundation-stereo/package.py`

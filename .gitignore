@@ -14,6 +14,9 @@ skills-lock.json
 .next/
 AA
 
+# Reproducible local intermediates (for example, Movement hold mesh JSONL).
+/tmp/
+
 # Offline depth archives and relocated preparation scripts
 /public/rerun/**/foundation-stereo-depth-mm.zip
 /scripts/foundation-stereo/package.py
