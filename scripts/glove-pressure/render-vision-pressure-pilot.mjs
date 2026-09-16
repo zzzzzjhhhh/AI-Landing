@@ -48,9 +48,12 @@ function render(item, index, prefix, title, note) {
 }
 try {
   for (const [index, item] of samples.entries()) {
-    const evidence = item.inferred_regions?.length ? `Inferred grip: ${item.inferred_regions.join(", ")}`
+    const siteAudit = item.source === "visual_site_contact_ordinal";
+    const shortSite = (site) => site === "palm_center" ? "P" : `${site[0].toUpperCase()}${site.endsWith("_tip") ? "t" : "m"}`;
+    const evidence = siteAudit ? `Contact sites: ${item.active_sites.map(shortSite).join(", ") || "none"} · ${item.unknown_sites.length} unknown`
+      : item.inferred_regions?.length ? `Inferred grip: ${item.inferred_regions.join(", ")}`
       : item.unknown_regions.length ? `Hidden / unknown: ${item.unknown_regions.join(", ")}` : "No hidden finger assumptions";
-    const count = render(item, index, "pressure-model", "Visual + grip prior", evidence);
+    const count = render(item, index, "pressure-model", siteAudit ? "Visual site audit" : "Visual + grip prior", evidence);
     if (baseline.length) {
       const old = baseline.reduce((best, row) => Math.abs(row.tracking_time_ns - item.time_ns) < Math.abs(best.tracking_time_ns - item.time_ns) ? row : best);
       render({ time_ns: item.time_ns, data: old.matrix, levels: old.levels }, index, "pressure-original", "Previous Pressure", "Old global contact envelope + fixed finger weights");
