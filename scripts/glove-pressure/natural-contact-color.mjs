@@ -98,3 +98,18 @@ export function createNaturalContactFilter(samples,meshes){
     return diffuseContact(values,allowed,graph);
   };
 }
+
+// Matrices already contain soft Gaussian footprints. Unlike semantic c/n/u
+// barriers, their zero edges must not drain/feather a second time: that would
+// erase narrow fingertip contacts. Average only positive neighbors, lightly.
+export function diffuseSupportedContact(values,graph,passes=2){
+ const allowed=values.map(v=>v>0);
+ let current=Float64Array.from(values);
+ for(let pass=0;pass<passes;pass++)current=Float64Array.from(current,(value,i)=>{
+  if(!allowed[i])return 0;
+  let sum=4*value,weight=4;
+  for(const j of graph[i])if(allowed[j]){sum+=current[j];weight++;}
+  return sum/weight;
+ });
+ return current;
+}

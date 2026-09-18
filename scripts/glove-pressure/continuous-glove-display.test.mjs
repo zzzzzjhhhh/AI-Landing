@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {loadRightHandRig} from './right-hand-rig.mjs';
+import {regions} from './processor.mjs';
 import {surfaceAddress} from './surface-contact-field.mjs';
 import {gloveSurfaceSamples,createContinuousGloveDisplay,GLOVE_PITCH} from './continuous-glove-display.mjs';
 
@@ -48,5 +49,36 @@ test('clean display hides zero contact without changing geometry, RGB or levels'
   assert.ok(b.colors.every(c=>c[3]===255),'alpha must not darken the contact boundary in Rerun');
   if(value===0)assert.equal(b.positions.length,0);
   if(value>=24)assert.ok(b.colors.some(c=>c[3]===255));
+ }
+});
+test('matrix-supported diffusion uses the shared lattice and never fills an inactive finger',async()=>{
+ const direct=await createContinuousGloveDisplay({completeCoverage:true,hideInactive:true});
+ const smooth=await createContinuousGloveDisplay({supportedDiffusion:true,hideInactive:true});
+ assert.deepEqual(smooth(new Uint8Array(460)).positions,[]);
+ const full=new Uint8Array(460).fill(140);
+ assert.deepEqual(smooth(full),direct(full),'uniform fields must be invariant');
+ for(const region of regions){
+  const data=new Uint8Array(460);
+  for(let y=0;y<region.height;y++)for(let x=0;x<region.width;x++)data[(region.y+y)*20+region.x+x]=140;
+  const original=data.slice(),before=direct(data),after=smooth(data);
+  const allowed=new Set(before.positions.map(p=>p.join(',')));
+  assert.ok(after.positions.length>0);
+  assert.ok(after.positions.every(p=>allowed.has(p.join(','))),`must not spread outside ${region.name} support`);
+  assert.deepEqual(after.levels,before.levels);
+  assert.deepEqual(data,original);
+  assert.ok(after.colors.every(c=>c[3]===255));
+ }
+ await assert.rejects(()=>createContinuousGloveDisplay({naturalContact:true,supportedDiffusion:true}));
+});
+test('color gain changes only RGB, not support, position, alpha or numeric levels',async()=>{
+ const before=await createContinuousGloveDisplay({supportedDiffusion:true,hideInactive:true});
+ const after=await createContinuousGloveDisplay({supportedDiffusion:true,hideInactive:true,colorGain:1.2});
+ for(const value of [0,1,10,70,140]){
+  const data=new Uint8Array(460).fill(value),a=before(data),b=after(data);
+  assert.deepEqual(a.positions,b.positions);
+  assert.deepEqual(a.levels,b.levels);
+  assert.equal(a.peak_relative_0_100,b.peak_relative_0_100);
+  assert.deepEqual(a.colors.map(c=>c[3]),b.colors.map(c=>c[3]));
+  if(value===70)assert.notDeepEqual(a.colors,b.colors);
  }
 });

@@ -1,0 +1,30 @@
+{
+  "episode_id": "20260911_155825",
+  "recording_id": "five_camera_20260911_155825_339b998cc055",
+  "measured": false,
+  "display": "Same original hand mesh and 170529 continuous surface lattice, palette, radius and no-black-border rendering. Two light surface-neighbor averaging passes (self weight 4) confined to positive source support; no second edge feather; no crossing finger gaps; display-only color gain 1.2, with unchanged support and numeric levels; no added temporal filtering, no changed source contact matrices; visual estimates, NOT measured force.",
+  "source_files": {
+    "source_clock_and_matrices": "37c91de825717561f65ae6878e17f23fb119170b99a19d433b94cc1636733f02"
+  },
+  "frame_count": 1512,
+  "active_frames": 1188,
+  "input_matrix_sequence_sha256": "f58e93c95a8d8cbb844ac2ce02dd1e7a9e9469c298296998de3c3b9495691f8b",
+  "display_parameters": {
+    "pitch": 0.065,
+    "surface_offset": 0.012,
+    "radius": 0.018,
+    "max": 189,
+    "color_gain": 1.2,
+    "active_alpha": 255,
+    "inactive_geometry": "omitted",
+    "diffusion_passes": 2,
+    "self_weight": 4,
+    "guard": "positive source support, no inferred semantic labels"
+  },
+  "data": {
+    "path": "/rerun/episodes/20260911_155825/pressure-continuous-clean.rrd",
+    "sha256": "1c8f571c60d68f81b4cfa3cbdf57cd13643689e9095802d50ff007c684b82434",
+    "bytes": 2019470
+  },
+  "rollback": "165650: restore visual-pressure-override.json import. 155825: remove pressure_override. Original files retained."
+}

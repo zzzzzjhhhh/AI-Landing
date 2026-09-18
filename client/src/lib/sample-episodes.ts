@@ -9,7 +9,7 @@ import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundatio
 import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
 import waterTracking from "../../../public/rerun/episodes/20260911_165650/tracking-override.json";
 import waterMovementHold from "../../../public/rerun/episodes/20260911_165650/movement-hold.json";
-import waterPressureOverride from "../../../public/rerun/episodes/20260911_165650/visual-pressure-override.json";
+import waterPressureOverride from "../../../public/rerun/episodes/20260911_165650/pressure-continuous-clean.json";
 import fiveCamera from "../../../public/rerun/episodes/20260910_150529/manifest.json";
 import fiveCameraHands from "../../../public/rerun/episodes/20260910_150529/right-hand-pressure.json";
 import recordedFiveCamera from "../../../public/rerun/episodes/20260910_153529/manifest.json";
@@ -21,6 +21,7 @@ import foldingHands from "../../../public/rerun/episodes/20260910_161737/right-h
 import foldingImu from "../../../public/rerun/episodes/20260910_161737/head-imu-estimates.json";
 import objectTransfer from "../../../public/rerun/episodes/20260911_155825/manifest.json";
 import objectTransferHands from "../../../public/rerun/episodes/20260911_155825/right-hand-pressure.json";
+import objectTransferPressure from "../../../public/rerun/episodes/20260911_155825/pressure-continuous-clean.json";
 import objectTransferTracking from "../../../public/rerun/episodes/20260911_155825/tracking-override.json";
 import objectTransferImu from "../../../public/rerun/episodes/20260911_155825/head-imu-estimates.json";
 import objectTransferDepth from "../../../public/rerun/episodes/20260911_155825/foundation-stereo-depth.json";
@@ -54,7 +55,7 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     recordingUrl: `${clothingEpisode.recording.path}?v=${clothingEpisode.recording.sha256.slice(0, 12)}`,
     hands: { ...clothingHands, tracking_override: clothingTracking.overlay, movement_hold_override: clothingMovementHold.data, pressure_override: clothingPressureV4.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure keeps the gray hand and original palette, with a single continuous point lattice following the palm and fingers, not separate rectangular grids. Points are projected onto the original hand surface and remain fixed. Faint neutral points are display sites, not evidence of pressure. V4 contact data and temporal interpolation are unchanged and not measured force. Movement holds the last pose during tracking gaps.",
+    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure uses the shared gray hand and continuous surface lattice. Inactive points are omitted and active points stay opaque to avoid black borders. Surface smoothing respects V4 contact barriers; contact data and temporal interpolation are unchanged and not measured force. Movement holds the last pose during tracking gaps.",
     depthNote: "FoundationStereo estimate from 1,419 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${clothingDepth.video.path}?v=${clothingDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
@@ -69,7 +70,7 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     recordingUrl: `${waterEpisode.recording.path}?v=${waterEpisode.recording.sha256.slice(0, 12)}`,
     hands: { ...waterHands, tracking_override: waterTracking.overlay, movement_hold_override: waterMovementHold.data, pressure_override: waterPressureOverride.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. Flexion uses the original pose. Pressure is an estimated, unmeasured right-glove contact map from 86 reviewed stereo samples, interpolated only during contact on the original right-camera timeline. Movement stays blank before the first tracked pose.",
+    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. Flexion uses the original pose. Pressure retains the 86 reviewed stereo contact samples and contact-only temporal interpolation. Display matches 170529: shared gray hand, fixed continuous surface lattice, no inactive dots or black borders, and surface-neighbor averaging confined to positive source support. This is not measured force. Movement stays blank before the first tracked pose.",
     depthNote: "FoundationStereo estimate from 526 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${waterDepth.video.path}?v=${waterDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
@@ -82,9 +83,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${objectTransfer.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${objectTransfer.recording.path}?v=${objectTransfer.recording.sha256.slice(0, 12)}`,
-    hands: { ...objectTransferHands, tracking_override: objectTransferTracking.overlay },
+    hands: { ...objectTransferHands, tracking_override: objectTransferTracking.overlay, pressure_override: objectTransferPressure.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo left/right keypoints use the provisional left and right V10 tracking. The 3D flexion and pressure panels still use the original pose and reviewed object contacts.",
+    flexionNote: "Stereo left/right keypoints use the provisional left and right V10 tracking. 3D flexion retains the original pose. Pressure retains the original per-frame object-contact estimates, with the same gray hand, continuous surface lattice and no-black-border display as 170529. Surface-neighbor averaging stays within positive source support; zero-contact frames remain empty. No new contact labels or measured forces are inferred.",
     pressureCsvUrl: `${objectTransferHands.pressure_csv.path}?v=${objectTransferHands.pressure_csv.sha256.slice(0, 12)}`,
     depthNote: "FoundationStereo estimate from 738 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${objectTransferDepth.video.path}?v=${objectTransferDepth.video.sha256.slice(0, 12)}`,

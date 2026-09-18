@@ -1,7 +1,7 @@
 import {loadRightHandRig} from './right-hand-rig.mjs';
 import {regions,createPressureProcessor} from './processor.mjs';
 import {surfaceAddress} from './surface-contact-field.mjs';
-import {createNaturalContactFilter,anatomicalAddress} from './natural-contact-color.mjs';
+import {createNaturalContactFilter,anatomicalAddress,surfaceNeighbors,diffuseSupportedContact} from './natural-contact-color.mjs';
 
 export const GLOVE_PITCH=.065;
 export const SURFACE_OFFSET=.012;
@@ -60,7 +60,9 @@ function taxelAt(data,address){
   return (at(x0,y0)*(1-fx)+at(x1,y0)*fx)*(1-fy)+(at(x0,y1)*(1-fx)+at(x1,y1)*fx)*fy;
 }
 
-export async function createContinuousGloveDisplay({naturalContact=false,completeCoverage=naturalContact,hideInactive=false}={}){
+export async function createContinuousGloveDisplay({naturalContact=false,supportedDiffusion=false,completeCoverage=naturalContact||supportedDiffusion,hideInactive=false,colorGain=1}={}){
+  if(!Number.isFinite(colorGain)||colorGain<=0)throw Error('colorGain must be finite and positive');
+  if(naturalContact&&supportedDiffusion)throw Error('Choose semantic contact barriers OR source-matrix support barriers');
   const rig=await loadRightHandRig();
   let samples,meshes;
   try{meshes=rig.sample().map((m,i)=>({...m,...rig.topology[i]}));samples=gloveSurfaceSamples(meshes,rig.wristPosition[1]);}
@@ -73,6 +75,9 @@ export async function createContinuousGloveDisplay({naturalContact=false,complet
   // permission cannot disagree about which anatomical site owns a point.
   const addresses=samples.map(s=>completeCoverage?anatomicalAddress(s):surfaceAddress(s.position,s.normal));
   const filter=naturalContact?createNaturalContactFilter(samples,meshes):null;
+  // Older episodes have taxel matrices, not V4 semantic labels. Keep their
+  // existing support mask; never fabricate c/n/u labels or diffuse into zeros.
+  const graph=supportedDiffusion?surfaceNeighbors(samples,meshes):null;
   const processor=await createPressureProcessor(),palette=[BASE];
   for(let v=1;v<=189;v++){
     const visual=processor(new Uint8Array(460).fill(v),{min:0,max:189,height:0,stride:20,threshold:0});
@@ -80,12 +85,15 @@ export async function createContinuousGloveDisplay({naturalContact=false,complet
   }
   return (data,context)=>{
     const rawValues=addresses.map(address=>taxelAt(data,address));
-    const values=filter?filter(rawValues,context):rawValues;
+    const values=filter?filter(rawValues,context):graph?diffuseSupportedContact(rawValues,graph):rawValues;
     const colors=Array.from(values,value=>{
-      const color=palette[Math.max(0,Math.min(189,Math.round(value)))];
-      const t=Math.max(0,Math.min(1,value/24)),blend=t*t*(3-2*t);
+      const colorValue=value*colorGain;
+      const color=palette[Math.max(0,Math.min(189,Math.round(colorValue)))];
+      const t=Math.max(0,Math.min(1,colorValue/24)),blend=t*t*(3-2*t);
+      // Visibility stays tied to unamplified data, not the color preference.
+      const sourceT=Math.max(0,Math.min(1,value/24)),sourceBlend=sourceT*sourceT*(3-2*sourceT);
       const baseAlpha=hideInactive?0:BASE_ALPHA;
-      return [...BASE.map((base,i)=>Math.round(base+(color[i]-base)*blend)),Math.round(baseAlpha+(255-baseAlpha)*blend)];
+      return [...BASE.map((base,i)=>Math.round(base+(color[i]-base)*blend)),Math.round(baseAlpha+(255-baseAlpha)*sourceBlend)];
     });
     const levels=Object.fromEntries(regions.map(r=>{
       let peak=0;

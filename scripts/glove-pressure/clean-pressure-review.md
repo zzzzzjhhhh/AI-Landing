@@ -41,3 +41,25 @@ frame map; do not use it after changing the display or source data.
 
 Keep rendered media outside Git in the project's `work_stage` folder. The App
 only imports the small RRD overlay. Rendering never stops the App server.
+
+## Other episodes
+
+`build-episode-clean-pressure.py --episode-dir <episode> --report <report.json>`
+builds `pressure-continuous-clean.{json,rrd}` for 155825 or 165650. For 165650,
+also supply `--first` and `--second` with its existing 41/45-row reviewed taxel
+files; their hashes must match the prior App override. Its existing contact-only
+interpolation is reused exactly. 155825 retains its native per-frame matrices.
+
+Both use the same renderer, mesh, palette, pitch, surface offset, radius and
+opaque active points as 170529. They do not have V4 semantic labels, so the
+two-pass weighted surface averaging uses positive matrix support as a barrier instead
+of inventing finger contact classifications. Zero-valued locations stay zero;
+edges do not bridge finger gaps. Narrow matrix footprints are not edge-feathered
+a second time, which would erase small fingertip contacts. No extra temporal filter is applied, so no
+contact is carried across releases. This is display unification, not improved
+contact detection or pressure measurement. The builder verifies the delivered
+RRD timestamps, frame coverage, alpha, clears and lack of mesh/legend changes.
+
+165650 and 155825 use a user-requested 1.2x display color gain. This changes RGB
+only; the point visibility mask and numeric contact levels use unamplified data.
+170529 retains its original 1.0x color display.

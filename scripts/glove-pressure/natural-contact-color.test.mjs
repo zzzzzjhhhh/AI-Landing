@@ -1,10 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {diffuseContact,surfaceNeighbors,anatomicalAddress} from './natural-contact-color.mjs';
+import {diffuseContact,diffuseSupportedContact,surfaceNeighbors,anatomicalAddress} from './natural-contact-color.mjs';
 import {createContinuousGloveDisplay,gloveSurfaceSamples} from './continuous-glove-display.mjs';
 import {loadRightHandRig} from './right-hand-rig.mjs';
 import {parseAudit,surfaceState} from './digit-contact-audit.mjs';
 import {digitReferenceTaxels} from './digit-reference-adapter.mjs';
+
+test('matrix smoothing averages within support without erasing narrow contacts',()=>{
+ const graph=[[1],[0,2],[1,3],[2,4],[3,5],[4]];
+ const values=[0,0,100,200,100,0],smoothed=diffuseSupportedContact(values,graph);
+ assert.equal(smoothed[0],0);assert.equal(smoothed[1],0);assert.equal(smoothed[5],0);
+ assert.ok(smoothed[3]<200&&smoothed[3]>140);
+ assert.ok(smoothed[2]>100&&smoothed[4]>100);
+ assert.deepEqual(Array.from(diffuseSupportedContact([0,0,120,0,0,0],graph)),[0,0,120,0,0,0]);
+ assert.deepEqual(Array.from(diffuseSupportedContact([0,0,120,120,0,0],graph)),[0,0,120,120,0,0]);
+});
 
 test('surface smoothing removes a rectangular step rather than relocating points',()=>{
  const n=11,graph=Array.from({length:n*n},(_,i)=>{
