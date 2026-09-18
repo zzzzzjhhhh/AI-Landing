@@ -1,10 +1,20 @@
 # 170529 display: shared reference chain with optional uniform glove taxels
 
-The active App asset is `visual-pressure-v4-uniform.rrd`. The previous
+The active App asset is `visual-pressure-v4-glove.rrd`. It uses ONE hexagonal
+lattice across the entire palm and fingers, projected onto the frontmost
+triangles of the unchanged hand mesh. The real rig wrist landmark is the
+lower boundary. There are no region-generated point grids, ROI rectangle
+clips, or per-finger lattice restarts. The 1168 points remain fixed; colors
+still come from the original WebHand palette and existing contact data.
+The old region atlas is used only for color lookup, not point placement.
+Build this version with `--digit-v4 --reference-display --continuous-glove`.
+
+The previous `visual-pressure-v4-uniform.rrd` preserves the rejected six-grid
+layout for rollback. The previous
 `visual-pressure-v4-reference.rrd` preserves the unmodified reference layout;
 `visual-pressure-v4-surface.rrd` is retained for rollback only, not loaded.
 
-The uniform option remains a colored-point overlay on the original gray
+The older uniform option remains a colored-point overlay on the original gray
 model. It uses approximately equal physical pitch (0.065 model units) across
 the six ROI sizes instead of equal raster counts. All 721 sites stay at
 fixed coordinates: a 0.025 model-unit offset replaces pressure-dependent
@@ -39,7 +49,7 @@ at all 2920 source-clock frames. Other episodes' served assets are unchanged.
 
 Build with `build-contact-patches-override.py --digit-v4 --reference-display`
 plus `--uniform-taxels` and the existing V4 sample JSONL plus 170529 episode directory.
-`validate-uniform-taxels.py` verifies identical point coordinates over all
+`validate-uniform-taxels.py --asset visual-pressure-v4-glove.rrd` verifies identical point coordinates over all
 2920 source timestamps. Roll back
 by restoring the previous manifest import in `sample-episodes.ts`; do not
 delete older outputs or modify source videos/tracking.

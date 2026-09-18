@@ -70,6 +70,7 @@ export async function loadRightHandRig() {
     });
   }
   return {
+    wristPosition: bones.get('hand_r').getWorldPosition(new Vector3()).toArray(),
     topology: parts.map(({ indices }) => ({ indices })),
     sampleRotations(rotations) {
       reset();

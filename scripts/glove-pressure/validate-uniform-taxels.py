@@ -8,6 +8,7 @@ from rerun.experimental import RrdReader
 p=argparse.ArgumentParser()
 p.add_argument('--episode-dir',type=Path,required=True)
 p.add_argument('--report',type=Path,required=True)
+p.add_argument('--asset',default='visual-pressure-v4-uniform.rrd')
 a=p.parse_args()
 root=a.episode_dir
 clock=[json.loads(line)['tracking_time_ns'] for line in (root/'right-hand-pressure-samples.jsonl').read_text().splitlines()]
@@ -15,7 +16,7 @@ entity='/demo/glove_pressure/right'
 fixed=None
 times=[]
 color_patterns=set()
-for chunk in RrdReader(root/'visual-pressure-v4-uniform.rrd').store().stream().to_chunks():
+for chunk in RrdReader(root/a.asset).store().stream().to_chunks():
  path=str(chunk.entity_path)
  assert not path.startswith(entity+'/mesh') and path!=entity+'/legend'
  if path!=entity+'/pressure':continue
