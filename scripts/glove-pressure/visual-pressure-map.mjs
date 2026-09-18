@@ -1,4 +1,5 @@
 import { regions } from "./processor.mjs";
+import { paintPressureRegion } from "./pressure-region-kernel.mjs";
 
 // Same 23x20 right-glove taxel layout used by the existing Pressure hand model.
 const fingerCenters = { tip: 0.84, distal_pad: 0.69, middle_pad: 0.48, proximal_pad: 0.27 };
@@ -61,16 +62,7 @@ export function visualPressureToTaxels(item) {
     const widthU = region.name === "palm" ? 0.34 : 0.38;
     const widthV = region.name === "palm" ? 0.32 : 0.20;
     const amplitude = observation.relative_load / 3;
-    let maximum = 0;
-    for (let row = 0; row < region.height; row++) {
-      for (let col = 0; col < region.width; col++) {
-        const u = (col + 0.5) / region.width, v = (row + 0.5) / region.height;
-        const distance = ((u - centerU) / widthU) ** 2 + ((v - centerV) / widthV) ** 2;
-        const value = Math.round(255 * amplitude * Math.exp(-distance));
-        data[(row + region.y) * 20 + col + region.x] = value;
-        maximum = Math.max(maximum, value);
-      }
-    }
+    const maximum = paintPressureRegion(data,region,{centerU,centerV,widthU,widthV,amplitude});
     levels[region.name] = Math.round(maximum / 255 * 1000) / 10;
   }
   return { data, levels, unknown, inferred, source: "visual_region_relative_load", measured: false };

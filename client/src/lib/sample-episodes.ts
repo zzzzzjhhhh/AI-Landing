@@ -3,7 +3,7 @@ import clothingDepth from "../../../public/rerun/episodes/20260911_170529/founda
 import clothingHands from "../../../public/rerun/episodes/20260911_170529/right-hand-pressure.json";
 import clothingTracking from "../../../public/rerun/episodes/20260911_170529/tracking-override.json";
 import clothingMovementHold from "../../../public/rerun/episodes/20260911_170529/movement-hold.json";
-import clothingPressureV4 from "../../../public/rerun/episodes/20260911_170529/visual-pressure-v4-surface.json";
+import clothingPressureV4 from "../../../public/rerun/episodes/20260911_170529/visual-pressure-v4-reference.json";
 import waterEpisode from "../../../public/rerun/episodes/20260911_165650/manifest.json";
 import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundation-stereo-depth.json";
 import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
@@ -54,7 +54,7 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     recordingUrl: `${clothingEpisode.recording.path}?v=${clothingEpisode.recording.sha256.slice(0, 12)}`,
     hands: { ...clothingHands, tracking_override: clothingTracking.overlay, movement_hold_override: clothingMovementHold.data, pressure_override: clothingPressureV4.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure displays V4 contact estimates as continuous colors on the unchanged original hand surface, with no raised patches or geometry displacement. Adjacent contact zones merge; colors are display-only, not measured force. Audits are spaced 0.5 s apart with 120 ms contact transitions. Uncolored regions may be unknown or no-contact. Movement holds the last pose during tracking gaps.",
+    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure uses the same WebHand point-overlay renderer, palette, height scale and temporal interpolation as 165650, over the original gray hand. V4 contact labels are adapted as connected finger spans, not one peak per joint. Colors are display estimates, not measured force; uncolored regions may be unknown or no-contact. Movement holds the last pose during tracking gaps.",
     depthNote: "FoundationStereo estimate from 1,419 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${clothingDepth.video.path}?v=${clothingDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",

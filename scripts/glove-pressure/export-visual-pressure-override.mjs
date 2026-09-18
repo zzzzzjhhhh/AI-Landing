@@ -4,7 +4,7 @@
  */
 import { readFileSync } from "node:fs";
 import { once } from "node:events";
-import { createPressureProcessor, regions } from "./processor.mjs";
+import { createReferencePressureDisplay } from "./reference-pressure-display.mjs";
 import { interpolateContact } from "./contact-display-smoothing.mjs";
 
 const [firstPath, secondPath, timestampsPath, durationText] = process.argv.slice(2);
@@ -31,7 +31,7 @@ if (times[0] !== 0 || times.at(-1) > durationNs || times.some((time, index) => i
   throw new Error("Invalid original right-camera timeline");
 }
 times.push(durationNs); // explicit final hold on the episode endpoint
-const processor = await createPressureProcessor();
+const display = await createReferencePressureDisplay();
 let left = 0;
 for (const [frameIndexNumber, timeNs] of times.entries()) {
   while (left + 1 < samples.length && samples[left + 1].time_ns <= timeNs) left++;
@@ -40,18 +40,11 @@ for (const [frameIndexNumber, timeNs] of times.entries()) {
   const data = Uint8Array.from(interpolateContact(
     { time_ns: a.time_ns, state: contactState(a), data: a.data },
     { time_ns: b.time_ns, state: contactState(b), data: b.data }, timeNs));
-  const rendered = processor(data, { min: 0, max: 189, height: 0.7, stride: 2 });
-  const levels = Object.fromEntries(regions.map((region) => {
-    let peak = 0;
-    for (let row = 0; row < region.height; row++) for (let col = 0; col < region.width; col++) {
-      peak = Math.max(peak, data[(row + region.y) * 20 + col + region.x]);
-    }
-    return [region.name, Math.round(peak / 255 * 1000) / 10];
-  }));
+  const rendered = display(data);
   const item = { frame_index: frameIndexNumber, time_ns: timeNs,
     positions: rendered.positions, colors: rendered.colors,
     contact_object: a.contact_object, contact_state: a.contact_state,
     source_sample_id: a.sample_id, interpolated: timeNs !== a.time_ns && timeNs !== b.time_ns,
-    peak_relative_0_100: Math.round(Math.max(...data) / 255 * 1000) / 10, levels };
+    peak_relative_0_100: rendered.peak_relative_0_100, levels: rendered.levels };
   if (!process.stdout.write(JSON.stringify(item) + "\n")) await once(process.stdout, "drain");
 }
