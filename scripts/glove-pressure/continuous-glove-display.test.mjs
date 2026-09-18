@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {loadRightHandRig} from './right-hand-rig.mjs';
 import {regions} from './processor.mjs';
 import {surfaceAddress} from './surface-contact-field.mjs';
-import {gloveSurfaceSamples,createContinuousGloveDisplay,GLOVE_PITCH} from './continuous-glove-display.mjs';
+import {gloveSurfaceSamples,createContinuousGloveDisplay,GLOVE_PITCH,CLEAN_DISPLAY_SCALE} from './continuous-glove-display.mjs';
 
 test('one lattice follows real hand triangles and fills space outside the old rectangles',async()=>{
  const rig=await loadRightHandRig();
@@ -81,4 +81,15 @@ test('color gain changes only RGB, not support, position, alpha or numeric level
   assert.deepEqual(a.colors.map(c=>c[3]),b.colors.map(c=>c[3]));
   if(value===70)assert.notDeepEqual(a.colors,b.colors);
  }
+});
+test('shared 0/22/44 scale changes colors only and saturates above 44',async()=>{
+ assert.equal(CLEAN_DISPLAY_SCALE.displayMax,255*.44);
+ assert.equal(CLEAN_DISPLAY_SCALE.colorGain,1);
+ const old=await createContinuousGloveDisplay({hideInactive:true});
+ const aligned=await createContinuousGloveDisplay({hideInactive:true,...CLEAN_DISPLAY_SCALE});
+ const data=new Uint8Array(460).fill(56),a=old(data),b=aligned(data);
+ assert.deepEqual(a.positions,b.positions);assert.deepEqual(a.levels,b.levels);
+ assert.notDeepEqual(a.colors,b.colors);
+ assert.deepEqual(aligned(new Uint8Array(460).fill(113)).colors,aligned(new Uint8Array(460).fill(255)).colors);
+ assert.equal(aligned(new Uint8Array(460)).positions.length,0);
 });

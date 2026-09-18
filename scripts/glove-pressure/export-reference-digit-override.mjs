@@ -4,7 +4,7 @@ import {createReferencePressureDisplay} from './reference-pressure-display.mjs';
 import {digitReferenceTaxels} from './digit-reference-adapter.mjs';
 import {interpolateContact} from './contact-display-smoothing.mjs';
 import {siteSummary} from './digit-contact-audit.mjs';
-import {createContinuousGloveDisplay} from './continuous-glove-display.mjs';
+import {createContinuousGloveDisplay,CLEAN_DISPLAY_SCALE} from './continuous-glove-display.mjs';
 const read=p=>readFileSync(p,'utf8').trim().split('\n').map(JSON.parse);
 const [samplePath,clockPath]=process.argv.slice(2),samples=read(samplePath),clock=read(clockPath);
 if(samples.length!==221||clock.length!==2920)throw Error('Unexpected coverage');
@@ -13,7 +13,7 @@ for(const [i,s] of samples.entries()){
   if(s.schema_version!=='visual-digit-contact-v4'||(i&&s.time_ns<=samples[i-1].time_ns)||!clock.some(c=>c.tracking_time_ns===s.time_ns))throw Error('Invalid source clock');
   s.data=Array.from(digitReferenceTaxels(s));
 }
-const display=process.argv.includes('--continuous-glove')?await createContinuousGloveDisplay({naturalContact:process.argv.includes('--natural-contact'),hideInactive:process.argv.includes('--hide-inactive')}):await createReferencePressureDisplay({uniformTaxels:process.argv.includes('--uniform-taxels')});
+const display=process.argv.includes('--continuous-glove')?await createContinuousGloveDisplay({naturalContact:process.argv.includes('--natural-contact'),hideInactive:process.argv.includes('--hide-inactive'),...(process.argv.includes('--hide-inactive')?CLEAN_DISPLAY_SCALE:{})}):await createReferencePressureDisplay({uniformTaxels:process.argv.includes('--uniform-taxels')});
 let index=0;
 for(const [frame_index,c] of clock.entries()){
   const time_ns=c.tracking_time_ns;

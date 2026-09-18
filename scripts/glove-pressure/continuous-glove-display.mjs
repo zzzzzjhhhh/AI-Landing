@@ -1,4 +1,5 @@
 import {loadRightHandRig} from './right-hand-rig.mjs';
+import {readFileSync} from 'node:fs';
 import {regions,createPressureProcessor} from './processor.mjs';
 import {surfaceAddress} from './surface-contact-field.mjs';
 import {createNaturalContactFilter,anatomicalAddress,surfaceNeighbors,diffuseSupportedContact} from './natural-contact-color.mjs';
@@ -6,6 +7,8 @@ import {createNaturalContactFilter,anatomicalAddress,surfaceNeighbors,diffuseSup
 export const GLOVE_PITCH=.065;
 export const SURFACE_OFFSET=.012;
 const BASE=[78,94,112],BASE_ALPHA=100;
+const sharedScale=JSON.parse(readFileSync(new URL('./clean-display-scale.json',import.meta.url),'utf8'));
+export const CLEAN_DISPLAY_SCALE=Object.freeze({displayMax:sharedScale.max_raw,colorGain:sharedScale.color_gain});
 
 /** ONE hexagonal grid across the entire hand silhouette. Regions are never
  * used to generate, clip or restart the lattice. Ray intersections only
@@ -60,7 +63,8 @@ function taxelAt(data,address){
   return (at(x0,y0)*(1-fx)+at(x1,y0)*fx)*(1-fy)+(at(x0,y1)*(1-fx)+at(x1,y1)*fx)*fy;
 }
 
-export async function createContinuousGloveDisplay({naturalContact=false,supportedDiffusion=false,completeCoverage=naturalContact||supportedDiffusion,hideInactive=false,colorGain=1}={}){
+export async function createContinuousGloveDisplay({naturalContact=false,supportedDiffusion=false,completeCoverage=naturalContact||supportedDiffusion,hideInactive=false,colorGain=1,displayMax=189}={}){
+  if(!Number.isFinite(displayMax)||displayMax<=0||displayMax>255)throw Error('Invalid display maximum');
   if(!Number.isFinite(colorGain)||colorGain<=0)throw Error('colorGain must be finite and positive');
   if(naturalContact&&supportedDiffusion)throw Error('Choose semantic contact barriers OR source-matrix support barriers');
   const rig=await loadRightHandRig();
@@ -79,8 +83,8 @@ export async function createContinuousGloveDisplay({naturalContact=false,support
   // existing support mask; never fabricate c/n/u labels or diffuse into zeros.
   const graph=supportedDiffusion?surfaceNeighbors(samples,meshes):null;
   const processor=await createPressureProcessor(),palette=[BASE];
-  for(let v=1;v<=189;v++){
-    const visual=processor(new Uint8Array(460).fill(v),{min:0,max:189,height:0,stride:20,threshold:0});
+  for(let v=1;v<=255;v++){
+    const visual=processor(new Uint8Array(460).fill(v),{min:0,max:displayMax,height:0,stride:20,threshold:0});
     palette.push(visual.colors[0]?.slice(0,3)??BASE);
   }
   return (data,context)=>{
@@ -88,7 +92,7 @@ export async function createContinuousGloveDisplay({naturalContact=false,support
     const values=filter?filter(rawValues,context):graph?diffuseSupportedContact(rawValues,graph):rawValues;
     const colors=Array.from(values,value=>{
       const colorValue=value*colorGain;
-      const color=palette[Math.max(0,Math.min(189,Math.round(colorValue)))];
+      const color=palette[Math.max(0,Math.min(255,Math.round(Math.min(displayMax,colorValue))))];
       const t=Math.max(0,Math.min(1,colorValue/24)),blend=t*t*(3-2*t);
       // Visibility stays tied to unamplified data, not the color preference.
       const sourceT=Math.max(0,Math.min(1,value/24)),sourceBlend=sourceT*sourceT*(3-2*sourceT);

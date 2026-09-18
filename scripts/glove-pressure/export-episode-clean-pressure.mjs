@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {once} from 'node:events';
-import {createContinuousGloveDisplay} from './continuous-glove-display.mjs';
+import {createContinuousGloveDisplay,CLEAN_DISPLAY_SCALE} from './continuous-glove-display.mjs';
 import {interpolateContact} from './contact-display-smoothing.mjs';
 
 const [episodeDir,firstPath,secondPath]=process.argv.slice(2);
@@ -20,7 +20,7 @@ if(episode.episode_id==='20260911_165650'){
  if(reviews.length!==86||reviews.some((s,i)=>s.data.length!==460||(i&&s.time_ns<=reviews[i-1].time_ns)))throw Error('Invalid review samples');
 }else if(episode.episode_id!=='20260911_155825')throw Error('This adapter is only for 165650 / 155825');
 if(clock.length!==meta.frame_count||clock.at(-1).tracking_time_ns!==meta.duration_ns)throw Error('Invalid source clock');
-const display=await createContinuousGloveDisplay({supportedDiffusion:true,hideInactive:true,colorGain:1.2});
+const display=await createContinuousGloveDisplay({supportedDiffusion:true,hideInactive:true,...CLEAN_DISPLAY_SCALE});
 let index=0;
 for(const [frame_index,c] of clock.entries()){
  const time_ns=c.tracking_time_ns;

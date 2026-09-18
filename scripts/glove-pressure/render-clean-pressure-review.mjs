@@ -7,7 +7,7 @@ import {once} from 'node:events';
 import {createHash} from 'node:crypto';
 import sharp from 'sharp';
 import {loadRightHandRig} from './right-hand-rig.mjs';
-import {createContinuousGloveDisplay} from './continuous-glove-display.mjs';
+import {createContinuousGloveDisplay,CLEAN_DISPLAY_SCALE} from './continuous-glove-display.mjs';
 import {digitReferenceTaxels} from './digit-reference-adapter.mjs';
 import {interpolateContact} from './contact-display-smoothing.mjs';
 
@@ -26,7 +26,7 @@ for(let i=0;i<timestamps.length;i++){
  if(timestamps[i].frame_index!==i||timestamps[i].t_sync_us*1000!==clock[i].tracking_time_ns||Math.abs(Number(probe.frames[i].best_effort_timestamp_time)*1e6-timestamps[i].t_sync_us)>2)throw Error(`PTS mismatch at ${i}`);
 }
 for(const s of samples)s.data=Array.from(digitReferenceTaxels(s));
-const display=await createContinuousGloveDisplay({naturalContact:true,hideInactive:true});
+const display=await createContinuousGloveDisplay({naturalContact:true,hideInactive:true,...CLEAN_DISPLAY_SCALE});
 const rig=await loadRightHandRig();
 const meshes=rig.sample().map((m,i)=>({...m,...rig.topology[i]}));rig.dispose();
 const panel=720,header=64,footer=48,W=width+panel,H=height+header+footer;

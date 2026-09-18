@@ -6,24 +6,33 @@
   "sample_count": 221,
   "override_frames": 2920,
   "display": "One global hexagonal point lattice projected onto the original palmar mesh; no ROI point grids or rectangle clipping; original palette, contact data and temporal interpolation preserved; full-surface anatomical lookup including finger-palm transitions; five local surface diffusion passes, no cross-gap edges, explicit no-contact/unknown barriers at audit anchors; inactive geometry omitted entirely, no dark base dots; active alpha fixed at 255 because Rerun uses alpha as brightness; unchanged RGB-only edge blending avoids black borders",
-  "display_max": 189,
+  "display_max": 112.2,
   "source_sha256": "98e0d6b5bcd753c0ba8cbe15d1b9efab11e091090f8bd747532f87e8d2ee69e4",
   "clock_sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
   "data": {
     "path": "/rerun/episodes/20260911_170529/visual-pressure-v4-glove-clean.rrd",
-    "sha256": "d653ed2c7e0520d09c041d42c157ef5062de5f175be60ba6e3413b644ace9a66",
-    "bytes": 2906261
+    "sha256": "e2c1017874850bc01d1a3558253e2bbbc186f25fa33f6b2d28be2a62fb8a122e",
+    "bytes": 2831737
   },
   "rollback": "Restore visual-pressure-v4-glove-natural-v2.json import; previous outputs remain unchanged.",
   "renderer": "continuous-glove-display.mjs; single hand-silhouette hex lattice",
   "display_parameters": {
     "min": 0,
-    "max": 189,
+    "max": 112.2,
     "projected_point_spacing": 0.065,
     "surface_offset": 0.012,
     "pressure_displacement": 0,
     "inactive_alpha": 0,
     "point_radius": 0.018,
+    "max_relative": 44,
+    "color_gain": 1,
+    "legend_labels": [
+      "0",
+      "",
+      "22",
+      "",
+      "44"
+    ],
     "inactive_geometry": "omitted; each retained point stays at its original surface coordinate",
     "active_alpha": 255
   },

@@ -2,8 +2,8 @@
 
 170529 uses the same original Pressure mesh as 165650 and 155825. The validator
 compares actual RRD vertex positions, normals, topology and material, not just
-model filenames. No contact labels, taxel values, point coordinates or RGB
-colors are changed by this display option.
+model filenames. No contact labels, taxel values or point coordinates are
+changed. The shared color scale changes display RGB only.
 
 Use `--digit-v4 --reference-display --continuous-glove --natural-contact
 --hide-inactive` with `build-contact-patches-override.py` to generate
@@ -60,6 +60,8 @@ contact is carried across releases. This is display unification, not improved
 contact detection or pressure measurement. The builder verifies the delivered
 RRD timestamps, frame coverage, alpha, clears and lack of mesh/legend changes.
 
-165650 and 155825 use a user-requested 1.2x display color gain. This changes RGB
-only; the point visibility mask and numeric contact levels use unamplified data.
-170529 retains its original 1.0x color display.
+All three active clean displays now share `clean-display-scale.json`: relative
+0/22/44, raw maximum 112.2 (= 44% of 255), gain 1. Values above 44 saturate the
+palette without changing source data or numeric levels. This replaces the
+previous episode-specific 1.2x gain. Both point colors and RRD legends use the
+shared scale; inactive masks, positions and smoothing are unaffected.

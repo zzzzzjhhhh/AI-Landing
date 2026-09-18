@@ -51,7 +51,9 @@ if a.hide_inactive: display+='; inactive geometry omitted entirely, no dark base
 recording=rr.RecordingStream(original['application_id'],recording_id=original['recording_id'],send_properties=False)
 recording.save(output)
 if a.reference_display:
- pass # Keep the baseline legend, just as the 165650 override does.
+ if a.hide_inactive:
+  scale=json.loads(Path(__file__).with_name('clean-display-scale.json').read_text())
+  recording.log(entity+'/legend',rr.Points3D([[x,2.9,.9] for x in (-1.15,-.8,-.45,-.1,.25)],radii=.065,colors=scale['colors'],labels=scale['labels'],show_labels=True),static=True)
 elif a.digit_v4:
  recording.log(entity+'/legend',rr.Points3D([[x,2.9,.9] for x in (-1.15,-.8,-.45,-.1,.25)],radii=.065,colors=[[78,94,112],[76,132,173],[132,197,192],[251,234,132],[237,81,63]],labels=['Contact','','display','','only'] if a.surface else ['0','','37','','74'],show_labels=True),static=True)
 else:
@@ -115,6 +117,8 @@ if a.continuous_glove:
 if a.natural_contact:
  metadata.update(color_filter='natural-contact-color.mjs; complete anatomical source mapping plus 5 constrained surface diffusion passes',source_lookup='all 1168 surface points mapped; identical anatomical ownership for color source and n/u guard',rollback='Restore visual-pressure-v4-glove-natural.json import; previous outputs remain unchanged.')
 if a.hide_inactive:
+ metadata['display_max']=scale['max_raw']
+ metadata['display_parameters'].update(max=scale['max_raw'],max_relative=scale['max_relative'],color_gain=scale['color_gain'],legend_labels=scale['labels'])
  metadata['display_parameters']['inactive_alpha']=0
  metadata['display_parameters']['inactive_geometry']='omitted; each retained point stays at its original surface coordinate'
  metadata['display_parameters']['active_alpha']=255

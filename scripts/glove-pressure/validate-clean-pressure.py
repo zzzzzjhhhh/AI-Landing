@@ -36,7 +36,6 @@ assert set(clean).issubset(old)
 for t in clock:
     for pos,color in clean.get(t,{}).items():
         assert pos in old[t], 'Contact point moved'
-        assert color>>8==old[t][pos]>>8, 'Contact RGB changed'
         assert color&255==255, 'Non-opaque alpha causes a dark border in Rerun'
     if all(c&255==100 for c in old[t].values()):assert not clean.get(t)
 models={}
@@ -60,6 +59,11 @@ with tempfile.TemporaryDirectory(prefix='pressure-model-check-') as temporary:
         assert model
         models[episode]=model
 assert models['20260911_170529']==models['20260911_165650']==models['20260911_155825']
-report={'clock_frames':len(clock),'cleared_at_every_frame':True,'active_frames':len(clean),'inactive_frames_without_point_geometry':len(clock)-len(clean),'contact_positions_unchanged':True,'contact_RGB_unchanged':True,'active_alpha_always_255_no_dark_border':True,'shared_model_geometry_normals_topology_material_identical':True,'model_episodes':list(models),'model_sha256':hashlib.sha256(json.dumps(models['20260911_170529'],sort_keys=True).encode()).hexdigest()}
+scale=json.loads(Path(__file__).with_name('clean-display-scale.json').read_text())
+legend=[]
+for chunk in RrdReader(root/'visual-pressure-v4-glove-clean.rrd').store().stream().to_chunks():
+    if str(chunk.entity_path)==entity+'/legend':legend=chunk.to_record_batch()['Points3D:labels'][0].as_py()
+assert legend==scale['labels']
+report={'clock_frames':len(clock),'cleared_at_every_frame':True,'active_frames':len(clean),'inactive_frames_without_point_geometry':len(clock)-len(clean),'contact_positions_unchanged':True,'shared_legend_verified':True,'active_alpha_always_255_no_dark_border':True,'shared_model_geometry_normals_topology_material_identical':True,'model_episodes':list(models),'model_sha256':hashlib.sha256(json.dumps(models['20260911_170529'],sort_keys=True).encode()).hexdigest()}
 a.report.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))

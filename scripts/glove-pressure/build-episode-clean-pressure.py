@@ -29,9 +29,11 @@ if a.first or a.second:
  command.extend([str(a.first),str(a.second)])
 recording=rr.RecordingStream(original['application_id'],recording_id=original['recording_id'],send_properties=False)
 recording.save(output)
+scale=json.loads(Path(__file__).with_name('clean-display-scale.json').read_text())
+recording.log(entity+'/legend',rr.Points3D([[x,2.9,.9] for x in (-1.15,-.8,-.45,-.1,.25)],radii=.065,colors=scale['colors'],labels=scale['labels'],show_labels=True),static=True)
 description=('Same original hand mesh and 170529 continuous surface lattice, palette, radius and no-black-border rendering. '
  'Two light surface-neighbor averaging passes (self weight 4) confined to positive source support; no second edge feather; no crossing finger gaps; '
- 'display-only color gain 1.2, with unchanged support and numeric levels; '
+ 'shared 0/22/44 color scale (no episode-specific gain), with unchanged support and numeric levels; '
  'no added temporal filtering, no changed source contact matrices; visual estimates, NOT measured force.')
 recording.log(entity+'/provenance',rr.TextDocument(description),static=True)
 process=subprocess.Popen(command,stdout=subprocess.PIPE,text=True)
@@ -65,7 +67,9 @@ finally:
 clears=[];observed={}
 for chunk in RrdReader(output).store().stream().to_chunks():
  path=str(chunk.entity_path)
- assert not path.startswith('/'+entity+'/mesh') and path!='/'+entity+'/legend'
+ assert not path.startswith('/'+entity+'/mesh')
+ if path=='/'+entity+'/legend':
+  assert chunk.to_record_batch()['Points3D:labels'][0].as_py()==scale['labels']
  if path!='/'+entity+'/pressure':continue
  b=chunk.to_record_batch();times=b['tracking_time'].cast('int64').to_pylist()
  assert b['capture_time'].cast('int64').to_pylist()==[original['capture_start_ns']+t for t in times]
@@ -80,7 +84,8 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 sources={'source_clock_and_matrices':sha(root/'right-hand-pressure-samples.jsonl')}
 if a.first:sources.update(first_review=sha(a.first),second_review=sha(a.second))
 meta={'episode_id':episode['episode_id'],'recording_id':original['recording_id'],'measured':False,'display':description,'source_files':sources,'frame_count':count,'active_frames':active,'input_matrix_sequence_sha256':matrix_hash.hexdigest(),'display_parameters':{'pitch':.065,'surface_offset':.012,'radius':.018,'max':189,'color_gain':1.2,'active_alpha':255,'inactive_geometry':'omitted','diffusion_passes':2,'self_weight':4,'guard':'positive source support, no inferred semantic labels'},'data':{'path':f'/rerun/episodes/{episode["episode_id"]}/{stem}.rrd','sha256':sha(output),'bytes':output.stat().st_size},'rollback':'165650: restore visual-pressure-override.json import. 155825: remove pressure_override. Original files retained.'}
+meta['display_parameters'].update(max=scale['max_raw'],max_relative=scale['max_relative'],color_gain=scale['color_gain'],legend_labels=scale['labels'])
 (root/(stem+'.json')).write_text(json.dumps(meta,indent=2)+'\n')
 a.report.parent.mkdir(parents=True,exist_ok=True)
-a.report.write_text(json.dumps({**meta,'verification':{'exact_clock':True,'no_mesh_or_legend_changes':True,'active_alpha_255':True,'no_contact_frames_remain_empty':True,'all_delivered_point_counts_match':True}},indent=2)+'\n')
+a.report.write_text(json.dumps({**meta,'verification':{'exact_clock':True,'no_mesh_changes':True,'shared_legend_verified':True,'active_alpha_255':True,'no_contact_frames_remain_empty':True,'all_delivered_point_counts_match':True}},indent=2)+'\n')
 print(f'\033[32m[COMPLETE] {episode["episode_id"]}: {count} frames, {active} active; RRD verified\033[0m',flush=True)
