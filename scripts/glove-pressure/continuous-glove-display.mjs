@@ -1,6 +1,7 @@
 import {loadRightHandRig} from './right-hand-rig.mjs';
 import {regions,createPressureProcessor} from './processor.mjs';
 import {surfaceAddress} from './surface-contact-field.mjs';
+import {createNaturalContactFilter} from './natural-contact-color.mjs';
 
 export const GLOVE_PITCH=.065;
 export const SURFACE_OFFSET=.012;
@@ -59,22 +60,26 @@ function taxelAt(data,address){
   return (at(x0,y0)*(1-fx)+at(x1,y0)*fx)*(1-fy)+(at(x0,y1)*(1-fx)+at(x1,y1)*fx)*fy;
 }
 
-export async function createContinuousGloveDisplay(){
+export async function createContinuousGloveDisplay({naturalContact=false}={}){
   const rig=await loadRightHandRig();
-  let samples;
-  try{samples=gloveSurfaceSamples(rig.sample().map((m,i)=>({...m,...rig.topology[i]})),rig.wristPosition[1]);}
+  let samples,meshes;
+  try{meshes=rig.sample().map((m,i)=>({...m,...rig.topology[i]}));samples=gloveSurfaceSamples(meshes,rig.wristPosition[1]);}
   finally{rig.dispose();}
   const positions=samples.map(s=>[s.position[0],s.position[1],s.position[2]+SURFACE_OFFSET]);
-  // The existing data atlas only looks up colors; it cannot create box edges.
+  // The legacy lookup has hard ROI edges. Optional surface diffusion removes
+  // those color boundaries without moving any points or changing the hand.
   const addresses=samples.map(s=>surfaceAddress(s.position,s.normal));
+  const filter=naturalContact?createNaturalContactFilter(samples,meshes):null;
   const processor=await createPressureProcessor(),palette=[BASE];
   for(let v=1;v<=189;v++){
     const visual=processor(new Uint8Array(460).fill(v),{min:0,max:189,height:0,stride:20,threshold:0});
     palette.push(visual.colors[0]?.slice(0,3)??BASE);
   }
-  return data=>{
-    const colors=addresses.map(address=>{
-      const value=taxelAt(data,address),color=palette[Math.max(0,Math.min(189,Math.round(value)))];
+  return (data,context)=>{
+    const rawValues=addresses.map(address=>taxelAt(data,address));
+    const values=filter?filter(rawValues,context):rawValues;
+    const colors=Array.from(values,value=>{
+      const color=palette[Math.max(0,Math.min(189,Math.round(value)))];
       const t=Math.max(0,Math.min(1,value/24)),blend=t*t*(3-2*t);
       return [...BASE.map((base,i)=>Math.round(base+(color[i]-base)*blend)),Math.round(BASE_ALPHA+(255-BASE_ALPHA)*blend)];
     });

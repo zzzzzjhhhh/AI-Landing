@@ -13,7 +13,7 @@ for(const [i,s] of samples.entries()){
   if(s.schema_version!=='visual-digit-contact-v4'||(i&&s.time_ns<=samples[i-1].time_ns)||!clock.some(c=>c.tracking_time_ns===s.time_ns))throw Error('Invalid source clock');
   s.data=Array.from(digitReferenceTaxels(s));
 }
-const display=process.argv.includes('--continuous-glove')?await createContinuousGloveDisplay():await createReferencePressureDisplay({uniformTaxels:process.argv.includes('--uniform-taxels')});
+const display=process.argv.includes('--continuous-glove')?await createContinuousGloveDisplay({naturalContact:process.argv.includes('--natural-contact')}):await createReferencePressureDisplay({uniformTaxels:process.argv.includes('--uniform-taxels')});
 let index=0;
 for(const [frame_index,c] of clock.entries()){
   const time_ns=c.tracking_time_ns;
@@ -21,6 +21,6 @@ for(const [frame_index,c] of clock.entries()){
   while(index+1<samples.length&&samples[index+1].time_ns<=time_ns)index++;
   const a=samples[index],b=samples[Math.min(index+1,samples.length-1)];
   const data=Uint8Array.from(interpolateContact(a,b,time_ns));
-  const row={frame_index,time_ns,...display(data),state:a.state,unknown_sites:siteSummary(a).unknown,source_sample_id:a.sample_id};
+  const row={frame_index,time_ns,...display(data,{a,b,time_ns}),state:a.state,unknown_sites:siteSummary(a).unknown,source_sample_id:a.sample_id};
   if(!process.stdout.write(JSON.stringify(row)+'\n'))await once(process.stdout,'drain');
 }

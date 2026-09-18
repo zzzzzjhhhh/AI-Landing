@@ -1,6 +1,6 @@
 # 170529 display: shared reference chain with optional uniform glove taxels
 
-The active App asset is `visual-pressure-v4-glove.rrd`. It uses ONE hexagonal
+The active App asset is `visual-pressure-v4-glove-natural.rrd`. It uses ONE hexagonal
 lattice across the entire palm and fingers, projected onto the frontmost
 triangles of the unchanged hand mesh. The real rig wrist landmark is the
 lower boundary. There are no region-generated point grids, ROI rectangle
@@ -8,6 +8,16 @@ clips, or per-finger lattice restarts. The 1168 points remain fixed; colors
 still come from the original WebHand palette and existing contact data.
 The old region atlas is used only for color lookup, not point placement.
 Build this version with `--digit-v4 --reference-display --continuous-glove`.
+
+Add `--natural-contact` for the active color treatment. The old rectangular
+UV lookup becomes only a seed field. Five local graph-diffusion passes smooth
+that field on the actual surface samples; graph edges must remain on real
+hand triangles (tested at three points along each edge), so finger gaps are
+not bridged. Explicit no-contact/unknown sites are barriers at audit anchors,
+with an inward two-ring feather to avoid bright hard cuts. The source audits,
+input taxels, levels, timeline, point positions, palette and gray mesh are
+unchanged. This modifies a schematic display boundary, not measured contact
+geometry or force. The earlier glove asset is retained for rollback.
 
 The previous `visual-pressure-v4-uniform.rrd` preserves the rejected six-grid
 layout for rollback. The previous
