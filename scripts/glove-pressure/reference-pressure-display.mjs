@@ -2,10 +2,10 @@ import {createPressureProcessor,regions} from './processor.mjs';
 
 // Extracted unchanged from export-visual-pressure-override.mjs (165650).
 export const REFERENCE_DISPLAY=Object.freeze({min:0,max:189,height:.7,stride:2});
-export async function createReferencePressureDisplay(){
+export async function createReferencePressureDisplay({uniformTaxels=false}={}){
   const processor=await createPressureProcessor();
   return data=>{
-    const rendered=processor(data,REFERENCE_DISPLAY);
+    const rendered=processor(data,{...REFERENCE_DISPLAY,uniformTaxels});
     const levels=Object.fromEntries(regions.map(region=>{
       let peak=0;
       for(let row=0;row<region.height;row++) for(let col=0;col<region.width;col++)

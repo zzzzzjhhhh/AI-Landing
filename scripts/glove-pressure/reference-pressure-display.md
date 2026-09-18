@@ -1,14 +1,25 @@
-# Active 170529 display: reuse the 165650 chain
+# 170529 display: shared reference chain with optional uniform glove taxels
 
-The active App asset is `visual-pressure-v4-reference.rrd`. The previous
+The active App asset is `visual-pressure-v4-uniform.rrd`. The previous
+`visual-pressure-v4-reference.rrd` preserves the unmodified reference layout;
 `visual-pressure-v4-surface.rrd` is retained for rollback only, not loaded.
 
-Both the 165650 exporter and the 170529 reference exporter now call
+The uniform option remains a colored-point overlay on the original gray
+model. It uses approximately equal physical pitch (0.065 model units) across
+the six ROI sizes instead of equal raster counts. All 721 sites stay at
+fixed coordinates: a 0.025 model-unit offset replaces pressure-dependent
+height/spread for this option only. Neutral inactive points use low opacity;
+contact affects the original library color and brightness. These are display
+sites, not real calibrated glove sensors. The taxel input, contact judgments,
+levels and temporal interpolation are unchanged. The other two episodes do
+not enable this option and their output is unchanged.
+
+Both the 165650 exporter and the 170529 reference exporter call
 `createReferencePressureDisplay`. This is the original 165650 processing:
 WebHand WASM, min 0, max 189, height 0.7, stride 2, point radius 0.023,
-and the existing temporal `interpolateContact` implementation. It retains
+and the existing temporal `interpolateContact` implementation by default. It retains
 the base gray hand, material, camera, layout and legend. The underlying
-point height effect is intentionally unchanged; this is not a flat
+point height effect is unchanged when the uniform option is off; this is not a flat
 vertex-color replacement.
 
 Only the 170529 input adapter differs: the approved 22 categorical contact
@@ -27,6 +38,8 @@ mesh/material or legend replacements and clears the old pressure layer
 at all 2920 source-clock frames. Other episodes' served assets are unchanged.
 
 Build with `build-contact-patches-override.py --digit-v4 --reference-display`
-and the existing V4 sample JSONL plus 170529 episode directory. Roll back
+plus `--uniform-taxels` and the existing V4 sample JSONL plus 170529 episode directory.
+`validate-uniform-taxels.py` verifies identical point coordinates over all
+2920 source timestamps. Roll back
 by restoring the previous manifest import in `sample-episodes.ts`; do not
 delete older outputs or modify source videos/tracking.

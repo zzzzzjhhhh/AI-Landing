@@ -1,0 +1,29 @@
+{
+  "episode_id": "20260911_170529",
+  "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
+  "source": "visual_digit_contact_v4",
+  "measured": false,
+  "sample_count": 221,
+  "override_frames": 2920,
+  "display": "Shared 165650 WebHand point renderer and temporal interpolation; original mesh, material, legend, camera and layout unchanged; connected contact spans use shared Gaussian taxel kernel; equal-pitch fixed-position taxels with neutral inactive points; color/opacity vary, no pressure-driven displacement",
+  "display_max": 189,
+  "source_sha256": "98e0d6b5bcd753c0ba8cbe15d1b9efab11e091090f8bd747532f87e8d2ee69e4",
+  "clock_sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
+  "data": {
+    "path": "/rerun/episodes/20260911_170529/visual-pressure-v4-uniform.rrd",
+    "sha256": "0515b67f50677e021d2441e967cd4dfd9df2a46ec798d738afe2664d843bb6a7",
+    "bytes": 2536132
+  },
+  "rollback": "Restore visual-pressure-v4-reference.json import; previous outputs remain unchanged.",
+  "renderer": "shared WebHand point renderer, opt-in uniform taxel sampling",
+  "display_parameters": {
+    "min": 0,
+    "max": 189,
+    "point_spacing": 0.065,
+    "fixed_elevation": 0.025,
+    "pressure_displacement": 0,
+    "inactive_alpha": 85,
+    "point_radius": 0.023
+  },
+  "contact_adapter": "digit-reference-adapter.mjs; connected spans, not per-joint peaks"
+}
