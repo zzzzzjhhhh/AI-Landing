@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { RerunDemoViewer } from "@/components/RerunDemoViewer";
@@ -12,11 +12,7 @@ const visibleEpisodes = sampleEpisodes.filter((episode) =>
 
 export default function RerunDemo() {
   const [episodeId, setEpisodeId] = useState("20260911_170529");
-  const [originalMovement, setOriginalMovement] = useState(false);
-  const selectedEpisode = visibleEpisodes.find((item) => item.id === episodeId)!;
-  const episode = useMemo(() => originalMovement && selectedEpisode.hands.movement_override
-    ? { ...selectedEpisode, hands: { ...selectedEpisode.hands, movement_override: undefined } }
-    : selectedEpisode, [selectedEpisode, originalMovement]);
+  const episode = visibleEpisodes.find((item) => item.id === episodeId)!;
   return (
     <div className="min-h-screen bg-navy-950 text-white">
       <Navbar />
@@ -40,20 +36,8 @@ export default function RerunDemo() {
               </button>
             ))}
           </div>
-          {selectedEpisode.hands.movement_override && (
-            <div className="mb-3 flex items-center gap-3 text-xs text-white/70">
-              <span>Movement（切换会从头播放）</span>
-              {[false, true].map(original => (
-                <button key={String(original)} type="button" aria-pressed={originalMovement === original}
-                  onClick={() => setOriginalMovement(original)}
-                  className={`rounded border px-3 py-2 ${originalMovement === original ? 'border-cyan-200 text-cyan-100' : 'border-white/20'}`}>
-                  {original ? '原版 PICO · 回退' : 'Tracking 修正版 v1'}
-                </button>
-              ))}
-            </div>
-          )}
           <div className="h-[min(88vh,1000px)] min-h-[640px] overflow-hidden rounded-md border border-white/10 bg-[#090b10] shadow-[0_24px_80px_rgba(0,0,0,0.38)] sm:min-h-[760px]">
-            <RerunDemoViewer key={`${episode.id}-${originalMovement}`} episode={episode} />
+            <RerunDemoViewer key={episode.id} episode={episode} />
           </div>
         </section>
       </main>

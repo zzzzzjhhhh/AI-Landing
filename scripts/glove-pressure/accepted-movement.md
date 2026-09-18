@@ -2,7 +2,8 @@
 
 Only Movement changes. Original WebHand GLB, topology, color, fixed-palm
 orientation, camera and dashboard remain unchanged. Pressure and stereo overlays
-are untouched. This is a review candidate, not an accuracy-certified replacement.
+are untouched. The app loads this version for 165650 by default; it is still a
+model estimate that can be revised after visual review.
 
 ## Source and method
 
@@ -36,10 +37,8 @@ It uses both original tracking_time and capture_time clocks.
 
 ## Review / rollback
 
-On `/sample-data`, select 165650, then `Tracking 修正版 v1` or
-`原版 PICO · 回退`. Switching recreates the viewer from the original assets,
-so old and new Movement do not accumulate; playback restarts at zero.
-No original asset was overwritten. Permanent rollback: remove
+On `/sample-data`, select 165650. The revised Movement loads automatically.
+No original asset was overwritten. To roll back, remove
 `movement_override: waterMovementAccepted.data` from this episode's `hands`.
 
 ## Rebuild
