@@ -26,7 +26,10 @@ display='Contact-only smoothstep interpolation; 120ms pre-release fade; unknown/
 if a.digit_v4: display='Original WebHand heatmap renderer, same as 165650; 22 semantic zones; 120ms contact fade; unknown retained in metadata, not painted as contact'
 recording=rr.RecordingStream(original['application_id'],recording_id=original['recording_id'],send_properties=False)
 recording.save(output)
-recording.log(entity+'/legend',rr.Points3D([[-.45,2.9,.9]],radii=0,colors=[180,213,222,255],labels=['V4 contact estimate | original hand heatmap | NOT force' if a.digit_v4 else 'V3 contact footprint | color is NOT force'],show_labels=True),static=True)
+if a.digit_v4:
+ recording.log(entity+'/legend',rr.Points3D([[x,2.9,.9] for x in (-1.15,-.8,-.45,-.1,.25)],radii=.065,colors=[[78,94,112],[76,132,173],[132,197,192],[251,234,132],[237,81,63]],labels=['0','','37','','74'],show_labels=True),static=True)
+else:
+ recording.log(entity+'/legend',rr.Points3D([[-.45,2.9,.9]],radii=0,colors=[180,213,222,255],labels=['V3 contact footprint | color is NOT force'],show_labels=True),static=True)
 recording.log(entity+'/provenance',rr.TextDocument('V3 visual clothing contact, NOT measured force. 221 samples at 0.5s spacing. Hidden footprint geometry is inferred; unknown is not zero-force evidence. Original data and tracking unchanged. Display: '+display),static=True)
 if a.digit_v4:
  recording.log(entity+'/provenance',rr.TextDocument('V4: 221 stereo visual audits; 15 finger zones and 7 palm zones. Original App hand and heatmap, not audit dots. Unpainted areas may be unknown or no-contact; see unknown_sites. Not measured force. '+display),static=True)
@@ -45,7 +48,8 @@ try:
    recording.log(entity+'/unknown_sites',rr.TextDocument(json.dumps(row['unknown_sites'])))
   if row['positions']:
    recording.log(entity+'/pressure',rr.Points3D(np.array(row['positions'],dtype=np.float32),colors=np.array(row['colors'],dtype=np.uint8),radii=.023))
-  recording.log(entity+'/status',rr.Points3D([[-.45,-2.65,.9]],radii=0,colors=[180,213,222,255],labels=[f"{'V4' if a.digit_v4 else 'V3'} {row['state']} | 0.5s visual estimate, not force"],show_labels=True))
+  status=f"VISUAL {row['state']} · {max(row['levels'].values(),default=0):.0f}/100" if a.digit_v4 else f"V3 {row['state']} | 0.5s visual estimate, not force"
+  recording.log(entity+'/status',rr.Points3D([[-.45,-2.65,.9]],radii=0,colors=[180,213,222,255],labels=[status],show_labels=True))
   for name,value in row['levels'].items():
    recording.log(entity+'/relative/'+name,rr.Scalars(float('nan') if value is None and row['state']!='no_contact' else value or 0))
   count+=1

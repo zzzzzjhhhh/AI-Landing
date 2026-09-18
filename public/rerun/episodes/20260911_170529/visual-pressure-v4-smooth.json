@@ -11,8 +11,8 @@
   "clock_sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
   "data": {
     "path": "/rerun/episodes/20260911_170529/visual-pressure-v4-smooth.rrd",
-    "sha256": "6c562b6f2f79738f777b6f5d38af5b0ad71ae13c9a0431a51c26325d1af34bdf",
-    "bytes": 2604427
+    "sha256": "061b3bc2041fe9b666bc5c45e778fa84279381d64ef66a0bcadd16c0bfc0dbdc",
+    "bytes": 2782569
   },
   "rollback": "Restore clothingPressureV3 import and override; original V3 files remain unchanged.",
   "renderer": "shared_WebHand_processor"
