@@ -1,0 +1,223 @@
+# time | thumb index middle ring little (distal/middle/proximal) | palm: thenar hypothenar center distal_radial distal_ulnar heel_radial heel_ulnar | evidence
+# c = visually inferred contact with an external surface, n = visually not contacting, u = unresolved. c is NOT a force measurement. Cloth/table ambiguity stays u.
+0|nnn nnn nnn nnn nnn|nnnnnnn|Open hand clearly above clothing.
+0.5|nnn nnn nnn nnn nnn|nnnnnnn|Open glove separated from garment.
+1|nnn nnn nnn nnn nnn|nnnnnnn|Raised hand beginning descent, still separated.
+1.5|nnn nnn nnn nnn nnn|nnnnnnn|Approach above pile; no supported contact.
+2|nnn uuu uuu uuu uuu|uuuuunn|Descending fingers overlap pile; onset unresolved.
+2.5|uuu uuu uuu uuu uuu|uuuuunn|Flat-looking approach is not proof of palm compression.
+3|uuu ccu ccu ccu uuu|uuuccnn|Four fingers lie along green fabric; little pad boundary unresolved; upper palm inferred.
+3.5|uuu ccu ccu ccu ucu|uuuccnn|Finger fronts on fabric; little middle support probable, palm heel unsupported.
+4|ucu ccu ccu ccu ucu|uuuccnn|Glove settles along wrinkled cloth; proximal pads not directly seen.
+4.5|ccn ucu ccu ucu uuu|uuuuunn|Transition from flat contact to edge pinch; raised index tip not assigned contact.
+5|ccu nnu ccu ucu uuu|uuuuunn|Index extends above edge; opposed thumb and curled middle support edge.
+5.5|ccu ccu ccu ucu uuu|uuuuunn|Edge lifted; index curls onto fold, ring hidden support uncertain.
+6|ccu ccu ccu ccu uuu|uuuuunn|Closed fingers retain hanging garment; exact hidden proximal pads unresolved.
+6.5|ccu ucu ccu ucu uuu|uuuuunn|Edge tension evident; index tip occluded, do not light entire palm.
+7|ccu ucu ccu ucu uuu|uuuuunn|Same lifted edge retained, little hidden and unasserted.
+7.5|cnn cnn uuu nnn nnn|nnnuunn|Localized opposed pinch during reposition, outer digits open away.
+8|ccu ucu ucu uuu uuu|uuuuunn|Waistband stretched at right grip; lower fingers partly hidden.
+8.5|ccu nnu ccu ccu nnn|uuuuunn|Index extends above waistband and little lifted; middle/ring retain edge.
+9|ccu ucu ccu ucu uuu|uuuuunn|Index bends back toward edge; tip boundary occluded.
+9.5|ccu nnu ccu ccu uuu|uuuuunn|Index tip and middle segment clearly above band, not pressing it.
+10|ccu nnu ccu ccu uuu|uuuuunn|Index extended clear while curled fingers hold waistband.
+10.5|ccu nnu ccu ccu uuu|uuuuunn|Fold gathered; lifted index remains clear; little concealed.
+11|ccu nnu ccu ucu uuu|uuuuunn|Index lifted across top of fold, support from curled inner fingers.
+11.5|ccu nnn ccu ucu uuu|uuuuunn|Index conspicuously raised; no index pressure.
+12|ccu ucc ccu ccu uuu|cuucunn|Rolled waistband encircled by grip; thenar and radial finger-base support inferred.
+12.5|ccu ucc ccu ccu uuu|cuucunn|Rolled edge held, little hidden rather than assumed inactive.
+13|cnn ncu ucu uuu uuu|uuuuunn|Right hand opens and slides down cloth; fingertip-to-proximal distribution changes.
+13.5|uuu uuu uuu uuu uuu|uuuuuuu|Cloth occludes hand at lower edge; per-digit contacts unresolved.
+14|uuu uuu uuu uuu uuu|uuuuuuu|Right glove largely outside frame during lowering; not a no-contact label.
+14.5|ccu ccu ucu uuu uuu|uuuuunn|Right edge visibly pulled with pinch; concealed outer pads unasserted.
+15|ccu ccc ccc ccu ccu|cucccun|Flat smoothing on green leg, thumb and outer fingers also involved; heel unclear.
+15.5|ccu ccu ccu ucu uuu|uuuccnn|Fingers bunch a wrinkle; broad palm compression less certain than 15s.
+16|ccu ccu ucu uuu nnn|nnnuunn|Right garment border under thumb/index, little beyond cloth border.
+16.5|ccu ccu ccu ucu uuu|uuuuunn|Fold gathered under inner fingers; not a whole-palm press.
+17|ucu ccu ccu uuu uuu|uuuuunn|Edge lifted near frame boundary; outer digits partially hidden.
+17.5|ccu ccu ccu ucu uuu|uuucunn|Several fingers supporting folded leg from below; radial finger-base contact inferred.
+18|ccu ccu ccu ucu uuu|uuucunn|Cloth follows enclosed right grip; little and heel concealed.
+18.5|ccu ccu ccu ucu uuu|uuucunn|Fold being lifted, support remains localized under fold.
+19|ucu ucu ucu uuu uuu|uuuuunn|Motion blur while laying fold; keep exact distal pads uncertain.
+19.5|uuu uuu uuu uuu uuu|uuuuuuu|Open hand descending toward fold; flattening not yet established.
+20|ccu ccc ccc ccc ccu|cccccun|Spread hand on folded green fabric; four fingers and broad palm supported.
+20.5|ccu ccc ccc ccc ccu|cccccun|Stable flat support with little finger on cloth, not automatically excluded.
+21|ccu ccc ccc ccc ccu|cccccun|Cloth stabilized while left hand starts lifting opposite end.
+21.5|uuu ccu ucu ccc ccu|uuuccnn|Palm/finger bases stabilize fold while extended distal boundary is partly obscured.
+22|ucu uuu uuu uuu uuu|cuuuuuu|Most digits over bare table, thumb-side palm near fabric edge; table contact cannot be determined from overlap.
+22.5|uuu uuu uuu uuu uuu|uuuuuuu|Open hand repositioning above fold; overlap alone insufficient.
+23|ccu ccc ccc ccc ccu|cccccun|Clear spread-hand smoothing; include little pad and ulnar upper palm.
+23.5|ccu ccc ccc ccc ccu|cucccun|Hand sweeps toward right edge; radial palm remains on fabric, heel uncertain.
+24|ccu ccc ccc ccc ccu|cucccun|Spread glove still lies on fold immediately before lift.
+24.5|nnn nnn nnn nnn nnn|nnnnnnn|All digits and palm visibly lifted away.
+25|nnn nnn nnn nnn nnn|nnnnnnn|Open suspended glove moving between garments.
+25.5|nnn nnn nnn nnn nnn|nnnnnnn|No cloth motion or supported boundary beneath hovering glove.
+26|nnn nnn nnn nnn nnn|nnnnnnn|Glove overlaps green pile in image but remains raised.
+26.5|nnn nnn nnn nnn nnn|nnnnnnn|Open glove between piles, no contact.
+27|nnn nnn nnn nnn nnn|nnnnnnn|Left reaches beige garment while right waits above table.
+27.5|uuu uuu uuu uuu nnn|uuuuunn|Right fingers approach lifted elastic; onset unresolved, little visibly away.
+28|ccu ccu ucu uuu uuu|uuuuunn|Opposed grasp begins at elastic edge; hidden outer pads unresolved.
+28.5|ccn ccu ccu ucu uuu|uuuuunn|Thumb visible on near face, curled inner fingers retain far edge.
+29|ccn ccu ccu ucu uuu|uuuuunn|Elastic edge held between thumb and folded fingers, palm center unverified.
+29.5|ccn ccu ccu ucu uuu|uuuuunn|Same localized edge support, little not visible enough to assign.
+30|ccn ccu ccu ucu uuu|uuuuunn|Band stretched, opposed inner-finger contact; no whole-palm assumption.
+30.5|ccu ccu ucu uuu uuu|uuuuunn|Lowering waistband, outer digits cropped/hidden; exact pads unasserted.
+31|ccu ccu ucu uuu uuu|uuuuunn|Waistband still retained before fold, palm heel away.
+31.5|ccu ccu ccu uuu uuu|uuucunn|Fold gathered between hands, inner finger-base support inferred.
+32|ccu ccu ccu ucu uuu|uuucunn|Bunched waistband supported by enclosed digits, little concealed.
+32.5|cnn ucu ucu uuu uuu|uuuuunn|Right hand repositions down edge; support footprint narrows.
+33|uuu uuu uuu uuu uuu|uuuuuuu|Hand at lower image boundary, unresolved pads.
+33.5|ccn ccu ucu uuu uuu|uuuuunn|Thumb visibly pins fabric near lower edge against hidden opposed finger.
+34|uuu uuu uuu uuu uuu|uuuuuuu|Right hand outside useful field of view; do not inherit earlier grip.
+34.5|uuu uuu uuu uuu uuu|uuuuuuu|Only small part of glove visible at bottom; no segment-level assertion.
+35|ccn ccu ucu uuu uuu|uuuuunn|Right glove pinches lower trouser edge; other finger pads occluded.
+35.5|ccn ccu ccu ucu uuu|uuuuunn|Cloth pulled horizontally, thumb and folded inner fingers support edge.
+36|ccu ccu ucu uuu uuu|uuuuunn|Right closed grip lowers beige edge; opposed thumb and inner fingers support it.
+36.5|unn unn nnn nnn nnn|nnnnnnn|Glove opens after placing edge; most digits visibly separate, nearest tips unresolved.
+37|ccn ccu uuu nnn nnn|nnnuunn|Localized pinch of upper-right beige corner, outer digits away from cloth.
+37.5|ccu ccu ucu uuu uuu|uuuuunn|Gathered corner retained; contact on hidden outer pads unverified.
+38|ucu ccu ucu uuu uuu|uuuuunn|Corner lifted leftward; thumb boundary blurred, inner fingers carry fold.
+38.5|nnn unn nnn nnn nnn|nnnnnnn|Open glove side-on and separated from garment; nearest index tip uncertain.
+39|ccu ucu ucu uuu uuu|uuucunn|Localized support against folded edge, not four flat fingers or full palm.
+39.5|ccu ccu ucu ucu uuu|cuucunn|Thumb opposes curled support under stacked edge; radial palm support inferred.
+40|ccu ccu ccu ucu uuu|uuucunn|Enclosed inner fingers hold stacked elastic from right; little hidden.
+40.5|ccu ccu ccu ucu uuu|uuucunn|Folded garment being placed; localized grip retained, heel away.
+41|unn unn nnn nnn nnn|uuuuunn|Glove opens and lifts; overlap at palm does not establish compression.
+41.5|nnn nnn nnn nnn nnn|nnnnnnn|Right glove visibly raised, reaching toward next shirt.
+42|nnn nnn nnn nnn nnn|nnnnnnn|Open glove suspended above and beside shirt.
+42.5|nnn nnn nnn nnn nnn|nnnnnnn|Hand remains clear of shirt despite image overlap at thumb.
+43|nnn nnn nnn nnn nnn|nnnnnnn|Left hand touches shirt; right glove waits off its edge.
+43.5|nnn nnn nnn nnn nnn|nnnnnnn|Right hand clearly separated while left lifts shirt.
+44|nnn nnn nnn nnn nnn|nnnnnnn|Open right glove approaches lifted cloth with visible gap.
+44.5|ccu ccu ucu uuu uuu|uuuuunn|Opposed thumb and curled inner fingers take shirt edge; palm hidden.
+45|ccu ccu ucu uuu uuu|uuuuunn|Shirt edge tension localizes grip to thumb and inner fingers.
+45.5|ucu ucu uuu uuu uuu|uuuuunn|Right grip begins opening; exact tips partly hidden at cloth edge.
+46|nnn nnn ucu ucu uuu|uuuuunn|Thumb and index visibly raised; cloth retained lower in folded fingers, not by raised tips.
+46.5|ccn ccu uuu uuu uuu|uuuuunn|Brief localized edge regrip with opposed thumb/index, outer pads unresolved.
+47|nnn nnn nnn nnn nnn|nnnnnnn|Open glove fully separated from shirt in left hand.
+47.5|ucu ccu uuu uuu uuu|uuuuunn|Right hand regathers corner near lower frame; concealed pads not guessed.
+48|ccu ccu ucu uuu uuu|uuuuunn|Cloth raised at localized right grip, thumb/index support visible from stereo context.
+48.5|nnn nnn nnn nnn nnn|nnnnnnn|Right hand opens and withdraws; left alone holds shirt.
+49|uuu uuu uuu uuu uuu|uuuuuuu|Right fingers mostly below frame, regrip cannot be localized.
+49.5|ccn ccu uuu nnn nnn|nnnuunn|Small corner pinch; outer digits are not involved in supporting flat cloth.
+50|ccn ccu unn nnn nnn|nnnnnnn|Cloth pinched at thumb/index near top, exposed black palm is clear.
+50.5|ccn ccn nnn nnn nnn|nnnnnnn|Palm faces camera; middle/ring/little visibly spread off cloth, only edge pinch remains.
+51|ccn ccu nuu nuu nnn|nnnuunn|Shoulder edge drapes near inner finger bases; exposed outer tips are clear.
+51.5|ccn ccu nuu nuu nnn|nnnuunn|Shirt stretched between hands; exposed tips above shoulder seam are not pressing.
+52|ucu ucu uuu uuu uuu|uuuuunn|Right glove slides lower along shirt; partial crop prevents exact pad assignment.
+52.5|ccn ccu uuu uuu uuu|nnnuunn|Localized neck-edge pinch, no evidence for broad palm contact.
+53|ccn ccu ucu uuu uuu|uuuuunn|Opposed thumb/index grip at right neckline; additional support partly concealed.
+53.5|ccu ccu ucu uuu uuu|uuuuunn|Neck corners brought together; contact remains localized around bunched edge.
+54|ccn ccu uuu uuu uuu|nnnuunn|Thumb visibly presses gathered seam against opposed curled finger.
+54.5|ccn ccu uuu uuu uuu|nnnuunn|Small seam pinch; concealed outer digits not assigned force.
+55|ccn ccu ucu uuu uuu|uuuuunn|Fingers retain folded neck seam during reposition.
+55.5|ucu ucu uuu uuu uuu|uuuuunn|Glove shifts down side of shirt, thumb contact probable but tip boundary blurred.
+56|ccn ccu ucu uuu uuu|uuuuunn|Shirt pulled taut by localized right grip at side edge.
+56.5|ccn ccu ucu uuu uuu|uuuuunn|Same side edge retained, palm center and little pad hidden.
+57|ccn ccu ucu uuu uuu|uuuuunn|Folded shirt lowered while edge remains opposed between inner digits.
+57.5|uuu uuu uuu uuu uuu|uuuuuuu|Right hand mostly below frame; do not assume either release or full grip.
+58|ucu nnu ucu ucu uuu|uuuuunn|Index extends up away from hem; other curled fingers stabilize near edge.
+58.5|ucu uuc uuc uuu uuu|uuucuuu|Extended tips pass beyond shirt over table; inner bases support hem, table-side contact unresolved.
+59|ccu ccu ccu ucu nnn|uuucunn|Hem gathered by curled inner fingers; little beyond garment edge.
+59.5|ucu ucu ucu uuu nnn|uuuuunn|Cloth edge moving with right hand during folding; exact distal contacts blurred.
+60|ccu ccu ccu ucu uuu|cuucunn|Right hand gathers folded shirt edge, localized thumb-side palm and inner digits support.
+60.5|ucu nnn ucu uuu uuu|uuuuunn|Extended index visibly clear; cloth rests lower against curled fingers, exposed palm mostly clear.
+61|ccu ccu ucu uuu uuu|uuuuunn|Closed grip on bunched shirt edge, exact outer contacts obscured.
+61.5|ccu ccu ucu uuu uuu|uuucunn|Edge tension and enclosed fingers support localized grasp while laying shirt.
+62|ccu ccc ccc ccu ccu|cucccun|Glove lies on folded shirt, including little pad; heel compression not visible.
+62.5|uuu ccc ccc ccu uuu|cuccuuu|Radial fingers supported by cloth; outer glove near table edge remains unresolved.
+63|uuu ccu ccu ucu uuu|uuucuuu|Tips overlap cloth and thumb/heel over bare table; table contact not established from overlap.
+63.5|ccu ccu ccu ucu uuu|uuucunn|Right fingers curl around near hem, localized grip rather than full palm press.
+64|ccu ccu ccu ucu uuu|uuucunn|Hem lifted at thumb and curled inner fingers, little contact hidden.
+64.5|ccu ccu ucu uuu uuu|uuuuunn|Fold raised between two opposed grips; no broad palm support asserted.
+65|uuu uuu uuu uuu uuu|uuuuuuu|Open glove descends after placing fold; motion blur prevents exact contact onset.
+65.5|ccu ccc ccc ccu uuu|cuccuuu|Flattening contact on cloth at thumb/index/middle; outer table-side pads unresolved.
+66|ccu ccc ccc ccu uuu|cuccuuu|Hand stabilizes folded shirt; little lies near cloth/table boundary, not assumed pressure-free.
+66.5|ucu ccc ccc ccu ccu|uucccun|Fold lifted against right fingers and upper palm; little pad supported by cloth edge.
+67|ccu ccc ccc ccc ccu|cccccun|Broad right-hand support on folded bundle while left carries opposite side.
+67.5|ccu ccc ccc ccc ccu|cccccun|Spread hand smooths stack, including outer fingers and upper ulnar palm.
+68|nnn nnn nnn nnn nnn|nnnnnnn|Hand lifted clear while traveling toward next garment.
+68.5|uuu uuu uuu uuu uuu|uuuuunn|Open glove approaches green pile; overlap alone does not prove contact.
+69|uuu uuu uuu nnn nnn|uuuuunn|Inner digits approach pile but no clear deformation; outer fingers visibly above table.
+69.5|uuu uuu uuu nnn nnn|uuuuunn|Right waits while left gathers waistband; inner contact still unresolved.
+70|uuu uuu nnn nnn nnn|uuuuunn|Most glove remains open above surface, thumb/index nearest edge unconfirmed.
+70.5|ccn ccu uuu nnn nnn|nnnuunn|Thumb and index begin taking waistband, outer fingers extended clear.
+71|ccu ccu ccu ucu uuu|uuuuunn|Waistband stretched between grips, inner curled pads support it.
+71.5|ccu ccu ccu ucu uuu|uuuuunn|Closed edge grip retained; palm center and little contact hidden.
+72|ccu ccu ccu ucu uuu|uuuuunn|Elastic tension supports localized thumb and inner-finger contact.
+72.5|ccu ccu ccu ucu uuu|uuuuunn|Same waistband grip but hidden pads remain unknown, not inherited certainty.
+73|ccu ccu ccu ucu uuu|uuuuunn|Waistband corners move together under enclosed right grip.
+73.5|ccu nnu ccu ucu uuu|uuuuunn|Index starts extending over gathered band; distal/middle index not assigned contact.
+74|ccu nnu ccu ccu uuu|cuuuunn|Gathered band held under raised index by other digits and thumb-side palm.
+74.5|ccu nnu ccu ccu uuu|cuuuunn|Index remains extended above rolled band; exact index base and little pad concealed.
+75|ccu nnn ccu ccu nnn|cuuuunn|Native-resolution detail: BOTH index and little extended clear, middle/ring retain band with thumb.
+75.5|ccu ucu ccu ucu nnn|cuuuunn|Little stays raised; index begins curling near band, tip occluded not presumed pressing.
+76|ccu ccu ccu ucu nnn|uuuuunn|Inner fingers regrip stretched band; little still lifted away.
+76.5|ccu ccu ccu ucu nnn|uuuuunn|Band lowered in enclosed inner-finger grip, visibly raised little remains off.
+77|ccu ccu ccu ucu nnn|uuuuunn|Waistband laid down; little elevated while inner fingers still stabilize edge.
+77.5|ccu ccu ccu ucu nnn|uuucunn|Curling inner pads stabilize waistband on table, little remains raised.
+78|ccu ccu ccu ucu nnn|uuucunn|Inner pads hold waistband, little still conspicuously lifted.
+78.5|ccu ccu ccu ucu uuu|uuuuunn|Band lifted for next fold, little curls out of view rather than proving contact.
+79|ccu ccu ccu ucu uuu|uuuuunn|Fold carried by enclosed inner-finger grip; outer pad hidden.
+79.5|ccu ccc ccc ccc ccu|cccccun|Spread-hand flattening on green fold includes little and broad upper palm.
+80|ccu ccc ccc ccc ccu|cccccun|Stable flat support, all fingers on garment, heel extent unclear.
+80.5|ccu ccc ccc ccc ccu|cccccun|Right hand holds flat fold while left lifts edge; outer digits remain supported.
+81|ccu ccu ccu ucu uuu|cuucunn|Rolled waistband lifted, thumb and radial palm oppose curled fingers.
+81.5|ccu ccu ccu ucu uuu|cuucunn|Gathered bundle supported by thumb-side palm and inner digits; heel clear.
+82|ccu ccu ccu ucu uuu|uuucunn|Bundle placed on stack, glove still curled before flattening.
+82.5|ccu ccc ccc ccc ccu|cccccun|Clear broad press on stacked green cloth with little finger included.
+83|ccu ccc ccc ccc ccu|cccccun|Flat hand remains supported by stack; no reason to exclude little pad.
+83.5|uuu uuu uuu uuu uuu|uuuuuuu|Hand begins withdrawing; image overlap cannot establish continued full contact.
+84|nnn nnn nnn nnn nnn|nnnnnnn|Open glove clearly suspended between piles.
+84.5|nnn nnn nnn nnn nnn|nnnnnnn|Right hand hovers while left searches satin garment edge.
+85|nnn nnn nnn nnn nnn|nnnnnnn|Glove remains open above satin; fabric moves with left hand, not right glove.
+85.5|nnn nnn nnn nnn nnn|nnnnnnn|Persistent hovering configuration, no supported right contact.
+86|uuu uuu uuu uuu uuu|uuuuunn|Approach to gathered satin begins; onset unresolved.
+86.5|ccu ccu ucu uuu uuu|uuuuunn|Satin edge now visibly enclosed by opposed thumb/index grip.
+87|ccn ccu ucu uuu uuu|uuuuunn|Right supports satin side edge while left raises waistband; outer pads hidden.
+87.5|ccu ccu ccu ucu uuu|uuuuunn|Waistband stretched, thumb visibly presses near face against curled inner fingers.
+88|ccu ccu ccu ucu uuu|uuuuunn|Inner-finger grip retains elastic, no evidence of broad heel contact.
+88.5|ccu ccu ucu uuu uuu|uuuuunn|Corners brought together with localized grip; folded cloth occludes outer digits.
+89|ccu ccu ucu uuu uuu|cuucunn|Rolled waistband supported against thumb-side palm and inner pads.
+89.5|ccu ccu ccu ucu uuu|cuucunn|Gathered band held by opposed thumb/inner fingers, palm support localized radially.
+90|ucu nnu nnn nnn nnn|uuuuunn|Right opens with four tips raised; thumb near band but exact palm interface unresolved.
+90.5|ccu ccu ccu ucu nnn|uuuuunn|Inner fingers regrip while little stays extended clear.
+91|ccu ccu ccu ucu nnn|uuuuunn|Elastic held taut; lifted little not included in inferred grip.
+91.5|ccu ccu ccu ucu nnn|uuuuunn|Garment raised, thumb and inner fingers hold band, little remains up.
+92|ccu ccu ccu ucu nnn|uuuuunn|Raised little visibly clear of band; hidden proximal inner pads unresolved.
+92.5|ccu ccu ccu ucu nnn|uuuuunn|Same supported waistband grasp with no little contact.
+93|ccu ccu ccu ucu nnn|uuuuunn|Inner grip retained, little still elevated; palm heel away from fabric.
+93.5|ccu ccu nnn nnn nnn|uuuuunn|Middle/ring/little extend clear while thumb and index retain edge.
+94|ccu ccu nnn nnn nnn|uuuuunn|Outer three digits stay raised; only opposed inner pinch supports band.
+94.5|ccu ccu nuu nnn nnn|uuuuunn|Lowering band with inner grip, middle tip visibly clear but base obscured.
+95|uuu uuu uuu uuu uuu|uuuuuuu|Grip drops below useful image boundary; contacts not extrapolated from prior pose.
+95.5|ccu ccu ucu uuu uuu|uuuuunn|Thumb visible on near face of waistband, opposed inner fingers concealed behind edge.
+96|ccu ccu ccu ucu uuu|uuuuunn|Band lifted to fold, opposed thumb and inner pads carry edge.
+96.5|ccu ccc ccc ccu ucu|cucccun|Open glove smooths wrinkled satin, little middle pad supported but tip boundary unclear.
+97|ucu ucu ucu ucu uuu|uucccun|Moving smoothing stroke; contact under proximal pads plausible, blurred tips unresolved.
+97.5|ccu ccc ccc ccc ccu|cccccun|Stable flat support on satin; include little and ulnar palm.
+98|ccu ccc ccc ccc ccu|cccccun|Hand remains flat on cloth, broad contact footprint not isolated fingertips.
+98.5|ccu ccc ccc ccu ccu|cucccun|Smoothing lower along leg, contact spans finger pads and upper palm.
+99|uuu ccu ccu ucu uuu|uuucuuu|Glove reaches lower hem; thumb and heel over table remain uncertain, not cloth contact.
+99.5|ccu ccu ccu ucu uuu|uuucunn|Curled inner fingers gather lower hem before lifting.
+100|ccu ccu ccu ucu uuu|uuuuunn|Hem lifts with opposed thumb and curled fingers; broad palm clear.
+100.5|ccu ccu ccu ucu uuu|uuuuunn|Fold held raised, outer hidden pads cannot be assigned precisely.
+101|ucu uuc uuc uuc uuu|uucccun|Fold placed under finger bases; distal tips extend beyond cloth and table contact is uncertain.
+101.5|ccu ccc ccc ccc ccu|cccccun|Flat press after folding, all fingers including little lie on satin.
+102|ccu ccu uuu uuu uuu|cuucuuu|Glove slides toward right border; radial pads on cloth, outer pads near bare table unresolved.
+102.5|ccu ccu ucu uuu uuu|uuucunn|Thumb and curled inner digits gather satin near right edge.
+103|ccu ccu nnn nnn nnn|nnnuunn|Thumb/index retain cloth corner while outer three fingers extend visibly away.
+103.5|ccu ccu ucu uuu uuu|uuucunn|Outer digits curl back under folded edge; only inner support is localized confidently.
+104|ccu ccu ucu uuu uuu|cuucunn|Fold held at thumb-side palm and inner fingers, hidden outer pads unasserted.
+104.5|ccn ccu uuu uuu uuu|uuuuunn|Cloth lowered onto stack; thumb visibly presses near face, opposing pads partly cropped.
+105|ccu ccu uuu uuu uuu|cuucuuu|Thumb and index-side glove stabilize satin edge; outside fingers/palm support unclear.
+105.5|ccu ccc ccu uuu uuu|cuccuuu|Radial hand lies on folded satin; ring/little at cloth-table boundary not confidently assigned.
+106|ccu ccc ccu uuu uuu|cuccuuu|Thumb/index/middle supported on cloth; outer surfaces partly hidden by side view.
+106.5|ccu ccc ccu uuu uuu|cuccuuu|Stable radial support continues; no blanket whole-palm or little activation.
+107|ccu ccc ccu uuu uuu|cuccuuu|Glove remains at satin border; distinguish supported inner pads from ambiguous outer pads.
+107.5|ccu ccc ccu uuu uuu|cuccuuu|Same visible radial support, exact heel and outer-finger contacts unresolved.
+108|ccu ccc ccu uuu nnn|cuccuuu|Little spreads visibly beyond edge before lift; thumb/inner fingers still overlap supported cloth.
+108.5|nnn nnn nnn nnn nnn|nnnnnnn|Both hands lifted open clear of final stack.
+109|nnn nnn nnn nnn nnn|nnnnnnn|Raised open glove far from cloth and table.
+109.5|nnn nnn nnn nnn nnn|nnnnnnn|All fingers and palm suspended with visible separation.
+110|nnn nnn nnn nnn nnn|nnnnnnn|Final raised open hand, no external contact.
