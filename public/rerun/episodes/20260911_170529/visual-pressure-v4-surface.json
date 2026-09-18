@@ -1,0 +1,21 @@
+{
+  "episode_id": "20260911_170529",
+  "recording_id": "five_camera_20260911_170529_a5499b3f0fa4",
+  "source": "visual_digit_contact_v4",
+  "measured": false,
+  "sample_count": 221,
+  "override_frames": 2920,
+  "display": "Original hand mesh with time-varying vertex colors from the WebHand palette; zero geometric displacement; adjacent contact zones merged into a continuous field; 120ms contact fade",
+  "display_max": 189,
+  "source_sha256": "98e0d6b5bcd753c0ba8cbe15d1b9efab11e091090f8bd747532f87e8d2ee69e4",
+  "clock_sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
+  "data": {
+    "path": "/rerun/episodes/20260911_170529/visual-pressure-v4-surface.rrd",
+    "sha256": "f1bbed620f29d689689632ae7f45acec17e1aa9ae26f4d78210dbfbfe4761ab9",
+    "bytes": 1246235
+  },
+  "rollback": "Restore visual-pressure-v4-smooth.json import; previous point overlay is unchanged.",
+  "renderer": "original_hand_mesh_vertex_colors",
+  "geometry_displacement": 0,
+  "color_semantics": "contact display only, not pressure magnitude"
+}
