@@ -49,8 +49,29 @@ Source directory needs `right_fit.npz`, `tracking-manifest.json`, and
 
 ```sh
 /tmp/ai-landing-rerun-venv/bin/python scripts/glove-pressure/build-accepted-movement.py \
+  --episode 20260911_165650 \
   --source '../hand key point tracking/work_stage/movement_165650_tracking_v1/source' \
   --output public/rerun/episodes/20260911_165650
 ```
 
 The command reports the current export stage and a green `[COMPLETE]` line.
+
+The same builder produced the two additional app Movement views:
+
+| Scene | Tracking fitted in stereo | Fit samples | App frames | Fit time range |
+| --- | --- | ---: | ---: | --- |
+| 155825 | left/right V10 | 738 | 1,695 | 0–56.402730 s |
+| 170529 | left/right ACE raw | 1,419 | 3,302 | 0–109.965299 s |
+
+The fit sources match each scene's current `tracking-override.json` SHA-256
+entries; the builder enforces this before writing. The generated `.rrd` files
+were verified with `rerun rrd verify`. As with 165650, inspect the entire
+movement against video before judging alignment and finger quality. The source
+fit is a prediction over 3D joints, and the long 170529 sequence may still
+contain errors in the original ACE tracking or MANO fit.
+
+The 170529 recording exceeds GitHub's single-file limit, so the builder stores
+its full `.rrd` offline in `work_stage/movement_170529_tracking_v1/` and publishes
+three ordered `data_parts` under the app episode directory. The app joins these
+byte-for-byte before loading the recording. The part hashes and full SHA-256
+are recorded in the scene's `movement-accepted-v1.json`.

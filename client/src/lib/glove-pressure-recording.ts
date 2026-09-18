@@ -18,6 +18,7 @@ export type HandRecording = Pick<typeof manifest, "application_id" | "recording_
   tracking_override?: RecordingAsset;
   movement_hold_override?: RecordingAsset;
   movement_override?: RecordingAsset;
+  movement_override_parts?: RecordingAsset[];
   pressure_override?: RecordingAsset;
 };
 
@@ -82,7 +83,10 @@ export async function attachGlovePressure(
       Promise.all(assets(recording.data, recording.data_parts).map(read)),
       recording.movement_hold_override ? read(recording.movement_hold_override) : Promise.resolve(null),
       recording.pressure_override ? read(recording.pressure_override) : Promise.resolve(null),
-      recording.movement_override ? read(recording.movement_override) : Promise.resolve(null),
+      recording.movement_override
+        ? Promise.all(assets(recording.movement_override, recording.movement_override_parts).map(read))
+          .then(parts => parts.length === 1 ? parts[0] : new Blob(parts).arrayBuffer())
+        : Promise.resolve(null),
     ]);
     if (!active()) return;
     const bytes = buffers.length === 1 ? buffers[0] : await new Blob(buffers).arrayBuffer();

@@ -1,0 +1,42 @@
+{
+  "episode_id": "20260911_170529",
+  "source": "app_tracking_stereo_MANO_right_retargeted_to_original_WebHand",
+  "source_sha256": {
+    "right_fit.npz": "3d3ced35473d7f659e34956563fad531e3fe1761136426957de2b3719fb66c19",
+    "tracking-manifest.json": "6726534c457d9e10d8b790048bf8c111b8b68462e71ddeef2e7ac37b2ac1965c",
+    "tracking-sources.json": "76dd456cc6a24b88a4fe04fcb4eb4636ec94c01c72d20843c10d3fa78cf27eeb"
+  },
+  "source_frames": 1419,
+  "frame_count": 3302,
+  "duration_ns": 110005303000,
+  "tracking_versions": {
+    "left": "left ACE raw",
+    "right": "right ACE raw"
+  },
+  "smoothing_radius_seconds": 0.12,
+  "source_max_gap_seconds": 0.360019,
+  "limitations": "Model-estimated 3D, not ground truth. Original fixed-palm Movement view. No pressure or stereo overlay changes.",
+  "data": {
+    "path": "/rerun/episodes/20260911_170529/movement-accepted-v1.rrd",
+    "sha256": "70e1a0868fe353b69e3f3d47a24b9317a33fbd29970d0ba79b9d2fbee1d02505",
+    "bytes": 144451131,
+    "storage": "Full recording stored offline; reassemble data_parts in order."
+  },
+  "data_parts": [
+    {
+      "path": "/rerun/episodes/20260911_170529/movement-accepted-v1.rrd.part00",
+      "sha256": "052f2675743a3068f3faef821b3b225f519dcadcdfa8bba274e62e11aa84c7b4",
+      "bytes": 70000000
+    },
+    {
+      "path": "/rerun/episodes/20260911_170529/movement-accepted-v1.rrd.part01",
+      "sha256": "9ed60ec128cde80f71d0b80f5b4110a22735283e707c08d4e646c11660a9933b",
+      "bytes": 70000000
+    },
+    {
+      "path": "/rerun/episodes/20260911_170529/movement-accepted-v1.rrd.part02",
+      "sha256": "385aa6dfa9c17dd73df4e307b328d5f6d31ad0d98579c7537957ef21f9ceb75f",
+      "bytes": 4451131
+    }
+  ]
+}

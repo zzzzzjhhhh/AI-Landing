@@ -3,6 +3,7 @@ import clothingDepth from "../../../public/rerun/episodes/20260911_170529/founda
 import clothingHands from "../../../public/rerun/episodes/20260911_170529/right-hand-pressure.json";
 import clothingTracking from "../../../public/rerun/episodes/20260911_170529/tracking-override.json";
 import clothingMovementHold from "../../../public/rerun/episodes/20260911_170529/movement-hold.json";
+import clothingMovementAccepted from "../../../public/rerun/episodes/20260911_170529/movement-accepted-v1.json";
 import clothingPressureV4 from "../../../public/rerun/episodes/20260911_170529/visual-pressure-v4-glove-clean.json";
 import waterEpisode from "../../../public/rerun/episodes/20260911_165650/manifest.json";
 import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundation-stereo-depth.json";
@@ -24,6 +25,7 @@ import objectTransfer from "../../../public/rerun/episodes/20260911_155825/manif
 import objectTransferHands from "../../../public/rerun/episodes/20260911_155825/right-hand-pressure.json";
 import objectTransferPressure from "../../../public/rerun/episodes/20260911_155825/pressure-continuous-clean.json";
 import objectTransferTracking from "../../../public/rerun/episodes/20260911_155825/tracking-override.json";
+import objectTransferMovementAccepted from "../../../public/rerun/episodes/20260911_155825/movement-accepted-v1.json";
 import objectTransferImu from "../../../public/rerun/episodes/20260911_155825/head-imu-estimates.json";
 import objectTransferDepth from "../../../public/rerun/episodes/20260911_155825/foundation-stereo-depth.json";
 import { glovePressureRecording, type HandRecording } from "./glove-pressure-recording";
@@ -54,9 +56,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${clothingEpisode.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${clothingEpisode.recording.path}?v=${clothingEpisode.recording.sha256.slice(0, 12)}`,
-    hands: { ...clothingHands, tracking_override: clothingTracking.overlay, movement_hold_override: clothingMovementHold.data, pressure_override: clothingPressureV4.data },
-    flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure uses the shared gray hand and continuous surface lattice. Inactive points are omitted and active points stay opaque to avoid black borders. Surface smoothing respects V4 contact barriers; contact data and temporal interpolation are unchanged and not measured force. Movement holds the last pose during tracking gaps.",
+    hands: { ...clothingHands, tracking_override: clothingTracking.overlay, movement_hold_override: clothingMovementHold.data, movement_override: clothingMovementAccepted.data, movement_override_parts: clothingMovementAccepted.data_parts, pressure_override: clothingPressureV4.data },
+    flexionTitle: "Right-hand flexion from stereo tracking.",
+    flexionNote: "Stereo keypoints use left/right ACE raw tracking. Movement retargets their stereo/MANO 3D fit to the original WebHand rig with local smoothing. This is a model estimate for visual review. Pressure retains the reviewed contact data and the shared gray-hand display.",
     depthNote: "FoundationStereo estimate from 1,419 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${clothingDepth.video.path}?v=${clothingDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",
@@ -84,9 +86,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${objectTransfer.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${objectTransfer.recording.path}?v=${objectTransfer.recording.sha256.slice(0, 12)}`,
-    hands: { ...objectTransferHands, tracking_override: objectTransferTracking.overlay, pressure_override: objectTransferPressure.data },
-    flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo left/right keypoints use the provisional left and right V10 tracking. 3D flexion retains the original pose. Pressure retains the original per-frame object-contact estimates, with the same gray hand, continuous surface lattice and no-black-border display as 170529. Surface-neighbor averaging stays within positive source support; zero-contact frames remain empty. No new contact labels or measured forces are inferred.",
+    hands: { ...objectTransferHands, tracking_override: objectTransferTracking.overlay, movement_override: objectTransferMovementAccepted.data, pressure_override: objectTransferPressure.data },
+    flexionTitle: "Right-hand flexion from stereo tracking.",
+    flexionNote: "Stereo left/right keypoints use the left/right V10 tracking. Movement retargets their stereo/MANO 3D fit to the original WebHand rig with local smoothing. This is a model estimate for visual review. Pressure retains the original contact estimates and the shared gray-hand display.",
     pressureCsvUrl: `${objectTransferHands.pressure_csv.path}?v=${objectTransferHands.pressure_csv.sha256.slice(0, 12)}`,
     depthNote: "FoundationStereo estimate from 738 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${objectTransferDepth.video.path}?v=${objectTransferDepth.video.sha256.slice(0, 12)}`,
