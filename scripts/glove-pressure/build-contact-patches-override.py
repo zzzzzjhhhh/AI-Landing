@@ -17,12 +17,14 @@ p.add_argument('--reference-display',action='store_true',help='Use the exact 165
 p.add_argument('--uniform-taxels',action='store_true',help='Equal-pitch stable glove points in the reference point renderer')
 p.add_argument('--continuous-glove',action='store_true',help='One hand-silhouette lattice projected onto the original mesh, without ROI rectangles')
 p.add_argument('--natural-contact',action='store_true',help='Smooth colors on the hand surface with explicit non-contact barriers')
+p.add_argument('--hide-inactive',action='store_true',help='Remove inactive dark dots; retain contact-only opacity')
 a=p.parse_args()
 if a.surface and not a.digit_v4: p.error('--surface requires --digit-v4')
 if a.reference_display and (not a.digit_v4 or a.surface): p.error('--reference-display requires --digit-v4 without --surface')
 if a.uniform_taxels and not a.reference_display: p.error('--uniform-taxels requires --reference-display')
 if a.continuous_glove and (not a.reference_display or a.uniform_taxels): p.error('--continuous-glove requires --reference-display without --uniform-taxels')
 if a.natural_contact and not a.continuous_glove: p.error('--natural-contact requires --continuous-glove')
+if a.hide_inactive and not a.natural_contact: p.error('--hide-inactive requires --natural-contact')
 root=a.episode_dir
 original=json.loads((root/'right-hand-pressure.json').read_text())
 episode=json.loads((root/'manifest.json').read_text())
@@ -36,6 +38,7 @@ if a.reference_display: stem='visual-pressure-v4-reference'
 if a.uniform_taxels: stem='visual-pressure-v4-uniform'
 if a.continuous_glove: stem='visual-pressure-v4-glove'
 if a.natural_contact: stem='visual-pressure-v4-glove-natural-v2'
+if a.hide_inactive: stem='visual-pressure-v4-glove-clean'
 output=root/(stem+'.rrd')
 display='Contact-only smoothstep interpolation; 120ms pre-release fade; unknown/released stays empty' if a.smooth else 'source-clock previous-sample hold, no interpolation'
 if a.digit_v4: display='Original WebHand heatmap renderer, same as 165650; 22 semantic zones; 120ms contact fade; unknown retained in metadata, not painted as contact'
@@ -44,6 +47,7 @@ if a.reference_display: display='Shared 165650 WebHand point renderer and tempor
 if a.uniform_taxels: display+='; equal-pitch fixed-position taxels with neutral inactive points; color/opacity vary, no pressure-driven displacement'
 if a.continuous_glove: display='One global hexagonal point lattice projected onto the original palmar mesh; no ROI point grids or rectangle clipping; original palette, contact data and temporal interpolation preserved'
 if a.natural_contact: display+='; full-surface anatomical lookup including finger-palm transitions; five local surface diffusion passes, no cross-gap edges, explicit no-contact/unknown barriers at audit anchors'
+if a.hide_inactive: display+='; inactive geometry omitted entirely, no dark base dots; active alpha fixed at 255 because Rerun uses alpha as brightness; unchanged RGB-only edge blending avoids black borders'
 recording=rr.RecordingStream(original['application_id'],recording_id=original['recording_id'],send_properties=False)
 recording.save(output)
 if a.reference_display:
@@ -57,7 +61,7 @@ if a.digit_v4:
  recording.log(entity+'/provenance',rr.TextDocument('V4: 221 stereo visual audits; 15 finger zones and 7 palm zones. Original App hand and heatmap, not audit dots. Unpainted areas may be unknown or no-contact; see unknown_sites. Not measured force. '+display),static=True)
 exporter='export-surface-contact-override.mjs' if a.surface else 'export-digit-contact-override.mjs' if a.digit_v4 else 'export-contact-patches-override.mjs'
 if a.reference_display: exporter='export-reference-digit-override.mjs'
-process=subprocess.Popen(['node',str(Path(__file__).with_name(exporter)),str(a.samples),str(root/'right-hand-pressure-samples.jsonl')]+(['--smooth'] if a.smooth else [])+(['--uniform-taxels'] if a.uniform_taxels else [])+(['--continuous-glove'] if a.continuous_glove else [])+(['--natural-contact'] if a.natural_contact else []),stdout=subprocess.PIPE,text=True)
+process=subprocess.Popen(['node',str(Path(__file__).with_name(exporter)),str(a.samples),str(root/'right-hand-pressure-samples.jsonl')]+(['--smooth'] if a.smooth else [])+(['--uniform-taxels'] if a.uniform_taxels else [])+(['--continuous-glove'] if a.continuous_glove else [])+(['--natural-contact'] if a.natural_contact else [])+(['--hide-inactive'] if a.hide_inactive else []),stdout=subprocess.PIPE,text=True)
 count=0
 last=-1
 try:
@@ -110,6 +114,11 @@ if a.continuous_glove:
  metadata.update(renderer='continuous-glove-display.mjs; single hand-silhouette hex lattice',display_parameters={'min':0,'max':189,'projected_point_spacing':0.065,'surface_offset':0.012,'pressure_displacement':0,'inactive_alpha':100,'point_radius':0.018},rollback='Restore visual-pressure-v4-uniform.json import; previous outputs remain unchanged.')
 if a.natural_contact:
  metadata.update(color_filter='natural-contact-color.mjs; complete anatomical source mapping plus 5 constrained surface diffusion passes',source_lookup='all 1168 surface points mapped; identical anatomical ownership for color source and n/u guard',rollback='Restore visual-pressure-v4-glove-natural.json import; previous outputs remain unchanged.')
+if a.hide_inactive:
+ metadata['display_parameters']['inactive_alpha']=0
+ metadata['display_parameters']['inactive_geometry']='omitted; each retained point stays at its original surface coordinate'
+ metadata['display_parameters']['active_alpha']=255
+ metadata['rollback']='Restore visual-pressure-v4-glove-natural-v2.json import; previous outputs remain unchanged.'
 metadata['data']['path']=f'/rerun/episodes/20260911_170529/{stem}.rrd'
 (root/(stem+'.json')).write_text(json.dumps(metadata,indent=2)+'\n')
 print(f'\033[32m[COMPLETE] {stem} Pressure overlay, 2920 source-clock frames\033[0m')

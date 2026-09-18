@@ -37,3 +37,16 @@ test('contact changes colors only; inactive points remain neutral on the full ha
  assert.ok(full.colors.some(c=>c.join()!=='78,94,112,100'));
  assert.equal(full.positions.length,full.colors.length);
 });
+test('clean display hides zero contact without changing geometry, RGB or levels',async()=>{
+ const baseline=await createContinuousGloveDisplay(),clean=await createContinuousGloveDisplay({hideInactive:true});
+ for(const value of [0,1,12,24,140]){
+  const data=new Uint8Array(460).fill(value),a=baseline(data),b=clean(data);
+  const indices=b.positions.map(p=>a.positions.findIndex(q=>q.every((v,i)=>v===p[i])));
+  assert.ok(indices.every(i=>i>=0));
+  assert.deepEqual(a.levels,b.levels);
+  assert.deepEqual(indices.map(i=>a.colors[i].slice(0,3)),b.colors.map(c=>c.slice(0,3)));
+  assert.ok(b.colors.every(c=>c[3]===255),'alpha must not darken the contact boundary in Rerun');
+  if(value===0)assert.equal(b.positions.length,0);
+  if(value>=24)assert.ok(b.colors.some(c=>c[3]===255));
+ }
+});

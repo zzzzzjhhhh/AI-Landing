@@ -13,7 +13,7 @@ for(const [i,s] of samples.entries()){
   if(s.schema_version!=='visual-digit-contact-v4'||(i&&s.time_ns<=samples[i-1].time_ns)||!clock.some(c=>c.tracking_time_ns===s.time_ns))throw Error('Invalid source clock');
   s.data=Array.from(digitReferenceTaxels(s));
 }
-const display=process.argv.includes('--continuous-glove')?await createContinuousGloveDisplay({naturalContact:process.argv.includes('--natural-contact')}):await createReferencePressureDisplay({uniformTaxels:process.argv.includes('--uniform-taxels')});
+const display=process.argv.includes('--continuous-glove')?await createContinuousGloveDisplay({naturalContact:process.argv.includes('--natural-contact'),hideInactive:process.argv.includes('--hide-inactive')}):await createReferencePressureDisplay({uniformTaxels:process.argv.includes('--uniform-taxels')});
 let index=0;
 for(const [frame_index,c] of clock.entries()){
   const time_ns=c.tracking_time_ns;

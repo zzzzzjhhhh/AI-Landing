@@ -60,7 +60,7 @@ function taxelAt(data,address){
   return (at(x0,y0)*(1-fx)+at(x1,y0)*fx)*(1-fy)+(at(x0,y1)*(1-fx)+at(x1,y1)*fx)*fy;
 }
 
-export async function createContinuousGloveDisplay({naturalContact=false,completeCoverage=naturalContact}={}){
+export async function createContinuousGloveDisplay({naturalContact=false,completeCoverage=naturalContact,hideInactive=false}={}){
   const rig=await loadRightHandRig();
   let samples,meshes;
   try{meshes=rig.sample().map((m,i)=>({...m,...rig.topology[i]}));samples=gloveSurfaceSamples(meshes,rig.wristPosition[1]);}
@@ -84,13 +84,18 @@ export async function createContinuousGloveDisplay({naturalContact=false,complet
     const colors=Array.from(values,value=>{
       const color=palette[Math.max(0,Math.min(189,Math.round(value)))];
       const t=Math.max(0,Math.min(1,value/24)),blend=t*t*(3-2*t);
-      return [...BASE.map((base,i)=>Math.round(base+(color[i]-base)*blend)),Math.round(BASE_ALPHA+(255-BASE_ALPHA)*blend)];
+      const baseAlpha=hideInactive?0:BASE_ALPHA;
+      return [...BASE.map((base,i)=>Math.round(base+(color[i]-base)*blend)),Math.round(baseAlpha+(255-baseAlpha)*blend)];
     });
     const levels=Object.fromEntries(regions.map(r=>{
       let peak=0;
       for(let y=0;y<r.height;y++)for(let x=0;x<r.width;x++)peak=Math.max(peak,data[(r.y+y)*20+r.x+x]);
       return [r.name,Math.round(peak/255*1000)/10];
     }));
-    return {positions,colors,levels,peak_relative_0_100:Math.round(Math.max(...data)/255*1000)/10};
+    // Rerun's default point pass uses alpha as brightness, NOT transparency.
+    // Drop inactive geometry and keep active points opaque. RGB already eases
+    // into the hand's base color, so low contact must not be darkened twice.
+    const visible=hideInactive?colors.flatMap((c,i)=>c[3]>0?[i]:[]):null;
+    return {positions:visible?visible.map(i=>positions[i]):positions,colors:visible?visible.map(i=>[...colors[i].slice(0,3),255]):colors,levels,peak_relative_0_100:Math.round(Math.max(...data)/255*1000)/10};
   };
 }

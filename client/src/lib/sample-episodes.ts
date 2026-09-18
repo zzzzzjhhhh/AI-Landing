@@ -3,7 +3,7 @@ import clothingDepth from "../../../public/rerun/episodes/20260911_170529/founda
 import clothingHands from "../../../public/rerun/episodes/20260911_170529/right-hand-pressure.json";
 import clothingTracking from "../../../public/rerun/episodes/20260911_170529/tracking-override.json";
 import clothingMovementHold from "../../../public/rerun/episodes/20260911_170529/movement-hold.json";
-import clothingPressureV4 from "../../../public/rerun/episodes/20260911_170529/visual-pressure-v4-glove-natural-v2.json";
+import clothingPressureV4 from "../../../public/rerun/episodes/20260911_170529/visual-pressure-v4-glove-clean.json";
 import waterEpisode from "../../../public/rerun/episodes/20260911_165650/manifest.json";
 import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundation-stereo-depth.json";
 import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
