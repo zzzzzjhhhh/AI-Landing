@@ -17,6 +17,7 @@ export type HandRecording = Pick<typeof manifest, "application_id" | "recording_
   gaussian_splat?: GaussianSplatRecording;
   tracking_override?: RecordingAsset;
   movement_hold_override?: RecordingAsset;
+  movement_override?: RecordingAsset;
   pressure_override?: RecordingAsset;
 };
 
@@ -77,10 +78,11 @@ export async function attachGlovePressure(
     return blueprint;
   })();
   const hands = (async () => {
-    const [buffers, movementHold, pressureOverride] = await Promise.all([
+    const [buffers, movementHold, pressureOverride, movementOverride] = await Promise.all([
       Promise.all(assets(recording.data, recording.data_parts).map(read)),
       recording.movement_hold_override ? read(recording.movement_hold_override) : Promise.resolve(null),
       recording.pressure_override ? read(recording.pressure_override) : Promise.resolve(null),
+      recording.movement_override ? read(recording.movement_override) : Promise.resolve(null),
     ]);
     if (!active()) return;
     const bytes = buffers.length === 1 ? buffers[0] : await new Blob(buffers).arrayBuffer();
@@ -90,6 +92,7 @@ export async function attachGlovePressure(
     send("Right hand pressure and movement", new Uint8Array(bytes));
     if (pressureOverride) send("Reviewed visual Pressure", new Uint8Array(pressureOverride));
     if (movementHold) send("Hold last tracked Movement pose", new Uint8Array(movementHold));
+    if (movementOverride) send("Accepted tracking Movement", new Uint8Array(movementOverride));
     // A newly opened data store may reactivate its default blueprint.
     if (blueprint) send("Episode layout", new Uint8Array(blueprint));
     callbacks.onHandsReady?.();

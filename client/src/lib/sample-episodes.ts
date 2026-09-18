@@ -9,6 +9,7 @@ import waterDepth from "../../../public/rerun/episodes/20260911_165650/foundatio
 import waterHands from "../../../public/rerun/episodes/20260911_165650/right-hand-pressure.json";
 import waterTracking from "../../../public/rerun/episodes/20260911_165650/tracking-override.json";
 import waterMovementHold from "../../../public/rerun/episodes/20260911_165650/movement-hold.json";
+import waterMovementAccepted from "../../../public/rerun/episodes/20260911_165650/movement-accepted-v1.json";
 import waterPressureOverride from "../../../public/rerun/episodes/20260911_165650/pressure-continuous-clean.json";
 import fiveCamera from "../../../public/rerun/episodes/20260910_150529/manifest.json";
 import fiveCameraHands from "../../../public/rerun/episodes/20260910_150529/right-hand-pressure.json";
@@ -68,9 +69,9 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     cameraLabel: "5 camera views",
     durationLabel: `${waterEpisode.duration_seconds.toFixed(1)}s`,
     recordingUrl: `${waterEpisode.recording.path}?v=${waterEpisode.recording.sha256.slice(0, 12)}`,
-    hands: { ...waterHands, tracking_override: waterTracking.overlay, movement_hold_override: waterMovementHold.data, pressure_override: waterPressureOverride.data },
+    hands: { ...waterHands, tracking_override: waterTracking.overlay, movement_hold_override: waterMovementHold.data, movement_override: waterMovementAccepted.data, pressure_override: waterPressureOverride.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. Flexion uses the original pose. Pressure retains the 86 reviewed stereo contact samples and contact-only temporal interpolation. Display matches 170529: shared gray hand, fixed continuous surface lattice, no inactive dots or black borders, and surface-neighbor averaging confined to positive source support. This is not measured force. Movement stays blank before the first tracked pose.",
+    flexionNote: "Stereo left/right keypoints use the provisional left V5 and right V4 tracking. Movement v1 retargets their stereo/MANO 3D fit to the original WebHand rig, with 120 ms local quaternion smoothing and 30 fps playback. The original PICO Movement remains selectable. This is model-estimated motion, not ground truth. Pressure retains the reviewed contact data and shared 0/22/44 display unchanged.",
     depthNote: "FoundationStereo estimate from 526 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${waterDepth.video.path}?v=${waterDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",

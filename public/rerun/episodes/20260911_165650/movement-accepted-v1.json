@@ -1,0 +1,20 @@
+{
+  "episode_id": "20260911_165650",
+  "source": "accepted_stereo_MANO_right_retargeted_to_original_WebHand",
+  "source_sha256": {
+    "right_fit.npz": "185e9b2edce054b26dcc50fd6d51751b59b9730b5d3532adcd5b1ae6f328f35b",
+    "tracking-manifest.json": "aabd738b6262895c26c0fae720529faf0bfeedd0eb98f54f24eb04c089710075",
+    "tracking-sources.json": "ed19e195072a701cebcaa3933ab13545a40da5e2d511879fd33fbbe9885a8cd5"
+  },
+  "source_frames": 526,
+  "frame_count": 1291,
+  "duration_ns": 42982047000,
+  "smoothing_radius_seconds": 0.12,
+  "source_max_gap_seconds": 0.360019,
+  "limitations": "Model-estimated 3D, not ground truth. Original fixed-palm Movement view. No pressure or stereo overlay changes.",
+  "data": {
+    "path": "/rerun/episodes/20260911_165650/movement-accepted-v1.rrd",
+    "sha256": "be3c8150634cf31c7910c7c775c43d0a5f77a04840cdd1dacb4250caca89bf2b",
+    "bytes": 56454964
+  }
+}
