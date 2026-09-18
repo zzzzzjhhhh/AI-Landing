@@ -54,7 +54,7 @@ export const sampleEpisodes: readonly SampleEpisode[] = [
     recordingUrl: `${clothingEpisode.recording.path}?v=${clothingEpisode.recording.sha256.slice(0, 12)}`,
     hands: { ...clothingHands, tracking_override: clothingTracking.overlay, movement_hold_override: clothingMovementHold.data, pressure_override: clothingPressureV4.data },
     flexionTitle: "Right-hand flexion from recorded pose.",
-    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure uses V4 stereo visual contact audits every 0.5 s: 15 finger zones and 7 palm zones, with 120 ms display transitions. Green means inferred contact, amber means unknown, gray means no contact; this is not measured force. Movement holds the last pose during tracking gaps.",
+    flexionNote: "Stereo keypoints use provisional ACE raw tracking; 3D flexion retains the original pose. Pressure uses the original animated hand heatmap with V4 stereo contact audits every 0.5 s, 15 finger zones and 7 palm zones, and 120 ms display transitions. Color is inferred contact intensity, not measured force. Uncolored regions may be unknown or no-contact. Movement holds the last pose during tracking gaps.",
     depthNote: "FoundationStereo estimate from 1,419 synchronized PICO stereo pairs. Fixed 0.2–3.0 m color scale; black marks invalid regions. Original pair timestamps are preserved.",
     depthVideoUrl: `${clothingDepth.video.path}?v=${clothingDepth.video.sha256.slice(0, 12)}`,
     imuNote: "Accel and gyro derived from the recorded head pose; source hardware IMU is unavailable.",

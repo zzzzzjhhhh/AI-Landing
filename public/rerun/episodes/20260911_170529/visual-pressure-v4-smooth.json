@@ -5,14 +5,15 @@
   "measured": false,
   "sample_count": 221,
   "override_frames": 2920,
-  "display": "22 semantic zones; 120ms contact fade, exact audit anchors; unknown amber, no contact through unknown",
-  "display_max": null,
+  "display": "Original WebHand heatmap renderer, same as 165650; 22 semantic zones; 120ms contact fade; unknown retained in metadata, not painted as contact",
+  "display_max": 189,
   "source_sha256": "98e0d6b5bcd753c0ba8cbe15d1b9efab11e091090f8bd747532f87e8d2ee69e4",
   "clock_sha256": "a40fd83ea766f5eb32da99cc07a78068bfc7b4b2fe1aeac88b0264380ebd6342",
   "data": {
     "path": "/rerun/episodes/20260911_170529/visual-pressure-v4-smooth.rrd",
-    "sha256": "60004cea6012a5751283027b2ce1e6f8d375e98f177806d46b1020f9709bc035",
-    "bytes": 2838008
+    "sha256": "6c562b6f2f79738f777b6f5d38af5b0ad71ae13c9a0431a51c26325d1af34bdf",
+    "bytes": 2604427
   },
-  "rollback": "Restore clothingPressureV3 import and override; original V3 files remain unchanged."
+  "rollback": "Restore clothingPressureV3 import and override; original V3 files remain unchanged.",
+  "renderer": "shared_WebHand_processor"
 }
