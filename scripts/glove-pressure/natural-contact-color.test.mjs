@@ -49,3 +49,14 @@ test('same 1168 points and levels, with no color on raised index/little or uncer
  const [released]=parseAudit('76|nnn nnn nnn nnn nnn|nnnnnnn|released');released.state='no_contact';released.time_ns=76e9;
  assert.ok(natural(new Uint8Array(460),{a:released,b:released,time_ns:76e9}).colors.every(c=>c.join()==='78,94,112,100'));
 });
+
+test('every surface point including the finger-palm transition can respond when contact is supported',async()=>{
+ const render=await createContinuousGloveDisplay({naturalContact:true});
+ const [a]=parseAudit('0|ccc ccc ccc ccc ccc|ccccccc|synthetic coverage test only');
+ a.state='contact';a.time_ns=0;
+ const full=render(new Uint8Array(460).fill(189),{a,b:a,time_ns:0});
+ assert.equal(full.positions.length,1168);
+ assert.ok(full.colors.every(c=>c[3]===255 && c.slice(0,3).join()!=='78,94,112'),'no permanently unresponsive points');
+ const zero=render(new Uint8Array(460),{a,b:a,time_ns:0});
+ assert.ok(zero.colors.every(c=>c.join()==='78,94,112,100'),'coverage must not invent signal');
+});

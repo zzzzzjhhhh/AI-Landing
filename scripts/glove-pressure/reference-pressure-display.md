@@ -1,6 +1,6 @@
 # 170529 display: shared reference chain with optional uniform glove taxels
 
-The active App asset is `visual-pressure-v4-glove-natural.rrd`. It uses ONE hexagonal
+The active App asset is `visual-pressure-v4-glove-natural-v2.rrd`. It uses ONE hexagonal
 lattice across the entire palm and fingers, projected onto the frontmost
 triangles of the unchanged hand mesh. The real rig wrist landmark is the
 lower boundary. There are no region-generated point grids, ROI rectangle
@@ -18,6 +18,18 @@ with an inward two-ring feather to avoid bright hard cuts. The source audits,
 input taxels, levels, timeline, point positions, palette and gray mesh are
 unchanged. This modifies a schematic display boundary, not measured contact
 geometry or force. The earlier glove asset is retained for rollback.
+
+V2 fixes a separate coverage defect: the color seeds previously still used
+the six bounded rectangles while the n/u guard used full-surface ownership.
+That left 380/1168 points without direct color input, including 139/291 in
+the finger-palm transition band (model y 0.45–1.0). Color lookup now uses the
+same complete `anatomicalAddress` assignment as the guard; it extends the
+existing atlas values to its owned surface area, not new contact labels.
+Synthetic full-contact input now activates every point, while zero input
+stays neutral. On 221 real audits, neutral contact-point observations in that
+band drop from 656 to 73; all n/u observations remain neutral. Residual dim
+sites near barriers are not forced on. Reproduce this check with
+`audit-contact-coverage.mjs <audit-jsonl> <report-json>`.
 
 The previous `visual-pressure-v4-uniform.rrd` preserves the rejected six-grid
 layout for rollback. The previous

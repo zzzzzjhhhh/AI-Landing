@@ -35,7 +35,7 @@ if a.surface: stem='visual-pressure-v4-surface'
 if a.reference_display: stem='visual-pressure-v4-reference'
 if a.uniform_taxels: stem='visual-pressure-v4-uniform'
 if a.continuous_glove: stem='visual-pressure-v4-glove'
-if a.natural_contact: stem='visual-pressure-v4-glove-natural'
+if a.natural_contact: stem='visual-pressure-v4-glove-natural-v2'
 output=root/(stem+'.rrd')
 display='Contact-only smoothstep interpolation; 120ms pre-release fade; unknown/released stays empty' if a.smooth else 'source-clock previous-sample hold, no interpolation'
 if a.digit_v4: display='Original WebHand heatmap renderer, same as 165650; 22 semantic zones; 120ms contact fade; unknown retained in metadata, not painted as contact'
@@ -43,7 +43,7 @@ if a.surface: display='Original hand mesh with time-varying vertex colors from t
 if a.reference_display: display='Shared 165650 WebHand point renderer and temporal interpolation; original mesh, material, legend, camera and layout unchanged; connected contact spans use shared Gaussian taxel kernel'
 if a.uniform_taxels: display+='; equal-pitch fixed-position taxels with neutral inactive points; color/opacity vary, no pressure-driven displacement'
 if a.continuous_glove: display='One global hexagonal point lattice projected onto the original palmar mesh; no ROI point grids or rectangle clipping; original palette, contact data and temporal interpolation preserved'
-if a.natural_contact: display+='; five local surface diffusion passes, no cross-gap edges, explicit no-contact/unknown barriers at audit anchors'
+if a.natural_contact: display+='; full-surface anatomical lookup including finger-palm transitions; five local surface diffusion passes, no cross-gap edges, explicit no-contact/unknown barriers at audit anchors'
 recording=rr.RecordingStream(original['application_id'],recording_id=original['recording_id'],send_properties=False)
 recording.save(output)
 if a.reference_display:
@@ -109,7 +109,7 @@ if a.uniform_taxels:
 if a.continuous_glove:
  metadata.update(renderer='continuous-glove-display.mjs; single hand-silhouette hex lattice',display_parameters={'min':0,'max':189,'projected_point_spacing':0.065,'surface_offset':0.012,'pressure_displacement':0,'inactive_alpha':100,'point_radius':0.018},rollback='Restore visual-pressure-v4-uniform.json import; previous outputs remain unchanged.')
 if a.natural_contact:
- metadata.update(color_filter='natural-contact-color.mjs; 5 constrained surface diffusion passes',rollback='Restore visual-pressure-v4-glove.json import; previous outputs remain unchanged.')
+ metadata.update(color_filter='natural-contact-color.mjs; complete anatomical source mapping plus 5 constrained surface diffusion passes',source_lookup='all 1168 surface points mapped; identical anatomical ownership for color source and n/u guard',rollback='Restore visual-pressure-v4-glove-natural.json import; previous outputs remain unchanged.')
 metadata['data']['path']=f'/rerun/episodes/20260911_170529/{stem}.rrd'
 (root/(stem+'.json')).write_text(json.dumps(metadata,indent=2)+'\n')
 print(f'\033[32m[COMPLETE] {stem} Pressure overlay, 2920 source-clock frames\033[0m')

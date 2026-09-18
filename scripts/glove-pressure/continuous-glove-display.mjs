@@ -1,7 +1,7 @@
 import {loadRightHandRig} from './right-hand-rig.mjs';
 import {regions,createPressureProcessor} from './processor.mjs';
 import {surfaceAddress} from './surface-contact-field.mjs';
-import {createNaturalContactFilter} from './natural-contact-color.mjs';
+import {createNaturalContactFilter,anatomicalAddress} from './natural-contact-color.mjs';
 
 export const GLOVE_PITCH=.065;
 export const SURFACE_OFFSET=.012;
@@ -60,15 +60,18 @@ function taxelAt(data,address){
   return (at(x0,y0)*(1-fx)+at(x1,y0)*fx)*(1-fy)+(at(x0,y1)*(1-fx)+at(x1,y1)*fx)*fy;
 }
 
-export async function createContinuousGloveDisplay({naturalContact=false}={}){
+export async function createContinuousGloveDisplay({naturalContact=false,completeCoverage=naturalContact}={}){
   const rig=await loadRightHandRig();
   let samples,meshes;
   try{meshes=rig.sample().map((m,i)=>({...m,...rig.topology[i]}));samples=gloveSurfaceSamples(meshes,rig.wristPosition[1]);}
   finally{rig.dispose();}
   const positions=samples.map(s=>[s.position[0],s.position[1],s.position[2]+SURFACE_OFFSET]);
-  // The legacy lookup has hard ROI edges. Optional surface diffusion removes
-  // those color boundaries without moving any points or changing the hand.
-  const addresses=samples.map(s=>surfaceAddress(s.position,s.normal));
+  // EVERY point needs a source address, including palm-to-finger transitions.
+  // Previously, 380 points outside the six rectangles started at zero and
+  // depended on a few diffusion passes; some could never show contact.
+  // Use the SAME full-surface assignment as the n/u guard, so lookup and
+  // permission cannot disagree about which anatomical site owns a point.
+  const addresses=samples.map(s=>completeCoverage?anatomicalAddress(s):surfaceAddress(s.position,s.normal));
   const filter=naturalContact?createNaturalContactFilter(samples,meshes):null;
   const processor=await createPressureProcessor(),palette=[BASE];
   for(let v=1;v<=189;v++){
